@@ -1,0 +1,94 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Autenticação API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Autenticação
+  description: Geração de token temporário para fluxos que exigem validação adicional.
+paths:
+  /api/Funcoes/PostGerarToken:
+    post:
+      tags:
+      - Autenticação
+      summary: PostGerarToken
+      description: 'Gera um **código de validação temporário** (token alfanumérico de **6 caracteres**) para o beneficiário e, opcionalmente, para um prestador vinculado — usado em fluxos que exigem confirmação rápida (ex.: chat, autosserviço).
+
+
+        O token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GerarTokenRequest'
+      responses:
+        '200':
+          description: Token gerado com sucesso; utilize dentro do prazo de validade informado ou retornado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GerarTokenResponse'
+        '400':
+          description: Requisição inválida ou falha de negócio (ex. beneficiário não encontrado para a carteira informada).
+        '401':
+          description: Não autorizado (`x-api-key` ou política da API).
+        '404':
+          description: Beneficiário não localizado — quando a API expõe esse código em vez de 400.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    GerarTokenRequest:
+      type: object
+      required:
+      - nrCarteira
+      description: Dados para localizar o beneficiário e, opcionalmente, o prestador que participará do fluxo com o token.
+      properties:
+        nrCarteira:
+          type: string
+          description: 'Número da carteirinha do beneficiário (identificador exibido na carteira ou matrícula, conforme regras da operadora).
+
+            '
+        cdPrestador:
+          type: string
+          default: ''
+          description: 'Opcional. Código do prestador no conselho quando o token for vinculado a um profissional; se omitido ou não localizado, o token é gerado apenas para o beneficiário.
+
+            '
+    GerarTokenResponse:
+      type: object
+      description: Token gerado e, quando disponíveis, instantes de geração e expiração para controle no cliente.
+      properties:
+        nrToken:
+          type: string
+          minLength: 6
+          maxLength: 6
+          description: 'Código de **6 caracteres** (em geral **1 letra** seguida de **5 dígitos**), com regras que evitam ambiguidade na leitura (ex.: certas letras na primeira posição).
+
+            '
+        dtGeracao:
+          type: string
+          format: date-time
+          description: Momento em que o token foi gerado, quando retornado pela API.
+        dtValidade:
+          type: string
+          format: date-time
+          description: Momento em que o token deixa de ser válido; em geral poucos minutos após a geração.
+      additionalProperties: true
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

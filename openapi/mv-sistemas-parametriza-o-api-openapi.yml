@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Parametrização API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Parametrização
+  description: ''
+paths:
+  /api/v1/loincmv/bytuss/{tuss}:
+    get:
+      tags:
+      - Parametrização
+      description: Operação responsável por consultar parametrizações com base no código TUSS, retornando os dados vinculados ao procedimento informado.
+      operationId: findLoincByTussCode
+      parameters:
+      - name: tuss
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Loinc encontrado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoincMVResponseV1'
+components:
+  schemas:
+    ItemAgendamentoDTO:
+      type: object
+      properties:
+        itemAgendamentoId:
+          type: integer
+        exaLabId:
+          type: integer
+        exaRxId:
+          type: integer
+        checkin:
+          type: boolean
+    LoincMVResponseV1:
+      type: object
+      properties:
+        name:
+          type: string
+        examType:
+          type: string
+        loincCode:
+          type: string
+        activated:
+          type: boolean
+        mvCode:
+          type: string
+        scheduled:
+          type: boolean
+        examsType:
+          type: integer
+        preparation:
+          type: string
+        tuss_code:
+          type: string
+        tuss:
+          $ref: '#/components/schemas/TussDTO'
+        specimen:
+          $ref: '#/components/schemas/SpecimenDTO'
+        itemAgendamento:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemAgendamentoDTO'
+    SpecimenDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        activated:
+          type: boolean
+        variation:
+          type: string
+    TussDTO:
+      type: object
+      properties:
+        code:
+          type: string
+        tableCode:
+          type: string
+        term:
+          type: string
+        fabricatorReferences:
+          type: string
+        fabricator:
+          type: string
+        registerAnvisa:
+          type: string
+        riskClassification:
+          type: string
+        presentation:
+          type: string
+        laboratory:
+          type: string
+        initials:
+          type: string
+        detailsDescription:
+          type: string
+        groupName:
+          type: string
+        groupDescription:
+          type: string
+        terminology:
+          type: string
+        tussCode:
+          type: string
+        sendType:
+          type: string
+        fullPresentation:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

@@ -1,0 +1,583 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Gestão de Pendências API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Gestão de Pendências
+  description: Operações relacionadas à gestão de pendências e exames.
+paths:
+  /health-pendency:
+    post:
+      tags:
+      - Gestão de Pendências
+      summary: Incluir uma Nova Pendência para o Beneficiário
+      description: Endpoint utilizado para incluir uma nova pendência associada a um beneficiário, registrando os dados necessários para acompanhamento e controle.
+      operationId: addHealthPendency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthPendency'
+            example:
+              documentNumber: Numero do Documento do Paciente (Somente Números)
+              description: Pendências para realização de Exames
+              sourceId: '17'
+              type: EXAM_REQUEST
+              status: PENDING
+              requestedDate: 21/03/2025
+              healthProfessionalName: Nome do Profissional
+              healthProfessionalAccreditationNumber: '1223321123321'
+              healthProfessionalAccreditationType: CRM
+              healthProfessionalAccreditationState: SP
+              ansCode: null
+              insuranceCardNumber: null
+              unitName: Unidade de Atendimento Exemplo
+              patientName: John Doe
+              identificationNumber: null
+              serviceName: Nome do Serviço
+              codigoAns: null
+              codigoConvenio: null
+              codigoPlanoConvenio: null
+              codigoSubPlano: null
+              codigoMatricula: null
+              nomeDoPlanoNoClinic: null
+              nomeDoPacienteCarteira: null
+              dtValidade: null
+              recemNascido: null
+              healthPlanId: null
+              healthPlanType: null
+              exams:
+              - examDescription: RX JOELHO
+                recommendation: null
+                clinicalIndication: null
+                procedureCode: null
+                guiaTissFormNumber: null
+                guiaTissInsuranceFormNumber: null
+                guiaTissInsuranceNumber: null
+                guiaTissHealthAutomationResponse: AUTHORIZED
+                guiaTissPassword: null
+                schedulingItemCode: 6981
+                exaLabCode: 1617
+                exaRxCode: null
+                sourceId: 80
+                status: CREATED
+              drugPrescriptions: null
+              sharedInfoHealth: null
+              qrCode: null
+              linkPrescription: null
+              card: null
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: HealthPendency
+        required: true
+        schema:
+          $ref: '#/components/schemas/HealthPendency'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              example:
+                content:
+                  documentNumber: ''
+                  receivedLogin: ''
+                  description: Diagnostico por imagem
+                  sourceId: '10'
+                  type: EXAM_REQUEST
+                  status: PENDING
+                  requestedDate: 26/03/2025
+                  healthProfessionalName: Nome do Profissional Solicitante
+                  healthProfessionalAccreditationNumber: '1234'
+                  healthProfessionalAccreditationType: CRM
+                  healthProfessionalAccreditationState: SP
+                  ansCode: null
+                  insuranceCardNumber: null
+                  unitName: Consultório do médico
+                  patientName: null
+                  identificationNumber: null
+                  serviceName: null
+                  codigoAns: null
+                  codigoConvenio: null
+                  codigoPlanoConvenio: null
+                  codigoSubPlano: null
+                  codigoMatricula: null
+                  nomeDoPlanoNoClinic: null
+                  nomeDoPacienteCarteira: null
+                  dtValidade: null
+                  recemNascido: null
+                  healthPlanId: null
+                  healthPlanType: null
+                  exams:
+                  - examDescription: DENSITOMETRIA OSSEA COLUNA E FEMUR (OU 2 SEGMENT)
+                    recommendation: null
+                    clinicalIndication: null
+                    procedureCode: null
+                    guiaTissFormNumber: null
+                    guiaTissInsuranceFormNumber: null
+                    guiaTissInsuranceNumber: null
+                    guiaTissHealthAutomationResponse: REQUESTED
+                    guiaTissPassword: null
+                    schedulingItemCode: 170
+                    exaLabCode: null
+                    exaRxCode: 109
+                    sourceId: 11773398
+                    status: CREATED
+                  - examDescription: MAMOGRAFIA DIGITAL BILATERAL
+                    recommendation: null
+                    clinicalIndication: null
+                    procedureCode: null
+                    guiaTissFormNumber: '19324351'
+                    guiaTissInsuranceFormNumber: '19324351'
+                    guiaTissInsuranceNumber: null
+                    guiaTissHealthAutomationResponse: AUTHORIZED
+                    guiaTissPassword: '19324351'
+                    schedulingItemCode: 2421
+                    exaLabCode: null
+                    exaRxCode: 2568
+                    sourceId: 11773391
+                    status: CREATED
+                  drugPrescriptions: null
+                  sharedInfoHealth: null
+                  qrCode: null
+                  linkPrescription: null
+                  card: null
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/HealthPendency'
+    get:
+      tags:
+      - Gestão de Pendências
+      summary: Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status da pendência.
+      description: Endpoint responsável por consultar pendências de um paciente, permitindo a busca por número de documento, número de carteirinha e/ou status da pendência. <p>É obrigatório informar pelo menos um parâmetro para realizar a busca. </p>
+      operationId: findHealthPendencies
+      produces:
+      - application/json
+      parameters:
+      - name: numeroDocumento
+        in: query
+        description: 'Número de documento: (CPF, somente dígitos)'
+        type: string
+      - name: numeroCarteira
+        in: query
+        description: 'Número do Cartão do Convênio do Beneficiário:'
+        type: string
+      - name: status
+        in: query
+        description: 'Status da Pendência, separados por vírgulas: (Ex: CREATED,ACCEPTED)'
+        type: string
+        enum:
+        - CREATED
+        - ACCEPTED
+        - REFUSED
+        required: true
+      responses:
+        '200':
+          description: Lista de pendências encontradas com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HealthPendency'
+  /health-pendency/{hash-key}:
+    get:
+      tags:
+      - Gestão de Pendências
+      summary: Buscar uma Pendência específica pelo Hash Key
+      description: Endpoint que busca uma pendência específica com base no Hash Key, retornando todos os detalhes e informações vinculadas ao registro informado.
+      operationId: getHealthPendencyById
+      produces:
+      - application/json
+      parameters:
+      - name: hash-key
+        in: path
+        description: <b>Hash Key</b> da pendência a ser buscada. <br><br> Chave associada à pendência. <br><br> Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br><br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br><br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Pendência encontrada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthPendency'
+        '404':
+          description: Pendência não encontrada.
+    put:
+      tags:
+      - Gestão de Pendências
+      summary: Atualizar uma Pendência pelo Hash Key.
+      description: Endpoint responsável por atualizar os dados de uma pendência específica, utilizando o Hash Key como referência para identificar o registro a ser modificado.
+      operationId: updateHealthPendencyByHashKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthPendency'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: hash-key
+        in: path
+        description: Hash Key da pendência a ser atualizada.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Pendência atualizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthPendency'
+        '404':
+          description: Pendência não encontrada.
+  /health-pendency/{hash-key}/exams/{exam-source-id}:
+    get:
+      tags:
+      - Gestão de Pendências
+      summary: Obter um Item de Exame.
+      description: Endpoint que obtém os dados de um item de exame vinculado a uma pendência específica, identificada pelo Hash Key da pendência e pelo Source ID do item.
+      operationId: getHealthPendencyExamItemByHashKey
+      produces:
+      - application/json
+      parameters:
+      - name: hash-key
+        in: path
+        description: Hash Key da pendência a ser atualizada.
+        required: true
+        type: string
+      - name: exam-source-id
+        in: path
+        description: Source ID do Item da pendência a ser atualizado.
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Item de Pendência encontrado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthPendencyExam'
+        '404':
+          description: Item não encontrado.
+    put:
+      tags:
+      - Gestão de Pendências
+      summary: Atualizar um Item de Exame.
+      description: Endpoint utilizado para atualizar as informações de um item de exame pertencente a uma pendência específica, referenciada pelo Hash Key da pendência e pelo Source ID do item.
+      operationId: updateHealthPendencyExamItemByHashKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthPendencyExam'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: hash-key
+        in: path
+        description: Hash Key da pendência a ser atualizada.
+        required: true
+        type: string
+      - name: exam-source-id
+        in: path
+        description: Source ID do Item da pendência a ser atualizado.
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Item de Pendência atualizado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthPendencyExam'
+        '404':
+          description: Pendência não encontrada.
+components:
+  schemas:
+    HealthPendencyPatient:
+      type: object
+      properties:
+        socialName:
+          type: string
+          description: Nome social
+          maxLength: 255
+        birthDate:
+          type: string
+          description: Data de nascimento (formato YYYY-MM-DD)
+          maxLength: 10
+        gender:
+          type: string
+          description: Sexo
+          enum:
+          - M
+          - F
+          - I
+        phone:
+          type: string
+          description: Telefone
+          maxLength: 20
+        email:
+          type: string
+          description: E-mail
+          maxLength: 255
+        motherName:
+          type: string
+          description: Nome da mãe
+          maxLength: 255
+    HealthPendencyExam:
+      type: object
+      properties:
+        examDescription:
+          type: string
+          description: Descrição do exame
+        recommendation:
+          type: string
+          description: Recomendação para o exame
+        clinicalIndication:
+          type: string
+          description: Indicação clínica do exame
+        procedureCode:
+          type: string
+          description: Código do procedimento
+        guiaTissFormNumber:
+          type: string
+          description: Número do formulário da guia TISS
+        guiaTissInsuranceFormNumber:
+          type: string
+          description: Número do formulário de seguro da guia TISS
+        guiaTissInsuranceNumber:
+          type: string
+          description: Número do seguro da guia TISS
+        guiaTissHealthAutomationResponse:
+          type: string
+          description: Resposta da automação de saúde da guia TISS
+        guiaTissPassword:
+          type: string
+          description: Senha da guia TISS
+        schedulingItemCode:
+          type: integer
+          description: Código do item de agendamento
+        exaLabCode:
+          type: integer
+          description: Código do laboratório de exame
+        exaRxCode:
+          type: integer
+          description: Código do exame de raio-X
+        sourceId:
+          type: integer
+          description: ID da fonte
+        status:
+          type: string
+          description: Status do exame
+    HealthPendency:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+          description: Número do documento do Paciente que receberá a pendência.
+        person:
+          type: object
+          $ref: '#/components/schemas/HealthPendencyPerson'
+        patient:
+          type: object
+          $ref: '#/components/schemas/HealthPendencyPatient'
+        hashKey:
+          type: string
+          description: Chave hash associada à pendência. Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos.
+        receivedLogin:
+          type: string
+          maxLength: 150
+          description: Login do usuário que recebeu a pendência
+        description:
+          type: string
+          maxLength: 150
+          description: Descrição da pendência
+        source:
+          type: string
+          maxLength: 150
+          description: Fonte que gerou a pendência
+        sourceId:
+          type: integer
+          format: int64
+          description: Identificador da fonte que gerou a pendência
+        type:
+          type: string
+          enum:
+          - TYPE1
+          - TYPE2
+          - TYPE3
+          description: Tipo da pendência. Enum com valores possíveis
+        clientKey:
+          type: string
+          maxLength: 50
+          description: Chave do cliente associada à pendência
+        status:
+          type: string
+          enum:
+          - CREATED
+          - ACCEPTED
+          - REFUSED
+          description: Status atual da pendência. Enum com valores possíveis
+        newsId:
+          type: integer
+          format: int64
+          description: ID da notificação relacionada à pendência. Campo preenchido automaticamente ao criar ou atualizar os registros.
+        eventId:
+          type: integer
+          format: int64
+          description: ID do evento de agendamento/check-in relacionado à pendência. Campo preenchido automaticamente ao criar ou atualizar os registros.
+        requestedDate:
+          type: string
+          format: date
+          description: Data de solicitação da pendência no formato YYYY-MM-DD
+        healthProfessionalName:
+          type: string
+          description: Nome do profissional de saúde associado
+        healthProfessionalAccreditationNumber:
+          type: string
+          description: Número de credenciamento do profissional de saúde (Número do CRM, por exemplo)
+        healthProfessionalAccreditationType:
+          type: string
+          maxLength: 20
+          description: Tipo de credenciamento do profissional
+        healthProfessionalAccreditationState:
+          type: string
+          maxLength: 2
+          description: Estado do credenciamento do profissional de saúde
+        ansCode:
+          type: string
+          maxLength: 50
+          description: Código ANS
+        insuranceCardNumber:
+          type: string
+          maxLength: 50
+          description: Número da carteira de seguro
+        unitName:
+          type: string
+          maxLength: 150
+          description: Nome da unidade de atendimento
+        patientName:
+          type: string
+          maxLength: 255
+          description: Nome completo do paciente
+        identificationNumber:
+          type: string
+          maxLength: 50
+          description: Número de identificação do paciente (e.g., CPF, RG)
+        serviceName:
+          type: string
+          maxLength: 150
+          description: Nome do serviço relacionado à pendência
+        codigoAns:
+          type: string
+          description: Código da ANS
+        codigoConvenio:
+          type: string
+          description: Código do convênio
+        codigoPlanoConvenio:
+          type: string
+          description: Código do plano do convênio
+        codigoSubPlano:
+          type: string
+          description: Código do subplano
+        codigoMatricula:
+          type: string
+          description: Código da matrícula
+        nomeDoPlanoNoClinic:
+          type: string
+          description: Nome do plano no Clinic
+        nomeDoPacienteCarteira:
+          type: string
+          description: Nome do paciente na carteira
+        dtValidade:
+          type: string
+          format: date
+          description: Data de validade
+        recemNascido:
+          type: boolean
+          description: Indica se o beneficiário é recém-nascido
+        healthPlanId:
+          type: string
+          description: ID do plano de saúde
+        healthPlanType:
+          type: string
+          description: Tipo do plano de saúde
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthPendencyExam'
+          description: Lista de exames associados à pendência
+        drugPrescriptions:
+          type: array
+          items:
+            type: object
+          description: Lista de prescrições de medicamentos (se aplicável)
+        sharedInfoHealth:
+          type: array
+          items:
+            type: object
+          description: Informações de saúde compartilhadas
+        qrCode:
+          type: string
+          description: Código QR associado à pendência
+        linkPrescription:
+          type: string
+          description: Link para a prescrição
+        card:
+          type: string
+          description: Informações do cartão
+    HealthPendencyPerson:
+      type: object
+      properties:
+        numeroDocumento:
+          type: string
+          description: Número de Documento do Beneficiário
+          maxLength: 50
+        numeroCarteira:
+          type: string
+          description: Número do Cartão do Convênio do Beneficiário
+          maxLength: 50
+        nomeCarteira:
+          type: string
+          description: Nome do Beneficiário no Cartão do Convênio
+          maxLength: 255
+        nome:
+          type: string
+          description: Nome do Beneficiário
+          maxLength: 255
+        status:
+          type: string
+          description: Status do Beneficiário junto a operadora
+          enum:
+          - active
+          - inactive
+          maxLength: 20
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

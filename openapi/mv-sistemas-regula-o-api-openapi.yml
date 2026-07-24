@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Regulação API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Regulação
+  description: Endpoints relacionados à regulação clínica
+paths:
+  /v1/regulation:
+    get:
+      tags:
+      - Regulação
+      summary: Buscar regulações
+      description: Endpoint que retorna uma lista de regulações com base nos filtros informados, facilitando a localização de registros específicos.
+      parameters:
+      - name: page
+        in: query
+        description: Página atual da listagem
+        schema:
+          type: integer
+      - name: size
+        in: query
+        description: Quantidade de registros por página
+        schema:
+          type: integer
+      - name: procedureDescription
+        in: query
+        description: Descrição do procedimento
+        schema:
+          type: string
+      - name: ownCode
+        in: query
+        description: Código próprio do exame
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegulationSimpleDTO'
+        '401':
+          description: Operação não autorizada.
+        '403':
+          description: Proibido.
+        '404':
+          description: Não encontrado.
+        '500':
+          description: Erro interno.
+    post:
+      tags:
+      - Regulação
+      summary: Criar regulação
+      description: Endpoint utilizado para criar uma nova regulação, registrando as informações necessárias no sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegulationDTO'
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegulationSimpleDTO'
+        '401':
+          description: Operação não autorizada.
+        '403':
+          description: Proibido.
+        '500':
+          description: Erro interno.
+  /v1/regulation/{id}:
+    get:
+      tags:
+      - Regulação
+      summary: Buscar uma regulação específica pelo seu ID
+      description: Endpoint que busca uma regulação específica pelo seu ID, retornando todos os detalhes do registro.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegulationDTO'
+        '404':
+          description: Não encontrado.
+    put:
+      tags:
+      - Regulação
+      summary: Atualizar regulação
+      description: Endpoint responsável por atualizar os dados de uma regulação existente, garantindo que as informações permaneçam corretas e atualizadas.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegulationDTO'
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+        '404':
+          description: Não encontrado.
+    delete:
+      tags:
+      - Regulação
+      summary: Deletar regulação
+      description: Endpoint utilizado para excluir uma regulação, removendo permanentemente o registro do sistema.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deletado com sucesso
+        '404':
+          description: Não encontrado
+components:
+  schemas:
+    RegulationSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        procedureDescription:
+          type: string
+          example: Hemograma completo
+        ownCode:
+          type: string
+          example: EX123
+        type:
+          type: string
+          example: LAB
+    ConsentTermDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        term:
+          type: string
+        clientKey:
+          type: string
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: '40304361'
+        term:
+          type: string
+          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
+    RegulationHealthPlanDTO:
+      type: object
+      description: Configuração da regulação por convênio.
+      properties:
+        id:
+          type: integer
+          description: Identificador da linha (ao atualizar registro existente).
+        healthPlan:
+          $ref: '#/components/schemas/HealthPlanDTO'
+        clinicalIndication:
+          type: boolean
+          description: Indicação clínica obrigatória (Ind. Clin.).
+        restricted:
+          type: boolean
+          description: Modo restritivo (Restr.).
+        blocked:
+          type: boolean
+          description: Bloqueado (Bloq.).
+        reportRequired:
+          type: boolean
+          description: Laudo obrigatório (Laudo Obg.).
+        formId:
+          type: integer
+          nullable: true
+        formTitle:
+          type: string
+          nullable: true
+        hasConsentTerm:
+          type: boolean
+        categoryName:
+          type: string
+          example: Urgência
+        categoryColor:
+          type: string
+          example: '#A9CA46'
+        justificationDays:
+          type: string
+          nullable: true
+          description: 'Dias para justificativa neste convênio. Enviado como texto (ex.: número de dias). Persistido na coluna `justification_days` da tabela `regulation_health_plan`.
+
+            '
+          example: '5'
+        consentTerm:
+          $ref: '#/components/schemas/ConsentTermDTO'
+    RegulationDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        clientKey:
+          type: string
+        type:
+          type: string
+        tuss:
+          $ref: '#/components/schemas/TussDTO'
+        ownCode:
+          type: string
+        procedureDescription:
+          type: string
+        gender:
+          type: string
+          description: Sexo aplicável à regulação. Valores aceitos — `M` (masculino), `F` (feminino) ou omitido/`null` (ambos). A coluna no banco é `VARCHAR(1)`.
+          example: M
+        doctorOrientation:
+          type: string
+        patientOrientation:
+          type: string
+        regulationHealthPlanList:
+          type: array
+          description: Regras por convênio (plano de saúde), incluindo termo, formulário, categoria e dias para justificativa.
+          items:
+            $ref: '#/components/schemas/RegulationHealthPlanDTO'
+        laboratoryExamCode:
+          type: string
+        rxExamCode:
+          type: string
+        schedulingItemCode:
+          type: string
+        requiresJustification:
+          type: boolean
+          description: Indica se a regulação exige justificativa
+          example: false
+    HealthPlanDTO:
+      type: object
+      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Unimed Prata
+        ansCode:
+          type: string
+          example: '185657'
+        active:
+          type: boolean
+          example: true
+        insuranceType:
+          type: string
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

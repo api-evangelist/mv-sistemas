@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Notification API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Notification
+paths:
+  /notification/push:
+    post:
+      tags:
+      - Notification
+      summary: Envia uma notificação push
+      description: Endpoint responsável por enviar notificação push com mensagem, título e destinatário (e-mail).
+      security:
+      - api_key: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationPushPayload'
+            example:
+              message: Exemplo de Mensagem
+              title: Exemplo de Titulo
+              to: email@email.com
+      responses:
+        '200':
+          description: Notificação enviada com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+  /notification/email/send:
+    post:
+      tags:
+      - Notification
+      summary: Envia uma notificação email
+      description: Endpoint responsável por enviar notificação por email.
+      security:
+      - api_key: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationEmailPayload'
+            example:
+              modelKey: CHAVE_DO_MODELO
+              clientKey: chave-do-cliente
+              productKey: CHAVE_DO_PRODUTO
+              tags:
+                NOME_DA_TAG: VALOR DA TAG
+              to: email@email.com
+      responses:
+        '200':
+          description: Notificação enviada com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    NotificationEmailPayload:
+      type: object
+      properties:
+        modelKey:
+          type: string
+          example: CHAVE_DO_MODELO
+          description: Chave do modelo.
+        clientKey:
+          type: string
+          example: chave-do-cliente
+          description: Chave do cliente.
+        productKey:
+          type: string
+          example: CHAVE_DO_PRODUTO
+          description: Chave do produto.
+        tags:
+          type: object
+          description: Tags chave/valor para o modelo
+        to:
+          type: string
+          format: email
+          example: email@email.com
+          description: E-mail do destinatário que receberá a notificação.
+      required:
+      - modelKey
+      - clientKey
+      - productKey
+      - to
+    NotificationPushPayload:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Exemplo de Mensagem
+          description: Conteúdo da mensagem a ser enviada na notificação.
+        title:
+          type: string
+          example: Exemplo de Titulo
+          description: Título da notificação.
+        to:
+          type: string
+          format: email
+          example: email@email.com
+          description: E-mail do destinatário que receberá a notificação.
+      required:
+      - message
+      - title
+      - to
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

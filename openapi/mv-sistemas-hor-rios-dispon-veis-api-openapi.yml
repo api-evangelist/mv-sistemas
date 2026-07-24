@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Horários Disponíveis API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Horários Disponíveis
+paths:
+  /available-appointments:
+    get:
+      tags:
+      - Horários Disponíveis
+      summary: Consultar horários disponíveis.
+      description: Endpoint utilizado para consultar os horários disponíveis, sem a necessidade de filtrar por médico ou especialidade. Ideal para obter uma visão geral das opções de agendamento no sistema.
+      parameters:
+      - name: employeeId
+        in: query
+        schema:
+          type: integer
+          format: int64
+        description: ID do médico
+      - name: termCboIds
+        in: query
+        schema:
+          type: string
+        description: Lista de IDs de especialidades, separados por vírgula
+      - name: teleconsultation
+        in: query
+        schema:
+          type: boolean
+        description: ID do médico
+      - name: date
+        in: query
+        schema:
+          type: string
+          example: 30-01-2030
+        description: Data a ser consultada
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: Número da página da consulta
+      - name: size
+        in: query
+        schema:
+          type: integer
+        description: Quantidade de registros por página
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageEmployeeAppointment'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        name:
+          type: string
+        specialties:
+          type: array
+          items:
+            type: string
+    PageEmployeeAppointment:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeAppointment'
+        totalElements:
+          type: integer
+        number:
+          type: integer
+        size:
+          type: integer
+    EmployeeAppointment:
+      type: object
+      properties:
+        employee:
+          $ref: '#/components/schemas/Employee'
+        nearestAvailableAppointment:
+          $ref: '#/components/schemas/NearestAvailableAppointment'
+    AvailableAppointment:
+      type: object
+      properties:
+        startTime:
+          type: string
+        date:
+          type: string
+        telehealthAppointment:
+          type: boolean
+    NearestAvailableAppointment:
+      type: object
+      properties:
+        clinicId:
+          type: integer
+          format: int64
+        employeeId:
+          type: integer
+          format: int64
+        matchSearchDate:
+          type: boolean
+        nextAvailableDate:
+          type: string
+        availableAppointmens:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableAppointment'
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

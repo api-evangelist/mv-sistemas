@@ -1,0 +1,192 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Protocolo de Entrada API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Protocolo de Entrada
+paths:
+  /api/v1/entry-control-protocols:
+    post:
+      tags:
+      - Protocolo de Entrada
+      operationId: createProtocol
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntryControlProtocolDTO'
+            example:
+              documentNumber: '10222548759'
+              endDate: '1712341731366'
+              type: VISITA
+              destination: Descrição para um Destino
+              location: Descrição para uma Localização
+              hideToPublicSearch: false
+              usageLimit: null
+              startTime: 08:00
+              endTime: '12:00'
+              email: example@example.com
+              phone: '11988776655'
+              timeZone: America/Sao_Paulo
+              hospitalizationUnitDescription: Descrição para Unidade de Internação
+              sectorDescription: Descrição para o Setor
+      responses:
+        '201':
+          description: Criação de Protocolo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryControlProtocolDTO'
+        '200':
+          description: Atualização de Protocolo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryControlProtocolDTO'
+      summary: Realizar o criação de protocolo de entrada.
+      description: Endpoint responsável por criar um novo protocolo de entrada, registrando as informações necessárias para o controle de acessos.
+  /api/v1/entry-control-protocols/{id}:
+    put:
+      tags:
+      - Protocolo de Entrada
+      operationId: updateProtocol
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntryControlProtocolDTO'
+      responses:
+        '200':
+          description: Protocolo Atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryControlProtocolDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InternalErrorMessage'
+components:
+  schemas:
+    InternalErrorMessage:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          description: Timestamp em que o erro aconteceu.
+        status:
+          type: number
+        message:
+          type: string
+          description: Mensagem do erro.
+        path:
+          type: string
+          description: Path chamado no momento do Erro.
+    EntryControlProtocolDTO:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+          description: Número do documento.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+        endDate:
+          type: string
+          description: Data de término do protocolo, em TIMESTAMP, se aplicável.
+          examples:
+          - '1712061035669'
+        type:
+          type: string
+          description: Tipo do Protocolo.
+          examples:
+          - PACIENTE
+          - VISITA
+          - EVENTO
+          - ACOMPANHANTE
+        destination:
+          type: string
+          description: Destino do Protocolo.
+          examples:
+          - Unidade 3
+        location:
+          type: string
+          description: Localização do Protocolo.
+          examples:
+          - Apartamento 402
+        hideToPublicSearch:
+          type: boolean
+          description: Indica se o protocoloco deve ser oculto em pesquisas públicas.
+          examples:
+          - false
+          - true
+        usageLimit:
+          type: number
+          description: Limite de uso associado ao Protocolo. Caso não tenha limite, não enviar nenhum valor
+          examples:
+          - 20
+        startTime:
+          type: string
+          description: Hora de início associada ao Protocolo, se aplicável.
+          examples:
+          - 08:00
+        endTime:
+          type: string
+          description: Hora de término associada ao Protocolo, se aplicável.
+          examples:
+          - '18:00'
+        email:
+          type: string
+          description: Endereço de e-mail associado ao Protocolo, se aplicável.
+          examples:
+          - emaril@email.com
+        phone:
+          type: string
+          description: Número de telefone associado ao Protocolo, se aplicável.
+          examples: (11) 9 9999-8888
+        timeZone:
+          type: string
+          description: Fuso horário associado ao Protocolo.
+          examples:
+          - America/Sao_Paulo
+          - America/Recife
+          - America/Cuiaba
+          - America/Rio_Branco
+        hospitalizationUnitDescription:
+          type: string
+          description: Descrição da unidade de Internação associada ao Protocolo, se aplicável.
+        sectorDescription:
+          type: string
+          description: Descrição do setor associado ao Protocolo, se aplicável.
+      required:
+      - documentNumber
+      - requesterName
+      - source
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

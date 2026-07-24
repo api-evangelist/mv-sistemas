@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Exames API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Exames
+  description: Endpoints relacionados à busca de exames (TUSS)
+paths:
+  /v1/exams:
+    get:
+      tags:
+      - Exames
+      summary: Buscar exames (TUSS)
+      description: Retorna uma lista paginada de procedimentos TUSS, com filtro opcional por termo de busca.
+      parameters:
+      - name: search
+        in: query
+        description: Termo para filtrar exames (código, descrição ou termo)
+        schema:
+          type: string
+          example: '40304361'
+      - name: page
+        in: query
+        description: Página atual da listagem
+        schema:
+          type: integer
+      - name: size
+        in: query
+        description: Quantidade de registros por página
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TussDTO'
+        '401':
+          description: Operação não autorizada.
+        '403':
+          description: Proibido.
+        '404':
+          description: Não encontrado.
+        '500':
+          description: Erro interno.
+components:
+  schemas:
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: '40304361'
+        term:
+          type: string
+          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

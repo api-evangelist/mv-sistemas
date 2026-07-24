@@ -1,0 +1,286 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Gestão de Beneficiários API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Gestão de Beneficiários
+  description: Operações relacionadas ao cadastro de beneficiários.
+paths:
+  /persons:
+    put:
+      tags:
+      - Gestão de Beneficiários
+      summary: Atualizar ou Incluir um Novo Beneficiário
+      description: '<div> <p>O objeto <code>Person</code> é fundamental para o armazenamento das informações básicas referentes aos beneficiários. Ele representa a estrutura central utilizada para registrar e transmitir os dados necessários ao funcionamento da API, sendo projetado com flexibilidade para atender a diferentes cenários e integrações.</p> <hr> <p><strong>::: Obrigatoriedade de Campos</strong></p> <p>Atualmente, os únicos campos obrigatórios para o correto funcionamento da API são:</p> <ul> <li><strong>nome</strong>: Nome Completo do Beneficiário;</li> <li><strong>numeroDocumento</strong>: identificador único do beneficiário (como CPF ou outro documento válido); <ul> <li> <b> Atenção:</b> para CPF''s enviar "string" com os Zeros à Esquerda, caso existam. <br> Isso é importante pois o campo <b> numeroDocumento </b> é utilizado para <b> diversos tipos de documento </b> de acordo com a necessidade dos consumidores da API. </li> </ul> </li> <li><strong>numeroCarteira</strong>: número da carteira de identificação do plano de saúde;</li> <li><strong>nomeCarteira</strong>: nome descrito na carteira do plano;</li> <li><strong>status</strong>: indica a situação atual do beneficiário, devendo conter os valores <code>"active"</code> ou <code>"inactive"</code>.</li> </ul> <p>Todos os demais campos presentes no objeto são opcionais e podem ser utilizados de acordo com a necessidade específica de cada consumidor da API. Essa abordagem garante maior versatilidade e adaptabilidade, permitindo que diferentes sistemas e fluxos de trabalho se integrem com facilidade à plataforma.</p> <p>Pode-se afirmar que esta é uma API de propósito amplo — ou seja, uma <em>“API coringa”</em> — desenvolvida para suportar múltiplos contextos de uso dentro do ecossistema da solução.</p> <p style="color: #d9534f; font-weight: bold;">⚠️ <strong> Importante: </strong> </p> <p>Reforçando o ponto anterior, os campos adicionais definidos no objeto <code>Person</code> são opcionais. Sua utilização depende das demandas específicas de cada integração ou módulo da plataforma. Por isso, é altamente recomendável que os integradores ou usuários da API consultem a equipe de desenvolvimento antes de incluir dados adicionais.</p> <p>Essa consulta é essencial para garantir que:</p> <ol> <li>Apenas os atributos realmente relevantes sejam informados para a finalidade desejada;</li> <li>Haja clareza sobre quais módulos ou funcionalidades do sistema <strong>Global Health</strong> efetivamente consomem e dependem das informações enviadas.</li> </ol> <p>Essa prática contribui para uma integração mais eficiente, evitando o preenchimento desnecessário de campos e assegurando a consistência dos dados ao longo de todo o ecossistema da aplicação.</p> <hr> <p> <strong>::: Sobre criação automática de Carteiras no Personal Health</strong> </p>  <p>Nesse contexto, além dos campos obrigatórios citados anteriormente o consumidor da API deve também enviar os seguintes campos: </p> <ul> <li><strong>codigoConvenio</strong>: número associado geralmente ao campo CD_CONVENIO do Soul MV;</li> <li><strong>codigoPlanoConvenio</strong>: número associado geralmente ao campo CD_CON_PLA do Soul MV </ul> </div>'
+      operationId: addPerson
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: <b>Operação realizada com sucesso</b>
+          content:
+            application/json:
+              example:
+                fieldCount: 0
+                affectedRows: 1
+                insertId: 12121212
+                serverStatus: 2
+                warningCount: 3
+                message: ''
+                protocol41: true
+                changedRows: 0
+        '400':
+          description: <b>Bad Request</b>
+          content:
+            application/json:
+              example:
+                errorMessage: Error Message
+        '403':
+          description: <b>Forbidden</b> <br><br> Significa que o servidor entendeu a sua solicitação, mas não permite o acesso a um determinado recurso. <br> Verifique chaves de acesso e ambiente
+          content:
+            application/json:
+              example:
+                message: Forbidden
+        '500':
+          description: <b>Unexpected Error</b>
+          content:
+            application/json:
+              example:
+                message: Unexpected Error Message
+    get:
+      tags:
+      - Gestão de Beneficiários
+      summary: Buscar Beneficiário por Número de Documento ou Número de Carteira do Convênio.
+      description: Informe pelo menos um dos parâmetros para a busca.
+      operationId: findPersonByDocumentNumberOrInsuranceCardNumber
+      produces:
+      - application/json
+      parameters:
+      - name: numeroDocumento
+        in: query
+        description: 'Número de documento do Beneficiário:'
+        type: string
+      - name: numeroCarteira
+        in: query
+        description: 'Número do Cartão do Convênio do Beneficiário:'
+        type: string
+      responses:
+        '200':
+          description: <b>Operação realizada com sucesso</b>
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: <b>Não encontrado</b>
+          content:
+            application/json:
+              example:
+                errorMessage: Mensagem com detalhes do erro
+  /persons/list:
+    get:
+      tags:
+      - Gestão de Beneficiários
+      summary: Buscar Beneficiários por Número de Documento ou Número de Carteira do Convênio.
+      description: Informe pelo menos um dos parâmetros para a busca.
+      operationId: findPersonsByDocumentNumberOrInsuranceCardNumber
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: query
+        description: Número da página (Iniciar com 0)
+        type: integer
+      - name: size
+        in: query
+        description: Quantidade de itens por página
+        type: integer
+      - name: lastUpdatedDate
+        in: query
+        description: Última data de atualização do registro. (yyyy-mm-dd)
+        type: string
+      - name: numeroDocumento
+        in: query
+        description: 'Número de documento do Beneficiário:'
+        type: string
+      - name: numeroCarteira
+        in: query
+        description: 'Número do Cartão do Convênio do Beneficiário:'
+        type: string
+      responses:
+        '200':
+          description: <b>Operação realizada com sucesso</b>
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: <b>Não encontrado</b>
+          content:
+            application/json:
+              example:
+                errorMessage: Mensagem com detalhes do erro
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        numeroDocumento:
+          type: string
+          description: Número de Documento do Beneficiário
+          maxLength: 50
+          required: true
+        numeroCarteira:
+          type: string
+          description: Número do Cartão do Convênio do Beneficiário
+          maxLength: 50
+          required: true
+        nomeCarteira:
+          type: string
+          description: Nome do Beneficiário no Cartão do Convênio
+          maxLength: 255
+          required: true
+        numeroCartaoNacionalDeSaude:
+          type: string
+          description: Número do Cartão Nacional de Saúde do Beneficiário
+          maxLength: 50
+        nome:
+          type: string
+          description: Nome do Beneficiário
+          maxLength: 255
+        nomeSocial:
+          type: string
+          description: Nome Social do Beneficiário
+          maxLength: 255
+        dataNascimento:
+          type: string
+          description: 'Data de Nascimento do Beneficiário, seguir o padrão: (yyyy-mm-dd)'
+          maxLength: 20
+        sexo:
+          type: string
+          enum:
+          - M
+          - F
+          maxLength: 1
+        email:
+          type: string
+          description: Email do Beneficiário
+          maxLength: 255
+        telefone:
+          type: string
+          description: Telefone do Beneficiário
+          maxLength: 20
+        nomeMae:
+          type: string
+          maxLength: 255
+        nomePai:
+          type: string
+          maxLength: 255
+        enderecoCEP:
+          type: string
+          maxLength: 255
+        enderecoNumero:
+          type: string
+          maxLength: 50
+        enderecoComplemento:
+          type: string
+          maxLength: 255
+        enderecoLogradouro:
+          type: string
+          maxLength: 255
+        enderecoBairro:
+          type: string
+          maxLength: 255
+        enderecoCidade:
+          type: string
+          maxLength: 150
+        enderecoUF:
+          type: string
+          enum:
+          - AM
+          - AL
+          - AC
+          - AP
+          - BA
+          - PA
+          - MT
+          - MG
+          - MS
+          - GO
+          - MA
+          - RS
+          - TO
+          - PI
+          - SP
+          - RO
+          - RR
+          - PR
+          - CE
+          - PE
+          - SC
+          - PB
+          - RN
+          - ES
+          - RJ
+          - SE
+          - DF
+          maxLength: 2
+        codigoAns:
+          type: string
+          maxLength: 50
+        codigoOperadora:
+          type: string
+          maxLength: 50
+        codigoMatricula:
+          type: string
+          maxLength: 50
+        produto:
+          type: string
+          maxLength: 50
+        codigoPlanoAns:
+          type: string
+          maxLength: 50
+        descricaoPlanoAns:
+          type: string
+          maxLength: 255
+        codigoEmpresa:
+          type: string
+          maxLength: 50
+        codigoPlanoPaciente:
+          type: string
+          maxLength: 50
+        codigoConvenio:
+          type: string
+        codigoPlanoConvenio:
+          type: string
+        codigoSubPlano:
+          type: string
+        status:
+          type: string
+          description: Status do Beneficiário junto a operadora
+          enum:
+          - active
+          - inactive
+          maxLength: 20
+          required: true
+      xml:
+        name: Person
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

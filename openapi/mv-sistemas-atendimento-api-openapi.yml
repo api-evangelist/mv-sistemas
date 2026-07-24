@@ -1,0 +1,313 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Atendimento API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Atendimento
+  description: Cadastro de atendimentos
+paths:
+  /v1/attendance:
+    post:
+      tags:
+      - Atendimento
+      summary: Cadastra um novo atendimento.
+      description: Endpoint responsável por cadastrar um novo atendimento, utilizando IDs externos para associar e registrar corretamente os dados vinculados ao paciente, prestador e demais informações do processo.
+      operationId: addAttendance
+      requestBody:
+        description: Cadastra um novo atendimento
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attendance'
+        required: true
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attendance'
+        '400':
+          description: Entrada inválida.
+        '422':
+          description: Erro de validação dos dados.
+        default:
+          description: Erro inesperado durante o processamento.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - one_pass: []
+      - clinic: []
+    get:
+      tags:
+      - Atendimento
+      summary: Consulta de atendimentos cadastrados.
+      description: Endpoint utilizado para consultar atendimentos já cadastrados, permitindo recuperar informações com base em IDs externos associados aos registros.
+      parameters:
+      - name: clientKey
+        in: query
+        required: true
+        description: Identificação do cliente
+        schema:
+          type: string
+      - name: subscription.id
+        description: ID da conta no Clinic
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: subscription.externalId
+        in: query
+        required: false
+        description: ID da conta no serviço do cliente, única por clientKey.
+        schema:
+          type: string
+      - name: id
+        in: query
+        required: false
+        description: ID do atendimento no Clinic
+        schema:
+          type: integer
+          format: int64
+      - name: externalId
+        in: query
+        required: false
+        description: ID do atendimento no serviço do cliente
+        schema:
+          type: string
+      - name: patient.id
+        in: query
+        required: false
+        description: ID do paciente no Clinic
+        schema:
+          type: integer
+          format: int64
+      - name: patient.externalId
+        in: query
+        required: false
+        description: ID do paciente no serviço do cliente
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+      operationId: listAttendance
+      responses:
+        '200':
+          description: Operação realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageAttendance'
+        '400':
+          description: Dados informados são inválidos.
+        '422':
+          description: Erro de validação dos dados.
+        default:
+          description: Erro inesperado durante o processamento.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - one_pass: []
+      - clinic: []
+components:
+  schemas:
+    PageAttendance:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attendance'
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+        numberOfElements:
+          type: integer
+    Attendance:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+          description: ID do atendimento no Clinic
+        externalId:
+          type: string
+          example: 198772
+          description: ID do atendimento no serviço do cliente
+        termCbo:
+          type: string
+          example: '225120'
+          description: Código no Cadastro Brasileiro de Ocupações
+        observation:
+          type: string
+          example: Paciente com incomodo
+          description: Observação referente ao atendimento
+        ehrTemplateId:
+          type: integer
+          format: int64
+          example: null
+          description: Modelo do prontuário no Clinic. Caso não seja especificado, será utilizado o modelo baseado na especialidade.
+        clientKey:
+          type: string
+          example: clientKey
+        clinic:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 10
+            externalId:
+              type: string
+              example: 10
+        subscription:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 10
+            externalId:
+              type: string
+              example: 10
+        insurance:
+          type: object
+          properties:
+            ansCode:
+              type: string
+              example: 10
+            number:
+              type: string
+              example: 10
+            expirationDate:
+              type: string
+              format: date
+              example: '2030-01-01'
+            newborn:
+              type: boolean
+              example: false
+        patient:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 10
+            externalId:
+              type: string
+              example: 10
+            name:
+              type: string
+              example: João
+            socialName:
+              type: string
+            mother:
+              type: string
+              example: Maria
+            cellphone:
+              type: string
+              example: '81911111111'
+            email:
+              type: string
+            identificationType:
+              type: string
+              example: CPF
+            identificationNumber:
+              type: string
+              example: '11111111111'
+            observation:
+              type: string
+            gender:
+              type: string
+              example: MALE
+              enum:
+              - MALE
+              - FEMALE
+              - UNDEFINED
+            birthDate:
+              type: string
+              format: date
+              example: '2000-01-01'
+            address:
+              type: string
+              example: Rua Abc
+            state:
+              type: string
+              example: PE
+            city:
+              type: string
+              example: Recife
+            district:
+              type: string
+              example: Centro
+            zipCode:
+              type: string
+              example: '52000000'
+            addressComplement:
+              type: string
+            addressNumber:
+              type: string
+              example: '80'
+        otc:
+          type: object
+          properties:
+            integraOTC:
+              type: boolean
+              example: false
+              description: Informa se vai integrar o atendimento via OTC
+            cdConvenio:
+              type: string
+              example: 10
+              description: CD_CONVENIO no soul
+            cdPlano:
+              type: string
+              example: 10
+              description: CD_PLANO no soul
+            cdSubplano:
+              type: string
+              example: 10
+              description: CD_SUBPLANO no soul
+            cdPacienteExterno:
+              type: string
+              example: 10
+              description: CD_PACIENTE_EXTERNO no soul
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - error
+      - message
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

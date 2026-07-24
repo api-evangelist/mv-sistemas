@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento User API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: User
+paths:
+  /personal-health/api/v1/user/create:
+    post:
+      summary: Criar novo usuário
+      description: Cria um novo usuário.
+      tags:
+      - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreationDTO'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Failure
+components:
+  schemas:
+    DocumentTypeDTO:
+      type: object
+      description: Tipo do documento
+      properties:
+        description:
+          type: string
+          example: CPF
+    UserCreationDTO:
+      type: object
+      description: DTO utilizado para criar um novo usuário
+      required:
+      - login
+      - password
+      - firstName
+      - phoneMobile
+      - gender
+      - email
+      - birthDate
+      - clientKey
+      - product
+      properties:
+        login:
+          type: string
+          description: Login do usuário em formato de e-mail, único
+          example: admin@admin.com
+        password:
+          type: string
+          description: Senha do usuário, entre 5 e 60 caracteres
+          example: 123@admin
+          minLength: 5
+          maxLength: 60
+        firstName:
+          type: string
+          description: Primeiro nome do usuário, único
+          example: Adminstrato
+        activated:
+          type: boolean
+          description: 'Se usuário será já ativado (caso clientkey tenha permissão) (default: false)'
+          dafault: false
+        lastName:
+          type: string
+          description: Sobrenome do usuário
+        phoneMobile:
+          type: string
+          description: Telefone celular no formato ++55 81 DDDD-DDDD
+          example: '5581994383222'
+        documentUserDTO:
+          $ref: '#/components/schemas/DocumentUserDTO'
+        gender:
+          type: string
+          description: 'Gênero do usuário: M (Masculino) ou F (Feminino)'
+          enum:
+          - M
+          - F
+          example: M
+        email:
+          type: string
+          format: email
+          description: E-mail do usuário, único
+          example: admin@admin.com
+        birthDate:
+          type: string
+          format: date
+          description: Data de nascimento no formato YYYY-MM-DD
+          example: '1980-10-01'
+        clientKey:
+          type: string
+          description: Identificação do cliente
+          example: MV
+        product:
+          type: string
+          description: Identificação do produto
+          example: CHECKIN
+        picture:
+          type: string
+          format: uri
+          description: 'URL da foto do usuário (ex.: URL S3)'
+          example: https://s3.amazonaws.com/checkin-bucket/users-photos/d812258dd0b94349a4f64fdc2ff65117.png
+        subscriptionId:
+          type: integer
+          format: int64
+          description: ID da assinatura
+        socialName:
+          type: string
+          description: Nome social do usuário
+          example: João
+    DocumentUserDTO:
+      type: object
+      description: DTO do documento do usuário
+      properties:
+        documentTypeDTO:
+          $ref: '#/components/schemas/DocumentTypeDTO'
+        number:
+          type: string
+          description: 'Número do documento (ex.: CPF)'
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

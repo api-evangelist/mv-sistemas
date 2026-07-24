@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Importação de dados biométricos API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Importação de dados biométricos
+paths:
+  /api/v1/biometric/import/start:
+    post:
+      tags:
+      - Importação de dados biométricos
+      operationId: biometricImportStartV1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BiometricImportStartV1Request'
+      responses:
+        '200':
+          description: Sucesso no inicio da importação dos dados biométricos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BiometricImportStartV1Response'
+      summary: Iniciar a importação de dados biométriocos de um paciente.
+      description: Este endpoint inicia a importação dos dados biométricos de um paciente.
+  /api/v1/biometric/import/upload:
+    post:
+      tags:
+      - Importação de dados biométricos
+      operationId: biometricImportUploadV1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BiometricImportUploadV1Request'
+      responses:
+        '200':
+          description: Sucesso no upload do dado biométrico
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BiometricImportUploadV1Response'
+      summary: Realizar o upload dos dados biométriocos de um paciente.
+      description: Este endpoint realiza o upload dos dados biométricos de um paciente.
+  /api/v1/biometric/import/finish/{importIdentifier}:
+    put:
+      tags:
+      - Importação de dados biométricos
+      parameters:
+      - name: importIdentifier
+        in: path
+        required: true
+        schema:
+          type: number
+        description: Identificador da importação.
+        examples:
+          ce9dd003-b293-4ea5-ad91-9cf654115d6d:
+            value: ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          71e50838-8116-4d76-9731-475ae4166452:
+            value: 71e50838-8116-4d76-9731-475ae4166452
+          6aba6c4a-a8bc-4849-a8b9-dd4bb777db72:
+            value: 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+      operationId: biometricImportFinishV1
+      responses:
+        '204':
+          description: Finalizado a importação
+          content:
+            application/json: {}
+      summary: Finalizar a importação de dados biométriocos de um paciente.
+      description: Este endpoint finaliza a importação dos dados biométricos de um paciente.
+components:
+  schemas:
+    BiometricImportUploadV1Response:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem referente ao upload.
+          examples:
+          - Upload realizado com sucesso
+      required:
+      - message
+    BiometricImportStartV1Request:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+          description: Número do documento ao qual está importado o dado biométrico.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+        birthDate:
+          type: string
+          description: Número do documento ao qual está importado o dado biométrico.
+          examples:
+          - '2000-01-01'
+          - '2002-12-02'
+          format: ^\d{4}-\d{2}-\d{2}$
+        name:
+          type: string
+          description: Nome do paciente ao qual está importado o dado biométrico.
+          examples:
+          - Rothschild
+          - Andressa
+          - Carlos
+      required:
+      - name
+      - birthDate
+      - documentNumber
+    BiometricImportStartV1Response:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+      required:
+      - importIdentifier
+    BiometricImportUploadV1Request:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+        base64:
+          type: string
+          description: Arquivo codificado em base64.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+      required:
+      - importIdentifier
+      - base64
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

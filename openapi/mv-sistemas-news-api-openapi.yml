@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento News API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: News
+paths:
+  /news/v2/send:
+    post:
+      tags:
+      - News
+      summary: Envia uma notificação ao paciente
+      description: Endpoint responsável por enviar mensagens internas aos usuários do aplicativo de saúde, permitindo a transmissão de avisos, lembretes ou outras comunicações relevantes.
+      security:
+      - api_key: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/NotificationPayload'
+              example:
+              - personalHealthLogin: mv@mv.com.br
+                message: Caro paciente, boa segunda-feira!
+                title: Mensagem
+                clientKey: mvsistemas
+                status: CREATED
+                type: INTERNAL
+                avatar: ws://api.exemplo.com/chat
+      responses:
+        '200':
+          description: Mensagem enviada com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    NotificationPayload:
+      type: object
+      properties:
+        personalHealthLogin:
+          type: string
+          format: email
+          example: mv@mv.com.br
+          description: E-mail do paciente que receberá a mensagem.
+        message:
+          type: string
+          example: Caro paciente, boa segunda-feira!
+          description: Conteúdo da mensagem a ser enviada.
+        title:
+          type: string
+          example: Mensagem
+          description: Título da mensagem exibido na notificação.
+        clientKey:
+          type: string
+          example: mvsistemas
+          description: Identificador do cliente emissor da mensagem.
+        status:
+          type: string
+          enum:
+          - CREATED
+          - SENT
+          - FAILED
+          example: CREATED
+          description: Status inicial da mensagem.
+        type:
+          type: string
+          enum:
+          - INTERNAL
+          - LINK
+          example: INTERNAL
+          description: 'Define o tipo da mensagem:
+
+            - INTERNAL: mensagem interna, visível um texto simples dentro do app.
+
+            - LINK: mensagem com link externo.'
+        url:
+          type: string
+          example: URL do Link enviado
+          description: Para mensagens do tipo LINK, enviar nesse campo o link que o paciente deve abrir.
+        avatar:
+          type: string
+          example: ws://api.exemplo.com/chat
+      required:
+      - personalHealthLogin
+      - message
+      - title
+      - clientKey
+      - status
+      - type
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

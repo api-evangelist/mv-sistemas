@@ -1,0 +1,219 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Importação de Dados API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Importação de Dados
+paths:
+  /importations/v1/patient-data:
+    post:
+      tags:
+      - Importação de Dados
+      summary: Importar dados do paciente (fluxo síncrono)
+      description: 'Importa dados do paciente no clinic-service (sync flow). Retorna ID do paciente e mensagem amigável.
+
+        Em caso de erro, nunca expõe stack trace; a mensagem amigável é retornada no corpo da resposta.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectImportationDTO'
+      responses:
+        '201':
+          description: Paciente importado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientImportResponseDTO'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '403':
+          description: Acesso negado.
+        '500':
+          description: Erro interno - mensagem amigável retornada no corpo.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientImportResponseDTO'
+components:
+  schemas:
+    SimpleIdDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+    InsuranceImportDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: PARTICULAR
+          description: Nome do convênio.
+        card:
+          type: string
+          example: '12345678901234'
+          description: Número da carteirinha.
+        expirationDate:
+          type: string
+          example: '2025-01-01'
+          description: Data de validade da carteirinha.
+    PatientImportResponseDTO:
+      type: object
+      description: Resposta da importação de paciente (sucesso ou erro amigável).
+      properties:
+        patientId:
+          type: integer
+          format: int64
+          description: ID do paciente no clinic-service (quando sucesso).
+        message:
+          type: string
+          description: Mensagem amigável (sucesso ou erro).
+        success:
+          type: boolean
+          description: Indica se a importação foi bem-sucedida.
+        errors:
+          type: array
+          items:
+            type: string
+          description: Lista de erros de validação (quando aplicável).
+    MedicalRecordImportDTO:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '2020-01-01'
+          description: Data do prontuário.
+        time:
+          type: string
+          example: 08:30:00
+          description: Horário do prontuário.
+        text:
+          type: string
+          example: Exemplo de prontuário médico
+          description: Texto do prontuário.
+        attachmentUrl:
+          type: string
+        attachmentName:
+          type: string
+    ConnectImportationDTO:
+      type: object
+      description: Payload para importação de dados do paciente (Connect flow).
+      properties:
+        employee:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Prestador/colaborador responsável.
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Conta/subscription Clinic Connect.
+        clinicId:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Clínica por id e/ou externalId.
+        employeeLogin:
+          type: string
+          description: Login do prestador.
+          example: dr.silva
+        patient:
+          $ref: '#/components/schemas/PatientImportSyncDTO'
+          description: Dados do paciente a importar.
+        defaultTextComponentId:
+          type: integer
+          format: int64
+          description: ID do componente de texto padrão (opcional).
+          example: 42
+    PatientImportSyncDTO:
+      type: object
+      description: Dados do paciente para importação síncrona.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Id do paciente quando o cliente envia (opcional; alternativa a externalId ou CPF).
+          example: 100
+        uuid:
+          type: string
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        name:
+          type: string
+          example: João da Silva
+        socialName:
+          type: string
+          example: João
+        motherName:
+          type: string
+          example: Maria da Silva
+        gender:
+          type: string
+          example: M
+        birthDate:
+          type: string
+          example: '1990-05-15'
+        documentNumber:
+          type: string
+          example: '12345678901'
+        email:
+          type: string
+          example: joao.silva@email.com
+        phone:
+          type: string
+          example: '81999990000'
+        zipCode:
+          type: string
+          example: '50000000'
+        address:
+          type: string
+          example: Rua das Flores
+        addressNumber:
+          type: string
+          example: '123'
+        addressComplement:
+          type: string
+          example: Apto 45
+        district:
+          type: string
+          example: Boa Viagem
+        city:
+          type: string
+          example: Recife
+        state:
+          type: string
+          example: PE
+        observation:
+          type: string
+          example: Paciente hipertenso
+        status:
+          type: string
+          example: ACTIVE
+        medicalRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicalRecordImportDTO'
+        insurances:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsuranceImportDTO'
+        externalId:
+          type: string
+          example: PAT001
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

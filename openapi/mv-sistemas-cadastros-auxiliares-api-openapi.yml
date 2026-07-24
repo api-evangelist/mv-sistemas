@@ -1,0 +1,298 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Cadastros auxiliares API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Cadastros auxiliares
+  description: Listas de estados, cidades, bairros, tipos de recurso e especialidades para filtros e formulários.
+paths:
+  /api/Funcoes/GetEstados/{numerocarteira}:
+    get:
+      tags:
+      - Cadastros auxiliares
+      summary: GetEstados
+      description: 'Lista **estados (UFs)** disponíveis para uso em filtros (por exemplo, na busca de rede credenciada ou cadastros auxiliares), **associados ao contexto da carteirinha** informada.
+
+
+        Não há parâmetros de consulta além da carteira na URL.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário para contextualizar as listas auxiliares.
+      responses:
+        '200':
+          description: Lista de UFs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiUf'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /api/Funcoes/GetCidades/{numerocarteira}:
+    get:
+      tags:
+      - Cadastros auxiliares
+      summary: GetCidades
+      description: 'Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário para contextualizar a lista.
+      - name: CdUF
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Sigla ou código da UF cujos municípios devem ser listados.
+      responses:
+        '200':
+          description: Lista de municípios no estado informado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiMunicipio'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /api/Funcoes/GetBairros/{numerocarteira}:
+    get:
+      tags:
+      - Cadastros auxiliares
+      summary: GetBairros
+      description: 'Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário para contextualizar a lista.
+      - name: cdUF
+        in: query
+        required: true
+        schema:
+          type: string
+        description: UF do município selecionado.
+      - name: cdCidade
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Código do município (obtido, por exemplo, na lista de cidades).
+      responses:
+        '200':
+          description: Lista de bairros distintos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiBairro'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /api/Funcoes/GetRecursos/{numerocarteira}:
+    get:
+      tags:
+      - Cadastros auxiliares
+      summary: GetRecursos
+      description: 'Lista os **tipos de recurso** disponíveis para filtro (ex.: tipos de atendimento na rede), incluindo em muitos casos a opção **`TODOS`** para não restringir a busca.
+
+
+        Utilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário para contextualizar a lista.
+      responses:
+        '200':
+          description: Lista de tipos de recurso; pode incluir a opção `TODOS` para ampliar o filtro.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiRecurso'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /api/Funcoes/GetEspecialidade/{numerocarteira}:
+    get:
+      tags:
+      - Cadastros auxiliares
+      summary: GetEspecialidade
+      description: 'Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário para contextualizar a lista.
+      - name: cdUF
+        in: query
+        required: true
+        schema:
+          type: string
+        description: UF em que se deseja listar especialidades.
+      - name: idTipoRecurso
+        in: query
+        required: true
+        schema:
+          type: string
+          example: TODOS
+        description: Tipo de recurso desejado ou `TODOS` para considerar todos os tipos.
+      responses:
+        '200':
+          description: Lista de especialidades, em geral ordenada para facilitar a escolha na interface.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiEspecialidade'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    VwClinicApiBairro:
+      type: object
+      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      additionalProperties: true
+      properties:
+        dsbairro:
+          type: string
+          description: Nome do bairro.
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiEspecialidade:
+      type: object
+      description: 'Especialidade médica ou linha de atuação para filtro na rede. Alguns campos podem vir vazios ou com valor **genérico** quando a linha representa agrupamento ou “todas” as opções.
+
+        '
+      additionalProperties: true
+      properties:
+        cdespecialidade:
+          type: string
+          description: Código da especialidade ou identificador composto (ex. área de atuação).
+        dsespecialidade:
+          type: string
+          description: Nome da especialidade ou descrição de linha de atuação exibida ao usuário.
+        idtiporecurso:
+          type: string
+          description: Tipo de recurso associado; pode vir em branco em algumas linhas.
+        cduf:
+          type: string
+          description: UF relacionada à especialidade ou à linha de atuação.
+        cdmatalternativa:
+          type: string
+          description: Vínculo com carteira; pode ser vazio ou nulo.
+    VwClinicApiMunicipio:
+      type: object
+      description: Município com código, nome e UF para montagem de filtros e endereços.
+      additionalProperties: true
+      properties:
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        dsmunicipio:
+          type: string
+          description: Nome do município.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiRecurso:
+      type: object
+      description: 'Tipo de recurso ou modalidade de atendimento (ex.: consulta, exame). Pode incluir uma linha **`TODOS`** para representar “qualquer tipo” nos filtros.
+
+        '
+      additionalProperties: true
+      properties:
+        idtiporecurso:
+          type: string
+          description: Identificador do tipo de recurso (alinhado à descrição exibida ou a `TODOS`).
+        dstiporecurso:
+          type: string
+          description: Descrição do tipo de recurso ou `TODOS`.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiUf:
+      type: object
+      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
+      additionalProperties: true
+      properties:
+        cduf:
+          type: string
+          description: Código da UF.
+        nmuf:
+          type: string
+          description: Nome da unidade federativa.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

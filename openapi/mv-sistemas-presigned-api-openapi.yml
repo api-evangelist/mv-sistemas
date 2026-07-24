@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Presigned API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Presigned
+paths:
+  /v1/authorizer/url/presigned:
+    post:
+      tags:
+      - Presigned
+      summary: Pré-assina URL
+      description: Endpoint responsável por gerar uma url pré-assinada (com um token temporário) para acesso de algum documento.
+      security:
+      - api_key: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UrlDTO'
+      responses:
+        '200':
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    UrlDTO:
+      type: object
+      description: URL para presigned
+      properties:
+        url:
+          type: string
+          description: URL
+          example: https://s3.amazonaws.com/bucket/CONEXAO/DOCELE_12345_67890.pdf
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

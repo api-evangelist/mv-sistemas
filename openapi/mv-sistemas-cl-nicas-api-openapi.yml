@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Clínicas API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Clínicas
+paths:
+  /v1/clinics:
+    post:
+      tags:
+      - Clínicas
+      summary: Criar ou alterar dados da clínica.
+      description: Endpoint responsável por inserir ou atualizar os dados de uma clínica no sistema, garantindo que as informações cadastrais estejam sempre atualizadas.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClinicConnectDTO'
+      responses:
+        '201':
+          description: Clínica cadastrada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicConnectResponseDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+    get:
+      tags:
+      - Clínicas
+      summary: Consultar clínicas.
+      description: Endpoint utilizado para consultar clínicas com base em filtros personalizados, possibilitando localizar unidades de acordo com os critérios desejados.
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int64
+        description: ID do Clinic
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ID externo
+      - name: subscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: ID da conta Clinic Connect.
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClinicConnectResponseDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    AddressConnectDTO:
+      type: object
+      properties:
+        address:
+          type: string
+        addressNumber:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+    ClinicConnectResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        cnes:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        phone:
+          type: string
+        mobile:
+          type: string
+        address:
+          type: string
+        addressNumber:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+    SimpleIdDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+    ClinicConnectDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+        name:
+          type: string
+        cnes:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        phone:
+          type: string
+        mobile:
+          type: string
+        picture:
+          type: string
+        activated:
+          type: boolean
+        additionalInformation:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressConnectDTO'
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

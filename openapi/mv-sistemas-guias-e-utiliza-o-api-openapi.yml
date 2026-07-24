@@ -1,0 +1,285 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Guias e utilização API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Guias e utilização
+  description: Rede credenciada, guias e autorizações e acompanhamento de utilização do plano.
+paths:
+  /api/Funcoes/GetGuiaMedico/{numerocarteira}:
+    get:
+      tags:
+      - Guias e utilização
+      summary: GetGuiaMedico
+      description: 'Permite ao beneficiário **localizar prestadores na rede credenciada** (guia médico), combinando filtros opcionais por UF, especialidade, tipo de recurso, município, bairro, nome do prestador e demais critérios acordados com a operadora.
+
+
+        Use **`TODOS`** nos campos de filtro quando quiser **não restringir** aquele critério (por exemplo, todas as UFs ou todos os tipos de recurso).
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Número da carteira do beneficiário (identificação no plano).
+      - name: cdUf
+        in: query
+        required: false
+        schema:
+          type: string
+        description: UF desejada. Informe `TODOS` para listar prestadores em qualquer estado.
+      - name: cdEspecialidade
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Especialidade desejada; omita para não filtrar por especialidade.
+      - name: multiEmpresa
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Unidade ou rede multiempresa, quando aplicável ao contrato; omita para não filtrar.
+      - name: dsMunicipio
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Município; use `TODOS` para não restringir por cidade.
+      - name: dsBairro
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Bairro; use `TODOS` para não restringir por bairro.
+      - name: dsTpRecurso
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Tipo de recurso (ex. consulta, exame); use `TODOS` para não restringir.
+      - name: nmPrestador
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Nome (ou parte do nome) do prestador para refinar a busca.
+      responses:
+        '200':
+          description: Lista de registros da rede credenciada conforme filtros.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwApiGuiaMedicoClinic'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /api/Funcoes/GetGuias/{numerocarteira}:
+    get:
+      tags:
+      - Guias e utilização
+      summary: GetGuias
+      description: 'Lista **guias e autorizações** emitidas para a carteirinha no **período** informado (emissões, status e dados do atendimento conforme disponibilização pela operadora).
+
+
+        Informe o número da carteira na URL e o intervalo de datas nas consultas (**início** e **fim**) no formato **`DD-MM-YYYY`**.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Número da carteirinha do beneficiário.
+      - name: Dtinicial
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 01-01-2025
+        description: Data inicial do período de consulta (**DD-MM-YYYY**).
+      - name: Dtfinal
+        in: query
+        required: true
+        schema:
+          type: string
+          example: 31-03-2025
+        description: Data final do período de consulta (**DD-MM-YYYY**).
+      responses:
+        '200':
+          description: Lista de guias, em geral ordenada da mais recente para a mais antiga.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiGuias'
+        '400':
+          description: Requisição inválida (ex. datas em formato incorreto).
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+  /GetUtilizacao:
+    get:
+      tags:
+      - Guias e utilização
+      summary: GetUtilizacao
+      description: 'Consulta de **utilização do plano** (procedimentos, eventos ou resumo) no período ou competência desejados, conforme o modelo acordado com a operadora.
+
+        '
+      parameters:
+      - name: cpf
+        in: query
+        required: false
+        schema:
+          type: string
+        description: CPF do beneficiário, quando a consulta for por titular (formato conforme contrato).
+      - name: numeroCarteira
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Número da carteirinha, quando a consulta for por vínculo direto ao cartão.
+      - name: competencia
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Competência de referência (ex. ano/mês), no formato acordado com a operadora.
+      - name: dataInicio
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Início do período de utilização a considerar.
+      - name: dataFim
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Fim do período de utilização a considerar.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Página do resultado quando houver paginação (começa em 0 ou 1 conforme contrato).
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Quantidade de itens por página.
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonGenerico'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    VwApiGuiaMedicoClinic:
+      type: object
+      description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
+
+        '
+      additionalProperties: true
+      properties:
+        cdUf:
+          type: string
+          description: Unidade da Federação (UF) do prestador ou da localização.
+        cdEspecialidade:
+          type: string
+        cdMultiEmpresa:
+          type: string
+        dsTpRecurso:
+          type: string
+          description: Tipo de recurso na rede.
+        cdMatAlternativa:
+          type: string
+          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
+        dsMunicipio:
+          type: string
+        dsBairro:
+          type: string
+        nmPrestador:
+          type: string
+          description: Nome do prestador credenciado.
+    VwClinicApiGuias:
+      type: object
+      description: 'Resumo de uma **guia ou autorização** (rede local ou intercâmbio). Por privacidade, o **número da guia** pode aparecer **mascarado** (ex.: `*****`) quando o pedido ainda não está autorizado; use o campo de **número interno** (quando disponível) para integrações que precisam do identificador completo.
+
+        '
+      additionalProperties: true
+      properties:
+        dsmotcancelamentoguia:
+          type: string
+          description: Descrição do motivo de cancelamento da guia.
+        nrtransacao:
+          type: string
+        dtemissaoguia:
+          type: string
+          description: Data e hora de emissão da guia (formato conforme retorno da API).
+        nrguia:
+          type: string
+          description: Número exibido ou `*****` conforme regra de autorização.
+        nrguiamv:
+          type: string
+          description: Número completo da guia para uso em processos internos ou integrações.
+        dstipoatendimento:
+          type: string
+        cdtipoatendimento:
+          type: string
+        status:
+          type: string
+          description: Ex. EM ANALISE, AUTORIZADO, negado, etc.
+        nmmedicosolicitante:
+          type: string
+        dtvalidadeguia:
+          type: string
+          description: Data e hora até as quais a guia permanece válida.
+        dsobservacao:
+          type: string
+          nullable: true
+        cdmatalternativa:
+          type: string
+        dtfiltro:
+          type: string
+          description: Data de referência usada no filtro de período da consulta (formato conforme a API).
+    JsonGenerico:
+      type: object
+      description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.
+      additionalProperties: true
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

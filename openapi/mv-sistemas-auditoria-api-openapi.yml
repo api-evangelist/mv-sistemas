@@ -1,0 +1,404 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Auditoria API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Auditoria
+paths:
+  /v1/procedure-request:
+    get:
+      tags:
+      - Auditoria
+      summary: Lista dados de auditoria por paciente (API Gateway)
+      description: 'Retorna uma **lista paginada** em que cada item agrega, por **atendimento**, os dados relevantes para auditoria: pedidos de exame, internações, guias, documentos, termos e vínculos associados. É o ponto de entrada recomendado quando a chamada passa pelo **API Global Health** (homologação ou produção).
+
+
+        **Casos de uso típicos:** conferência de carteira, relatórios de auditoria, checagem de guias e documentação, e integrações que precisam da mesma visão unificada sem acessar o backend da clínica diretamente.
+
+
+        ::: Identificação do paciente (obrigatório)
+
+
+        Informe **pelo menos um** dos parâmetros abaixo (ambos podem ser enviados se fizer sentido):
+
+
+        - **insuranceNumber** — número da carteirinha do plano;
+
+        - **identificationNumber** — CPF, CNPJ ou outro documento de identificação usado na integração.
+
+
+        **CPF:** envie sempre como **string**, **preservando zeros à esquerda** conforme o documento, para evitar falhas de busca.
+
+
+        Parâmetros **opcionais:** **onlyAnesthesic** (restringe ao fluxo de ficha pré-anestésica) e **sort** (critério de ordenação).
+
+
+        ::: Paginação e limites
+
+
+        Use **page** (base 0) e **size**. **Máximo de 50 itens** por página. Limite de **2 requisições por segundo** por consumidor.
+
+        '
+      parameters:
+      - name: insuranceNumber
+        in: query
+        schema:
+          type: string
+        description: Número da carteirinha (obrigatório se `identificationNumber` não for enviado).
+      - name: identificationNumber
+        in: query
+        schema:
+          type: string
+        description: CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado).
+      - name: onlyAnesthesic
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Se `true`, retorna apenas o fluxo de ficha pré-anestésica.
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: Número da página (iniciando em 0).
+      - name: size
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+        description: Quantidade de itens por página (máximo 50).
+      - name: sort
+        in: query
+        schema:
+          type: string
+        description: Critério de ordenação dos resultados, opcional.
+      responses:
+        '200':
+          description: Sucesso — página de registros de auditoria (por atendimento), no formato Spring Data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagePatientHealthAuditData'
+        '400':
+          description: Parâmetros inválidos (ex. ausência de insuranceNumber e identificationNumber).
+        '401':
+          description: API key inválida ou ausente (API Gateway).
+        '500':
+          description: Erro interno.
+  /clinic/v1/patient-audit-health-data:
+    servers:
+    - url: http://localhost:8082/clinic-service
+      description: clinic-service local (exemplo de porta/context-path)
+    get:
+      tags:
+      - Auditoria
+      summary: Lista dados de auditoria por paciente (clinic-service)
+      description: 'Mesmo **contrato de resposta** que `GET /v1/procedure-request` no API Gateway, porém exposto pelo **serviço da clínica** (ex.: context-path `/clinic-service`). Use quando a integração deve conversar **diretamente** com o backend Clinic, sem tráfego pelo gateway público Global Health.
+
+
+        ::: Autenticação
+
+
+        Envie a **clientKey** configurada para o ambiente. Conforme a política do servidor, pode ser necessário também **`Authorization: Bearer`** — alinhe com o time de infraestrutura da clínica.
+
+
+        ::: Parâmetros e limites
+
+
+        Mesmas regras do endpoint via gateway: **insuranceNumber** ou **identificationNumber** (ao menos um); CPF como string com zeros à esquerda; **page**, **size** (máx. 50), **sort** e **onlyAnesthesic**; **2 requisições por segundo**.
+
+        '
+      security: []
+      parameters:
+      - name: insuranceNumber
+        in: query
+        schema:
+          type: string
+        description: Número da carteirinha (obrigatório se `identificationNumber` não for enviado).
+      - name: identificationNumber
+        in: query
+        schema:
+          type: string
+        description: CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado).
+      - name: onlyAnesthesic
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Se `true`, retorna apenas o fluxo de ficha pré-anestésica.
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+        description: Número da página (iniciando em 0).
+      - name: size
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+        description: Quantidade de itens por página (máximo 50).
+      - name: sort
+        in: query
+        schema:
+          type: string
+        description: Critério de ordenação dos resultados, opcional.
+      responses:
+        '200':
+          description: Sucesso — mesmo schema de conteúdo que `GET /v1/procedure-request` no gateway.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagePatientHealthAuditData'
+        '500':
+          description: Ex. `clientKey` obrigatório não informado.
+components:
+  schemas:
+    AttendanceAuditData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        status:
+          type: string
+        clinicId:
+          type: integer
+          format: int64
+        clinicName:
+          type: string
+        employeeId:
+          type: integer
+          format: int64
+        employeeName:
+          type: string
+        employeeAcreditation:
+          type: string
+        patientId:
+          type: integer
+          format: int64
+        patientName:
+          type: string
+        insuranceId:
+          type: integer
+          format: int64
+        insuranceName:
+          type: string
+    PagePatientHealthAuditData:
+      type: object
+      description: Resposta paginada Spring Data.
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientHealthAuditDataResponse'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        size:
+          type: integer
+        number:
+          type: integer
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+        empty:
+          type: boolean
+        pageable:
+          type: object
+          description: Metadados de paginação Spring (sort, pageNumber, pageSize, etc.).
+        sort:
+          type: object
+    GuiaAuditData:
+      type: object
+      properties:
+        attendanceId:
+          type: integer
+          format: int64
+        formNumber:
+          type: string
+        ansNumber:
+          type: string
+        insuranceNumber:
+          type: string
+          nullable: true
+        insuranceFormNumber:
+          type: string
+          nullable: true
+        passwordAuthorization:
+          type: string
+          nullable: true
+        procedures:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuiaProcedureAuditData'
+    GuiaProcedureAuditData:
+      type: object
+      properties:
+        procedureTerm:
+          type: string
+        procedureCode:
+          type: string
+        laudoLink:
+          type: string
+          nullable: true
+          description: Link para laudo/anexo quando disponível.
+    ExamRequestsAuditData:
+      type: object
+      description: 'Item de pedido de exame na auditoria. Inclui **justification** (justificativa textual do pedido,
+
+        coluna `justification` / campo do pedido de exame no clinic).
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdDate:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+        exame:
+          type: string
+          description: Nome/descrição do exame no pedido.
+        recommendation:
+          type: string
+          nullable: true
+          description: Recomendação / observação associada ao pedido.
+        justification:
+          type: string
+          nullable: true
+          description: '**Justificativa** do pedido de exame (texto livre), quando informada no atendimento.
+
+            Origem: persistência do pedido (`exams_request.justification`). Ausente ou `null` se não houver.
+
+            '
+        clinicalIndication:
+          type: string
+          nullable: true
+        medicalRecordId:
+          type: integer
+          format: int64
+        examId:
+          type: integer
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+        requestType:
+          type: string
+          description: Tipo do pedido (ex. `E` externo).
+        loincMvId:
+          type: integer
+          format: int64
+          nullable: true
+        healthQuestionnaireReplyId:
+          type: integer
+          format: int64
+          nullable: true
+        healthQuestionnaireId:
+          type: integer
+          format: int64
+          nullable: true
+        consentTermStatus:
+          type: string
+          nullable: true
+        sentConsentTermId:
+          type: integer
+          format: int64
+          nullable: true
+        consentTermId:
+          type: integer
+          format: int64
+          nullable: true
+        tussCode:
+          type: string
+          nullable: true
+        tussDescription:
+          type: string
+          nullable: true
+    AttendanceDocumentAuditData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attendanceId:
+          type: integer
+          format: int64
+        segmentId:
+          type: integer
+          format: int64
+        segmentName:
+          type: string
+        signed:
+          type: boolean
+        document:
+          type: string
+          description: URL do documento (pode ser pré-assinada S3).
+    PatientHealthAuditDataResponse:
+      type: object
+      description: Um atendimento na visão de auditoria.
+      properties:
+        attendance:
+          $ref: '#/components/schemas/AttendanceAuditData'
+        examRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamRequestsAuditData'
+        hospitalizations:
+          type: array
+          items:
+            type: object
+          description: Internações (estrutura detalhada omitida aqui; ver resposta real).
+        examRequestsDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceDocumentAuditData'
+        hospitalizationsDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttendanceDocumentAuditData'
+        guias:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuiaAuditData'
+        sentConsentTerms:
+          type: array
+          items:
+            type: object
+        acceptTermsUse:
+          type: array
+          items:
+            type: object
+        anesthesicForm:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

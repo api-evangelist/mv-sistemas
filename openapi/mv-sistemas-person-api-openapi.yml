@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Person API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Person
+paths:
+  /person/allergy:
+    get:
+      summary: Lista os pacientes alérgicos
+      description: 'Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema. <br> <br> Os parâmetros "page" e "size": são obrigatórios para a paginação dos resultados; <br> Size: deve ter valor máximo de 50. <br> O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço. <br><br> '
+      security:
+      - api_key: []
+      operationId: getPersonResumeV2
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 0
+        description: Número da página (iniciando em 0).
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          example: 20
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          example: '1999-01-01'
+        description: Data inicial do filtro no formato yyyy-MM-dd.
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          example: '2024-12-31'
+        description: Data final do filtro no formato yyyy-MM-dd.
+      responses:
+        '200':
+          description: Lista paginada de pessoas resumidas
+          content:
+            application/json:
+              example:
+                content:
+                - person:
+                    login: ana.costa@test.com
+                  personAllergies:
+                  - id: 15
+                    person:
+                      login: ana.costa@test.com
+                    reaction: Não Informadas.
+                    allergyName: Ácaros
+                    allergyCode: acaros
+                    createdDate:
+                      type: string
+                      format: date-time
+                    allergyGourpName: Ácaros
+                    allergyGroupCode: acaros
+                  familyHistories:
+                  - id: 53
+                    login: ana.costa@test.com
+                    kinshipName: Avô
+                    kinshipKey: avo_pai
+                    diseaseName: Câncer de mama
+                  personProblems:
+                  - id: 30
+                    login: ana.costa@test.com
+                    problemName: Obesidade
+                    cidCode: E669
+                    status: Aguardando Validação
+                  name: Ana
+                  documentNumber: '40419113037'
+                pageable:
+                  pageNumber: 0
+                  pageSize: 20
+                  sort:
+                    sorted: true
+                    unsorted: false
+                    empty: false
+                totalPages: 1
+                totalElements: 1
+                last: true
+                size: 20
+                number: 0
+                sort:
+                  sorted: true
+                  unsorted: false
+                  empty: false
+                first: true
+                numberOfElements: 1
+                empty: false
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno no servidor
+      tags:
+      - Person
+components:
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

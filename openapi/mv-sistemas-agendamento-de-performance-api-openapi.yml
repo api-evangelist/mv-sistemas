@@ -1,0 +1,756 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Agendamento de performance API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Agendamento de performance
+  description: Listagem e filtros de Agendamento de performance
+paths:
+  /v1/performance-schedules/list:
+    get:
+      tags:
+      - Agendamento de performance
+      summary: Listar Agendamento de performance
+      description: 'Retorna uma lista paginada de Agendamento de performance filtrada pelos parâmetros informados.
+
+        Os filtros são opcionais; quando não informados, retorna todos os registros do cliente.
+
+        '
+      operationId: listPerformanceSchedules
+      parameters:
+      - name: councilNumber
+        in: query
+        required: false
+        description: Número de registro no conselho profissional do médico
+        schema:
+          type: string
+      - name: cnes
+        in: query
+        required: false
+        description: CNES da clínica
+        schema:
+          type: string
+      - name: id
+        in: query
+        required: false
+        description: ID do PerformanceSchedule
+        schema:
+          type: integer
+          format: int64
+      - name: externalId
+        in: query
+        required: false
+        description: External ID do PerformanceSchedule
+        schema:
+          type: string
+      - name: specialty
+        in: query
+        required: false
+        description: Código da especialidade (termCode)
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: false
+        description: Data inicial para filtrar (formato YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: false
+        description: Data final para filtrar (formato YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: occupied
+        in: query
+        required: false
+        description: true = apenas ocupados (com Schedules), false = apenas disponíveis (sem Schedules), omitir = todos
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        required: false
+        description: Número da página (zero-based)
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        description: Quantidade de itens por página
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: sort
+        in: query
+        required: false
+        description: Ordenação (ex. date,asc ou id,desc)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Lista paginada de Agendamento de performance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceScheduleIntegrationPage'
+        '400':
+          description: Requisição inválida (ex. clientKey ausente)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /create:
+    post:
+      tags:
+      - Agendamento de performance
+      summary: Enviar informações de Agendamento de performance
+      description: 'Endpoint para enviar informações de disponibilidade de horário de um prestador de saúde.
+
+        Recebe dados do prestador, clínica, data e horário da disponibilidade.
+
+        Retorna um externalId que deve ser armazenado para rastreamento.
+
+        '
+      operationId: createPerformanceScheduleIntegration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformanceScheduleIntegrationRequest'
+            examples:
+              exemplo_completo:
+                summary: Exemplo completo com todos os campos
+                value:
+                  id: 123
+                  provider:
+                    name: Dr. João Silva
+                    council:
+                      council: CRM
+                      state: PE
+                      number: '123456'
+                    specialties:
+                    - '225110'
+                    - '225120'
+                  clinic:
+                    name: Clínica Saúde Total
+                    cnes: '1234567'
+                    address:
+                      street: Rua das Flores
+                      number: '100'
+                      district: Centro
+                      city: Recife
+                      state: PE
+                      zipCode: 50000-000
+                      complement: Sala 201
+                  date: '2026-01-27'
+                  startTime: 09:00:00
+                  endTime: '10:00:00'
+              exemplo_minimo:
+                summary: Exemplo mínimo com campos obrigatórios
+                value:
+                  id: 456
+                  provider:
+                    name: Dra. Maria Santos
+                    council:
+                      council: CRM
+                      state: SP
+                      number: '789012'
+                    specialties:
+                    - '225110'
+                  clinic:
+                    name: Clínica Bem Estar
+                    cnes: '7654321'
+                    address:
+                      street: Avenida Principal
+                      number: '200'
+                      district: Jardim das Acácias
+                      city: São Paulo
+                      state: SP
+                      zipCode: 01000-000
+                  date: '2026-01-28'
+                  startTime: '14:00:00'
+                  endTime: '15:00:00'
+      responses:
+        '200':
+          description: Integração realizada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceScheduleIntegrationResponse'
+              examples:
+                sucesso:
+                  summary: Resposta de sucesso
+                  value:
+                    externalId: EXT-2026-001-12345
+                sucesso_sem_externalId:
+                  summary: Resposta de sucesso sem externalId
+                  value:
+                    externalId: null
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Bad Request
+                message: Dados obrigatórios não fornecidos
+        '401':
+          description: Não autorizado - API Key inválida ou ausente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Unauthorized
+                message: API Key inválida ou ausente
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Internal Server Error
+                message: Erro ao processar a requisição
+  /cancel:
+    post:
+      tags:
+      - Agendamento de performance
+      summary: Cancelar Agendamento de performance
+      description: 'Endpoint para cancelar uma disponibilidade de horário previamente criada.
+
+        Envia os mesmos dados da criação mais o externalId recebido na criação.
+
+        O externalId é obrigatório para identificar qual registro deve ser cancelado no sistema receptor.
+
+        '
+      operationId: cancelPerformanceScheduleIntegration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformanceScheduleIntegrationDeleteRequest'
+            examples:
+              exemplo_cancelamento:
+                summary: Exemplo de cancelamento
+                value:
+                  id: 123
+                  externalId: EXT-2026-001-12345
+                  provider:
+                    name: Dr. João Silva
+                    council:
+                      council: CRM
+                      state: PE
+                      number: '123456'
+                    specialties:
+                    - '225110'
+                    - '225120'
+                  clinic:
+                    name: Clínica Saúde Total
+                    cnes: '1234567'
+                    address:
+                      street: Rua das Flores
+                      number: '100'
+                      district: Centro
+                      city: Recife
+                      state: PE
+                      zipCode: 50000-000
+                      complement: Sala 201
+                  date: '2026-01-27'
+                  startTime: 09:00:00
+                  endTime: '10:00:00'
+      responses:
+        '200':
+          description: Cancelamento realizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Agendamento de performance cancelado com sucesso
+              examples:
+                sucesso:
+                  summary: Resposta de sucesso
+                  value:
+                    message: Agendamento de performance cancelado com sucesso
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Bad Request
+                message: externalId é obrigatório para cancelamento
+        '401':
+          description: Não autorizado - API Key inválida ou ausente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Unauthorized
+                message: API Key inválida ou ausente
+        '404':
+          description: Agendamento de performance não encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Not Found
+                message: Agendamento de performance com externalId informado não foi encontrado
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+              example:
+                error: Internal Server Error
+                message: Erro ao processar a requisição
+components:
+  schemas:
+    Council:
+      type: object
+      required:
+      - council
+      - state
+      - number
+      properties:
+        council:
+          type: string
+          description: "Tipo do conselho profissional.\nExemplos: CRM (Conselho Regional de Medicina), CRO (Conselho Regional de Odontologia), \nCRF (Conselho Regional de Farmácia), etc.\n"
+          example: CRM
+          enum:
+          - CRM
+          - CRO
+          - CRF
+          - CRN
+          - COREN
+          - CRP
+          - CREFITO
+        state:
+          type: string
+          description: Estado de registro no conselho (sigla de 2 letras)
+          example: PE
+          pattern: ^[A-Z]{2}$
+        number:
+          type: string
+          description: Número de registro no conselho profissional
+          example: '123456'
+          minLength: 1
+          maxLength: 20
+    ClinicDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        cnes:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDTO'
+    Address:
+      type: object
+      required:
+      - street
+      - city
+      - state
+      properties:
+        street:
+          type: string
+          description: Nome da rua, avenida ou logradouro
+          example: Rua das Flores
+          maxLength: 255
+        number:
+          type: string
+          description: Número do endereço
+          example: '100'
+          maxLength: 20
+          nullable: true
+        district:
+          type: string
+          description: Bairro
+          example: Centro
+          maxLength: 100
+          nullable: true
+        city:
+          type: string
+          description: Cidade
+          example: Recife
+          maxLength: 100
+        state:
+          type: string
+          description: Estado (sigla de 2 letras)
+          example: PE
+          pattern: ^[A-Z]{2}$
+        zipCode:
+          type: string
+          description: CEP no formato XXXXX-XXX ou XXXXXXXX
+          example: 50000-000
+          pattern: ^[0-9]{5}-?[0-9]{3}$
+          nullable: true
+        complement:
+          type: string
+          description: Complemento do endereço (sala, andar, bloco, etc.)
+          example: Sala 201
+          maxLength: 150
+          nullable: true
+    ConnectPatientDTO:
+      type: object
+      description: Dados do paciente (Clinic Connect)
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+        name:
+          type: string
+        socialName:
+          type: string
+        birthDate:
+          type: string
+          description: Data/hora no formato ISO (Joda DateTime)
+        cellphone:
+          type: string
+        email:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        gender:
+          type: string
+        mother:
+          type: string
+        observation:
+          type: string
+        address:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        addressNumber:
+          type: string
+    Error_2:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo do erro
+          example: Bad Request
+        message:
+          type: string
+          description: Mensagem descritiva do erro
+          example: Dados obrigatórios não fornecidos
+        details:
+          type: object
+          description: Detalhes adicionais do erro (opcional)
+          additionalProperties: true
+    PerformanceScheduleIntegrationDeleteRequest:
+      type: object
+      required:
+      - id
+      - externalId
+      - provider
+      - clinic
+      - date
+      - startTime
+      description: 'Request para cancelamento de Agendamento de performance.
+
+        Deve conter todos os campos da criação mais o externalId recebido na criação.
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador único do Agendamento de performance no sistema origem
+          example: 123
+        externalId:
+          type: string
+          description: 'Identificador externo recebido na criação do Agendamento de performance.
+
+            Este campo é obrigatório para identificar qual registro deve ser cancelado no sistema receptor.
+
+            '
+          example: EXT-2026-001-12345
+          maxLength: 255
+        provider:
+          $ref: '#/components/schemas/Provider'
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+        date:
+          type: string
+          format: date
+          description: Data da disponibilidade no formato YYYY-MM-DD (mesma data da criação)
+          example: '2026-01-27'
+        startTime:
+          type: string
+          format: time
+          description: Horário de início da disponibilidade no formato HH:mm:ss (mesmo horário da criação)
+          example: 09:00:00
+        endTime:
+          type: string
+          format: time
+          description: Horário de fim da disponibilidade no formato HH:mm:ss (mesmo horário da criação)
+          example: '10:00:00'
+          nullable: true
+    ProviderDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        council:
+          $ref: '#/components/schemas/CouncilDTO'
+        specialties:
+          type: array
+          items:
+            type: string
+    CouncilDTO:
+      type: object
+      properties:
+        council:
+          type: string
+        state:
+          type: string
+        number:
+          type: string
+    InsuranceCardDTO:
+      type: object
+      description: Dados do convênio/carteirinha
+      properties:
+        ansCode:
+          type: string
+        number:
+          type: string
+        expirationDate:
+          type: string
+        newborn:
+          type: boolean
+    AddressDTO:
+      type: object
+      properties:
+        street:
+          type: string
+        number:
+          type: string
+        district:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string
+        complement:
+          type: string
+    PerformanceScheduleIntegrationPage:
+      type: object
+      description: Resposta paginada do Spring Data (Page)
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerformanceScheduleIntegrationDTO'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PerformanceScheduleIntegrationResponse:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: 'Identificador externo gerado pelo sistema receptor.
+
+            Este ID deve ser armazenado no sistema origem para rastreamento e futuras atualizações.
+
+            Pode ser null se o sistema receptor não retornar um identificador.
+
+            '
+          example: EXT-2026-001-12345
+          nullable: true
+          maxLength: 255
+    PerformanceScheduleIntegrationRequest:
+      type: object
+      required:
+      - id
+      - provider
+      - clinic
+      - date
+      - startTime
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador único do Agendamento de performance no sistema origem
+          example: 123
+        provider:
+          $ref: '#/components/schemas/Provider'
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+        date:
+          type: string
+          format: date
+          description: Data da disponibilidade no formato YYYY-MM-DD
+          example: '2026-01-27'
+        startTime:
+          type: string
+          format: time
+          description: Horário de início da disponibilidade no formato HH:mm:ss
+          example: 09:00:00
+        endTime:
+          type: string
+          format: time
+          description: Horário de fim da disponibilidade no formato HH:mm:ss
+          example: '10:00:00'
+          nullable: true
+    PerformanceScheduleIntegrationDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance
+        provider:
+          $ref: '#/components/schemas/ProviderDTO'
+        clinic:
+          $ref: '#/components/schemas/ClinicDTO'
+        date:
+          type: string
+          format: date
+          description: Data no formato yyyy-MM-dd
+        startTime:
+          type: string
+          format: time
+          description: Horário de início (HH:mm:ss)
+        endTime:
+          type: string
+          format: time
+          description: Horário de fim (HH:mm:ss)
+        externalId:
+          type: string
+          nullable: true
+        occupied:
+          type: boolean
+          description: true se o Agendamento de performance possui Schedules (está ocupado)
+        insurance:
+          $ref: '#/components/schemas/InsuranceCardDTO'
+          nullable: true
+          description: Dados da carteirinha do agendamento (quando ocupado)
+        patient:
+          $ref: '#/components/schemas/ConnectPatientDTO'
+          nullable: true
+          description: Dados do paciente do agendamento (quando ocupado)
+        schedulingStatus:
+          type: string
+          nullable: true
+          description: Status do agendamento quando ocupado (ex. CREATED_ATTENDANCE, CANCELLED, WAITING)
+    Provider:
+      type: object
+      required:
+      - name
+      - council
+      - specialties
+      properties:
+        name:
+          type: string
+          description: Nome completo do prestador de saúde
+          example: Dr. João Silva
+        council:
+          $ref: '#/components/schemas/Council'
+        specialties:
+          type: array
+          description: Lista de códigos CBO (Classificação Brasileira de Ocupações) das especialidades do prestador
+          items:
+            type: string
+          example:
+          - '225110'
+          - '225120'
+          minItems: 1
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo do erro
+        message:
+          type: string
+          description: Mensagem descritiva do erro (pode vir do i18n)
+        details:
+          type: object
+          additionalProperties: true
+    Clinic:
+      type: object
+      required:
+      - name
+      - cnes
+      - address
+      properties:
+        name:
+          type: string
+          description: Nome da clínica ou estabelecimento de saúde
+          example: Clínica Saúde Total
+          maxLength: 255
+        cnes:
+          type: string
+          description: 'CNES (Cadastro Nacional de Estabelecimentos de Saúde).
+
+            Código único de identificação do estabelecimento de saúde no Brasil.
+
+            '
+          example: '1234567'
+          pattern: ^[0-9]{7}$
+        address:
+          $ref: '#/components/schemas/Address'
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

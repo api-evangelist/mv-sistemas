@@ -1,0 +1,258 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Protocolo de reconhecimento API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Protocolo de reconhecimento
+paths:
+  /api/v1/recognition-protocol:
+    get:
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Número da página que deseja obter as informações. A página começa com 0.
+        examples:
+          '0':
+            description: Obter os protocolos da primeira página.
+            value: 0
+          '5':
+            description: Obter os protocolos da quinta página.
+            value: 5
+          '15':
+            description: Obter os protocolos da décima quinta página
+            value: 15
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Quantidade dos objetos de retorno que deseja receber. Sendo o máximo 100.
+        examples:
+          '10':
+            description: Obter 10 protocolos.
+            value: 10
+          '20':
+            description: Obter 20 protocolos.
+            value: 20
+          '30':
+            description: Obter 30 protocolos.
+            value: 30
+      - name: documentNumber
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Número do documento ao qual está cadastrado a face.
+        examples:
+          '12345678910':
+            value: 12345678910
+          '12345678911':
+            value: 12345678911
+          '12345678912':
+            value: 12345678912
+      - name: protocol
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Protocolo gerado a partir de uma justificativa ou reconhecimento facial.
+        examples:
+          RF-ON7SV8:
+            value: RF-ON7SV8
+          RF-S723XA:
+            value: RF-S723XA
+          RF-LUHPLB:
+            value: RF-LUHPLB
+          RF-MHFM1T:
+            value: RF-MHFM1T
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: ^\d{4}-\d{2}-\d{2}$
+        description: Data de inicio para a realização da busca.
+        examples:
+          '2000-01-01':
+            value: '2000-01-01'
+          '2002-12-02':
+            value: '2002-12-02'
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: ^\d{4}-\d{2}-\d{2}$
+        description: Data final para a realização da busca.
+        examples:
+          '2000-01-31':
+            value: '2000-01-31'
+          '2002-12-31':
+            value: '2002-12-31'
+      tags:
+      - Protocolo de reconhecimento
+      operationId: getRecognitionProtocol
+      responses:
+        '200':
+          description: Protocolo obtido com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecognitionProtocolV1Response'
+      summary: Obter os protocolos
+      description: Este endpoint realiza a busca dos protocolos de reconhecimento.
+components:
+  schemas:
+    FaceRecognitionPagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Define o número total de objetos encontrados.
+        totalPages:
+          type: integer
+          description: Define o número total de páginas.
+        prevPage:
+          type: integer
+          description: Define o número da pagina anterior.
+          examples:
+          - 1
+          - 7
+          - 13
+        currentPage:
+          type: integer
+          description: Define o número atual da página.
+          examples:
+          - 2
+          - 8
+          - 14
+        nextPage:
+          type: integer
+          description: Define o próximo número da página
+          examples:
+          - 3
+          - 9
+          - 15
+        first:
+          type: boolean
+          description: Define se é o primeiro elemento da página.
+        last:
+          type: boolean
+          description: Define se é o ultimo elemento da página.
+    RecognitionProtocolV1Response:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/RecognitionProtocolV1ResponseContent'
+        pagination:
+          $ref: '#/components/schemas/FaceRecognitionPagination'
+    RecognitionProtocolV1ResponseContent:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nome do paciente que está realizando a justificativa.
+          examples:
+          - Joelma
+        createdAt:
+          type: string
+          description: Data de criação do protocolo. É retornada no padrão ISO 8601 com o Fuso horário GMT.
+          examples:
+          - '2023-10-26T12:37:56.000Z'
+          - '2023-10-26T12:34:23.000Z'
+        action:
+          type: string
+          description: Define o tipo da ação que gerou o protocolo.
+          enum:
+          - DETECT
+          - RECOGNIZE
+        type:
+          type: string
+          description: Define o tipo do protocolo
+          enum:
+          - FACE
+          - DOCUMENT
+          - JUSTIFIED
+        side:
+          type: string
+          description: Define o lado do documento
+          enum:
+          - FRONT
+          - BACK
+          - null
+        source:
+          type: string
+          description: Sistema de origem que está realizando o cadastro.
+          examples:
+          - ONE-TOUCH
+          - CLINIC-CENTER
+        protocol:
+          type: string
+          description: Protocolo gerado a partir de uma justificativa ou reconhecimento facial.
+          examples:
+          - RF-ON7SV8
+          - RF-ON7SV8
+          - RF-S723XA
+          - RF-LUHPLB
+          - RF-MHFM1T
+        requesterName:
+          type: string
+          description: Nome do solicitante que está realizando a ação.
+          examples:
+          - Dr. olincon
+          - Dra. Vanessa
+          - Dr. lideson
+          - Dr. Angelo
+        reasonTitle:
+          type: string
+          description: Titulo da razão da justificativa.
+          examples:
+          - Urgencia
+        reasonText:
+          type: string
+          description: Descrição da razão da justificativa.
+          examples:
+          - O paciente encontra-se em estado de emergência.
+        accuracy:
+          type: number
+          description: Acuracidade da ação.
+          examples:
+          - 90
+          - 91.1
+          - 99.99
+        healthPlanId:
+          type: number
+          description: Identificador do convênio.
+          examples:
+          - 11231
+          - 2646
+          - 553
+        healthPlanName:
+          type: string
+          description: Nome do convênio.
+        healthPlanAnsCode:
+          type: string
+          description: Código ANS do convênio.
+        photo:
+          type: string
+          description: URL para obtenção da foto de utilizada no reconhecimento facial.
+          examples:
+          - https://faces.s3.sa-east-1.amazonaws.com/hml/photo/90d738c2-ce4d-4282-86f6-d4175deac005.jpeg
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

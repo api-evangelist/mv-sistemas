@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Prestadores/Usuários API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Prestadores/Usuários
+paths:
+  /v1/employees:
+    post:
+      tags:
+      - Prestadores/Usuários
+      summary: Criar ou alterar dados de prestadores/usuários.
+      description: Endpoint responsável por criar ou atualizar cadastros de prestadores e usuários, mantendo as informações de profissionais e acessos sempre atualizadas.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectEmployeeDTO'
+      responses:
+        '201':
+          description: Colaborador criado com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectEmployeeDTO'
+        '400':
+          description: Requisição inválida.
+        '500':
+          description: Erro interno no servidor.
+    get:
+      tags:
+      - Prestadores/Usuários
+      summary: Consultar prestadores/usuários.
+      description: Endpoint utilizado para consultar prestadores e usuários com base em filtros definidos, retornando apenas os registros que atendem aos critérios informados.
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int64
+        description: ID do Clinic
+      - name: subscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: ID da conta Clinic Connect
+      - name: login
+        in: query
+        schema:
+          type: string
+        description: Login do prestador
+      responses:
+        '200':
+          description: Lista de colaboradores retornada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectEmployeeDTO'
+        '500':
+          description: Erro interno no servidor.
+components:
+  schemas:
+    AddressConnectDTO:
+      type: object
+      properties:
+        address:
+          type: string
+        addressNumber:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+    SimpleIdDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+    TermCboConnectDTO:
+      type: object
+      properties:
+        termCode:
+          type: string
+    EmployeeAccreditationDTO:
+      type: object
+      properties:
+        accreditationType:
+          type: string
+          example: CRM
+        accreditationState:
+          type: string
+          example: PE
+        accreditationNumber:
+          type: string
+          example: '123456'
+    ConnectEmployeeDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: integer
+          format: int64
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+        name:
+          type: string
+        login:
+          type: string
+        identificationNumber:
+          type: string
+        identificationType:
+          type: string
+        gender:
+          type: string
+        profile:
+          type: string
+        accreditation:
+          $ref: '#/components/schemas/EmployeeAccreditationDTO'
+        specialties:
+          type: array
+          items:
+            $ref: '#/components/schemas/TermCboConnectDTO'
+        treatmentPronoun:
+          type: string
+        councilDisplay:
+          type: string
+        specialtiesDisplay:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressConnectDTO'
+        activated:
+          type: boolean
+        email:
+          type: string
+        password:
+          type: string
+        phoneMobile:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

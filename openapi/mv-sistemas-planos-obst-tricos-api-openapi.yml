@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Planos Obstétricos API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Planos Obstétricos
+paths:
+  /v1/obstetric-plans:
+    get:
+      tags:
+      - Planos Obstétricos
+      summary: Consultar planos obstétricos.
+      description: Endpoint utilizado para buscar planos obstétricos com base em filtros específicos, permitindo consultas direcionadas conforme os critérios informados
+      parameters:
+      - name: identificationNumber
+        in: query
+        schema:
+          type: string
+        description: CPF da gestante utilizado como critério de filtragem
+      - name: page
+        in: query
+        schema:
+          type: integer
+        description: Número da página da consulta
+      - name: size
+        in: query
+        schema:
+          type: integer
+        description: Quantidade de registros por página
+      - name: sort
+        in: query
+        schema:
+          type: string
+        description: 'Critério de ordenação dos resultados (ex.: name,asc ou date,desc)'
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ObstetricPlanConnectDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    ObstetricPlanConnectDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        patientName:
+          type: string
+        employeeName:
+          type: string
+        dum:
+          type: string
+          format: date-time
+        pregnancyRisk:
+          $ref: '#/components/schemas/PregnancyRisk'
+        comorbidities:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientComorbiditiesSimpleDTO'
+        obstetricDiseases:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientObstetricDiseasesSimpleDTO'
+    PatientObstetricDiseasesStatus:
+      type: string
+      enum:
+      - WAITING_VALIDATION
+      - VALIDATED
+      - VALIDATED_BY_EMPLOYEE
+      description: Status da doença obstétrica
+    PatientComorbiditiesSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        comorbidityName:
+          type: string
+        cid:
+          type: string
+        cidDescription:
+          type: string
+        statusMed:
+          $ref: '#/components/schemas/PatientComorbiditiesStatus'
+        statusPatient:
+          $ref: '#/components/schemas/PatientComorbiditiesStatus'
+    PatientObstetricDiseasesSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        obstetricDiseasesName:
+          type: string
+        cid:
+          type: string
+        cidDescription:
+          type: string
+        statusMed:
+          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
+        statusPatient:
+          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
+    PregnancyRisk:
+      type: string
+      enum:
+      - HABITUAL
+      - HIGH
+      description: 'Indica o risco da gestação: habitual ou alto risco'
+      example: HABITUAL
+    PatientComorbiditiesStatus:
+      type: string
+      enum:
+      - WAITING_VALIDATION
+      - VALIDATED
+      - VALIDATED_BY_EMPLOYEE
+      description: Status da comorbidade
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

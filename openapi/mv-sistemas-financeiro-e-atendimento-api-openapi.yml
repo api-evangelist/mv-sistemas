@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Financeiro e atendimento API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Financeiro e atendimento
+  description: Histórico de interações com o relacionamento (call center).
+paths:
+  /api/Funcoes/GetHistoricoCallCenter/{numerocarteira}:
+    get:
+      tags:
+      - Financeiro e atendimento
+      summary: GetHistoricoCallCenter
+      description: 'Histórico de **interações com o relacionamento** (call center) **disponível para o beneficiário no aplicativo ou portal** — protocolos, fases, observações e datas, quando liberados pela operadora.
+
+
+        A lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.
+
+        '
+      parameters:
+      - name: numerocarteira
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Carteirinha do beneficiário cujo histórico será consultado.
+      responses:
+        '200':
+          description: Lista de registros de histórico (pode ser vazia).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VwClinicApiHisCallCenter'
+        '400':
+          description: Requisição inválida.
+        '401':
+          description: Não autorizado.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    VwClinicApiHisCallCenter:
+      type: object
+      description: 'Registro de **atendimento ao beneficiário** (relacionamento): tipo, fase, solicitação, resposta e datas. Os nomes dos campos no JSON podem variar (**camelCase** / **PascalCase**).
+
+        '
+      additionalProperties: true
+      properties:
+        cdatendcallcenter:
+          type: string
+          description: Código do atendimento no call center.
+        dstipatendcallcenter:
+          type: string
+          description: Descrição do tipo de atendimento ou canal.
+        dsfaseatendcallcenter:
+          type: string
+          description: Identificador ou código da fase do protocolo no fluxo de atendimento.
+        cdfaseatendcallcenter:
+          type: string
+          description: Descrição legível da fase do atendimento (etapa do protocolo).
+        dsconsideracaooperadora:
+          type: string
+        dtinicio:
+          type: string
+          description: Início do atendimento (data/hora conforme retorno da API).
+        cdtipatendcallcenter:
+          type: string
+        dssolicitacao:
+          type: string
+        dsobservacao:
+          type: string
+        dsresposta:
+          type: string
+        dtconclusao:
+          type: string
+        cdMatAlternativa:
+          type: string
+        cdMatricula:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

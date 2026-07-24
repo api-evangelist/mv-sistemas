@@ -1,0 +1,245 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Serviços API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Serviços
+paths:
+  /v1/services:
+    post:
+      summary: Criar ou alterar dados de serviços.
+      description: Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica.
+      tags:
+      - Serviços
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectServiceDTO'
+      responses:
+        '201':
+          description: Serviço criado com sucesso.
+          content:
+            application/json: {}
+        '400':
+          description: Requisição inválida.
+        '500':
+          description: Erro interno do servidor.
+    get:
+      summary: Consultar serviços.
+      description: Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica.
+      tags:
+      - Serviços
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int64
+        description: ID do Clinic
+      - name: externalId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: ID externo
+      - name: subscriptionId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: ID da conta Clinic Connect
+      responses:
+        '200':
+          description: Lista de serviços retornada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceGetDTO'
+        '400':
+          description: Parâmetros de filtro inválidos.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    ServiceInsuranceSimpleDTO:
+      type: object
+      properties:
+        insurance: {}
+        price:
+          type: number
+          format: double
+          example: 31
+        passThroughValue:
+          type: number
+          format: double
+          example: 31
+        clinicValue:
+          type: number
+          format: double
+          example: 31
+      required:
+      - insurance
+    SimpleIdDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+    ServiceGetDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        name:
+          type: string
+          example: Consulta médica
+        price:
+          type: number
+          format: double
+          example: 100
+        clinicValue:
+          type: number
+          format: double
+          example: 60
+        activated:
+          type: boolean
+          example: true
+        duration:
+          type: integer
+          format: int32
+          example: 30
+        tuss:
+          $ref: '#/components/schemas/TussDTO'
+    TussSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 456
+    ConnectServiceDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: null
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+        externalId:
+          type: string
+          example: null
+        name:
+          type: string
+          example: Consulta clínica geral
+        price:
+          type: number
+          format: double
+          example: 100
+        passThroughValue:
+          type: number
+          format: double
+          example: 60
+        clinicValue:
+          type: number
+          format: double
+          example: 40
+        tuss:
+          $ref: '#/components/schemas/TussSimpleDTO'
+        preparation:
+          type: string
+          example: Jejum de 8h
+        returnTime:
+          type: integer
+          format: int32
+          example: 30
+        minAge:
+          type: integer
+          format: int32
+          example: 0
+        maxAge:
+          type: integer
+          format: int32
+          example: 99
+        duration:
+          type: integer
+          format: int32
+          example: 20
+        gender:
+          type: string
+          example: ANY
+        activated:
+          type: boolean
+          example: true
+        scheduleOnline:
+          type: boolean
+          example: true
+        insurances:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceInsuranceSimpleDTO'
+        financialAccount:
+          $ref: '#/components/schemas/FinancialAccountSimpleDTO'
+        returnService: {}
+        segment: {}
+        scheduled:
+          type: boolean
+          example: false
+        consentTermId:
+          type: integer
+          format: int64
+          example: null
+        consultationType:
+          type: string
+          example: IN_PERSON
+    FinancialAccountSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        code:
+          type: string
+          example: '10101012'
+        term:
+          type: string
+          example: Consulta médica
+        description:
+          type: string
+          example: Descrição do serviço
+        tableCode:
+          type: string
+          example: A123
+        presentationValue:
+          type: string
+          example: R$ 50,00
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

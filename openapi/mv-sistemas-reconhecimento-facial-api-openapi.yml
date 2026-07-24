@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: Clinic Agenda Agendamento Reconhecimento Facial API
+  version: 1.0.0
+  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+servers:
+- url: https://api.globalhealth.mv/available-appointments/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/available-appointments/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/available-appointments/api
+  description: Ambiente de QA
+security:
+- x-api-key: []
+tags:
+- name: Reconhecimento Facial
+paths:
+  /api/v1/face/liveness/start:
+    get:
+      tags:
+      - Reconhecimento Facial
+      operationId: faceLivenessStartV1
+      responses:
+        '200':
+          description: Sucesso no inicio da validação de vivacidade.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaceLivenessStartV1Response'
+      summary: Iniciar o processo da validação de vivacidade da informação biométrica.
+      description: Este endpoint inicia a validação da vivacidade da informação biométrica.
+  /api/v1/face/liveness/finish:
+    post:
+      tags:
+      - Reconhecimento Facial
+      operationId: faceLivenessFinishV1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaceLivenessFinishV1Request'
+      responses:
+        '200':
+          description: Sucesso na finalização da validação de vivacidade.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaceLivenessFinishV1Response'
+      summary: Finalizar o processo da validação de vivacidade da informação biométrica.
+      description: Este endpoint finaliza a validação da vivacidade da informação biométrica.
+components:
+  schemas:
+    FaceLivenessFinishV1Response:
+      type: object
+      properties:
+        faceLivenessResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
+        recognitionResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
+      required:
+      - faceLivenessResults
+    FaceLivenessFinishV1Request:
+      type: object
+      properties:
+        performFacialRecognition:
+          type: boolean
+          description: Define se após realizar o processo de validação de vivacidade, realiza o reconhecimento facial. Considerando o valor como true, os campos documentNumber, sharpness, minConfidance e requesterName se tornam obrigatórios
+          default: false
+          examples:
+          - 'true'
+          - 'false'
+        sessionId:
+          type: string
+          description: Id da sessão para validação da vivacidade.
+          examples:
+          - eda90689-a934-41bb-bd1a-4037be4964cd
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+        documentNumber:
+          type: string
+          description: Número do documento ao qual se deseja realizar o reconhecimento facial.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+        sharpness:
+          type: number
+          description: Percentual de nitidez mínima.
+          examples:
+          - 0
+          - 11.11
+          - 54.45423525255
+        minConfidance:
+          type: number
+          description: Percentual de confiança mínima do reconhecimento facial.
+          examples:
+          - 0
+          - 70
+          - 95.5
+        requesterName:
+          type: string
+          description: Nome do solicitante que está realizando a ação.
+          examples:
+          - Dr. olincon
+          - Dra. Vanessa
+          - Dr. lideson
+          - Dr. Angelo
+        healthPlanId:
+          type: number
+          description: Identificador do convênio.
+          examples:
+          - 11231
+          - 2646
+          - 553
+        healthPlanName:
+          type: string
+          description: Nome do convênio.
+        healthPlanAnsCode:
+          type: string
+          description: Código ANS do convênio.
+      required:
+      - performFacialRecognition
+      - sessionId
+    FaceLivenessFinishV1ResponseRecognitionResultsQuality:
+      type: object
+      properties:
+        brightness:
+          type: number
+          description: Percentual de brilho na face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
+        sharpness:
+          type: number
+          description: Percentual de nitidez da face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
+      required:
+      - brightness
+      - sharpness
+    FaceLivenessStartV1Response:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: Id da sessão a ser utilizado para validação da vivacidade.
+          examples:
+          - eda90689-a934-41bb-bd1a-4037be4964cd
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+      required:
+      - sessionId
+    FaceLivenessFinishV1ResponseRecognitionResults:
+      type: object
+      properties:
+        confidence:
+          type: string
+          description: Percentual de confiança do reconhecimento facial.
+        similarity:
+          type: string
+          description: Percentual de similaridade do reconhecimento facial.
+        boundingBox:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox'
+        quality:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsQuality'
+        protocol:
+          type: string
+          description: Protocolo gerado a partir de uma justificativa ou reconhecimento facial.
+      required:
+      - confidence
+      - similarity
+      - boundingBox
+      - quality
+      - protocol
+      - photo
+    FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
+      type: object
+      properties:
+        top:
+          type: number
+          description: Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.17801541090011597
+        left:
+          type: number
+          description: Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.3142961263656616
+        width:
+          type: number
+          description: Largura da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.6097581386566162
+        height:
+          type: number
+          description: Altura da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.5632858276367188
+      required:
+      - top
+      - left
+      - width
+      - height
+    FaceLivenessFinishV1ResponseFaceLivenessResults:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: Percentual de confiança da vivacidade.
+      required:
+      - confidence
+      - photoBase64
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
