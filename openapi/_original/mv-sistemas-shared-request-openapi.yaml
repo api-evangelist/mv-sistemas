@@ -1,0 +1,354 @@
+openapi: 3.0.0
+info:
+  title: Compartilhamento de Dados
+  version: 1.0.0
+  description: A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico designado para o atendimento do cliente.
+servers:
+  - url: https://api.globalhealth.mv/prod/shared-request-api
+    description: Ambiente de PRODUÇÃO
+  - url: https://api.globalhealth.mv/dem/shared-request-api
+    description: Ambiente de HOMOLOGAÇÃO
+  - url: https://api.globalhealth.mv/test/shared-request-api
+    description: Ambiente de QA
+security:
+  - x-api-key: []
+paths:
+  /shared-request:
+    post:
+      tags:
+        - Compartilhamento de Dados
+      summary: Criar uma nova requisição de compartilhamento de dados.
+      description: Endpoint responsável por criar uma nova requisição de compartilhamento de dados do paciente, iniciando o processo de autorização entre as partes envolvidas.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedRequestCreateDTO'
+      responses:
+        '200':
+          description: Requisição criada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedRequestDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+    get:
+      tags:
+        - Compartilhamento de Dados
+      summary: Consultar as requisições de compartilhamento.
+      description: Endpoint utilizado para consultar requisições de compartilhamento de dados, permitindo aplicar filtros específicos para localizar solicitações conforme os parâmetros informados. 
+      parameters:
+        - name: login
+          in: query
+          required: false
+          schema:
+            type: string
+          description: E-mail de login do paciente
+        - name: identificationNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: CPF do paciente
+        - name: requesterId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID do médico do Clinic
+        - name: requesterDocumentNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Número do documento do médico do Clinic
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/SharedRequestStatus'
+          description: Status do compartilhamento
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+          description: Número da página
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+          description: Tamanho da página
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content: 
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SharedRequestDTO'
+                  totalPages:
+                    type: integer
+                  totalElements:
+                    type: integer
+                  size:
+                    type: integer
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+  /shared-request/status:
+    get:
+      tags:
+        - Compartilhamento de Dados
+      summary: Consultar o status atual do compartilhamento de dados de um paciente.
+      description: Endpoint que verifica o status atual de uma requisição de compartilhamento de dados do paciente, possibilitando o acompanhamento em tempo real.
+      parameters:
+        - name: login
+          in: query
+          required: false
+          schema:
+            type: string
+          description: E-mail de login do paciente
+        - name: identificationNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: CPF do paciente
+        - name: requesterId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID do médico do Clinic
+        - name: requesterDocumentNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Número do documento do médico do Clinic
+      responses:
+        '200':
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedRequestDTO'
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+  /shared-request/accept:
+    put:
+      tags:
+        - Compartilhamento de Dados
+      summary: Aceitar uma requisição pendente de compartilhamento de dados.
+      description: Endpoint utilizado para aceitar uma requisição pendente de compartilhamento de dados do paciente, autorizando o acesso conforme os termos acordados.
+      parameters: []
+      requestBody:
+        required: true
+        description: |
+          Para aceitar uma requisição, é obrigatório informar:
+          - Pelo menos **um dos campos**: `login` ou `identificationNumber`.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedRequestChangeStatusDTO'
+      responses:
+        '200':
+          description: Requisição aceita com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+  /shared-request/refuse:
+    put:
+      tags:
+        - Compartilhamento de Dados
+      summary: Recusar uma requisição pendente de compartilhamento de dados.
+      description: Endpoint responsável por recusar uma requisição pendente de compartilhamento de dados do paciente, bloqueando o prosseguimento do processo.
+      parameters: []
+      requestBody:
+        required: true
+        description: |
+          Para aceitar uma requisição, é obrigatório informar:
+          - Pelo menos **um dos campos**: `login` ou `identificationNumber`.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedRequestChangeStatusDTO'
+      responses:
+        '200':
+          description: Requisição recusada com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+  /shared-request/revoke:
+    put:
+      tags:
+        - Compartilhamento de Dados
+      summary: Revogar uma requisição aceita de compartilhamento de dados.
+      description: Endpoint utilizado para revogar uma requisição já aceita de compartilhamento de dados do paciente, interrompendo o acesso previamente autorizado.
+      parameters: []
+      requestBody:
+        required: true
+        description: |
+          Para aceitar uma requisição, é obrigatório informar:
+          - Pelo menos **um dos campos**: `login` ou `identificationNumber`.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedRequestChangeStatusDTO'
+      responses:
+        '200':
+          description: Requisição revogada com sucesso.
+        '400':
+          description: Requisição inválida. Verifique os dados enviados.
+        '500':
+          description: Erro interno do servidor.
+components:
+  schemas:
+    SharedRequestStatus:
+      type: string
+      enum:
+        - WAITING
+        - REFUSED
+        - ACCEPTED
+        - REVOKED
+      description: 'Status do compartilhamento de dados'
+      example: ACCEPTED
+    SharedRequestDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/SharedRequestStatus'
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: "12345678900"
+        identificationType:
+          type: string
+          example: "CPF"
+        requesterId:
+          type: string
+          example: "1"
+        requesterDocumentNumber:
+          type: string
+          example: "11111111111"
+        requesterLabel:
+          type: string
+          example: "Dr. João da Silva"
+        requesterUnity:
+          type: string
+          example: "Clínica Vida"
+        requesterPicture:
+          type: string
+          example: "https://cdn.exemplo.com/foto.png"
+        cellphone:
+          type: string
+          example: "5511987654321"
+        requestDate:
+          type: integer
+          format: date-time
+          example: "1764682200000"
+        startDate:
+          type: integer
+          format: date-time
+          example: "1764682200000"
+        endDate:
+          type: integer
+          format: date-time
+          example: "1764892800000"
+        notified:
+          type: boolean
+          example: true
+        clientKey:
+          type: string
+          example: "clinic-001"
+    SharedRequestCreateDTO:
+      type: object
+      required:
+        - login
+        - identificationNumber
+        - identificationType
+        - requesterUnity
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: "12345678900"
+        identificationType:
+          type: string
+          example: "CPF"
+        requesterId:
+          type: string
+          example: "100"
+        requesterDocumentNumber:
+          type: string
+          example: "11111111111"
+        requesterLabel:
+          type: string
+          example: "Dr. João da Silva"
+        requesterUnity:
+          type: string
+          example: "Clínica Vida"
+        requesterPicture:
+          type: string
+          example: "https://cdn.exemplo.com/foto.png"
+        cellphone:
+          type: string
+          example: "5511987654321"
+        startDate:
+          type: integer
+          format: date-time
+          example: "1764682200000"
+        endDate:
+          type: integer
+          format: date-time
+          example: "1764892800000"
+    SharedRequestChangeStatusDTO:
+      type: object
+      required:
+        - login
+        - identificationNumber
+      description: |
+        É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: "12345678900"
+        requesterId:
+          type: string
+          example: "1"
+        requesterDocumentNumber:
+          type: string
+          example: "11111111111"
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

@@ -1,0 +1,376 @@
+generated: '2026-07-20'
+method: derived
+source: Derived from components.schemas across openapi/*. Global Health Conecta is composed of independent
+  product APIs; entities below are the principal schema objects grouped by product surface.
+note: These are independent product APIs (Clinic, One Touch, Personal Health, Serviços) rather than one
+  unified object graph; cross-API references are by beneficiary/patient document number and insurance
+  card number.
+shared_keys:
+- documentNumber (CPF)
+- insuranceCardNumber (numero da carteira)
+- beneficiary/patient id
+entity_count: 137
+entities:
+- name: address
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: addressconnectdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: addressdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: appointment
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: attendance
+  appears_in:
+  - mv-sistemas-clinic-connect-attendance-openapi.yaml
+- name: attendanceauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: attendancedocumentauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: attendancehealthconnecteddto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json
+- name: availableappointment
+  appears_in:
+  - mv-sistemas-clinic-agenda-openapi.yaml
+- name: biometricimportstartv1request
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: biometricimportstartv1response
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: biometricimportuploadv1request
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: biometricimportuploadv1response
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: clinic
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: clinicconnectdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: clinicconnectresponsedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: clinicdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: connectemployeedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: connectimportationdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: connectinsurancedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: connectpatientdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: connectservicedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: connectsubscriptiondto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: consenttermdto
+  appears_in:
+  - mv-sistemas-regulacao-openapi.yaml
+- name: council
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: councildto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: createdcheckinv1response
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: createeventv1checkin
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: createeventv1checkinitem
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: createeventv1request
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: createeventv1requestingphysician
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: documenttypedto
+  appears_in:
+  - mv-sistemas-users-openapi.json
+- name: documentuserdto
+  appears_in:
+  - mv-sistemas-users-openapi.json
+- name: employee
+  appears_in:
+  - mv-sistemas-clinic-agenda-openapi.yaml
+- name: employeeaccreditationdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: employeeappointment
+  appears_in:
+  - mv-sistemas-clinic-agenda-openapi.yaml
+- name: entrycontrolprotocoldto
+  appears_in:
+  - mv-sistemas-protocolo-entrada-openapi.json
+- name: error
+  appears_in:
+  - mv-sistemas-clinic-connect-attendance-openapi.yaml
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: eventappointmentminimaldto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: eventdto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: eventminimaldto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: eventpatientminimaldto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: examfieldhealthconnectedprotocoldto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json
+- name: examhealthconnectedprotocoldto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json
+- name: examrequestsauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: exitmovementdto
+  appears_in:
+  - mv-sistemas-protocolo-entrada-openapi.json
+- name: facelivenessfinishv1request
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessfinishv1response
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessfinishv1responsefacelivenessresults
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessfinishv1responserecognitionresults
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessfinishv1responserecognitionresultsboudingbox
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessfinishv1responserecognitionresultsquality
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facelivenessstartv1response
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: facerecognitionpagination
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: financialaccountsimpledto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: gerartokenrequest
+  appears_in:
+  - mv-sistemas-hub-operadora-openapi.yaml
+- name: gerartokenresponse
+  appears_in:
+  - mv-sistemas-hub-operadora-openapi.yaml
+- name: guiaauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: guiaprocedureauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: healthpendency
+  appears_in:
+  - mv-sistemas-pendencias-saude-openapi.json
+- name: healthpendencyexam
+  appears_in:
+  - mv-sistemas-pendencias-saude-openapi.json
+- name: healthpendencypatient
+  appears_in:
+  - mv-sistemas-pendencias-saude-openapi.json
+- name: healthpendencyperson
+  appears_in:
+  - mv-sistemas-pendencias-saude-openapi.json
+- name: healthplandto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+  - mv-sistemas-regulacao-openapi.yaml
+- name: insurancecarddto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: insurancefilterdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: insurancehealthplantypedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: insuranceimportdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: internalerrormessage
+  appears_in:
+  - mv-sistemas-protocolo-entrada-openapi.json
+- name: invalidfielddto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: invalidfieldsresponse
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: itemagendamentodto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: jsongenerico
+  appears_in:
+  - mv-sistemas-hub-operadora-openapi.yaml
+- name: loincmvresponsev1
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: medicalrecordimportdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: medicalrecordprotocoldto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json
+- name: nearestavailableappointment
+  appears_in:
+  - mv-sistemas-clinic-agenda-openapi.yaml
+- name: notificationemailpayload
+  appears_in:
+  - mv-sistemas-news-openapi.json
+- name: notificationpayload
+  appears_in:
+  - mv-sistemas-news-openapi.json
+- name: notificationpushpayload
+  appears_in:
+  - mv-sistemas-news-openapi.json
+- name: obstetricplanconnectdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: obstetricplanfilterdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: pageattendance
+  appears_in:
+  - mv-sistemas-clinic-connect-attendance-openapi.yaml
+- name: pageemployeeappointment
+  appears_in:
+  - mv-sistemas-clinic-agenda-openapi.yaml
+- name: pagepatienthealthauditdata
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: patient
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: patientcomorbiditiessimpledto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: patientcomorbiditiesstatus
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: patienthealthauditdataresponse
+  appears_in:
+  - mv-sistemas-clinic-patient-audit-openapi.yaml
+- name: patientimportresponsedto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: patientimportsyncdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: patientobstetricdiseasessimpledto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: patientobstetricdiseasesstatus
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: performancescheduleintegrationdeleterequest
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: performancescheduleintegrationdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: performancescheduleintegrationpage
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: performancescheduleintegrationrequest
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: performancescheduleintegrationresponse
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: performancescheduleschedulingdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: performancescheduleschedulingstatusdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: person
+  appears_in:
+  - mv-sistemas-gestao-beneficiarios-openapi.json
+- name: personalrecordprotocoldto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json
+- name: pregnancyrisk
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: provider
+  appears_in:
+  - mv-sistemas-performance-schedule-webhook-openapi.yml
+- name: providerdto
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: recognitionprotocolv1response
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: recognitionprotocolv1responsecontent
+  appears_in:
+  - mv-sistemas-face-recognition-openapi.json
+- name: regulationdto
+  appears_in:
+  - mv-sistemas-regulacao-openapi.yaml
+- name: regulationhealthplandto
+  appears_in:
+  - mv-sistemas-regulacao-openapi.yaml
+- name: regulationsimpledto
+  appears_in:
+  - mv-sistemas-regulacao-openapi.yaml
+- name: schedules
+  appears_in:
+  - mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+- name: servicegetdto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: serviceinsurancesimpledto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: sharedrequestchangestatusdto
+  appears_in:
+  - mv-sistemas-shared-request-openapi.yaml
+- name: sharedrequestcreatedto
+  appears_in:
+  - mv-sistemas-shared-request-openapi.yaml
+- name: sharedrequestdto
+  appears_in:
+  - mv-sistemas-shared-request-openapi.yaml
+- name: sharedrequeststatus
+  appears_in:
+  - mv-sistemas-shared-request-openapi.yaml
+- name: simpleiddto
+  appears_in:
+  - mv-sistemas-clinic-connect-openapi.yaml
+- name: specimendto
+  appears_in:
+  - mv-sistemas-events-openapi.json
+- name: surgeryrequestprotocoldto
+  appears_in:
+  - mv-sistemas-personal-attendance-openapi.json

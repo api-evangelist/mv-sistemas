@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://apidocs.globalhealth.mv/ and https://mv.com.br/. Versioning derived
+  from openapi/* path versions; no public status page or dated changelog was
+  found for the Global Health Conecta APIs as of 2026-07-20.
+versioning:
+  scheme: uri-path
+  current: v1 (with v2 on selected endpoints)
+  docs: https://apidocs.globalhealth.mv/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: no public deprecation policy or RFC 8594 Sunset/Deprecation header support documented
+sla:
+  url: null
+  public_uptime_target: null
+  note: availability commitments handled contractually with MV Global Health customers
+status_page: null
+changelog: null
+deprecated_operations: []
+notes: >-
+  API access is contract-gated; lifecycle communications appear to flow through
+  the customer/technical-contact relationship rather than a public status page or
+  changelog. The portal publishes an "Avisos" (notices) panel inside the docs.

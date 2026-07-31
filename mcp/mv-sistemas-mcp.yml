@@ -1,0 +1,176 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: Derived from Global Health Conecta OpenAPI operations; no official MCP server published as of
+  2026-07-20.
+server:
+  name: mv-sistemas-globalhealth
+  transport: http
+  note: No hosted MCP server is published by MV Global Health; this is a candidate tool surface derived
+    from the OpenAPI operations.
+tools:
+- name: get_available_appointments
+  description: Consultar horários disponíveis.
+- name: addAttendance
+  description: Cadastra um novo atendimento.
+- name: listAttendance
+  description: Consulta de atendimentos cadastrados.
+- name: get_v1_obstetric_plans
+  description: Consultar planos obstétricos.
+- name: post_v1_clinics
+  description: Criar ou alterar dados da clínica.
+- name: get_v1_clinics
+  description: Consultar clínicas.
+- name: post_v1_employees
+  description: Criar ou alterar dados de prestadores/usuários.
+- name: get_v1_employees
+  description: Consultar prestadores/usuários.
+- name: post_v1_insurances
+  description: Criar ou alterar dados de convênios.
+- name: get_v1_insurances
+  description: Consultar convênios.
+- name: post_v1_services
+  description: Criar ou alterar dados de serviços.
+- name: get_v1_services
+  description: Consultar serviços.
+- name: post_v1_subscriptions
+  description: Criar conta Clinic Connect
+- name: post_importations_v1_patient_data
+  description: Importar dados do paciente (fluxo síncrono)
+- name: listPerformanceSchedules
+  description: Listar Agendamento de performance
+- name: createScheduling
+  description: Criar agendamento a partir de um Agendamento de performance
+- name: updateSchedulingStatus
+  description: Atualizar status do agendamento
+- name: get_v1_procedure_request
+  description: Lista dados de auditoria por paciente (API Gateway)
+- name: get_clinic_v1_patient_audit_health_data
+  description: Lista dados de auditoria por paciente (clinic-service)
+- name: createEvent
+  description: Esta operação cria um evento de agendamento para check-in no sistema Global Health, registrando
+    as informações necessári
+- name: getEvents
+  description: Esta operação lista eventos de agendamento com base nos filtros informados, permitindo
+    localizar registros conforme os c
+- name: createEventWithMinimalInfo
+  description: Esta operação cria um evento de agendamento com o conjunto mínimo de informações, ideal
+    para cenários em que apenas os d
+- name: updateEventWithMinimalInfo
+  description: Esta operação atualiza um evento de agendamento existente, mantendo as informações mínimas
+    necessárias para garantir a c
+- name: createEventAppointment
+  description: Esta operação cria um novo evento de agendamento no sistema Global Health, registrando
+    todas as informações exigidas pel
+- name: findLoincByTussCode
+  description: Operação responsável por consultar parametrizações com base no código TUSS, retornando
+    os dados vinculados ao procedimen
+- name: getRecognitionProtocol
+  description: Obter os protocolos
+- name: biometricImportStartV1
+  description: Iniciar a importação de dados biométriocos de um paciente.
+- name: biometricImportUploadV1
+  description: Realizar o upload dos dados biométriocos de um paciente.
+- name: biometricImportFinishV1
+  description: Finalizar a importação de dados biométriocos de um paciente.
+- name: faceLivenessStartV1
+  description: Iniciar o processo da validação de vivacidade da informação biométrica.
+- name: faceLivenessFinishV1
+  description: Finalizar o processo da validação de vivacidade da informação biométrica.
+- name: addPerson
+  description: Atualizar ou Incluir um Novo Beneficiário
+- name: findPersonByDocumentNumberOrInsuranceCardNumber
+  description: Buscar Beneficiário por Número de Documento ou Número de Carteira do Convênio.
+- name: findPersonsByDocumentNumberOrInsuranceCardNumber
+  description: Buscar Beneficiários por Número de Documento ou Número de Carteira do Convênio.
+- name: get_api_funcoes_getguiamedico_numerocarteira
+  description: GetGuiaMedico
+- name: get_api_funcoes_getbeneficiario_numerocarteira
+  description: GetBeneficiario
+- name: get_api_funcoes_getcarteira_numerocpf
+  description: GetCarteira
+- name: get_api_funcoes_getguias_numerocarteira
+  description: GetGuias
+- name: get_api_funcoes_getdependentes_numerocarteira
+  description: GetDependentes
+- name: get_api_funcoes_gethistoricocallcenter_numerocarteira
+  description: GetHistoricoCallCenter
+- name: get_getutilizacao
+  description: GetUtilizacao
+- name: get_api_funcoes_getestados_numerocarteira
+  description: GetEstados
+- name: get_api_funcoes_getcidades_numerocarteira
+  description: GetCidades
+- name: get_api_funcoes_getbairros_numerocarteira
+  description: GetBairros
+- name: get_api_funcoes_getrecursos_numerocarteira
+  description: GetRecursos
+- name: get_api_funcoes_getespecialidade_numerocarteira
+  description: GetEspecialidade
+- name: post_api_funcoes_postgerartoken
+  description: PostGerarToken
+- name: post_news_v2_send
+  description: Envia uma notificação ao paciente
+- name: post_notification_push
+  description: Envia uma notificação push
+- name: post_notification_email_send
+  description: Envia uma notificação email
+- name: addHealthPendency
+  description: Incluir uma Nova Pendência para o Beneficiário
+- name: findHealthPendencies
+  description: Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status
+    da pendência.
+- name: getHealthPendencyById
+  description: Buscar uma Pendência específica pelo Hash Key
+- name: updateHealthPendencyByHashKey
+  description: Atualizar uma Pendência pelo Hash Key.
+- name: getHealthPendencyExamItemByHashKey
+  description: Obter um Item de Exame.
+- name: updateHealthPendencyExamItemByHashKey
+  description: Atualizar um Item de Exame.
+- name: createPerformanceScheduleIntegration
+  description: Enviar informações de Agendamento de performance
+- name: cancelPerformanceScheduleIntegration
+  description: Cancelar Agendamento de performance
+- name: byFilter
+  description: Buscar atendimentos
+- name: post_v1_authorizer_url_presigned
+  description: Pré-assina URL
+- name: getPersonResumeV2
+  description: Lista os pacientes alérgicos
+- name: createProtocol
+  description: Realizar o criação de protocolo de entrada.
+- name: updateProtocol
+  description: PUT /api/v1/entry-control-protocols/{id}
+- name: createVisitorMovement
+  description: POST /api/v1/entry-control-protocols/{id}/visitor-movements
+- name: exitMovement
+  description: PUT /api/v1/entry-control-protocols/{id}/visitor-movements/{visitorMovementId}/exit
+- name: get_v1_exams
+  description: Buscar exames (TUSS)
+- name: get_v1_health_plan
+  description: Buscar planos de saúde (convênios)
+- name: get_v1_regulation
+  description: Buscar regulações
+- name: post_v1_regulation
+  description: Criar regulação
+- name: get_v1_regulation_id
+  description: Buscar uma regulação específica pelo seu ID
+- name: put_v1_regulation_id
+  description: Atualizar regulação
+- name: delete_v1_regulation_id
+  description: Deletar regulação
+- name: post_shared_request
+  description: Criar uma nova requisição de compartilhamento de dados.
+- name: get_shared_request
+  description: Consultar as requisições de compartilhamento.
+- name: get_shared_request_status
+  description: Consultar o status atual do compartilhamento de dados de um paciente.
+- name: put_shared_request_accept
+  description: Aceitar uma requisição pendente de compartilhamento de dados.
+- name: put_shared_request_refuse
+  description: Recusar uma requisição pendente de compartilhamento de dados.
+- name: put_shared_request_revoke
+  description: Revogar uma requisição aceita de compartilhamento de dados.
+- name: post_personal_health_api_v1_user_create
+  description: Criar novo usuário

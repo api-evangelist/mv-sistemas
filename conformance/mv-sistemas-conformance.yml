@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: derived
+source: Derived from OpenAPI securitySchemes, parameters, and healthcare domain across openapi/*.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securitySchemes; all APIs use apiKey (x-api-key) headers
+- id: oidc
+  conforms: false
+- id: apikey-auth
+  conforms: true
+  evidence: every API declares an apiKey securityScheme in the x-api-key header
+- id: openapi-3.0
+  conforms: true
+  evidence: all 18 specs are OpenAPI 3.0.x
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as application/json, not application/problem+json
+- id: offset-pagination
+  conforms: true
+  evidence: page/size query parameters on list operations
+- id: fhir
+  conforms: false
+  evidence: proprietary Global Health resource models; not FHIR resource shapes (Brazilian TUSS/LOINC
+    code mapping present in Events API)
+- id: lgpd-data-sharing
+  conforms: true
+  evidence: shared-request (Compartilhamento de Dados) API implements consent-based patient data sharing
+    (accept/refuse/revoke) consistent with Brazilian LGPD

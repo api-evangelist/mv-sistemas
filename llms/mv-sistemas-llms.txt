@@ -1,0 +1,43 @@
+# MV Global Health — Global Health Conecta APIs
+
+> MV (MV Sistemas / MV Global Health) is a Brazilian healthcare technology company
+> founded in 1987 in Recife. Global Health Conecta publishes the company's public
+> integration APIs for hospitals, clinics, and health plan operators. All APIs are
+> OpenAPI 3.0, authenticated with an x-api-key header, and require an active
+> contract with MV Global Health. Base host: https://api.globalhealth.mv
+
+## Portal
+- [Global Health Conecta API Docs](https://apidocs.globalhealth.mv/): interactive OpenAPI/Swagger portal for all public APIs
+- [MV — Global Health solution](https://mv.com.br/solucao/global-health): product overview
+- [About MV](https://mv.com.br/en/sobre-a-mv): company overview
+
+## APIs (OpenAPI 3.0)
+- Clinic Agenda — available appointment slots (clinic-agenda)
+- Clinic Connect — clinics, providers, insurances, services, obstetric plans (clinic-connect)
+- Clinic Connect: Atendimento — real-time patient care records (clinic-connect-attendance)
+- Clinic Connect: Regulação — clinical regulation requests (regulacao)
+- Clinic Connect: Agendamento de performance — performance scheduling (clinic-connect-performance-schedule)
+- Webhook: Agendamento de performance — outbound performance-schedule integration (performance-schedule-webhook)
+- Clinic: Auditoria de paciente — unified patient health-trail audit (clinic-patient-audit)
+- One Touch: Protocolo de Entrada — entry protocols and visitor movement (protocolo-entrada)
+- Personal Health: Compartilhamento de Dados — consent-based patient data sharing (shared-request)
+- Personal Health: Eventos — event and check-in management (events)
+- Personal Health: Atendimentos — patient appointments (personal-attendance)
+- Personal Health: Ficha Clínica — clinical records and allergies (personal-health-ficha-clinica)
+- Personal Health: News — push/email notifications to app users (news)
+- Personal Health: Usuário — user account management (users)
+- Personal Health: Pendências de Saúde — health pending items CRUD (pendencias-saude)
+- Personal Health: Integração Hub Operadora — health-plan operator hub (hub-operadora)
+- Serviços: Gestão de Beneficiários — beneficiary registration (gestao-beneficiarios)
+- Serviços: Reconhecimento Facial — facial-recognition biometrics (face-recognition)
+
+## Conventions
+- Auth: x-api-key header (some APIs use One Pass / Clinic bearer or a Token header)
+- Environments: path segment — production, /hml (staging), /qa
+- Pagination: page/size with startDate/endDate filters
+- Errors: application/json (not RFC 9457)
+- See: conventions/mv-sistemas-conventions.yml, authentication/mv-sistemas-authentication.yml
+
+## Legal
+- [Terms of Use (check-in)](http://globalhealth.mv/termos/checkin/)
+- Privacy contact: globalhealth@mv.com.br

@@ -1,0 +1,1121 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API para Gestão de Eventos",
+    "description": " A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.",
+    "version": "1.1.5"
+  },
+  "servers": [
+    {
+      "url": "https://api.globalhealth.mv/prod/event-checkin",
+      "description": "Ambiente de PRODUÇÃO"
+    },
+    {
+      "url": "https://api.globalhealth.mv/dem/event-checkin",
+      "description": "Ambiente de HOMOLOGAÇÃO"
+    }
+  ],
+  "security": [
+    {
+      "x-api-key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Gestão de Eventos",
+      "description": ""
+    },
+    {
+      "name": "Parametrização",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/api/v1/event": {
+      "post": {
+        "tags": [
+          "Gestão de Eventos"
+        ],
+        "description": "Esta operação cria um evento de agendamento para check-in no sistema Global Health, registrando as informações necessárias para o controle do atendimento.",
+        "operationId": "createEvent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventV1Request"
+              },
+              "example": {
+                "person": "Iury",
+                "professional": "Médito teste",
+                "documentNumber": "12345678910",
+                "documentType": "CPF",
+                "healthPlanAnsCode": "1231312312312312312312312",
+                "healthPlanName": "PARTICULAR",
+                "healthPlanCode": "40",
+                "healthPlanTypeName": "PARTICULAR",
+                "healthPlanTypeCode": "1",
+                "healthPlanCardName": "Iury",
+                "dependent": false,
+                "cnes": "6635148",
+                "serviceName": "Check-in de Exame",
+                "scheduleTime": 1694808987000,
+                "timeZone": "America/Cuiaba",
+                "birthDate": "01-01-2000",
+                "cardNumber": "0123912312321",
+                "checkin": {
+                  "requestedDate": "2023-09-15 09:10:01",
+                  "requestingPhysician": {
+                    "name": "Otavio",
+                    "state": "PE",
+                    "council": "CRM",
+                    "code": "123456789101213"
+                  },
+                  "items": [
+                    {
+                      "tussCode": "40304361",
+                      "exaLabId": 1547,
+                      "clinicalIndication": "Indicação",
+                      "observation": "Observação"
+                    },
+                    {
+                      "tussCode": "40316360",
+                      "exaLabId": 294
+                    },
+                    {
+                      "tussCode": "40301630",
+                      "exaLabId": 1360
+                    }
+                  ]
+                },
+                "appointment": {
+                  "guiaTissInsuranceFormNumber": "123456789123",
+                  "guiaTissPassword": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Check-in criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedCheckinV1Response"
+                },
+                "example": {
+                  "hashKey": "4479747b-bf62-4316-896d-63565bc2843c"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel realizar a criacão de um check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidFieldsResponse"
+                },
+                "example": {
+                  "message": "Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123)."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": [
+          "Gestão de Eventos"
+        ],
+        "description": "Esta operação lista eventos de agendamento com base nos filtros informados, permitindo localizar registros conforme os critérios definidos.",
+        "operationId": "getEvents",
+        "parameters": [
+          {
+            "name": "unitCnes",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "434"
+            },
+            "description": "CNES da Unidade"
+          },
+          {
+            "name": "startScheduleTime",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2025-02-24"
+            },
+            "description": "Data no formato YYYY-MM-DD"
+          },
+          {
+            "name": "endScheduleTime",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2025-02-25"
+            },
+            "description": "Data no formato YYYY-MM-DD"
+          },
+          {
+            "name": "documentNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Número do Documento de um Paciente"
+          },
+          {
+            "name": "patientName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Nome de um Paciente"
+          },
+          {
+            "name": "eventType",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["CONSULT_EVENT", "EXAM_CHECKIN", "IMAGE_EVENT"]
+            },
+            "description": "Tipos relacionados a Agendamentos de Consultas, Eventos para Check-in e agendamentos de exames de imagem."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem de Eventos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/minimal": {
+      "post": {
+        "tags": [
+          "Gestão de Eventos"
+        ],
+        "description": "Esta operação cria um evento de agendamento com o conjunto mínimo de informações, ideal para cenários em que apenas os dados essenciais estão disponíveis no momento da criação.",
+        "operationId": "createEventWithMinimalInfo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventPatientMinimalDTO"
+              },
+              "example": {
+                "person": "John Doe",
+                "login": "janedoe@example.com",
+                "documentNumber": "123456789",
+                "documentType": "CPF",
+                "professional": "Dr. Smith",
+                "status": "REQUESTED",
+                "statusMessage": "Agendado",
+                "type": "CONSULT_EVENT",
+                "healthPlanName": "Premium Plan",
+                "healthPlanTypeName": "Gold",
+                "healthPlanTypeCode": "123",
+                "cnes": "123456",
+                "serviceName": "Consulta",
+                "clientKey": "",
+                "source": "PUBLIC_EVENT_CHECKIN",
+                "scheduleTime": 1700000000000,
+                "timeZone": "America/Sao_Paulo",
+                "birthDate": "27-01-1992",
+                "dependent": false,
+                "address": "Main Street",
+                "unitName": "Health Care Center",
+                "latitude": "-23.48697",
+                "longitude": "-43.41941",
+                "payment": "COMPLETE",
+                "price": 100.50,
+                "appointment": {
+                  "phoneMobile": "5511999999999",
+                  "email": "healthpro@example.com",
+                  "healthProfessionalAccreditationNumber": "123",
+                  "healthProfessionalAccreditationType": "CRM"
+                },
+                "patient": {
+                  "birthDate": "27-01-1992",
+                  "name": "Jane Doe",
+                  "socialName": "J. Doe",
+                  "motherName": "Mary Doe",
+                  "email": "janedoe@example.com",
+                  "phoneMobile": "5511988888888",
+                  "zipCode": "12345678",
+                  "address": "Main Street",
+                  "addressNumber": "123"
+                }
+              }              
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Evento criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPatientMinimalDTO"
+                },
+                "example": {
+                  "person": "John Doe",
+                  "documentNumber": "123456789",
+                  "documentType": "CPF",
+                  "professional": "Dr. Smith",
+                  "status": "REQUESTED",
+                  "statusMessage": "Agendado",
+                  "type": "CONSULT_EVENT",
+                  "healthPlanName": "Premium Plan",
+                  "healthPlanTypeName": "Gold",
+                  "healthPlanTypeCode": "G123",
+                  "cnes": "123456",
+                  "serviceName": "Consulta",
+                  "clientKey": "",
+                  "source": "PUBLIC_EVENT_CHECKIN",
+                  "scheduleTime": 1700000000000,
+                  "timeZone": "America/Sao_Paulo",
+                  "birthDate": "27-01-1992",
+                  "dependent": false,
+                  "address": "Main Street",
+                  "unitName": "Health Care Center",
+                  "latitude": "-23.48697",
+                  "longitude": "-43.41941",
+                  "payment": "COMPLETE",
+                  "price": 100.50,
+                  "appointment": {
+                    "phoneMobile": "+5511999999999",
+                    "email": "healthpro@example.com",
+                    "healthProfessionalAccreditationNumber": "PRO123",
+                    "healthProfessionalAccreditationType": "CRM"
+                  },
+                  "patient": {
+                    "birthDate": "27-01-1992",
+                    "name": "Jane Doe",
+                    "socialName": "J. Doe",
+                    "motherName": "Mary Doe",
+                    "email": "janedoe@example.com",
+                    "phoneMobile": "+5511988888888",
+                    "zipCode": "12345678",
+                    "address": "Main Street",
+                    "addressNumber": "123"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel realizar a criacão de um check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/minimal/{hashKey}": {
+      "put": {
+        "tags": [
+          "Gestão de Eventos"
+        ],
+        "description": "Esta operação atualiza um evento de agendamento existente, mantendo as informações mínimas necessárias para garantir a consistência dos dados.",
+        "operationId": "updateEventWithMinimalInfo",
+        "parameters": [
+          {
+            "name": "hashKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventPatientMinimalDTO"
+              },
+              "example": {
+                "person": "John Doe",
+                "login": "janedoe@example.com",
+                "documentNumber": "123456789",
+                "documentType": "CPF",
+                "professional": "Dr. Smith",
+                "status": "ATTENDED",
+                "statusMessage": "Evento Concluído",
+                "type": "CONSULT_EVENT",
+                "healthPlanName": "Premium Plan",
+                "healthPlanTypeName": "Gold",
+                "healthPlanTypeCode": "G123",
+                "cnes": "123456",
+                "serviceName": "Consulta",
+                "clientKey": "",
+                "source": "PUBLIC_EVENT_CHECKIN",
+                "scheduleTime": 1700000000000,
+                "timeZone": "America/Sao_Paulo",
+                "birthDate": "27-01-1992",
+                "dependent": false,
+                "address": "Main Street",
+                "unitName": "Health Care Center",
+                "latitude": "-23.48697",
+                "longitude": "-43.41941",
+                "payment": "COMPLETE",
+                "price": 100.50,
+                "appointment": {
+                  "phoneMobile": "+5511999999999",
+                  "email": "healthpro@example.com",
+                  "healthProfessionalAccreditationNumber": "PRO123",
+                  "healthProfessionalAccreditationType": "CRM"
+                },
+                "patient": {
+                  "birthDate": "27-01-1992",
+                  "name": "Jane Doe",
+                  "socialName": "J. Doe",
+                  "motherName": "Mary Doe",
+                  "email": "janedoe@example.com",
+                  "phoneMobile": "+5511988888888",
+                  "zipCode": "12345678",
+                  "address": "Main Street",
+                  "addressNumber": "123"
+                }
+              }              
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Evento criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPatientMinimalDTO"
+                },
+                "example": {
+                  "person": "John Doe",
+                  "documentNumber": "123456789",
+                  "documentType": "CPF",
+                  "professional": "Dr. Smith",
+                  "status": "active",
+                  "statusMessage": "Agendado",
+                  "type": "CONSULT_EVENT",
+                  "healthPlanName": "Premium Plan",
+                  "healthPlanTypeName": "Gold",
+                  "healthPlanTypeCode": "G123",
+                  "cnes": "123456",
+                  "serviceName": "Consulta",
+                  "clientKey": "",
+                  "source": "PUBLIC_EVENT_CHECKIN",
+                  "scheduleTime": 1700000000000,
+                  "timeZone": "America/Sao_Paulo",
+                  "birthDate": "27-01-1992",
+                  "dependent": false,
+                  "address": "Main Street",
+                  "unitName": "Health Care Center",
+                  "latitude": "-23.48697",
+                  "longitude": "-43.41941",
+                  "payment": "COMPLETE",
+                  "price": 100.50,
+                  "appointment": {
+                    "phoneMobile": "+5511999999999",
+                    "email": "healthpro@example.com",
+                    "healthProfessionalAccreditationNumber": "PRO123",
+                    "healthProfessionalAccreditationType": "CRM"
+                  },
+                  "patient": {
+                    "birthDate": "27-01-1992",
+                    "name": "Jane Doe",
+                    "socialName": "J. Doe",
+                    "motherName": "Mary Doe",
+                    "email": "janedoe@example.com",
+                    "phoneMobile": "+5511988888888",
+                    "zipCode": "12345678",
+                    "address": "Main Street",
+                    "addressNumber": "123"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel realizar a criacão de um check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event-appointment": {
+      "post": {
+        "tags": [
+          "Gestão de Eventos"
+        ],
+        "description": "Esta operação cria um novo evento de agendamento no sistema Global Health, registrando todas as informações exigidas pelo fluxo de agendamento.",
+        "operationId": "createEventAppointment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventV1Request"
+              },
+              "example": {
+                "person": "Iury",
+                "professional": "Médico teste",
+                "documentNumber": "12345678910",
+                "documentType": "CPF",
+                "healthPlanAnsCode": "1231312312312312312312312",
+                "healthPlanName": "PARTICULAR",
+                "healthPlanCode": "40",
+                "healthPlanTypeName": "PARTICULAR",
+                "healthPlanTypeCode": "1",
+                "healthPlanCardName": "Iury",
+                "dependent": false,
+                "cnes": "6635148",
+                "serviceName": "Agendamento",
+                "scheduleTime": 1694808987000,
+                "timeZone": "America/Cuiaba",
+                "birthDate": "01-01-2000",
+                "cardNumber": "0123912312321",
+                "checkin": {
+                  "requestedDate": "2023-09-15 09:10:01",
+                  "requestingPhysician": {
+                    "name": "Otavio",
+                    "state": "PE",
+                    "council": "CRM",
+                    "code": "123456789101213"
+                  },
+                  "items": [
+                    {
+                      "tussCode": "40304361",
+                      "exaLabId": 1547,
+                      "clinicalIndication": "Indicação",
+                      "observation": "Observação"
+                    },
+                    {
+                      "tussCode": "40316360",
+                      "exaLabId": 294
+                    },
+                    {
+                      "tussCode": "40301630",
+                      "exaLabId": 1360
+                    }
+                  ]
+                },
+                "appointment": {
+                  "guiaTissInsuranceFormNumber": "123456789123",
+                  "guiaTissPassword": "123456"
+                },
+                "eventType": "IMAGE_EVENT"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Check-in criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedCheckinV1Response"
+                },
+                "example": {
+                  "hashKey": "4479747b-bf62-4316-896d-63565bc2843c"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel realizar a criacão de um check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidFieldsResponse"
+                },
+                "example": {
+                  "message": "Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123)."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/loincmv/bytuss/{tuss}": {
+      "get": {
+        "tags": [
+          "Parametrização"
+        ],
+        "description": "Operação responsável por consultar parametrizações com base no código TUSS, retornando os dados vinculados ao procedimento informado.",
+        "operationId": "findLoincByTussCode",
+        "parameters": [
+          {
+            "name": "tuss",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Loinc encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoincMVResponseV1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoincMVResponseV1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "examType": {
+            "type": "string"
+          },
+          "loincCode": {
+            "type": "string"
+          },
+          "activated": {
+            "type": "boolean"
+          },
+          "mvCode": {
+            "type": "string"
+          },
+          "scheduled": {
+            "type": "boolean"
+          },
+          "examsType": {
+            "type": "integer"
+          },
+          "preparation": {
+            "type": "string"
+          },
+          "tuss_code": {
+            "type": "string"
+          },
+          "tuss": {
+            "$ref": "#/components/schemas/TussDTO"
+          },
+          "specimen": {
+            "$ref": "#/components/schemas/SpecimenDTO"
+          },
+          "itemAgendamento": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemAgendamentoDTO"
+            }
+          }
+        }
+      },
+      "TussDTO": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "tableCode": {
+            "type": "string"
+          },
+          "term": {
+            "type": "string"
+          },
+          "fabricatorReferences": {
+            "type": "string"
+          },
+          "fabricator": {
+            "type": "string"
+          },
+          "registerAnvisa": {
+            "type": "string"
+          },
+          "riskClassification": {
+            "type": "string"
+          },
+          "presentation": {
+            "type": "string"
+          },
+          "laboratory": {
+            "type": "string"
+          },
+          "initials": {
+            "type": "string"
+          },
+          "detailsDescription": {
+            "type": "string"
+          },
+          "groupName": {
+            "type": "string"
+          },
+          "groupDescription": {
+            "type": "string"
+          },
+          "terminology": {
+            "type": "string"
+          },
+          "tussCode": {
+            "type": "string"
+          },
+          "sendType": {
+            "type": "string"
+          },
+          "fullPresentation": {
+            "type": "string"
+          }
+        }
+      },
+      "SpecimenDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "activated": {
+            "type": "boolean"
+          },
+          "variation": {
+            "type": "string"
+          }
+        }
+      },
+      "ItemAgendamentoDTO": {
+        "type": "object",
+        "properties": {
+          "itemAgendamentoId": {
+            "type": "integer"
+          },
+          "exaLabId": {
+            "type": "integer"
+          },
+          "exaRxId": {
+            "type": "integer"
+          },
+          "checkin": {
+            "type": "boolean"
+          }
+        }
+      },
+      "EventMinimalDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "person": {
+            "type": "string"
+          },
+          "documentNumber": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "professional": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "statusMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "healthPlanName": {
+            "type": "string"
+          },
+          "healthPlanTypeName": {
+            "type": "string"
+          },
+          "healthPlanTypeCode": {
+            "type": "string"
+          },
+          "cnes": {
+            "type": "string"
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "clientKey": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "scheduleTime": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "dependent": {
+            "type": "boolean"
+          },
+          "address": {
+            "type": "string"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "payment": {
+            "type": "string",
+            "enum": [
+              "WAITING_PAYMENT",
+              "PROCESSING",
+              "COMPLETE",
+              "NOT_PAID",
+              "NOT_AUTHORIZED",
+              "REFUNDED",
+              "CANCELED"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "appointment": {
+            "$ref": "#/components/schemas/EventAppointmentMinimalDTO"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/EventPatientMinimalDTO"
+          }
+        }
+      },
+      "EventAppointmentMinimalDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "phoneMobile": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "healthProfessionalAccreditationNumber": {
+            "type": "string"
+          },
+          "healthProfessionalAccreditationType": {
+            "type": "string"
+          }
+        }
+      },
+      "EventPatientMinimalDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "name": {
+            "type": "string"
+          },
+          "login": {
+            "type": "string"
+          },
+          "socialName": {
+            "type": "string"
+          },
+          "motherName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phoneMobile": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "addressNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateEventV1Request": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "type": "string"
+          },
+          "professional": {
+            "type": "string"
+          },
+          "documentNumber": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string"
+          },
+          "healthPlanAnsCode": {
+            "type": "string"
+          },
+          "healthPlanName": {
+            "type": "string"
+          },
+          "healthPlanCode": {
+            "type": "string"
+          },
+          "healthPlanTypeAnsCode": {
+            "type": "string"
+          },
+          "healthPlanTypeName": {
+            "type": "string"
+          },
+          "healthPlanTypeCode": {
+            "type": "string"
+          },
+          "healthPlanCardName": {
+            "type": "string"
+          },
+          "dependent": {
+            "type": "boolean"
+          },
+          "cnes": {
+            "type": "string"
+          },
+          "serviceName": {
+            "type": "string"
+          },
+          "scheduleTime": {
+            "type": "number",
+            "description": "Timestamp em milisegundos."
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{2}-\\d{2}-\\d{4}$"
+          },
+          "cardNumber": {
+            "type": "number"
+          },
+          "checkin": {
+            "$ref": "#/components/schemas/CreateEventV1Checkin"
+          }
+        }
+      },
+      "CreateEventV1Checkin": {
+        "type": "object",
+        "properties": {
+          "requestedDate": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$"
+          },
+          "requestingPhysician": {
+            "$ref": "#/components/schemas/CreateEventV1RequestingPhysician"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateEventV1CheckinItem"
+            }
+          }
+        }
+      },
+      "CreateEventV1RequestingPhysician": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "council": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateEventV1CheckinItem": {
+        "type": "object",
+        "properties": {
+          "loincMvId": {
+            "type": "integer"
+          },
+          "tussCode": {
+            "type": "string"
+          },
+          "exaRxId": {
+            "type": "integer"
+          },
+          "exaLabId": {
+            "type": "integer"
+          },
+          "clinicalIndication": {
+            "type": "string",
+            "description": "Indicação clínica"
+          },
+          "observation": {
+            "type": "string",
+            "description": "Observação"
+          }
+        }
+      },
+      "EventDTO": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "hashKey": { "type": "string" },
+          "login": { "type": "string", "nullable": true },
+          "person": { "type": "string" },
+          "documentNumber": { "type": "string" },
+          "documentType": { "type": "string" },
+          "professional": { "type": "string" },
+          "status": { "type": "string" },
+          "statusMessage": { "type": "string" },
+          "type": { "type": "string" },
+          "qrCodeContent": { "type": "string" },
+          "locator": { "type": "string", "nullable": true },
+          "healthPlanName": { "type": "string" },
+          "healthPlanCode": { "type": "string" },
+          "healthPlanAnsCode": { "type": "string", "nullable": true },
+          "healthPlanTypeName": { "type": "string" },
+          "healthPlanTypeCode": { "type": "string" },
+          "healthPlanTypeAnsCode": { "type": "string", "nullable": true },
+          "birthDate": { "type": "string", "format": "date" },
+          "isFutureEvent": { "type": "boolean", "nullable": true },
+          "hasPendencies": { "type": "boolean" },
+          "scheduleTime": { "type": "integer", "format": "int64" },
+          "timeZone": { "type": "string" },
+          "appointment": { "$ref": "#/components/schemas/Appointment" },
+          "patient": { "$ref": "#/components/schemas/Patient" }
+        }
+      },
+      "Appointment": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "phoneMobile": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "healthProfessionalAccreditationNumber": { "type": "string" },
+          "healthProfessionalAccreditationType": { "type": "string" }
+        }
+      },
+      "Patient": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "birthDate": { "type": "string", "format": "date" },
+          "name": { "type": "string" },
+          "socialName": { "type": "string", "nullable": true },
+          "motherName": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "phoneMobile": { "type": "string" },
+          "zipCode": { "type": "string" },
+          "address": { "type": "string" },
+          "addressNumber": { "type": "string" }
+        }
+      },
+      "InvalidFieldsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvalidFieldDTO"
+            }
+          }
+        }
+      },
+      "InvalidFieldDTO": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "CreatedCheckinV1Response": {
+        "type": "object",
+        "properties": {
+          "hashKey": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "x-api-key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  }
+}

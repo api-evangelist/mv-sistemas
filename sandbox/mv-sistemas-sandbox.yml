@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://apidocs.globalhealth.mv/
+description: >-
+  Global Health Conecta exposes non-production environments selected by a URL
+  path segment. There are no published test cards or magic test identifiers
+  (this is a healthcare integration platform, not a payments API); test data is
+  provisioned per contract in the Homologação/QA environments.
+environments:
+  - name: Production
+    base: https://api.globalhealth.mv/<service>
+  - name: Homologacao (staging)
+    base: https://api.globalhealth.mv/hml/<service>
+    aliases: [dem, test]
+    note: mandatory validation environment before production
+  - name: QA
+    base: https://api.globalhealth.mv/qa/<service>
+credentials:
+  note: >-
+    An x-api-key is issued per environment by the MV Global Health technical
+    contact under an active contract. No self-service test key is published.
+test_values:
+  published: false
+  note: no public test cards, IBANs, or magic identifiers are documented

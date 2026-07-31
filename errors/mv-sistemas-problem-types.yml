@@ -1,0 +1,88 @@
+generated: '2026-07-20'
+method: derived
+format: custom-json
+source: Derived from 4xx/5xx responses across openapi/*; Global Health Conecta returns errors as application/json
+  (not RFC 9457 problem+json).
+envelope:
+  media_type: application/json
+  note: Error bodies are returned as application/json. Schemas are inline/minimal in the published specs;
+    consult apidocs.globalhealth.mv for per-endpoint payload detail.
+problems:
+- status: 400
+  title: Bad Request
+  descriptions:
+  - <b>Bad Request</b>
+  - Dados informados são inválidos.
+  - Entrada inválida.
+  - Não foi possivel realizar a criacão de um check-in
+  - Parâmetros de filtro inválidos
+  occurrences: 48
+  example_operations:
+  - openapi/mv-sistemas-clinic-agenda-openapi.yaml#get:/available-appointments
+  - openapi/mv-sistemas-clinic-connect-attendance-openapi.yaml#addAttendance
+  - openapi/mv-sistemas-clinic-connect-attendance-openapi.yaml#listAttendance
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#get:/v1/obstetric-plans
+- status: 401
+  title: Unauthorized
+  descriptions:
+  - API key inválida ou ausente (API Gateway).
+  - Não autorizado
+  - Não autorizado (`x-api-key` ou política da API).
+  - Não autorizado - API Key inválida ou ausente
+  - Não autorizado.
+  occurrences: 23
+  example_operations:
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#post:/importations/v1/patient-data
+  - openapi/mv-sistemas-clinic-patient-audit-openapi.yaml#get:/v1/procedure-request
+  - openapi/mv-sistemas-hub-operadora-openapi.yaml#get:/api/Funcoes/GetGuiaMedico/{numerocarteira}
+  - openapi/mv-sistemas-hub-operadora-openapi.yaml#get:/api/Funcoes/GetBeneficiario/{numerocarteira}
+- status: 403
+  title: Forbidden
+  descriptions:
+  - <b>Forbidden</b> <br><br> Significa que o servidor entendeu a sua solicitação, mas não permite o acesso
+    a um determinado recurso. <br> Verifique chaves de acess
+  - Acesso negado.
+  - Forbidden
+  - Proibido.
+  occurrences: 7
+  example_operations:
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#post:/importations/v1/patient-data
+  - openapi/mv-sistemas-gestao-beneficiarios-openapi.json#addPerson
+  - openapi/mv-sistemas-regulacao-openapi.yaml#get:/v1/exams
+  - openapi/mv-sistemas-regulacao-openapi.yaml#get:/v1/health-plan
+- status: 404
+  title: Not Found
+  descriptions:
+  - <b>Não encontrado</b>
+  - Agendamento de performance não encontrado
+  - Agendamento de performance não encontrado ou não disponível
+  - Agendamento de performance não encontrado ou não ocupado
+  - Beneficiário não encontrado para a carteira informada.
+  occurrences: 17
+  example_operations:
+  - openapi/mv-sistemas-clinic-connect-performance-schedule-openapi.yml#createScheduling
+  - openapi/mv-sistemas-clinic-connect-performance-schedule-openapi.yml#updateSchedulingStatus
+  - openapi/mv-sistemas-gestao-beneficiarios-openapi.json#findPersonByDocumentNumberOrInsuranceCardNumber
+  - openapi/mv-sistemas-gestao-beneficiarios-openapi.json#findPersonsByDocumentNumberOrInsuranceCardNumber
+- status: 422
+  title: Unprocessable Entity
+  descriptions:
+  - Erro de validação dos dados.
+  occurrences: 2
+  example_operations:
+  - openapi/mv-sistemas-clinic-connect-attendance-openapi.yaml#addAttendance
+  - openapi/mv-sistemas-clinic-connect-attendance-openapi.yaml#listAttendance
+- status: 500
+  title: Internal Server Error
+  descriptions:
+  - <b>Unexpected Error</b>
+  - Erro interno - mensagem amigável retornada no corpo.
+  - Erro interno do servidor
+  - Erro interno do servidor.
+  - Erro interno no servidor
+  occurrences: 50
+  example_operations:
+  - openapi/mv-sistemas-clinic-agenda-openapi.yaml#get:/available-appointments
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#get:/v1/obstetric-plans
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#post:/v1/clinics
+  - openapi/mv-sistemas-clinic-connect-openapi.yaml#get:/v1/clinics

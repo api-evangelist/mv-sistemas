@@ -1,0 +1,60 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  https://apidocs.globalhealth.mv/ (Global Health Conecta portal) plus derivation
+  from openapi/*. Cross-cutting request/response semantics that apply across the
+  Global Health Conecta API family.
+description: >-
+  How the MV Global Health "Global Health Conecta" APIs behave across operations:
+  authentication, environments, pagination, versioning, and the error envelope.
+  Consumption of any API requires an active contract with MV Global Health.
+base_url: https://api.globalhealth.mv
+api_style: REST over HTTPS, JSON request/response, OpenAPI 3.0 documented
+authentication:
+  scheme: API key in the x-api-key request header (per API Gateway)
+  notes: >-
+    Most APIs authenticate with an x-api-key header issued by the technical
+    contact under an active contract. The Clinic Connect Atendimento API also
+    accepts a One Pass token (x-authorization) and a Clinic bearer token
+    (authorization). The WhatsApp scheduling API uses a Token header instead.
+  detail: authentication/mv-sistemas-authentication.yml
+environments:
+  separation: URL path segment selects the environment
+  production: https://api.globalhealth.mv/<service>
+  staging_hml: https://api.globalhealth.mv/hml/<service>
+  qa: https://api.globalhealth.mv/qa/<service>
+  note: >-
+    Validation in Homologação (hml) and QA is required before production use.
+    Some services use prod/dem/test path segments instead of hml/qa.
+pagination:
+  style: offset (page-number based)
+  request_params:
+    page: page number
+    size: page size
+  filters:
+    startDate: period filter start
+    endDate: period filter end
+  note: default page size is small (e.g. 10) on list endpoints
+versioning:
+  scheme: uri-path
+  mechanism: version segment in the path (e.g. /v1/, /v2/); a few endpoints expose v2 variants
+  note: no dated or header-based versioning observed
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header or idempotency contract is documented in the
+    published specs. Retries of unsafe (POST/PUT) operations are not guaranteed
+    idempotent.
+error_envelope:
+  media_type: application/json
+  format: custom-json (not RFC 9457 problem+json)
+  detail: errors/mv-sistemas-problem-types.yml
+rate_limiting:
+  documented: partial
+  note: >-
+    Per-API limits are noted in the docs where they apply (e.g. Gestão de
+    Beneficiários is limited to 1 request/second). No standard RateLimit response
+    headers are documented.
+webhooks:
+  supported: true
+  detail: asyncapi/mv-sistemas-webhooks.yml

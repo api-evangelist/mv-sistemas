@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+type: Webhooks
+source: >-
+  https://apidocs.globalhealth.mv/ — Global Health Conecta documents an outbound
+  webhook/integration surface. No AsyncAPI document is published; captured here
+  as a webhook catalog.
+description: >-
+  MV Global Health documents outbound integration callbacks and push
+  notifications rather than a streaming/AsyncAPI event bus.
+webhooks:
+  - name: Performance schedule integration webhook
+    spec: openapi/mv-sistemas-performance-schedule-webhook-openapi.yml
+    direction: outbound (MV calls the external system)
+    summary: >-
+      Publishes provider availability / performance-scheduling events to an
+      external system endpoint (createPerformanceScheduleIntegration,
+      cancelPerformanceScheduleIntegration).
+    auth: x-api-key header on the receiving endpoint
+  - name: News push and email notifications
+    spec: openapi/mv-sistemas-news-openapi.json
+    direction: outbound (delivery to app users)
+    summary: >-
+      Sends push notifications and emails to Global Health app users
+      (post /notification/push, post /notification/email/send, post /news/v2/send).
+notes: >-
+  These are documented outbound message/callback surfaces; MV does not publish an
+  AsyncAPI specification, so no AsyncAPI spec artifact is captured.

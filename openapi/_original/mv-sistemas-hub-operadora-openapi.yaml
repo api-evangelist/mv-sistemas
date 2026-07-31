@@ -1,0 +1,966 @@
+openapi: 3.0.0
+info:
+  title: Integração Hub Operadora
+  version: 1.0.0
+  description: |
+    **Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
+
+    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
+
+    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
+
+    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
+servers:
+  - url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
+    description: Ambiente de PRODUÇÃO
+security:
+  - x-api-key: []
+tags:
+  - name: Beneficiário e carteira
+    description: Consulta de dados cadastrais, carteirinhas por CPF e dependentes do titular.
+  - name: Guias e utilização
+    description: Rede credenciada, guias e autorizações e acompanhamento de utilização do plano.
+  - name: Financeiro e atendimento
+    description: Histórico de interações com o relacionamento (call center).
+  - name: Cadastros auxiliares
+    description: Listas de estados, cidades, bairros, tipos de recurso e especialidades para filtros e formulários.
+  - name: Autenticação
+    description: Geração de token temporário para fluxos que exigem validação adicional.
+paths:
+  /api/Funcoes/GetGuiaMedico/{numerocarteira}:
+    get:
+      tags:
+        - Guias e utilização
+      summary: GetGuiaMedico
+      description: |
+        Permite ao beneficiário **localizar prestadores na rede credenciada** (guia médico), combinando filtros opcionais por UF, especialidade, tipo de recurso, município, bairro, nome do prestador e demais critérios acordados com a operadora.
+
+        Use **`TODOS`** nos campos de filtro quando quiser **não restringir** aquele critério (por exemplo, todas as UFs ou todos os tipos de recurso).
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Número da carteira do beneficiário (identificação no plano).
+        - name: cdUf
+          in: query
+          required: false
+          schema:
+            type: string
+          description: UF desejada. Informe `TODOS` para listar prestadores em qualquer estado.
+        - name: cdEspecialidade
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Especialidade desejada; omita para não filtrar por especialidade.
+        - name: multiEmpresa
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Unidade ou rede multiempresa, quando aplicável ao contrato; omita para não filtrar.
+        - name: dsMunicipio
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Município; use `TODOS` para não restringir por cidade.
+        - name: dsBairro
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Bairro; use `TODOS` para não restringir por bairro.
+        - name: dsTpRecurso
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Tipo de recurso (ex. consulta, exame); use `TODOS` para não restringir.
+        - name: nmPrestador
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Nome (ou parte do nome) do prestador para refinar a busca.
+      responses:
+        "200":
+          description: Lista de registros da rede credenciada conforme filtros.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwApiGuiaMedicoClinic"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetBeneficiario/{numerocarteira}:
+    get:
+      tags:
+        - Beneficiário e carteira
+      summary: GetBeneficiario
+      description: |
+        Retorna os **dados cadastrais e do plano** do beneficiário a partir do **número da carteirinha**, incluindo informações de cobertura, contatos e vigência conforme regras da operadora.
+
+        O retorno pode contemplar beneficiários **na base local** ou em **intercâmbio** com outra operadora, conforme o vínculo do titular. Não há parâmetros de consulta além do número da carteira informado na URL.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Número da carteira utilizado para localizar o beneficiário.
+      responses:
+        "200":
+          description: Dados cadastrais e contratuais do beneficiário localizados pela carteirinha.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VwClinicApiBeneficiario"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "404":
+          description: Beneficiário não encontrado para a carteira informada.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetCarteira/{numerocpf}:
+    get:
+      tags:
+        - Beneficiário e carteira
+      summary: GetCarteira
+      description: |
+        Lista as **carteirinhas ativas** vinculadas ao **CPF** informado — útil quando o usuário possui mais de um vínculo ou precisa escolher em qual plano deseja atuar.
+
+        São retornadas apenas carteiras com **situação ativa** na data da consulta. Informe o CPF **somente no path** (em geral **11 dígitos**, sem máscara ou conforme contrato técnico).
+      parameters:
+        - name: numerocpf
+          in: path
+          required: true
+          schema:
+            type: string
+          description: CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração).
+      responses:
+        "200":
+          description: |
+            Lista de carteiras ativas para o CPF (pode ser vazia se não houver vínculo ou nenhuma carteira ativa).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiBeneficiario"
+        "400":
+          description: Requisição inválida (ex. CPF em formato incorreto).
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetGuias/{numerocarteira}:
+    get:
+      tags:
+        - Guias e utilização
+      summary: GetGuias
+      description: |
+        Lista **guias e autorizações** emitidas para a carteirinha no **período** informado (emissões, status e dados do atendimento conforme disponibilização pela operadora).
+
+        Informe o número da carteira na URL e o intervalo de datas nas consultas (**início** e **fim**) no formato **`DD-MM-YYYY`**.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Número da carteirinha do beneficiário.
+        - name: Dtinicial
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "01-01-2025"
+          description: Data inicial do período de consulta (**DD-MM-YYYY**).
+        - name: Dtfinal
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "31-03-2025"
+          description: Data final do período de consulta (**DD-MM-YYYY**).
+      responses:
+        "200":
+          description: Lista de guias, em geral ordenada da mais recente para a mais antiga.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiGuias"
+        "400":
+          description: Requisição inválida (ex. datas em formato incorreto).
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetDependentes/{numerocarteira}:
+    get:
+      tags:
+        - Beneficiário e carteira
+      summary: GetDependentes
+      description: |
+        Lista os **dependentes** vinculados ao **titular** cuja carteirinha foi informada — agregados e familiares ativos no mesmo contrato, conforme regras da operadora.
+
+        Retorna apenas integrantes **ativos** da família, **exceto o próprio titular**. Não há parâmetros adicionais além da carteira do titular na URL.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint).
+      responses:
+        "200":
+          description: Lista de dependentes (pode ser vazia).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiDependentes"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetHistoricoCallCenter/{numerocarteira}:
+    get:
+      tags:
+        - Financeiro e atendimento
+      summary: GetHistoricoCallCenter
+      description: |
+        Histórico de **interações com o relacionamento** (call center) **disponível para o beneficiário no aplicativo ou portal** — protocolos, fases, observações e datas, quando liberados pela operadora.
+
+        A lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário cujo histórico será consultado.
+      responses:
+        "200":
+          description: Lista de registros de histórico (pode ser vazia).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiHisCallCenter"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /GetUtilizacao:
+    get:
+      tags:
+        - Guias e utilização
+      summary: GetUtilizacao
+      description: |
+        Consulta de **utilização do plano** (procedimentos, eventos ou resumo) no período ou competência desejados, conforme o modelo acordado com a operadora.
+      parameters:
+        - name: cpf
+          in: query
+          required: false
+          schema:
+            type: string
+          description: CPF do beneficiário, quando a consulta for por titular (formato conforme contrato).
+        - name: numeroCarteira
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Número da carteirinha, quando a consulta for por vínculo direto ao cartão.
+        - name: competencia
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Competência de referência (ex. ano/mês), no formato acordado com a operadora.
+        - name: dataInicio
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Início do período de utilização a considerar.
+        - name: dataFim
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Fim do período de utilização a considerar.
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Página do resultado quando houver paginação (começa em 0 ou 1 conforme contrato).
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Quantidade de itens por página.
+      responses:
+        "200":
+          description: Consulta realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JsonGenerico"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetEstados/{numerocarteira}:
+    get:
+      tags:
+        - Cadastros auxiliares
+      summary: GetEstados
+      description: |
+        Lista **estados (UFs)** disponíveis para uso em filtros (por exemplo, na busca de rede credenciada ou cadastros auxiliares), **associados ao contexto da carteirinha** informada.
+
+        Não há parâmetros de consulta além da carteira na URL.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário para contextualizar as listas auxiliares.
+      responses:
+        "200":
+          description: Lista de UFs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiUf"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetCidades/{numerocarteira}:
+    get:
+      tags:
+        - Cadastros auxiliares
+      summary: GetCidades
+      description: |
+        Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário para contextualizar a lista.
+        - name: CdUF
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Sigla ou código da UF cujos municípios devem ser listados.
+      responses:
+        "200":
+          description: Lista de municípios no estado informado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiMunicipio"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetBairros/{numerocarteira}:
+    get:
+      tags:
+        - Cadastros auxiliares
+      summary: GetBairros
+      description: |
+        Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário para contextualizar a lista.
+        - name: cdUF
+          in: query
+          required: true
+          schema:
+            type: string
+          description: UF do município selecionado.
+        - name: cdCidade
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Código do município (obtido, por exemplo, na lista de cidades).
+      responses:
+        "200":
+          description: Lista de bairros distintos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiBairro"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetRecursos/{numerocarteira}:
+    get:
+      tags:
+        - Cadastros auxiliares
+      summary: GetRecursos
+      description: |
+        Lista os **tipos de recurso** disponíveis para filtro (ex.: tipos de atendimento na rede), incluindo em muitos casos a opção **`TODOS`** para não restringir a busca.
+
+        Utilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário para contextualizar a lista.
+      responses:
+        "200":
+          description: Lista de tipos de recurso; pode incluir a opção `TODOS` para ampliar o filtro.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiRecurso"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/GetEspecialidade/{numerocarteira}:
+    get:
+      tags:
+        - Cadastros auxiliares
+      summary: GetEspecialidade
+      description: |
+        Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.
+      parameters:
+        - name: numerocarteira
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Carteirinha do beneficiário para contextualizar a lista.
+        - name: cdUF
+          in: query
+          required: true
+          schema:
+            type: string
+          description: UF em que se deseja listar especialidades.
+        - name: idTipoRecurso
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "TODOS"
+          description: Tipo de recurso desejado ou `TODOS` para considerar todos os tipos.
+      responses:
+        "200":
+          description: Lista de especialidades, em geral ordenada para facilitar a escolha na interface.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VwClinicApiEspecialidade"
+        "400":
+          description: Requisição inválida.
+        "401":
+          description: Não autorizado.
+        "500":
+          description: Erro interno do servidor.
+  /api/Funcoes/PostGerarToken:
+    post:
+      tags:
+        - Autenticação
+      summary: PostGerarToken
+      description: |
+        Gera um **código de validação temporário** (token alfanumérico de **6 caracteres**) para o beneficiário e, opcionalmente, para um prestador vinculado — usado em fluxos que exigem confirmação rápida (ex.: chat, autosserviço).
+
+        O token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GerarTokenRequest"
+      responses:
+        "200":
+          description: Token gerado com sucesso; utilize dentro do prazo de validade informado ou retornado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GerarTokenResponse"
+        "400":
+          description: Requisição inválida ou falha de negócio (ex. beneficiário não encontrado para a carteira informada).
+        "401":
+          description: Não autorizado (`x-api-key` ou política da API).
+        "404":
+          description: Beneficiário não localizado — quando a API expõe esse código em vez de 400.
+        "500":
+          description: Erro interno do servidor.
+components:
+  schemas:
+    JsonGenerico:
+      type: object
+      description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.
+      additionalProperties: true
+    VwApiGuiaMedicoClinic:
+      type: object
+      description: |
+        Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
+      additionalProperties: true
+      properties:
+        cdUf:
+          type: string
+          description: Unidade da Federação (UF) do prestador ou da localização.
+        cdEspecialidade:
+          type: string
+        cdMultiEmpresa:
+          type: string
+        dsTpRecurso:
+          type: string
+          description: Tipo de recurso na rede.
+        cdMatAlternativa:
+          type: string
+          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
+        dsMunicipio:
+          type: string
+        dsBairro:
+          type: string
+        nmPrestador:
+          type: string
+          description: Nome do prestador credenciado.
+    VwClinicApiBeneficiario:
+      type: object
+      description: |
+        Conjunto de **dados cadastrais, do plano e da carteirinha** do beneficiário. O JSON pode usar **camelCase** ou **PascalCase**. Em cenários de **intercâmbio** entre operadoras, alguns campos podem vir vazios ou nulos.
+
+        Datas e textos longos seguem o **formato acordado** com a operadora (em geral datas em texto legível).
+      additionalProperties: true
+      properties:
+        dtvalidade:
+          type: string
+          description: Data de validade impressa ou lógica da carteirinha.
+        nmuf:
+          type: string
+          description: Nome ou identificação da UF (base local ou intercâmbio).
+        nrtelefone:
+          type: string
+        dsmultiempresa:
+          type: string
+          description: Descrição do cedente multiempresa.
+        dscomplemento:
+          type: string
+        cdcontratointerno:
+          type: string
+        dsendereco:
+          type: string
+        cdregistroms:
+          type: string
+          description: Código de registro na ANS do plano (pode não ser informado em intercâmbio).
+        dsregulamentacaoplano:
+          type: string
+        dsrazaosocial:
+          type: string
+        dstipounidade:
+          type: string
+          description: Tipo ou nome da operadora contratada.
+        nrcelular:
+          type: string
+        nrendereco:
+          type: string
+        tpsexo:
+          type: string
+        nrcep:
+          type: string
+        cdcontrato:
+          type: string
+        dsempresa:
+          type: string
+        dscpt:
+          type: string
+          description: Informação de CPT / patologia (texto ou `NAO HA`).
+        tpcontratacao:
+          type: string
+          description: Ex. INDIVIDUAL/FAMILIAR, COLETIVO POR ADESÃO, etc.
+        cdempresa:
+          type: string
+        cdmultiempresa:
+          type: string
+        dtcontratacao:
+          type: string
+        nrans:
+          type: string
+        tpusuario:
+          type: string
+          description: Tipo de usuário no plano; em intercâmbio pode vir vazio.
+        cdplano:
+          type: string
+        dstipo:
+          type: string
+          description: TITULAR, DEPENDENTE, AGREGADO ou vazio.
+        dsfantasiaempresa:
+          type: string
+        snresponsavelfinanceiro:
+          type: string
+          description: S/N — responsável financeiro.
+        nrcns:
+          type: string
+        cdmatricula:
+          type: string
+        tppessoa:
+          type: string
+          description: J (jurídica) ou F (física), conforme tipo de contrato.
+        cdmatriculatem:
+          type: string
+        dtadesao:
+          type: string
+        cdmatalternativa:
+          type: string
+          description: Código alternativo da carteira (ex. 16 posições em intercâmbio).
+        dscoberturaoferecida:
+          type: string
+        nmcidade:
+          type: string
+        dsplano:
+          type: string
+          description: Nome comercial do plano / descrição.
+        nmmae:
+          type: string
+        dtnascimento:
+          type: string
+        dsbairro:
+          type: string
+        snativo:
+          type: string
+          description: Indica se o beneficiário está ativo no plano (ex. **S** / **N**).
+        dtcancelamento:
+          type: string
+        dtcadastro:
+          type: string
+        dsemail:
+          type: string
+        nmsegurado:
+          type: string
+        nmSocial:
+          type: string
+        nridade:
+          type: string
+          description: Idade do beneficiário no formato exibido ao usuário.
+        dsacomodacao:
+          type: string
+        dsabrangenciageografica:
+          type: string
+        dszona:
+          type: string
+        dtultimacobranca:
+          type: string
+        nrcpf:
+          type: string
+          description: CPF com 11 dígitos (completado com zeros à esquerda quando aplicável).
+        dstabelapreco:
+          type: string
+        dsdadosoperadora:
+          type: string
+          description: Texto com telefone da operadora.
+        tpcontrato:
+          type: string
+        tpcarteira:
+          type: string
+          description: Ex. LOW_COST, COOPERADO, PADRAO.
+        tpbeneficiario:
+          type: string
+          description: LOCAL ou INTERCAMBIO.
+        dsareaatuacaproduto:
+          type: string
+          description: Área de atuação / abrangência descritiva.
+        txrodape:
+          type: string
+          description: Texto de rodapé (site, telefones).
+        nrtelefonesac:
+          type: string
+        redeatendimento:
+          type: string
+          description: Código/tipo de rede (MASTER, ESPECIAL, BASICO, etc.).
+        atend:
+          type: string
+          description: Informações de rede de atendimento ou mensagem institucional associada à carteira.
+        nomecontratante:
+          type: string
+        dtvigencia:
+          type: string
+          description: Data de vigência do contrato.
+        nrvia:
+          type: string
+          description: Número da via da carteira.
+    VwClinicApiGuias:
+      type: object
+      description: |
+        Resumo de uma **guia ou autorização** (rede local ou intercâmbio). Por privacidade, o **número da guia** pode aparecer **mascarado** (ex.: `*****`) quando o pedido ainda não está autorizado; use o campo de **número interno** (quando disponível) para integrações que precisam do identificador completo.
+      additionalProperties: true
+      properties:
+        dsmotcancelamentoguia:
+          type: string
+          description: Descrição do motivo de cancelamento da guia.
+        nrtransacao:
+          type: string
+        dtemissaoguia:
+          type: string
+          description: Data e hora de emissão da guia (formato conforme retorno da API).
+        nrguia:
+          type: string
+          description: Número exibido ou `*****` conforme regra de autorização.
+        nrguiamv:
+          type: string
+          description: Número completo da guia para uso em processos internos ou integrações.
+        dstipoatendimento:
+          type: string
+        cdtipoatendimento:
+          type: string
+        status:
+          type: string
+          description: Ex. EM ANALISE, AUTORIZADO, negado, etc.
+        nmmedicosolicitante:
+          type: string
+        dtvalidadeguia:
+          type: string
+          description: Data e hora até as quais a guia permanece válida.
+        dsobservacao:
+          type: string
+          nullable: true
+        cdmatalternativa:
+          type: string
+        dtfiltro:
+          type: string
+          description: Data de referência usada no filtro de período da consulta (formato conforme a API).
+    VwClinicApiDependentes:
+      type: object
+      description: Dados de um **dependente** vinculado ao titular informado na consulta (carteirinha, situação no plano, acomodação, etc.).
+      additionalProperties: true
+      properties:
+        cdmatricula:
+          type: string
+          description: Identificador interno do dependente no plano.
+        nrcpf:
+          type: string
+        snativo:
+          type: string
+          description: Indica se o dependente está ativo no plano (ex. **S** / **N**).
+        dsacomodacao:
+          type: string
+          description: Descrição do tipo de acomodação do plano.
+        cdmatalternativa:
+          type: string
+          description: Código alternativo da carteira do **dependente**.
+        nmsegurado:
+          type: string
+        cdmatalternativatitular:
+          type: string
+          description: Código alternativo da carteira do **titular**.
+    VwClinicApiHisCallCenter:
+      type: object
+      description: |
+        Registro de **atendimento ao beneficiário** (relacionamento): tipo, fase, solicitação, resposta e datas. Os nomes dos campos no JSON podem variar (**camelCase** / **PascalCase**).
+      additionalProperties: true
+      properties:
+        cdatendcallcenter:
+          type: string
+          description: Código do atendimento no call center.
+        dstipatendcallcenter:
+          type: string
+          description: Descrição do tipo de atendimento ou canal.
+        dsfaseatendcallcenter:
+          type: string
+          description: Identificador ou código da fase do protocolo no fluxo de atendimento.
+        cdfaseatendcallcenter:
+          type: string
+          description: Descrição legível da fase do atendimento (etapa do protocolo).
+        dsconsideracaooperadora:
+          type: string
+        dtinicio:
+          type: string
+          description: Início do atendimento (data/hora conforme retorno da API).
+        cdtipatendcallcenter:
+          type: string
+        dssolicitacao:
+          type: string
+        dsobservacao:
+          type: string
+        dsresposta:
+          type: string
+        dtconclusao:
+          type: string
+        cdMatAlternativa:
+          type: string
+        cdMatricula:
+          type: string
+    VwClinicApiUf:
+      type: object
+      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
+      additionalProperties: true
+      properties:
+        cduf:
+          type: string
+          description: Código da UF.
+        nmuf:
+          type: string
+          description: Nome da unidade federativa.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiMunicipio:
+      type: object
+      description: Município com código, nome e UF para montagem de filtros e endereços.
+      additionalProperties: true
+      properties:
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        dsmunicipio:
+          type: string
+          description: Nome do município.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiBairro:
+      type: object
+      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      additionalProperties: true
+      properties:
+        dsbairro:
+          type: string
+          description: Nome do bairro.
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiRecurso:
+      type: object
+      description: |
+        Tipo de recurso ou modalidade de atendimento (ex.: consulta, exame). Pode incluir uma linha **`TODOS`** para representar “qualquer tipo” nos filtros.
+      additionalProperties: true
+      properties:
+        idtiporecurso:
+          type: string
+          description: Identificador do tipo de recurso (alinhado à descrição exibida ou a `TODOS`).
+        dstiporecurso:
+          type: string
+          description: Descrição do tipo de recurso ou `TODOS`.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiEspecialidade:
+      type: object
+      description: |
+        Especialidade médica ou linha de atuação para filtro na rede. Alguns campos podem vir vazios ou com valor **genérico** quando a linha representa agrupamento ou “todas” as opções.
+      additionalProperties: true
+      properties:
+        cdespecialidade:
+          type: string
+          description: Código da especialidade ou identificador composto (ex. área de atuação).
+        dsespecialidade:
+          type: string
+          description: Nome da especialidade ou descrição de linha de atuação exibida ao usuário.
+        idtiporecurso:
+          type: string
+          description: Tipo de recurso associado; pode vir em branco em algumas linhas.
+        cduf:
+          type: string
+          description: UF relacionada à especialidade ou à linha de atuação.
+        cdmatalternativa:
+          type: string
+          description: Vínculo com carteira; pode ser vazio ou nulo.
+    GerarTokenRequest:
+      type: object
+      required:
+        - nrCarteira
+      description: Dados para localizar o beneficiário e, opcionalmente, o prestador que participará do fluxo com o token.
+      properties:
+        nrCarteira:
+          type: string
+          description: |
+            Número da carteirinha do beneficiário (identificador exibido na carteira ou matrícula, conforme regras da operadora).
+        cdPrestador:
+          type: string
+          default: ""
+          description: |
+            Opcional. Código do prestador no conselho quando o token for vinculado a um profissional; se omitido ou não localizado, o token é gerado apenas para o beneficiário.
+    GerarTokenResponse:
+      type: object
+      description: Token gerado e, quando disponíveis, instantes de geração e expiração para controle no cliente.
+      properties:
+        nrToken:
+          type: string
+          minLength: 6
+          maxLength: 6
+          description: |
+            Código de **6 caracteres** (em geral **1 letra** seguida de **5 dígitos**), com regras que evitam ambiguidade na leitura (ex.: certas letras na primeira posição).
+        dtGeracao:
+          type: string
+          format: date-time
+          description: Momento em que o token foi gerado, quando retornado pela API.
+        dtValidade:
+          type: string
+          format: date-time
+          description: Momento em que o token deixa de ser válido; em geral poucos minutos após a geração.
+      additionalProperties: true
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

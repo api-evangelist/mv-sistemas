@@ -1,0 +1,468 @@
+openapi: 3.0.3
+info:
+  title: Clinic Connect - Agendamento de performance API
+  description: |
+    API do módulo Clinic Connect para listagem de Agendamento de performance e operações de agendamento.
+    Base path: `/clinic/clinic-connect`
+  version: 1.0.0
+
+servers:
+  - url: https://api.globalhealth.mv/clinic-connect/api/
+    description: Ambiente de PRODUÇÃO
+  - url: https://api.globalhealth.mv/hml/clinic-connect/api/
+    description: Ambiente de HOMOLOGAÇÃO
+  - url: https://api.globalhealth.mv/qa/clinic-connect/api/
+    description: Ambiente de QA
+security:
+  - x-api-key: []
+
+tags:
+  - name: Agendamento de performance
+    description: Listagem e filtros de Agendamento de performance
+  - name: Agendamento
+    description: Criação e atualização de status de agendamentos
+
+paths:
+  /v1/performance-schedules/list:
+    get:
+      tags:
+        - Agendamento de performance
+      summary: Listar Agendamento de performance
+      description: |
+        Retorna uma lista paginada de Agendamento de performance filtrada pelos parâmetros informados.
+        Os filtros são opcionais; quando não informados, retorna todos os registros do cliente.
+      operationId: listPerformanceSchedules
+      parameters:
+        - name: councilNumber
+          in: query
+          required: false
+          description: Número de registro no conselho profissional do médico
+          schema:
+            type: string
+        - name: cnes
+          in: query
+          required: false
+          description: CNES da clínica
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: ID do PerformanceSchedule
+          schema:
+            type: integer
+            format: int64
+        - name: externalId
+          in: query
+          required: false
+          description: External ID do PerformanceSchedule
+          schema:
+            type: string
+        - name: specialty
+          in: query
+          required: false
+          description: Código da especialidade (termCode)
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          description: Data inicial para filtrar (formato YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          description: Data final para filtrar (formato YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: occupied
+          in: query
+          required: false
+          description: true = apenas ocupados (com Schedules), false = apenas disponíveis (sem Schedules), omitir = todos
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: false
+          description: Número da página (zero-based)
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          description: Quantidade de itens por página
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: sort
+          in: query
+          required: false
+          description: Ordenação (ex. date,asc ou id,desc)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista paginada de Agendamento de performance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceScheduleIntegrationPage'
+        '400':
+          description: Requisição inválida (ex. clientKey ausente)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/performance-schedules/scheduling:
+    post:
+      tags:
+        - Agendamento
+      summary: Criar agendamento a partir de um Agendamento de performance
+      description: |
+        Cria um agendamento (Schedules) vinculado a um Agendamento de performance disponível.
+        É obrigatório informar `id` ou `externalId` do Agendamento de performance, além de patient, insurance e termCbo.
+        O slot deve estar disponível (não ocupado).
+      operationId: createScheduling
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformanceScheduleSchedulingDTO'
+      responses:
+        '201':
+          description: Agendamento criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedules'
+        '400':
+          description: Requisição inválida (dados faltando, slot ocupado, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agendamento de performance não encontrado ou não disponível
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/performance-schedules/scheduling/status:
+    put:
+      tags:
+        - Agendamento
+      summary: Atualizar status do agendamento
+      description: |
+        Altera o status do agendamento (Schedules) vinculado a um Agendamento de performance.
+        O Agendamento de performance deve estar ocupado (ter Schedules vinculado).
+        Para status CANCELLED: não é permitido se já existir atendimento; ao cancelar, o slot é liberado e é criado um registro de cancelamento (PATIENT_CANCELLED).
+      operationId: updateSchedulingStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformanceScheduleSchedulingStatusDTO'
+      responses:
+        '200':
+          description: Status atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedules'
+        '400':
+          description: Requisição inválida (status inválido, cancelamento com atendimento existente, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Agendamento de performance não encontrado ou não ocupado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    PerformanceScheduleIntegrationPage:
+      type: object
+      description: Resposta paginada do Spring Data (Page)
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerformanceScheduleIntegrationDTO'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+
+    PerformanceScheduleIntegrationDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance
+        provider:
+          $ref: '#/components/schemas/ProviderDTO'
+        clinic:
+          $ref: '#/components/schemas/ClinicDTO'
+        date:
+          type: string
+          format: date
+          description: Data no formato yyyy-MM-dd
+        startTime:
+          type: string
+          format: time
+          description: Horário de início (HH:mm:ss)
+        endTime:
+          type: string
+          format: time
+          description: Horário de fim (HH:mm:ss)
+        externalId:
+          type: string
+          nullable: true
+        occupied:
+          type: boolean
+          description: true se o Agendamento de performance possui Schedules (está ocupado)
+        insurance:
+          $ref: '#/components/schemas/InsuranceCardDTO'
+          nullable: true
+          description: Dados da carteirinha do agendamento (quando ocupado)
+        patient:
+          $ref: '#/components/schemas/ConnectPatientDTO'
+          nullable: true
+          description: Dados do paciente do agendamento (quando ocupado)
+        schedulingStatus:
+          type: string
+          nullable: true
+          description: Status do agendamento quando ocupado (ex. CREATED_ATTENDANCE, CANCELLED, WAITING)
+
+    ProviderDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        council:
+          $ref: '#/components/schemas/CouncilDTO'
+        specialties:
+          type: array
+          items:
+            type: string
+
+    CouncilDTO:
+      type: object
+      properties:
+        council:
+          type: string
+        state:
+          type: string
+        number:
+          type: string
+
+    ClinicDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        cnes:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressDTO'
+
+    AddressDTO:
+      type: object
+      properties:
+        street:
+          type: string
+        number:
+          type: string
+        district:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          type: string
+        complement:
+          type: string
+
+    InsuranceCardDTO:
+      type: object
+      description: Dados do convênio/carteirinha
+      properties:
+        ansCode:
+          type: string
+        number:
+          type: string
+        expirationDate:
+          type: string
+        newborn:
+          type: boolean
+
+    ConnectPatientDTO:
+      type: object
+      description: Dados do paciente (Clinic Connect)
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
+        name:
+          type: string
+        socialName:
+          type: string
+        birthDate:
+          type: string
+          description: Data/hora no formato ISO (Joda DateTime)
+        cellphone:
+          type: string
+        email:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        gender:
+          type: string
+        mother:
+          type: string
+        observation:
+          type: string
+        address:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        addressNumber:
+          type: string
+
+    PerformanceScheduleSchedulingDTO:
+      type: object
+      description: Request para criar agendamento a partir de um Agendamento de performance
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        insurance:
+          $ref: '#/components/schemas/InsuranceCardDTO'
+          description: Dados do convênio
+        patient:
+          $ref: '#/components/schemas/ConnectPatientDTO'
+          description: Dados do paciente
+        termCbo:
+          type: string
+          description: Código CBO (termCode) da especialidade
+        observation:
+          type: string
+          description: Observação do agendamento
+
+    PerformanceScheduleSchedulingStatusDTO:
+      type: object
+      description: Request para atualizar status do agendamento
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        schedulingStatus:
+          type: string
+          description: Novo status (ex. CANCELLED, CONFIRMED, WAITING, NO_SHOW, ATTENDED)
+
+    Schedules:
+      type: object
+      description: Entidade de agendamento retornada na criação e na atualização de status
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date
+        startTime:
+          type: string
+          format: time
+        predictionEndTime:
+          type: string
+          format: time
+        schedulingStatus:
+          type: string
+        observation:
+          type: string
+        patient:
+          type: object
+        clinic:
+          type: object
+        employee:
+          type: object
+        insurance:
+          type: object
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo do erro
+        message:
+          type: string
+          description: Mensagem descritiva do erro (pode vir do i18n)
+        details:
+          type: object
+          additionalProperties: true
+
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header

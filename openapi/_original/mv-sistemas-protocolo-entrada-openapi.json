@@ -1,0 +1,410 @@
+{
+   "openapi":"3.0.1",
+   "info":{
+      "title":"Protocolo de Entrada",
+      "version":"3.1.0",
+      "description": " Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.",
+      "license": {
+          "name": "Apache 2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+   },
+   "servers":[
+      {
+         "url":"https://api.globalhealth.mv/prod/one-touch",
+         "description":"Ambiente de PRODUÇÃO"
+      },
+      {
+         "url":"https://api.globalhealth.mv/dem/one-touch",
+         "description":"Ambiente de HOMOLOGAÇÃO"
+      }  
+   ],
+   "security":[
+      {
+         "x-api-key":[
+            
+         ]
+      }
+   ],
+   "paths":{
+      "/api/v1/entry-control-protocols":{
+         "post":{
+            "tags":[
+               "Protocolo de Entrada"
+            ],
+            "operationId":"createProtocol",
+            "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                      "schema":{
+                        "$ref":"#/components/schemas/EntryControlProtocolDTO"
+                      },
+                      "example": {
+                          "documentNumber": "10222548759",
+                          "endDate": "1712341731366",
+                          "type": "VISITA",
+                          "destination": "Descrição para um Destino",
+                          "location": "Descrição para uma Localização",
+                          "hideToPublicSearch": false,
+                          "usageLimit": null,
+                          "startTime": "08:00",
+                          "endTime": "12:00",
+                          "email": "example@example.com",
+                          "phone": "11988776655",
+                          "timeZone": "America/Sao_Paulo",
+                          "hospitalizationUnitDescription": "Descrição para Unidade de Internação",
+                          "sectorDescription": "Descrição para o Setor"
+                      }
+                  }
+               }
+            },
+            "responses":{
+               "201":{
+                  "description":"Criação de Protocolo",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref": "#/components/schemas/EntryControlProtocolDTO"
+                        }
+                     }
+                  }
+               },
+               "200":{
+                  "description":"Atualização de Protocolo",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref": "#/components/schemas/EntryControlProtocolDTO"
+                        }
+                     }
+                  }
+               }
+            },
+            "summary": "Realizar o criação de protocolo de entrada.",
+            "description": "Endpoint responsável por criar um novo protocolo de entrada, registrando as informações necessárias para o controle de acessos."
+         }
+      },
+      "/api/v1/entry-control-protocols/{id}":{
+         "put": {
+           "tags": [
+             "Protocolo de Entrada"
+           ],
+           "operationId": "updateProtocol",
+           "parameters": [
+             {
+               "name": "id",
+               "in": "path",
+               "required": true,
+               "schema": {
+                  "type": "number"
+               }
+             }
+           ],
+           "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                     "schema":{
+                        "$ref":"#/components/schemas/EntryControlProtocolDTO"
+                     }
+                  }
+               }
+            },
+           "responses": {
+               "200":{
+                  "description":"Protocolo Atualizado",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref": "#/components/schemas/EntryControlProtocolDTO"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Internal Server Error",
+                  "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "array",
+                        "items": {
+                           "$ref": "#/components/schemas/InternalErrorMessage"
+                        }
+                     }
+                  }
+                  }
+               }
+           }
+         }
+       },
+      "/api/v1/entry-control-protocols/{id}/visitor-movements":{
+         "post": {
+           "tags": [
+             "Movimentações de Visitantes"
+           ],
+           "operationId": "createVisitorMovement",
+           "parameters": [
+             {
+               "name": "id",
+               "in": "path",
+               "required": true,
+               "schema": {
+                  "type": "number"
+               }
+             }
+           ],
+           "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                      "schema":{
+                          "$ref":"#/components/schemas/VisitorMovementDTO"
+                      },
+                      "example": {
+                          "name": "John Doe",
+                          "phone": "11 997779777",
+                          "document": "01001001000",
+                          "photoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStUns88AiRdT-Qo5nFZN19JM8OPAvJURCmEfyKroeSgg&s"
+                      }
+                  }
+               }
+            },
+           "responses": {
+               "200":{
+                  "description":"Movimento de Visitante Criado",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref": "#/components/schemas/VisitorMovementDTO"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Internal Server Error",
+                  "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "array",
+                        "items": {
+                           "$ref": "#/components/schemas/InternalErrorMessage"
+                        }
+                     }
+                  }
+                  }
+               }
+           }
+         }
+       },
+      "/api/v1/entry-control-protocols/{id}/visitor-movements/{visitorMovementId}/exit":{
+         "put": {
+           "tags": [
+             "Movimentações de Visitantes"
+           ],
+           "operationId": "exitMovement",
+           "parameters": [
+             {
+               "name": "id",
+               "in": "path",
+               "required": true,
+               "schema": {
+                  "type": "number"
+               }
+             },
+             {
+               "name": "visitorMovementId",
+               "in": "path",
+               "required": true,
+               "schema": {
+                  "type": "number"
+               }
+             }
+           ],
+           "requestBody":{
+               "required":true,
+               "content":{
+                  "application/json":{
+                      "schema":{
+                          "$ref":"#/components/schemas/ExitMovementDTO"
+                      },
+                      "example": {
+                          "exitDate": "1712061035669"
+                      }
+                  }
+               }
+            },
+           "responses": {
+               "200":{
+                  "description":"Movimento Criado",
+                  "content":{
+                     "application/json":{
+                        "schema":{
+                           "$ref": "#/components/schemas/VisitorMovementDTO"
+                        }
+                     }
+                  }
+               },
+               "500": {
+                  "description": "Internal Server Error",
+                  "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "array",
+                        "items": {
+                           "$ref": "#/components/schemas/InternalErrorMessage"
+                        }
+                     }
+                  }
+                  }
+               }
+           }
+         }
+       }
+   },
+   "components":{
+      "schemas":{
+         "EntryControlProtocolDTO":{
+            "type":"object",
+            "properties":{
+               "documentNumber": {
+                     "type": "string",
+                     "description": "Número do documento.",
+                     "examples": ["12345678910", "12345678911", "12345678912"]
+               },
+               "endDate": {
+                     "type": "string",
+                     "description": "Data de término do protocolo, em TIMESTAMP, se aplicável.",
+                     "examples": ["1712061035669"]
+               },
+               "type": {
+                     "type": "string",
+                     "description": "Tipo do Protocolo.",
+                     "examples": ["PACIENTE","VISITA","EVENTO","ACOMPANHANTE"]
+               },
+               "destination": {
+                     "type": "string",
+                     "description": "Destino do Protocolo.",
+                     "examples": ["Unidade 3"]
+               },
+               "location": {
+                     "type": "string",
+                     "description": "Localização do Protocolo.",
+                     "examples": ["Apartamento 402"]
+               },
+               "hideToPublicSearch": {
+                     "type": "boolean",
+                     "description": "Indica se o protocoloco deve ser oculto em pesquisas públicas.",
+                     "examples": [false,true]
+               },
+               "usageLimit": {
+                     "type": "number",
+                     "description": "Limite de uso associado ao Protocolo. Caso não tenha limite, não enviar nenhum valor",
+                     "examples": [20]
+               },
+               "startTime": {
+                     "type": "string",
+                     "description": "Hora de início associada ao Protocolo, se aplicável.",
+                     "examples": ["08:00"]
+               },
+               "endTime": {
+                     "type": "string",
+                     "description": "Hora de término associada ao Protocolo, se aplicável.",
+                     "examples": ["18:00"]
+               },
+               "email": {
+                     "type": "string",
+                     "description": "Endereço de e-mail associado ao Protocolo, se aplicável.",
+                     "examples": ["emaril@email.com"]
+               },
+               "phone": {
+                     "type": "string",
+                     "description": "Número de telefone associado ao Protocolo, se aplicável.",
+                     "examples": "(11) 9 9999-8888"
+               },
+               "timeZone": {
+                     "type": "string",
+                     "description": "Fuso horário associado ao Protocolo.",
+                     "examples": ["America/Sao_Paulo","America/Recife","America/Cuiaba","America/Rio_Branco"]
+               },
+               "hospitalizationUnitDescription": {
+                     "type": "string",
+                     "description": "Descrição da unidade de Internação associada ao Protocolo, se aplicável."
+               },
+               "sectorDescription": {
+                     "type": "string",
+                     "description": "Descrição do setor associado ao Protocolo, se aplicável."
+               }
+            },
+            "required": [
+              "documentNumber",
+              "requesterName",
+              "source"
+            ]
+        },
+        "VisitorMovementDTO":{
+          "type": "object",
+            "properties": {
+              "name": {
+                  "type": "string",
+                  "description": "Nome da Pessoa",
+                  "examples": ["John", "Marry"]
+              },
+              "phone": {
+                  "type": "string",
+                  "description": "telefone da Pessoa"
+              },
+              "email": {
+                  "type": "string",
+                  "description": "Email da Pessoa"
+              },
+              "document": {
+                  "type": "string",
+                  "description": "Documento da Pessoa"
+              },
+              "photoUrl": {
+                  "type": "string",
+                  "description": "URL com foto da Pessoa"
+              }
+            }
+        },
+        "ExitMovementDTO":{
+          "type": "object",
+            "properties": {
+              "exitDate": {
+                  "type": "string",
+                  "description": "Data de saída da pessoa, em TIMESTAMP, se aplicável.",
+                  "examples": ["1712061035669"]
+              }
+            }
+        },
+        "InternalErrorMessage": {
+            "type": "object",
+            "properties": {
+               "timestamp": {
+                  "type": "number",
+                  "description": "Timestamp em que o erro aconteceu."
+               },
+               "status": {
+                  "type": "number"
+               },
+               "message": {
+                  "type": "string",
+                  "description": "Mensagem do erro."
+               },
+               "path": {
+                  "type": "string",
+                  "description": "Path chamado no momento do Erro."
+               }
+            }
+        }
+      },
+      "securitySchemes":{
+         "x-api-key":{
+            "type":"apiKey",
+            "name":"x-api-key",
+            "in":"header"
+         }
+      }
+   }
+}

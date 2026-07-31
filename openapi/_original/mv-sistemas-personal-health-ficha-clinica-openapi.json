@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Personal Health : Ficha Clínica",
+    "version": "1.0.0",
+    "description": "Esta API permite o consumo dos recursos do módulo Personal Health, especificamente relacionados à Ficha Clínica, possibilitando o acesso a informações de saúde dos pacientes."
+  },
+  "servers": [
+    {
+      "url": "https://api.globalhealth.mv/hml/personal-health/api",
+      "description": "Ambiente de HOMOLOGAÇÃO"
+    },
+    {
+      "url": "https://api.globalhealth.mv/personal-health/api",
+      "description": "Ambiente de PRODUÇÃO"
+    }
+  ],
+  "paths": {
+    "/person/allergy": {
+      "get": {
+        "summary": "Lista os pacientes alérgicos",
+        "description": "Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema. <br> <br> Os parâmetros \"page\" e \"size\": são obrigatórios para a paginação dos resultados; <br> Size: deve ter valor máximo de 50. <br> O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço. <br><br> ",
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "operationId": "getPersonResumeV2",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 0
+            },
+            "description": "Número da página (iniciando em 0)."
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 20
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "1999-01-01"
+            },
+            "description": "Data inicial do filtro no formato yyyy-MM-dd."
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-12-31"
+            },
+            "description": "Data final do filtro no formato yyyy-MM-dd."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista paginada de pessoas resumidas",
+            "content": {
+              "application/json": {
+                "example": {
+                  "content": [
+                    {
+                      "person": {
+                        "login": "ana.costa@test.com"
+                      },
+                      "personAllergies": [
+                        {
+                          "id": 15,
+                          "person": {
+                            "login": "ana.costa@test.com"
+                          },
+                          "reaction": "Não Informadas.",
+                          "allergyName": "Ácaros",
+                          "allergyCode": "acaros",
+                          "createdDate": { "type": "string", "format": "date-time" },
+                          "allergyGourpName": "Ácaros",
+                          "allergyGroupCode": "acaros"
+                        }
+                      ],
+                      "familyHistories": [
+                        {
+                          "id": 53,
+                          "login": "ana.costa@test.com",
+                          "kinshipName": "Avô",
+                          "kinshipKey": "avo_pai",
+                          "diseaseName": "Câncer de mama"
+                        }
+                      ],
+                      "personProblems": [
+                        {
+                          "id": 30,
+                          "login": "ana.costa@test.com",
+                          "problemName": "Obesidade",
+                          "cidCode": "E669",
+                          "status": "Aguardando Validação"
+                        }
+                      ],
+                      "name": "Ana",
+                      "documentNumber": "40419113037"
+                    }
+                  ],
+                  "pageable": {
+                    "pageNumber": 0,
+                    "pageSize": 20,
+                    "sort": {
+                      "sorted": true,
+                      "unsorted": false,
+                      "empty": false
+                    }
+                  },
+                  "totalPages": 1,
+                  "totalElements": 1,
+                  "last": true,
+                  "size": 20,
+                  "number": 0,
+                  "sort": {
+                    "sorted": true,
+                    "unsorted": false,
+                    "empty": false
+                  },
+                  "first": true,
+                  "numberOfElements": 1,
+                  "empty": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+   }
+}
+

@@ -1,0 +1,849 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Reconhecimento Facial",
+    "version": "3.1.0",
+    "contact": {
+      "email": "globalhealth@mv.com.br"
+    },
+    "description": "Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.globalhealth.mv/prod/face-recognition",
+      "description": "Ambiente de PRODUÇÃO"
+    },
+    {
+      "url": "https://api-hml.globalhealth.mv/hml/face-recognition",
+      "description": "Ambiente de HOMOLOGAÇÃO"
+    }
+  ],
+  "security": [
+    {
+      "x-api-key": []
+    }
+  ],
+  "paths": {
+    "/api/v1/recognition-protocol": {
+      "get": {
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Número da página que deseja obter as informações. A página começa com 0.",
+            "examples": {
+              "0": {
+                "description": "Obter os protocolos da primeira página.",
+                "value": 0
+              },
+              "5": {
+                "description": "Obter os protocolos da quinta página.",
+                "value": 5
+              },
+              "15": {
+                "description": "Obter os protocolos da décima quinta página",
+                "value": 15
+              }
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Quantidade dos objetos de retorno que deseja receber. Sendo o máximo 100.",
+            "examples": {
+              "10": {
+                "description": "Obter 10 protocolos.",
+                "value": 10
+              },
+              "20": {
+                "description": "Obter 20 protocolos.",
+                "value": 20
+              },
+              "30": {
+                "description": "Obter 30 protocolos.",
+                "value": 30
+              }
+            }
+          },
+          {
+            "name": "documentNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Número do documento ao qual está cadastrado a face.",
+            "examples": {
+              "12345678910": {
+                "value": 12345678910
+              },
+              "12345678911": {
+                "value": 12345678911
+              },
+              "12345678912": {
+                "value": 12345678912
+              }
+            }
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Protocolo gerado a partir de uma justificativa ou reconhecimento facial.",
+            "examples": {
+              "RF-ON7SV8": {
+                "value": "RF-ON7SV8"
+              },
+              "RF-S723XA": {
+                "value": "RF-S723XA"
+              },
+              "RF-LUHPLB": {
+                "value": "RF-LUHPLB"
+              },
+              "RF-MHFM1T": {
+                "value": "RF-MHFM1T"
+              }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "description": "Data de inicio para a realização da busca.",
+            "examples": {
+              "2000-01-01": {
+                "value": "2000-01-01"
+              },
+              "2002-12-02": {
+                "value": "2002-12-02"
+              }
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "^\\d{4}-\\d{2}-\\d{2}$"
+            },
+            "description": "Data final para a realização da busca.",
+            "examples": {
+              "2000-01-31": {
+                "value": "2000-01-31"
+              },
+              "2002-12-31": {
+                "value": "2002-12-31"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Protocolo de reconhecimento"
+        ],
+        "operationId": "getRecognitionProtocol",
+        "responses": {
+          "200": {
+            "description": "Protocolo obtido com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecognitionProtocolV1Response"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Obter os protocolos",
+        "description": "Este endpoint realiza a busca dos protocolos de reconhecimento."
+      }
+    },
+    "/api/v1/biometric/import/start": {
+      "post": {
+        "tags": [
+          "Importação de dados biométricos"
+        ],
+        "operationId": "biometricImportStartV1",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BiometricImportStartV1Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso no inicio da importação dos dados biométricos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiometricImportStartV1Response"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Iniciar a importação de dados biométriocos de um paciente.",
+        "description": "Este endpoint inicia a importação dos dados biométricos de um paciente."
+      }
+    },
+    "/api/v1/biometric/import/upload": {
+      "post": {
+        "tags": [
+          "Importação de dados biométricos"
+        ],
+        "operationId": "biometricImportUploadV1",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BiometricImportUploadV1Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso no upload do dado biométrico",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiometricImportUploadV1Response"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Realizar o upload dos dados biométriocos de um paciente.",
+        "description": "Este endpoint realiza o upload dos dados biométricos de um paciente."
+      }
+    },
+    "/api/v1/biometric/import/finish/{importIdentifier}": {
+      "put": {
+        "tags": [
+          "Importação de dados biométricos"
+        ],
+        "parameters": [
+          {
+            "name": "importIdentifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Identificador da importação.",
+            "examples": {
+              "ce9dd003-b293-4ea5-ad91-9cf654115d6d": {
+                "value": "ce9dd003-b293-4ea5-ad91-9cf654115d6d"
+              },
+              "71e50838-8116-4d76-9731-475ae4166452": {
+                "value": "71e50838-8116-4d76-9731-475ae4166452"
+              },
+              "6aba6c4a-a8bc-4849-a8b9-dd4bb777db72": {
+                "value": "6aba6c4a-a8bc-4849-a8b9-dd4bb777db72"
+              }
+            }
+          }
+        ],
+        "operationId": "biometricImportFinishV1",
+        "responses": {
+          "204": {
+            "description": "Finalizado a importação",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "summary": "Finalizar a importação de dados biométriocos de um paciente.",
+        "description": "Este endpoint finaliza a importação dos dados biométricos de um paciente."
+      }
+    },
+    "/api/v1/face/liveness/start": {
+      "get": {
+        "tags": [
+          "Reconhecimento Facial"
+        ],
+        "operationId": "faceLivenessStartV1",
+        "responses": {
+          "200": {
+            "description": "Sucesso no inicio da validação de vivacidade.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaceLivenessStartV1Response"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Iniciar o processo da validação de vivacidade da informação biométrica.",
+        "description": "Este endpoint inicia a validação da vivacidade da informação biométrica."
+      }
+    },
+    "/api/v1/face/liveness/finish": {
+      "post": {
+        "tags": [
+          "Reconhecimento Facial"
+        ],
+        "operationId": "faceLivenessFinishV1",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FaceLivenessFinishV1Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso na finalização da validação de vivacidade.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaceLivenessFinishV1Response"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Finalizar o processo da validação de vivacidade da informação biométrica.",
+        "description": "Este endpoint finaliza a validação da vivacidade da informação biométrica."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RecognitionProtocolV1Response": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/RecognitionProtocolV1ResponseContent"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/FaceRecognitionPagination"
+          }
+        }
+      },
+      "RecognitionProtocolV1ResponseContent": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do paciente que está realizando a justificativa.",
+            "examples": [
+              "Joelma"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Data de criação do protocolo. É retornada no padrão ISO 8601 com o Fuso horário GMT.",
+            "examples": [
+              "2023-10-26T12:37:56.000Z",
+              "2023-10-26T12:34:23.000Z"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "description": "Define o tipo da ação que gerou o protocolo.",
+            "enum": [
+              "DETECT",
+              "RECOGNIZE"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "Define o tipo do protocolo",
+            "enum": [
+              "FACE",
+              "DOCUMENT",
+              "JUSTIFIED"
+            ]
+          },
+          "side": {
+            "type": "string",
+            "description": "Define o lado do documento",
+            "enum": [
+              "FRONT",
+              "BACK",
+              null
+            ]
+          },
+          "source": {
+            "type": "string",
+            "description": "Sistema de origem que está realizando o cadastro.",
+            "examples": [
+              "ONE-TOUCH",
+              "CLINIC-CENTER"
+            ]
+          },
+          "protocol": {
+            "type": "string",
+            "description": "Protocolo gerado a partir de uma justificativa ou reconhecimento facial.",
+            "examples": [
+              "RF-ON7SV8",
+              "RF-ON7SV8",
+              "RF-S723XA",
+              "RF-LUHPLB",
+              "RF-MHFM1T"
+            ]
+          },
+          "requesterName": {
+            "type": "string",
+            "description": "Nome do solicitante que está realizando a ação.",
+            "examples": [
+              "Dr. olincon",
+              "Dra. Vanessa",
+              "Dr. lideson",
+              "Dr. Angelo"
+            ]
+          },
+          "reasonTitle": {
+            "type": "string",
+            "description": "Titulo da razão da justificativa.",
+            "examples": [
+              "Urgencia"
+            ]
+          },
+          "reasonText": {
+            "type": "string",
+            "description": "Descrição da razão da justificativa.",
+            "examples": [
+              "O paciente encontra-se em estado de emergência."
+            ]
+          },
+          "accuracy": {
+            "type": "number",
+            "description": "Acuracidade da ação.",
+            "examples": [
+              90,
+              91.1,
+              99.99
+            ]
+          },
+          "healthPlanId": {
+            "type": "number",
+            "description": "Identificador do convênio.",
+            "examples": [
+              11231,
+              2646,
+              553
+            ]
+          },
+          "healthPlanName": {
+            "type": "string",
+            "description": "Nome do convênio."
+          },
+          "healthPlanAnsCode": {
+            "type": "string",
+            "description": "Código ANS do convênio."
+          },
+          "photo": {
+            "type": "string",
+            "description": "URL para obtenção da foto de utilizada no reconhecimento facial.",
+            "examples": [
+              "https://faces.s3.sa-east-1.amazonaws.com/hml/photo/90d738c2-ce4d-4282-86f6-d4175deac005.jpeg"
+            ]
+          }
+        }
+      },
+      "FaceRecognitionPagination": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Define o número total de objetos encontrados."
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Define o número total de páginas."
+          },
+          "prevPage": {
+            "type": "integer",
+            "description": "Define o número da pagina anterior.",
+            "examples": [
+              1,
+              7,
+              13
+            ]
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "Define o número atual da página.",
+            "examples": [
+              2,
+              8,
+              14
+            ]
+          },
+          "nextPage": {
+            "type": "integer",
+            "description": "Define o próximo número da página",
+            "examples": [
+              3,
+              9,
+              15
+            ]
+          },
+          "first": {
+            "type": "boolean",
+            "description": "Define se é o primeiro elemento da página."
+          },
+          "last": {
+            "type": "boolean",
+            "description": "Define se é o ultimo elemento da página."
+          }
+        }
+      },
+      "BiometricImportStartV1Request": {
+        "type": "object",
+        "properties": {
+          "documentNumber": {
+            "type": "string",
+            "description": "Número do documento ao qual está importado o dado biométrico.",
+            "examples": [
+              "12345678910",
+              "12345678911",
+              "12345678912"
+            ]
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Número do documento ao qual está importado o dado biométrico.",
+            "examples": [
+              "2000-01-01",
+              "2002-12-02"
+            ],
+            "format": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do paciente ao qual está importado o dado biométrico.",
+            "examples": [
+              "Rothschild",
+              "Andressa",
+              "Carlos"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "birthDate",
+          "documentNumber"
+        ]
+      },
+      "BiometricImportStartV1Response": {
+        "type": "object",
+        "properties": {
+          "importIdentifier": {
+            "type": "string",
+            "description": "Identificador da importação.",
+            "examples": [
+              "ce9dd003-b293-4ea5-ad91-9cf654115d6d",
+              "71e50838-8116-4d76-9731-475ae4166452",
+              "6aba6c4a-a8bc-4849-a8b9-dd4bb777db72"
+            ]
+          }
+        },
+        "required": [
+          "importIdentifier"
+        ]
+      },
+      "BiometricImportUploadV1Request": {
+        "type": "object",
+        "properties": {
+          "importIdentifier": {
+            "type": "string",
+            "description": "Identificador da importação.",
+            "examples": [
+              "ce9dd003-b293-4ea5-ad91-9cf654115d6d",
+              "71e50838-8116-4d76-9731-475ae4166452",
+              "6aba6c4a-a8bc-4849-a8b9-dd4bb777db72"
+            ]
+          },
+          "base64": {
+            "type": "string",
+            "description": "Arquivo codificado em base64.",
+            "examples": [
+              "12345678910",
+              "12345678911",
+              "12345678912"
+            ]
+          }
+        },
+        "required": [
+          "importIdentifier",
+          "base64"
+        ]
+      },
+      "BiometricImportUploadV1Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem referente ao upload.",
+            "examples": [
+              "Upload realizado com sucesso"
+            ]
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "FaceLivenessStartV1Response": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": "Id da sessão a ser utilizado para validação da vivacidade.",
+            "examples": [
+              "eda90689-a934-41bb-bd1a-4037be4964cd",
+              "9a63b237-7897-4602-a39c-d4dd64d7fda3",
+              "9a63b237-7897-4602-a39c-d4dd64d7fda3"
+            ]
+          }
+        },
+        "required": [
+          "sessionId"
+        ]
+      },
+      "FaceLivenessFinishV1Request": {
+        "type": "object",
+        "properties": {
+          "performFacialRecognition": {
+            "type": "boolean",
+            "description": "Define se após realizar o processo de validação de vivacidade, realiza o reconhecimento facial. Considerando o valor como true, os campos documentNumber, sharpness, minConfidance e requesterName se tornam obrigatórios",
+            "default": false,
+            "examples": [
+              "true",
+              "false"
+            ]
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Id da sessão para validação da vivacidade.",
+            "examples": [
+              "eda90689-a934-41bb-bd1a-4037be4964cd",
+              "9a63b237-7897-4602-a39c-d4dd64d7fda3",
+              "9a63b237-7897-4602-a39c-d4dd64d7fda3" 
+            ]
+          },
+          "documentNumber": {
+            "type": "string",
+            "description": "Número do documento ao qual se deseja realizar o reconhecimento facial.",
+            "examples": [
+              "12345678910",
+              "12345678911",
+              "12345678912"
+            ]
+          },
+          "sharpness": {
+            "type": "number",
+            "description": "Percentual de nitidez mínima.",
+            "examples": [
+              0,
+              11.11,
+              54.45423525255
+            ]
+          },
+          "minConfidance": {
+            "type": "number",
+            "description": "Percentual de confiança mínima do reconhecimento facial.",
+            "examples": [
+              0,
+              70,
+              95.5
+            ]
+          },
+          "requesterName": {
+            "type": "string",
+            "description": "Nome do solicitante que está realizando a ação.",
+            "examples": [
+              "Dr. olincon",
+              "Dra. Vanessa",
+              "Dr. lideson",
+              "Dr. Angelo"
+            ]
+          },
+          "healthPlanId": {
+            "type": "number",
+            "description": "Identificador do convênio.",
+            "examples": [
+              11231,
+              2646,
+              553
+            ]
+          },
+          "healthPlanName": {
+            "type": "string",
+            "description": "Nome do convênio."
+          },
+          "healthPlanAnsCode": {
+            "type": "string",
+            "description": "Código ANS do convênio."
+          }
+        },
+        "required": [
+          "performFacialRecognition",
+          "sessionId"
+        ]
+      },
+      "FaceLivenessFinishV1Response": {
+        "type": "object",
+        "properties": {
+          "faceLivenessResults": {
+            "$ref": "#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults"
+          },
+          "recognitionResults": {
+            "$ref": "#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults"
+          }
+        },
+        "required": [
+          "faceLivenessResults"
+        ]
+      },
+      "FaceLivenessFinishV1ResponseFaceLivenessResults": {
+        "type": "object",
+        "properties": {
+          "confidence": {
+            "type": "number",
+            "description": "Percentual de confiança da vivacidade."
+          }
+        },
+        "required": [
+          "confidence",
+          "photoBase64"
+        ]
+      },
+      "FaceLivenessFinishV1ResponseRecognitionResults": {
+        "type": "object",
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "description": "Percentual de confiança do reconhecimento facial."
+          },
+          "similarity": {
+            "type": "string",
+            "description": "Percentual de similaridade do reconhecimento facial."
+          },
+          "boundingBox": {
+            "$ref": "#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsQuality"
+          },
+          "protocol": {
+            "type": "string",
+            "description": "Protocolo gerado a partir de uma justificativa ou reconhecimento facial."
+          }
+        },
+        "required": [
+          "confidence",
+          "similarity",
+          "boundingBox",
+          "quality",
+          "protocol",
+          "photo"
+        ]
+      },
+      "FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "number",
+            "description": "Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.",
+            "examples": [
+              0.17801541090011597
+            ]
+          },
+          "left": {
+            "type": "number",
+            "description": "Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.",
+            "examples": [
+              0.3142961263656616
+            ]
+          },
+          "width": {
+            "type": "number",
+            "description": "Largura da caixa delimitadora como proporção da largura geral da imagem.",
+            "examples": [
+              0.6097581386566162
+            ]
+          },
+          "height": {
+            "type": "number",
+            "description": "Altura da caixa delimitadora como proporção da altura geral da imagem.",
+            "examples": [
+              0.5632858276367188
+            ]
+          }
+        },
+        "required": [
+          "top",
+          "left",
+          "width",
+          "height"
+        ]
+      },
+      "FaceLivenessFinishV1ResponseRecognitionResultsQuality": {
+        "type": "object",
+        "properties": {
+          "brightness": {
+            "type": "number",
+            "description": "Percentual de brilho na face.",
+            "examples": [
+              98.1,
+              99.99,
+              67.13
+            ]
+          },
+          "sharpness": {
+            "type": "number",
+            "description": "Percentual de nitidez da face.",
+            "examples": [
+              98.1,
+              99.99,
+              67.13
+            ]
+          }
+        },
+        "required": [
+          "brightness",
+          "sharpness"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "x-api-key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  }
+}

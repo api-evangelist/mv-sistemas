@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: Generated from Global Health Conecta OpenAPI operations (grounded in real operationIds).
+skills:
+  - file: mv-sistemas-register-lookup-beneficiary.md
+    name: Register and look up a beneficiary
+    api: openapi/mv-sistemas-gestao-beneficiarios-openapi.json
+    operations: [addPerson, findPersonByDocumentNumberOrInsuranceCardNumber, findPersonsByDocumentNumberOrInsuranceCardNumber]
+  - file: mv-sistemas-manage-health-pendencies.md
+    name: Manage patient health pendencies
+    api: openapi/mv-sistemas-pendencias-saude-openapi.json
+    operations: [addHealthPendency, findHealthPendencies, getHealthPendencyById, updateHealthPendencyByHashKey]
+  - file: mv-sistemas-clinic-performance-scheduling.md
+    name: Schedule a clinic performance appointment
+    api: openapi/mv-sistemas-clinic-connect-performance-schedule-openapi.yml
+    operations: [listPerformanceSchedules, createScheduling, updateSchedulingStatus]

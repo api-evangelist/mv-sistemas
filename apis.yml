@@ -1,22 +1,405 @@
 aid: mv-sistemas
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mv-sistemas.png
 name: MV sistemas
-description: 'MV sistemas is a company surfaced as a portfolio company of insight-partners and added to
-  the API Evangelist network as a stub for enrichment. Sector: healthcare. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: MV (MV Sistemas / MV Global Health) is a Brazilian healthcare technology company founded
+  in 1987 in Recife, and one of Brazil's largest health-IT vendors. Its Global Health Conecta platform
+  publishes a family of OpenAPI 3.0 integration APIs for hospitals, clinics, and health-plan operators
+  — covering clinic scheduling and connectivity, clinical regulation, patient-care records, entry protocols,
+  consent-based patient data sharing, events and check-in, beneficiary management, health-plan operator
+  hubs, notifications, and facial-recognition biometrics. All APIs authenticate with an x-api-key header
+  and require an active contract with MV Global Health.
 url: https://raw.githubusercontent.com/api-evangelist/mv-sistemas/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-api-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Healthcare
-apis: []
+- Health IT
+- Hospital
+- Clinic
+- Health Insurance
+- FHIR
+- Brazil
+- Patient Data
+- Scheduling
+- Biometrics
+apis:
+- aid: mv-sistemas:mv-sistemas-agendamento-api
+  name: MV sistemas Agendamento API
+  description: Criação e atualização de status de agendamentos
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Agendamento
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-agendamento-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-agendamento-de-performance-api
+  name: MV sistemas Agendamento de performance API
+  description: Listagem e filtros de Agendamento de performance
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Agendamento de performance
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-agendamento-de-performance-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-atendimento-api
+  name: MV sistemas Atendimento API
+  description: Cadastro de atendimentos
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Atendimento
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-atendimento-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-attendance-api
+  name: MV sistemas Attendance API
+  description: The Attendance API from MV sistemas — 1 operation(s) for attendance.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Attendance
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-attendance-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-auditoria-api
+  name: MV sistemas Auditoria API
+  description: The Auditoria API from MV sistemas — 2 operation(s) for auditoria.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Auditoria
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-auditoria-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-autentica-o-api
+  name: MV sistemas Autenticação API
+  description: Geração de token temporário para fluxos que exigem validação adicional.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Autenticação
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-autentica-o-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-benefici-rio-e-carteira-api
+  name: MV sistemas Beneficiário e carteira API
+  description: Consulta de dados cadastrais, carteirinhas por CPF e dependentes do titular.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Beneficiário e carteira
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-benefici-rio-e-carteira-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-cadastros-auxiliares-api
+  name: MV sistemas Cadastros auxiliares API
+  description: >-
+    Listas de estados, cidades, bairros, tipos de recurso e especialidades para filtros e formulários.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Cadastros auxiliares
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-cadastros-auxiliares-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-cl-nicas-api
+  name: MV sistemas Clínicas API
+  description: The Clínicas API from MV sistemas — 1 operation(s) for clínicas.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Clínicas
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-cl-nicas-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-compartilhamento-de-dados-api
+  name: MV sistemas Compartilhamento de Dados API
+  description: >-
+    The Compartilhamento de Dados API from MV sistemas — 5 operation(s) for compartilhamento de dados.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Compartilhamento de Dados
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-compartilhamento-de-dados-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-conta-api
+  name: MV sistemas Conta API
+  description: The Conta API from MV sistemas — 1 operation(s) for conta.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Conta
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-conta-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-conv-nios-api
+  name: MV sistemas Convênios API
+  description: The Convênios API from MV sistemas — 2 operation(s) for convênios.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Convênios
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-conv-nios-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-exames-api
+  name: MV sistemas Exames API
+  description: Endpoints relacionados à busca de exames (TUSS)
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Exames
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-exames-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-financeiro-e-atendimento-api
+  name: MV sistemas Financeiro e atendimento API
+  description: Histórico de interações com o relacionamento (call center).
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Financeiro e atendimento
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-financeiro-e-atendimento-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-gest-o-de-benefici-rios-api
+  name: MV sistemas Gestão de Beneficiários API
+  description: Operações relacionadas ao cadastro de beneficiários.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Gestão de Beneficiários
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-gest-o-de-benefici-rios-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-gest-o-de-eventos-api
+  name: MV sistemas Gestão de Eventos API
+  description: The Gestão de Eventos API from MV sistemas — 5 operation(s) for gestão de eventos.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Gestão de Eventos
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-gest-o-de-eventos-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-gest-o-de-pend-ncias-api
+  name: MV sistemas Gestão de Pendências API
+  description: Operações relacionadas à gestão de pendências e exames.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Gestão de Pendências
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-gest-o-de-pend-ncias-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-guias-e-utiliza-o-api
+  name: MV sistemas Guias e utilização API
+  description: Rede credenciada, guias e autorizações e acompanhamento de utilização do plano.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Guias e utilização
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-guias-e-utiliza-o-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-hor-rios-dispon-veis-api
+  name: MV sistemas Horários Disponíveis API
+  description: The Horários Disponíveis API from MV sistemas — 1 operation(s) for horários disponíveis.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Horários Disponíveis
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-hor-rios-dispon-veis-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-importa-o-de-dados-api
+  name: MV sistemas Importação de Dados API
+  description: The Importação de Dados API from MV sistemas — 1 operation(s) for importação de dados.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Importação de Dados
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-importa-o-de-dados-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-importa-o-de-dados-biom-tricos-api
+  name: MV sistemas Importação de dados biométricos API
+  description: >-
+    The Importação de dados biométricos API from MV sistemas — 3 operation(s) for importação de dados
+    biométricos.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Importação de dados biométricos
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-importa-o-de-dados-biom-tricos-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-movimenta-es-de-visitantes-api
+  name: MV sistemas Movimentações de Visitantes API
+  description: >-
+    The Movimentações de Visitantes API from MV sistemas — 2 operation(s) for movimentações de visitantes.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Movimentações de Visitantes
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-movimenta-es-de-visitantes-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-news-api
+  name: MV sistemas News API
+  description: The News API from MV sistemas — 1 operation(s) for news.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - News
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-news-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-notification-api
+  name: MV sistemas Notification API
+  description: The Notification API from MV sistemas — 2 operation(s) for notification.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Notification
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-notification-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-parametriza-o-api
+  name: MV sistemas Parametrização API
+  description: The Parametrização API from MV sistemas — 1 operation(s) for parametrização.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Parametrização
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-parametriza-o-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-person-api
+  name: MV sistemas Person API
+  description: The Person API from MV sistemas — 1 operation(s) for person.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Person
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-person-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-planos-obst-tricos-api
+  name: MV sistemas Planos Obstétricos API
+  description: The Planos Obstétricos API from MV sistemas — 1 operation(s) for planos obstétricos.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Planos Obstétricos
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-planos-obst-tricos-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-presigned-api
+  name: MV sistemas Presigned API
+  description: The Presigned API from MV sistemas — 1 operation(s) for presigned.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Presigned
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-presigned-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-prestadores-usu-rios-api
+  name: MV sistemas Prestadores/Usuários API
+  description: The Prestadores/Usuários API from MV sistemas — 1 operation(s) for prestadores/usuários.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Prestadores/Usuários
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-prestadores-usu-rios-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-protocolo-de-entrada-api
+  name: MV sistemas Protocolo de Entrada API
+  description: The Protocolo de Entrada API from MV sistemas — 2 operation(s) for protocolo de entrada.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Protocolo de Entrada
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-protocolo-de-entrada-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-protocolo-de-reconhecimento-api
+  name: MV sistemas Protocolo de reconhecimento API
+  description: >-
+    The Protocolo de reconhecimento API from MV sistemas — 1 operation(s) for protocolo de reconhecimento.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Protocolo de reconhecimento
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-protocolo-de-reconhecimento-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-reconhecimento-facial-api
+  name: MV sistemas Reconhecimento Facial API
+  description: >-
+    The Reconhecimento Facial API from MV sistemas — 2 operation(s) for reconhecimento facial.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Reconhecimento Facial
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-reconhecimento-facial-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-regula-o-api
+  name: MV sistemas Regulação API
+  description: Endpoints relacionados à regulação clínica
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Regulação
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-regula-o-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-servi-os-api
+  name: MV sistemas Serviços API
+  description: The Serviços API from MV sistemas — 1 operation(s) for serviços.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - Serviços
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-servi-os-api-openapi.yml
+- aid: mv-sistemas:mv-sistemas-user-api
+  name: MV sistemas User API
+  description: The User API from MV sistemas — 1 operation(s) for user.
+  humanURL: https://apidocs.globalhealth.mv/
+  baseURL: https://api.globalhealth.mv/available-appointments/api
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/mv-sistemas-user-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -24,4 +407,47 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://www.mvsistemas.com.br/
+  url: https://mv.com.br/
+- type: DeveloperPortal
+  url: https://apidocs.globalhealth.mv/
+- type: Documentation
+  url: https://apidocs.globalhealth.mv/
+- type: APIReference
+  url: https://apidocs.globalhealth.mv/
+- type: GettingStarted
+  url: https://apidocs.globalhealth.mv/#/inicio
+- type: Blog
+  url: https://mv.com.br/blog
+- type: TermsOfService
+  url: http://globalhealth.mv/termos/checkin/
+- type: Authentication
+  url: authentication/mv-sistemas-authentication.yml
+- type: Conventions
+  url: conventions/mv-sistemas-conventions.yml
+- type: ErrorCatalog
+  url: errors/mv-sistemas-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/mv-sistemas-lifecycle.yml
+- type: Conformance
+  url: conformance/mv-sistemas-conformance.yml
+- type: DataModel
+  url: data-model/mv-sistemas-data-model.yml
+- type: Sandbox
+  url: sandbox/mv-sistemas-sandbox.yml
+- type: MCPServer
+  url: mcp/mv-sistemas-mcp.yml
+- type: LLMsTxt
+  url: llms/mv-sistemas-llms.txt
+- type: Webhooks
+  url: asyncapi/mv-sistemas-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/mv-sistemas-agentic-access.yml
+- type: DomainSecurity
+  url: security/mv-sistemas-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 53
+  pass: local-v1

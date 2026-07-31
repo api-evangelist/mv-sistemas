@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: 'API Evangelist enhancements for Clinic Connect : Atendimento'
+  version: 1.0.0
+extends: openapi/mv-sistemas-clinic-connect-attendance-openapi.yaml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: mv-sistemas
+    x-apievangelist-source: https://apidocs.globalhealth.mv/
+    x-apievangelist-reviewed: '2026-07-20'
