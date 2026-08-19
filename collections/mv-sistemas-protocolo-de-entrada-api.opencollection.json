@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Protocolo de Entrada API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Protocolo de Entrada",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Realizar o criação de protocolo de entrada.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/entry-control-protocols",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por criar um novo protocolo de entrada, registrando as informações necessárias para o controle de acessos."
+        },
+        {
+          "info": {
+            "name": "updateProtocol",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/entry-control-protocols/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

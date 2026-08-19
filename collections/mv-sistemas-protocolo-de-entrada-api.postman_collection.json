@@ -1,0 +1,385 @@
+{
+  "item": [
+    {
+      "id": "810b7c29-b044-439f-a71d-6d75ef1bd882",
+      "name": "Protocolo de Entrada",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0814699-fa0a-477f-85e8-3faf2e565727",
+          "name": "Realizar o criação de protocolo de entrada.",
+          "request": {
+            "name": "Realizar o criação de protocolo de entrada.",
+            "description": {
+              "content": "Endpoint responsável por criar um novo protocolo de entrada, registrando as informações necessárias para o controle de acessos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "entry-control-protocols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "467adeee-8830-490e-addc-a119bdce15fd",
+              "name": "Atualização de Protocolo",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "entry-control-protocols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"10222548759\",\n  \"endDate\": \"1712341731366\",\n  \"type\": \"VISITA\",\n  \"destination\": \"Descrição para um Destino\",\n  \"location\": \"Descrição para uma Localização\",\n  \"hideToPublicSearch\": false,\n  \"usageLimit\": null,\n  \"startTime\": \"08:00\",\n  \"endTime\": \"12:00\",\n  \"email\": \"example@example.com\",\n  \"phone\": \"11988776655\",\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"hospitalizationUnitDescription\": \"Descrição para Unidade de Internação\",\n  \"sectorDescription\": \"Descrição para o Setor\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f19ac8b-8682-4362-aa63-b444c402aa01",
+              "name": "Criação de Protocolo",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "entry-control-protocols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"10222548759\",\n  \"endDate\": \"1712341731366\",\n  \"type\": \"VISITA\",\n  \"destination\": \"Descrição para um Destino\",\n  \"location\": \"Descrição para uma Localização\",\n  \"hideToPublicSearch\": false,\n  \"usageLimit\": null,\n  \"startTime\": \"08:00\",\n  \"endTime\": \"12:00\",\n  \"email\": \"example@example.com\",\n  \"phone\": \"11988776655\",\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"hospitalizationUnitDescription\": \"Descrição para Unidade de Internação\",\n  \"sectorDescription\": \"Descrição para o Setor\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1d58b84-e948-41fe-a9a0-2ed8c006bccb",
+          "name": "update Protocol",
+          "request": {
+            "name": "update Protocol",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "entry-control-protocols",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b74d548-f8ca-41ab-80b0-12dc0d7dfaee",
+              "name": "Protocolo Atualizado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "entry-control-protocols",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8590b32a-15d6-4a47-bf03-706dfd6f11ea",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "entry-control-protocols",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"type\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"location\": \"<string>\",\n  \"hideToPublicSearch\": \"<boolean>\",\n  \"usageLimit\": \"<number>\",\n  \"startTime\": \"<string>\",\n  \"endTime\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"timeZone\": \"<string>\",\n  \"hospitalizationUnitDescription\": \"<string>\",\n  \"sectorDescription\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"timestamp\": 9452.392424666432,\n    \"status\": 6302.2955893176595,\n    \"message\": \"string\",\n    \"path\": \"string\"\n  },\n  {\n    \"timestamp\": 7587.407944269536,\n    \"status\": 5400.428757121332,\n    \"message\": \"string\",\n    \"path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d410112e-21e3-46a1-b18c-efecd3afaa22",
+    "name": "Clinic Agenda Agendamento Protocolo de Entrada API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

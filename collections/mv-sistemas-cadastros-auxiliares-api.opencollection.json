@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Cadastros auxiliares API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cadastros auxiliares",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetEstados",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetEstados/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário para contextualizar as listas auxiliares."
+              }
+            ]
+          },
+          "docs": "Lista **estados (UFs)** disponíveis para uso em filtros (por exemplo, na busca de rede credenciada ou cadastros auxiliares), **associados ao contexto da carteirinha** informada.\n\nNão há parâmetros de consulta além da carteira na URL.\n"
+        },
+        {
+          "info": {
+            "name": "GetCidades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetCidades/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário para contextualizar a lista."
+              },
+              {
+                "name": "CdUF",
+                "value": "",
+                "type": "query",
+                "description": "Sigla ou código da UF cujos municípios devem ser listados."
+              }
+            ]
+          },
+          "docs": "Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.\n"
+        },
+        {
+          "info": {
+            "name": "GetBairros",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetBairros/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário para contextualizar a lista."
+              },
+              {
+                "name": "cdUF",
+                "value": "",
+                "type": "query",
+                "description": "UF do município selecionado."
+              },
+              {
+                "name": "cdCidade",
+                "value": "",
+                "type": "query",
+                "description": "Código do município (obtido, por exemplo, na lista de cidades)."
+              }
+            ]
+          },
+          "docs": "Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.\n"
+        },
+        {
+          "info": {
+            "name": "GetRecursos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetRecursos/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário para contextualizar a lista."
+              }
+            ]
+          },
+          "docs": "Lista os **tipos de recurso** disponíveis para filtro (ex.: tipos de atendimento na rede), incluindo em muitos casos a opção **`TODOS`** para não restringir a busca.\n\nUtilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.\n"
+        },
+        {
+          "info": {
+            "name": "GetEspecialidade",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetEspecialidade/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário para contextualizar a lista."
+              },
+              {
+                "name": "cdUF",
+                "value": "",
+                "type": "query",
+                "description": "UF em que se deseja listar especialidades."
+              },
+              {
+                "name": "idTipoRecurso",
+                "value": "",
+                "type": "query",
+                "description": "Tipo de recurso desejado ou `TODOS` para considerar todos os tipos."
+              }
+            ]
+          },
+          "docs": "Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Planos Obstétricos API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Planos Obstétricos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar planos obstétricos.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/obstetric-plans",
+            "params": [
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "query",
+                "description": "CPF da gestante utilizado como critério de filtragem"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página da consulta"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de registros por página"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Critério de ordenação dos resultados (ex.: name,asc ou date,desc)"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para buscar planos obstétricos com base em filtros específicos, permitindo consultas direcionadas conforme os critérios informados"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

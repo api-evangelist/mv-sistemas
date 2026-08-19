@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "5b017c19-de87-4b68-9e22-dec57ea19915",
+      "name": "Beneficiário e carteira",
+      "description": {
+        "content": "Consulta de dados cadastrais, carteirinhas por CPF e dependentes do titular.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0618fe67-3d5d-4854-b2b7-b54f34446765",
+          "name": "GetBeneficiario",
+          "request": {
+            "name": "GetBeneficiario",
+            "description": {
+              "content": "Retorna os **dados cadastrais e do plano** do beneficiário a partir do **número da carteirinha**, incluindo informações de cobertura, contatos e vigência conforme regras da operadora.\n\nO retorno pode contemplar beneficiários **na base local** ou em **intercâmbio** com outra operadora, conforme o vínculo do titular. Não há parâmetros de consulta além do número da carteira informado na URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetBeneficiario",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83e2b045-7136-402e-ac06-d979e52ebee3",
+              "name": "Dados cadastrais e contratuais do beneficiário localizados pela carteirinha.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBeneficiario",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dtvalidade\": \"string\",\n  \"nmuf\": \"string\",\n  \"nrtelefone\": \"string\",\n  \"dsmultiempresa\": \"string\",\n  \"dscomplemento\": \"string\",\n  \"cdcontratointerno\": \"string\",\n  \"dsendereco\": \"string\",\n  \"cdregistroms\": \"string\",\n  \"dsregulamentacaoplano\": \"string\",\n  \"dsrazaosocial\": \"string\",\n  \"dstipounidade\": \"string\",\n  \"nrcelular\": \"string\",\n  \"nrendereco\": \"string\",\n  \"tpsexo\": \"string\",\n  \"nrcep\": \"string\",\n  \"cdcontrato\": \"string\",\n  \"dsempresa\": \"string\",\n  \"dscpt\": \"string\",\n  \"tpcontratacao\": \"string\",\n  \"cdempresa\": \"string\",\n  \"cdmultiempresa\": \"string\",\n  \"dtcontratacao\": \"string\",\n  \"nrans\": \"string\",\n  \"tpusuario\": \"string\",\n  \"cdplano\": \"string\",\n  \"dstipo\": \"string\",\n  \"dsfantasiaempresa\": \"string\",\n  \"snresponsavelfinanceiro\": \"string\",\n  \"nrcns\": \"string\",\n  \"cdmatricula\": \"string\",\n  \"tppessoa\": \"string\",\n  \"cdmatriculatem\": \"string\",\n  \"dtadesao\": \"string\",\n  \"cdmatalternativa\": \"string\",\n  \"dscoberturaoferecida\": \"string\",\n  \"nmcidade\": \"string\",\n  \"dsplano\": \"string\",\n  \"nmmae\": \"string\",\n  \"dtnascimento\": \"string\",\n  \"dsbairro\": \"string\",\n  \"snativo\": \"string\",\n  \"dtcancelamento\": \"string\",\n  \"dtcadastro\": \"string\",\n  \"dsemail\": \"string\",\n  \"nmsegurado\": \"string\",\n  \"nmSocial\": \"string\",\n  \"nridade\": \"string\",\n  \"dsacomodacao\": \"string\",\n  \"dsabrangenciageografica\": \"string\",\n  \"dszona\": \"string\",\n  \"dtultimacobranca\": \"string\",\n  \"nrcpf\": \"string\",\n  \"dstabelapreco\": \"string\",\n  \"dsdadosoperadora\": \"string\",\n  \"tpcontrato\": \"string\",\n  \"tpcarteira\": \"string\",\n  \"tpbeneficiario\": \"string\",\n  \"dsareaatuacaproduto\": \"string\",\n  \"txrodape\": \"string\",\n  \"nrtelefonesac\": \"string\",\n  \"redeatendimento\": \"string\",\n  \"atend\": \"string\",\n  \"nomecontratante\": \"string\",\n  \"dtvigencia\": \"string\",\n  \"nrvia\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c0279ac-5263-47fc-bcda-37c7c50ab4ed",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBeneficiario",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f326b41-c790-4542-990b-46c7a755ac02",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBeneficiario",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c89a9b0-78e9-480b-b9bd-7143bdd3375d",
+              "name": "Beneficiário não encontrado para a carteira informada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBeneficiario",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2a338da-3d24-4985-b794-db87dcd00794",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBeneficiario",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira utilizado para localizar o beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0007f73-12c4-48f4-b7ee-23c8e7da9d97",
+          "name": "GetCarteira",
+          "request": {
+            "name": "GetCarteira",
+            "description": {
+              "content": "Lista as **carteirinhas ativas** vinculadas ao **CPF** informado — útil quando o usuário possui mais de um vínculo ou precisa escolher em qual plano deseja atuar.\n\nSão retornadas apenas carteiras com **situação ativa** na data da consulta. Informe o CPF **somente no path** (em geral **11 dígitos**, sem máscara ou conforme contrato técnico).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetCarteira",
+                ":numerocpf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocpf",
+                  "description": "(Required) CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ce27294-59c1-474b-93f5-74dd40b053e3",
+              "name": "Lista de carteiras ativas para o CPF (pode ser vazia se não houver vínculo ou nenhuma carteira ativa).\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCarteira",
+                    ":numerocpf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocpf",
+                      "description": "(Required) CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"dtvalidade\": \"string\",\n    \"nmuf\": \"string\",\n    \"nrtelefone\": \"string\",\n    \"dsmultiempresa\": \"string\",\n    \"dscomplemento\": \"string\",\n    \"cdcontratointerno\": \"string\",\n    \"dsendereco\": \"string\",\n    \"cdregistroms\": \"string\",\n    \"dsregulamentacaoplano\": \"string\",\n    \"dsrazaosocial\": \"string\",\n    \"dstipounidade\": \"string\",\n    \"nrcelular\": \"string\",\n    \"nrendereco\": \"string\",\n    \"tpsexo\": \"string\",\n    \"nrcep\": \"string\",\n    \"cdcontrato\": \"string\",\n    \"dsempresa\": \"string\",\n    \"dscpt\": \"string\",\n    \"tpcontratacao\": \"string\",\n    \"cdempresa\": \"string\",\n    \"cdmultiempresa\": \"string\",\n    \"dtcontratacao\": \"string\",\n    \"nrans\": \"string\",\n    \"tpusuario\": \"string\",\n    \"cdplano\": \"string\",\n    \"dstipo\": \"string\",\n    \"dsfantasiaempresa\": \"string\",\n    \"snresponsavelfinanceiro\": \"string\",\n    \"nrcns\": \"string\",\n    \"cdmatricula\": \"string\",\n    \"tppessoa\": \"string\",\n    \"cdmatriculatem\": \"string\",\n    \"dtadesao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"dscoberturaoferecida\": \"string\",\n    \"nmcidade\": \"string\",\n    \"dsplano\": \"string\",\n    \"nmmae\": \"string\",\n    \"dtnascimento\": \"string\",\n    \"dsbairro\": \"string\",\n    \"snativo\": \"string\",\n    \"dtcancelamento\": \"string\",\n    \"dtcadastro\": \"string\",\n    \"dsemail\": \"string\",\n    \"nmsegurado\": \"string\",\n    \"nmSocial\": \"string\",\n    \"nridade\": \"string\",\n    \"dsacomodacao\": \"string\",\n    \"dsabrangenciageografica\": \"string\",\n    \"dszona\": \"string\",\n    \"dtultimacobranca\": \"string\",\n    \"nrcpf\": \"string\",\n    \"dstabelapreco\": \"string\",\n    \"dsdadosoperadora\": \"string\",\n    \"tpcontrato\": \"string\",\n    \"tpcarteira\": \"string\",\n    \"tpbeneficiario\": \"string\",\n    \"dsareaatuacaproduto\": \"string\",\n    \"txrodape\": \"string\",\n    \"nrtelefonesac\": \"string\",\n    \"redeatendimento\": \"string\",\n    \"atend\": \"string\",\n    \"nomecontratante\": \"string\",\n    \"dtvigencia\": \"string\",\n    \"nrvia\": \"string\"\n  },\n  {\n    \"dtvalidade\": \"string\",\n    \"nmuf\": \"string\",\n    \"nrtelefone\": \"string\",\n    \"dsmultiempresa\": \"string\",\n    \"dscomplemento\": \"string\",\n    \"cdcontratointerno\": \"string\",\n    \"dsendereco\": \"string\",\n    \"cdregistroms\": \"string\",\n    \"dsregulamentacaoplano\": \"string\",\n    \"dsrazaosocial\": \"string\",\n    \"dstipounidade\": \"string\",\n    \"nrcelular\": \"string\",\n    \"nrendereco\": \"string\",\n    \"tpsexo\": \"string\",\n    \"nrcep\": \"string\",\n    \"cdcontrato\": \"string\",\n    \"dsempresa\": \"string\",\n    \"dscpt\": \"string\",\n    \"tpcontratacao\": \"string\",\n    \"cdempresa\": \"string\",\n    \"cdmultiempresa\": \"string\",\n    \"dtcontratacao\": \"string\",\n    \"nrans\": \"string\",\n    \"tpusuario\": \"string\",\n    \"cdplano\": \"string\",\n    \"dstipo\": \"string\",\n    \"dsfantasiaempresa\": \"string\",\n    \"snresponsavelfinanceiro\": \"string\",\n    \"nrcns\": \"string\",\n    \"cdmatricula\": \"string\",\n    \"tppessoa\": \"string\",\n    \"cdmatriculatem\": \"string\",\n    \"dtadesao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"dscoberturaoferecida\": \"string\",\n    \"nmcidade\": \"string\",\n    \"dsplano\": \"string\",\n    \"nmmae\": \"string\",\n    \"dtnascimento\": \"string\",\n    \"dsbairro\": \"string\",\n    \"snativo\": \"string\",\n    \"dtcancelamento\": \"string\",\n    \"dtcadastro\": \"string\",\n    \"dsemail\": \"string\",\n    \"nmsegurado\": \"string\",\n    \"nmSocial\": \"string\",\n    \"nridade\": \"string\",\n    \"dsacomodacao\": \"string\",\n    \"dsabrangenciageografica\": \"string\",\n    \"dszona\": \"string\",\n    \"dtultimacobranca\": \"string\",\n    \"nrcpf\": \"string\",\n    \"dstabelapreco\": \"string\",\n    \"dsdadosoperadora\": \"string\",\n    \"tpcontrato\": \"string\",\n    \"tpcarteira\": \"string\",\n    \"tpbeneficiario\": \"string\",\n    \"dsareaatuacaproduto\": \"string\",\n    \"txrodape\": \"string\",\n    \"nrtelefonesac\": \"string\",\n    \"redeatendimento\": \"string\",\n    \"atend\": \"string\",\n    \"nomecontratante\": \"string\",\n    \"dtvigencia\": \"string\",\n    \"nrvia\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "854d0059-49a0-4119-be2d-1fe23c7a2ff5",
+              "name": "Requisição inválida (ex. CPF em formato incorreto).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCarteira",
+                    ":numerocpf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocpf",
+                      "description": "(Required) CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7241370d-0024-400b-949b-ab5fcf9840b5",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCarteira",
+                    ":numerocpf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocpf",
+                      "description": "(Required) CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20efea96-d9a4-442f-88d6-360060f30fb2",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCarteira",
+                    ":numerocpf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocpf",
+                      "description": "(Required) CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5538085-610c-46bc-a65a-ed07367a56c9",
+          "name": "GetDependentes",
+          "request": {
+            "name": "GetDependentes",
+            "description": {
+              "content": "Lista os **dependentes** vinculados ao **titular** cuja carteirinha foi informada — agregados e familiares ativos no mesmo contrato, conforme regras da operadora.\n\nRetorna apenas integrantes **ativos** da família, **exceto o próprio titular**. Não há parâmetros adicionais além da carteira do titular na URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetDependentes",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e96600b-b665-4cdc-99e9-0ef69f1b6093",
+              "name": "Lista de dependentes (pode ser vazia).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetDependentes",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cdmatricula\": \"string\",\n    \"nrcpf\": \"string\",\n    \"snativo\": \"string\",\n    \"dsacomodacao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"nmsegurado\": \"string\",\n    \"cdmatalternativatitular\": \"string\"\n  },\n  {\n    \"cdmatricula\": \"string\",\n    \"nrcpf\": \"string\",\n    \"snativo\": \"string\",\n    \"dsacomodacao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"nmsegurado\": \"string\",\n    \"cdmatalternativatitular\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68f81ac9-c64a-4006-8c56-94c519eef737",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetDependentes",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "284d8a8f-350c-46ab-ada4-a4ab0b3fc162",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetDependentes",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42bef094-df9e-4837-a446-7c8b6371be49",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetDependentes",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f583e43c-0b2d-4a7c-9722-652498afb1d9",
+    "name": "Clinic Agenda Agendamento Beneficiário e carteira API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

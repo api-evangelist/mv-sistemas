@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Guias e utilização API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Guias e utilização",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetGuiaMedico",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetGuiaMedico/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Número da carteira do beneficiário (identificação no plano)."
+              },
+              {
+                "name": "cdUf",
+                "value": "",
+                "type": "query",
+                "description": "UF desejada. Informe `TODOS` para listar prestadores em qualquer estado."
+              },
+              {
+                "name": "cdEspecialidade",
+                "value": "",
+                "type": "query",
+                "description": "Especialidade desejada; omita para não filtrar por especialidade."
+              },
+              {
+                "name": "multiEmpresa",
+                "value": "",
+                "type": "query",
+                "description": "Unidade ou rede multiempresa, quando aplicável ao contrato; omita para não filtrar."
+              },
+              {
+                "name": "dsMunicipio",
+                "value": "",
+                "type": "query",
+                "description": "Município; use `TODOS` para não restringir por cidade."
+              },
+              {
+                "name": "dsBairro",
+                "value": "",
+                "type": "query",
+                "description": "Bairro; use `TODOS` para não restringir por bairro."
+              },
+              {
+                "name": "dsTpRecurso",
+                "value": "",
+                "type": "query",
+                "description": "Tipo de recurso (ex. consulta, exame); use `TODOS` para não restringir."
+              },
+              {
+                "name": "nmPrestador",
+                "value": "",
+                "type": "query",
+                "description": "Nome (ou parte do nome) do prestador para refinar a busca."
+              }
+            ]
+          },
+          "docs": "Permite ao beneficiário **localizar prestadores na rede credenciada** (guia médico), combinando filtros opcionais por UF, especialidade, tipo de recurso, município, bairro, nome do prestador e demais critérios acordados com a operadora.\n\nUse **`TODOS`** nos campos de filtro quando quiser **não restringir** aquele critério (por exemplo, todas as UFs ou todos os tipos de recurso).\n"
+        },
+        {
+          "info": {
+            "name": "GetGuias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetGuias/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Número da carteirinha do beneficiário."
+              },
+              {
+                "name": "Dtinicial",
+                "value": "",
+                "type": "query",
+                "description": "Data inicial do período de consulta (**DD-MM-YYYY**)."
+              },
+              {
+                "name": "Dtfinal",
+                "value": "",
+                "type": "query",
+                "description": "Data final do período de consulta (**DD-MM-YYYY**)."
+              }
+            ]
+          },
+          "docs": "Lista **guias e autorizações** emitidas para a carteirinha no **período** informado (emissões, status e dados do atendimento conforme disponibilização pela operadora).\n\nInforme o número da carteira na URL e o intervalo de datas nas consultas (**início** e **fim**) no formato **`DD-MM-YYYY`**.\n"
+        },
+        {
+          "info": {
+            "name": "GetUtilizacao",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/GetUtilizacao",
+            "params": [
+              {
+                "name": "cpf",
+                "value": "",
+                "type": "query",
+                "description": "CPF do beneficiário, quando a consulta for por titular (formato conforme contrato)."
+              },
+              {
+                "name": "numeroCarteira",
+                "value": "",
+                "type": "query",
+                "description": "Número da carteirinha, quando a consulta for por vínculo direto ao cartão."
+              },
+              {
+                "name": "competencia",
+                "value": "",
+                "type": "query",
+                "description": "Competência de referência (ex. ano/mês), no formato acordado com a operadora."
+              },
+              {
+                "name": "dataInicio",
+                "value": "",
+                "type": "query",
+                "description": "Início do período de utilização a considerar."
+              },
+              {
+                "name": "dataFim",
+                "value": "",
+                "type": "query",
+                "description": "Fim do período de utilização a considerar."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Página do resultado quando houver paginação (começa em 0 ou 1 conforme contrato)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de itens por página."
+              }
+            ]
+          },
+          "docs": "Consulta de **utilização do plano** (procedimentos, eventos ou resumo) no período ou competência desejados, conforme o modelo acordado com a operadora.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

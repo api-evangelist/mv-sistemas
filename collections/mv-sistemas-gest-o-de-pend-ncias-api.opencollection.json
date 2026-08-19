@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Gestão de Pendências API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gestão de Pendências",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status da pendência.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency",
+            "params": [
+              {
+                "name": "numeroDocumento",
+                "value": "",
+                "type": "query",
+                "description": "Número de documento: (CPF, somente dígitos)"
+              },
+              {
+                "name": "numeroCarteira",
+                "value": "",
+                "type": "query",
+                "description": "Número do Cartão do Convênio do Beneficiário:"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status da Pendência, separados por vírgulas: (Ex: CREATED,ACCEPTED)"
+              }
+            ]
+          },
+          "docs": "Endpoint responsável por consultar pendências de um paciente, permitindo a busca por número de documento, número de carteirinha e/ou status da pendência. <p>É obrigatório informar pelo menos um parâmetro para realizar a busca. </p>"
+        },
+        {
+          "info": {
+            "name": "Incluir uma Nova Pendência para o Beneficiário",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para incluir uma nova pendência associada a um beneficiário, registrando os dados necessários para acompanhamento e controle."
+        },
+        {
+          "info": {
+            "name": "Buscar uma Pendência específica pelo Hash Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency/:hash-key",
+            "params": [
+              {
+                "name": "hash-key",
+                "value": "",
+                "type": "path",
+                "description": "<b>Hash Key</b> da pendência a ser buscada. <br><br> Chave associada à pendência. <br><br> Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br><br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br><br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos."
+              }
+            ]
+          },
+          "docs": "Endpoint que busca uma pendência específica com base no Hash Key, retornando todos os detalhes e informações vinculadas ao registro informado."
+        },
+        {
+          "info": {
+            "name": "Atualizar uma Pendência pelo Hash Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency/:hash-key",
+            "params": [
+              {
+                "name": "hash-key",
+                "value": "",
+                "type": "path",
+                "description": "Hash Key da pendência a ser atualizada."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por atualizar os dados de uma pendência específica, utilizando o Hash Key como referência para identificar o registro a ser modificado."
+        },
+        {
+          "info": {
+            "name": "Obter um Item de Exame.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency/:hash-key/exams/:exam-source-id",
+            "params": [
+              {
+                "name": "hash-key",
+                "value": "",
+                "type": "path",
+                "description": "Hash Key da pendência a ser atualizada."
+              },
+              {
+                "name": "exam-source-id",
+                "value": "",
+                "type": "path",
+                "description": "Source ID do Item da pendência a ser atualizado."
+              }
+            ]
+          },
+          "docs": "Endpoint que obtém os dados de um item de exame vinculado a uma pendência específica, identificada pelo Hash Key da pendência e pelo Source ID do item."
+        },
+        {
+          "info": {
+            "name": "Atualizar um Item de Exame.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/health-pendency/:hash-key/exams/:exam-source-id",
+            "params": [
+              {
+                "name": "hash-key",
+                "value": "",
+                "type": "path",
+                "description": "Hash Key da pendência a ser atualizada."
+              },
+              {
+                "name": "exam-source-id",
+                "value": "",
+                "type": "path",
+                "description": "Source ID do Item da pendência a ser atualizado."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para atualizar as informações de um item de exame pertencente a uma pendência específica, referenciada pelo Hash Key da pendência e pelo Source ID do item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

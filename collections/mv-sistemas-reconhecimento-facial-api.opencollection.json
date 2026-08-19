@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Reconhecimento Facial API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reconhecimento Facial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Iniciar o processo da validação de vivacidade da informação biométrica.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/face/liveness/start"
+          },
+          "docs": "Este endpoint inicia a validação da vivacidade da informação biométrica."
+        },
+        {
+          "info": {
+            "name": "Finalizar o processo da validação de vivacidade da informação biométrica.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/face/liveness/finish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Este endpoint finaliza a validação da vivacidade da informação biométrica."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

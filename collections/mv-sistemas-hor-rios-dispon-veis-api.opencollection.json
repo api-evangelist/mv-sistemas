@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Horários Disponíveis API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Horários Disponíveis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar horários disponíveis.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/available-appointments",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query",
+                "description": "ID do médico"
+              },
+              {
+                "name": "termCboIds",
+                "value": "",
+                "type": "query",
+                "description": "Lista de IDs de especialidades, separados por vírgula"
+              },
+              {
+                "name": "teleconsultation",
+                "value": "",
+                "type": "query",
+                "description": "ID do médico"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Data a ser consultada"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página da consulta"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de registros por página"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para consultar os horários disponíveis, sem a necessidade de filtrar por médico ou especialidade. Ideal para obter uma visão geral das opções de agendamento no sistema."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

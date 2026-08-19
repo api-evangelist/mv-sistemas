@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "6cea33e3-2128-4a1e-852d-950ffd64231a",
+      "name": "Protocolo de reconhecimento",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f0e044e-b541-47da-8424-ceb1913bd131",
+          "name": "Obter os protocolos",
+          "request": {
+            "name": "Obter os protocolos",
+            "description": {
+              "content": "Este endpoint realiza a busca dos protocolos de reconhecimento.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recognition-protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Número da página que deseja obter as informações. A página começa com 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<string>",
+                  "description": "Quantidade dos objetos de retorno que deseja receber. Sendo o máximo 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "documentNumber",
+                  "value": "<string>",
+                  "description": "Número do documento ao qual está cadastrado a face."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Protocolo gerado a partir de uma justificativa ou reconhecimento facial."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<^\\d{4}-\\d{2}-\\d{2}$>",
+                  "description": "Data de inicio para a realização da busca."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<^\\d{4}-\\d{2}-\\d{2}$>",
+                  "description": "Data final para a realização da busca."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a83d567f-c421-4665-a656-5db2da20a33b",
+              "name": "Protocolo obtido com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "recognition-protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "RF-ON7SV8"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2000-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2000-01-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"name\": \"string\",\n    \"createdAt\": \"string\",\n    \"action\": \"DETECT\",\n    \"type\": \"DOCUMENT\",\n    \"side\": \"BACK\",\n    \"source\": \"string\",\n    \"protocol\": \"string\",\n    \"requesterName\": \"string\",\n    \"reasonTitle\": \"string\",\n    \"reasonText\": \"string\",\n    \"accuracy\": 8463.125619205543,\n    \"healthPlanId\": 2167.1207201009015,\n    \"healthPlanName\": \"string\",\n    \"healthPlanAnsCode\": \"string\",\n    \"photo\": \"string\"\n  },\n  \"pagination\": {\n    \"totalCount\": 289,\n    \"totalPages\": 4279,\n    \"prevPage\": 7699,\n    \"currentPage\": 8924,\n    \"nextPage\": 6024,\n    \"first\": true,\n    \"last\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d4d0311-fbf8-401e-9d71-629f8a7bcfae",
+    "name": "Clinic Agenda Agendamento Protocolo de reconhecimento API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

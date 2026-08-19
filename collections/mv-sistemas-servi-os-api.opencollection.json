@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Serviços API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Serviços",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar serviços.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/services",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID do Clinic"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "ID externo"
+              },
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "query",
+                "description": "ID da conta Clinic Connect"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica."
+        },
+        {
+          "info": {
+            "name": "Criar ou alterar dados de serviços.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

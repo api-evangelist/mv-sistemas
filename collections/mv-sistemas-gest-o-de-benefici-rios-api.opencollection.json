@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Gestão de Beneficiários API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gestão de Beneficiários",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Buscar Beneficiário por Número de Documento ou Número de Carteira do Convênio.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/persons",
+            "params": [
+              {
+                "name": "numeroDocumento",
+                "value": "",
+                "type": "query",
+                "description": "Número de documento do Beneficiário:"
+              },
+              {
+                "name": "numeroCarteira",
+                "value": "",
+                "type": "query",
+                "description": "Número do Cartão do Convênio do Beneficiário:"
+              }
+            ]
+          },
+          "docs": "Informe pelo menos um dos parâmetros para a busca."
+        },
+        {
+          "info": {
+            "name": "Atualizar ou Incluir um Novo Beneficiário",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/persons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<div> <p>O objeto <code>Person</code> é fundamental para o armazenamento das informações básicas referentes aos beneficiários. Ele representa a estrutura central utilizada para registrar e transmitir os dados necessários ao funcionamento da API, sendo projetado com flexibilidade para atender a diferentes cenários e integrações.</p> <hr> <p><strong>::: Obrigatoriedade de Campos</strong></p> <p>Atualmente, os únicos campos obrigatórios para o correto funcionamento da API são:</p> <ul> <li><strong>"
+        },
+        {
+          "info": {
+            "name": "Buscar Beneficiários por Número de Documento ou Número de Carteira do Convênio.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/persons/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página (Iniciar com 0)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de itens por página"
+              },
+              {
+                "name": "lastUpdatedDate",
+                "value": "",
+                "type": "query",
+                "description": "Última data de atualização do registro. (yyyy-mm-dd)"
+              },
+              {
+                "name": "numeroDocumento",
+                "value": "",
+                "type": "query",
+                "description": "Número de documento do Beneficiário:"
+              },
+              {
+                "name": "numeroCarteira",
+                "value": "",
+                "type": "query",
+                "description": "Número do Cartão do Convênio do Beneficiário:"
+              }
+            ]
+          },
+          "docs": "Informe pelo menos um dos parâmetros para a busca."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

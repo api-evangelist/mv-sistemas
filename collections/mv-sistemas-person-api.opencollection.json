@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Person API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Person",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lista os pacientes alérgicos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/person/allergy",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página (iniciando em 0)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Data inicial do filtro no formato yyyy-MM-dd."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Data final do filtro no formato yyyy-MM-dd."
+              }
+            ]
+          },
+          "docs": "Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema. <br> <br> Os parâmetros \"page\" e \"size\": são obrigatórios para a paginação dos resultados; <br> Size: deve ter valor máximo de 50. <br> O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço. <br><br> "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

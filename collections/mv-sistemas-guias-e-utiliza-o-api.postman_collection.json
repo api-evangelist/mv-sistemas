@@ -1,0 +1,1111 @@
+{
+  "item": [
+    {
+      "id": "fa75afaa-cdf3-46ac-a9b8-ab2034e13cae",
+      "name": "Guias e utilização",
+      "description": {
+        "content": "Rede credenciada, guias e autorizações e acompanhamento de utilização do plano.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf6050ad-d087-4a50-bf5d-61bfa11efbc9",
+          "name": "GetGuiaMedico",
+          "request": {
+            "name": "GetGuiaMedico",
+            "description": {
+              "content": "Permite ao beneficiário **localizar prestadores na rede credenciada** (guia médico), combinando filtros opcionais por UF, especialidade, tipo de recurso, município, bairro, nome do prestador e demais critérios acordados com a operadora.\n\nUse **`TODOS`** nos campos de filtro quando quiser **não restringir** aquele critério (por exemplo, todas as UFs ou todos os tipos de recurso).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetGuiaMedico",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cdUf",
+                  "value": "<string>",
+                  "description": "UF desejada. Informe `TODOS` para listar prestadores em qualquer estado."
+                },
+                {
+                  "disabled": false,
+                  "key": "cdEspecialidade",
+                  "value": "<string>",
+                  "description": "Especialidade desejada; omita para não filtrar por especialidade."
+                },
+                {
+                  "disabled": false,
+                  "key": "multiEmpresa",
+                  "value": "<string>",
+                  "description": "Unidade ou rede multiempresa, quando aplicável ao contrato; omita para não filtrar."
+                },
+                {
+                  "disabled": false,
+                  "key": "dsMunicipio",
+                  "value": "<string>",
+                  "description": "Município; use `TODOS` para não restringir por cidade."
+                },
+                {
+                  "disabled": false,
+                  "key": "dsBairro",
+                  "value": "<string>",
+                  "description": "Bairro; use `TODOS` para não restringir por bairro."
+                },
+                {
+                  "disabled": false,
+                  "key": "dsTpRecurso",
+                  "value": "<string>",
+                  "description": "Tipo de recurso (ex. consulta, exame); use `TODOS` para não restringir."
+                },
+                {
+                  "disabled": false,
+                  "key": "nmPrestador",
+                  "value": "<string>",
+                  "description": "Nome (ou parte do nome) do prestador para refinar a busca."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Número da carteira do beneficiário (identificação no plano)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7e19275-55bf-46a1-9fa8-a2f5c3ffb8db",
+              "name": "Lista de registros da rede credenciada conforme filtros.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuiaMedico",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdEspecialidade",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "multiEmpresa",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsMunicipio",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsBairro",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsTpRecurso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nmPrestador",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira do beneficiário (identificação no plano)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cdUf\": \"string\",\n    \"cdEspecialidade\": \"string\",\n    \"cdMultiEmpresa\": \"string\",\n    \"dsTpRecurso\": \"string\",\n    \"cdMatAlternativa\": \"string\",\n    \"dsMunicipio\": \"string\",\n    \"dsBairro\": \"string\",\n    \"nmPrestador\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": 8203\n  },\n  {\n    \"cdUf\": \"string\",\n    \"cdEspecialidade\": \"string\",\n    \"cdMultiEmpresa\": \"string\",\n    \"dsTpRecurso\": \"string\",\n    \"cdMatAlternativa\": \"string\",\n    \"dsMunicipio\": \"string\",\n    \"dsBairro\": \"string\",\n    \"nmPrestador\": \"string\",\n    \"key_0\": 5393.063097780108,\n    \"key_1\": 609\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "121b8b7b-c5a6-4bc7-b6b1-fd69bf7f3913",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuiaMedico",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdEspecialidade",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "multiEmpresa",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsMunicipio",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsBairro",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsTpRecurso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nmPrestador",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira do beneficiário (identificação no plano)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7ea9f6c-c7f5-40a6-92cf-c74ccc46d0fb",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuiaMedico",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdEspecialidade",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "multiEmpresa",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsMunicipio",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsBairro",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsTpRecurso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nmPrestador",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira do beneficiário (identificação no plano)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "933d9354-473e-442f-887e-35d76d2d6987",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuiaMedico",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdEspecialidade",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "multiEmpresa",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsMunicipio",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsBairro",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dsTpRecurso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nmPrestador",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteira do beneficiário (identificação no plano)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "911e1c9f-ec0f-484b-be62-33307d75bca5",
+          "name": "GetGuias",
+          "request": {
+            "name": "GetGuias",
+            "description": {
+              "content": "Lista **guias e autorizações** emitidas para a carteirinha no **período** informado (emissões, status e dados do atendimento conforme disponibilização pela operadora).\n\nInforme o número da carteira na URL e o intervalo de datas nas consultas (**início** e **fim**) no formato **`DD-MM-YYYY`**.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetGuias",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Dtinicial",
+                  "value": "<string>",
+                  "description": "(Required) Data inicial do período de consulta (**DD-MM-YYYY**)."
+                },
+                {
+                  "disabled": false,
+                  "key": "Dtfinal",
+                  "value": "<string>",
+                  "description": "(Required) Data final do período de consulta (**DD-MM-YYYY**)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Número da carteirinha do beneficiário."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9672a71f-8f64-443e-bbfc-f19e9ff24199",
+              "name": "Lista de guias, em geral ordenada da mais recente para a mais antiga.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuias",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Dtinicial",
+                      "value": "01-01-2025"
+                    },
+                    {
+                      "key": "Dtfinal",
+                      "value": "31-03-2025"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"dsmotcancelamentoguia\": \"string\",\n    \"nrtransacao\": \"string\",\n    \"dtemissaoguia\": \"string\",\n    \"nrguia\": \"string\",\n    \"nrguiamv\": \"string\",\n    \"dstipoatendimento\": \"string\",\n    \"cdtipoatendimento\": \"string\",\n    \"status\": \"string\",\n    \"nmmedicosolicitante\": \"string\",\n    \"dtvalidadeguia\": \"string\",\n    \"dsobservacao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"dtfiltro\": \"string\"\n  },\n  {\n    \"dsmotcancelamentoguia\": \"string\",\n    \"nrtransacao\": \"string\",\n    \"dtemissaoguia\": \"string\",\n    \"nrguia\": \"string\",\n    \"nrguiamv\": \"string\",\n    \"dstipoatendimento\": \"string\",\n    \"cdtipoatendimento\": \"string\",\n    \"status\": \"string\",\n    \"nmmedicosolicitante\": \"string\",\n    \"dtvalidadeguia\": \"string\",\n    \"dsobservacao\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"dtfiltro\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b3a076-0002-4be1-8f3e-a87802ba7d9b",
+              "name": "Requisição inválida (ex. datas em formato incorreto).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuias",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Dtinicial",
+                      "value": "01-01-2025"
+                    },
+                    {
+                      "key": "Dtfinal",
+                      "value": "31-03-2025"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20ee7d67-acfb-4e79-8ea3-a32871ad7102",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuias",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Dtinicial",
+                      "value": "01-01-2025"
+                    },
+                    {
+                      "key": "Dtfinal",
+                      "value": "31-03-2025"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12d381a0-aaee-4d51-ad5c-4dcd22e13894",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetGuias",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Dtinicial",
+                      "value": "01-01-2025"
+                    },
+                    {
+                      "key": "Dtfinal",
+                      "value": "31-03-2025"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Número da carteirinha do beneficiário."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d1006d4-fc18-47e8-b06a-efd82842e009",
+          "name": "GetUtilizacao",
+          "request": {
+            "name": "GetUtilizacao",
+            "description": {
+              "content": "Consulta de **utilização do plano** (procedimentos, eventos ou resumo) no período ou competência desejados, conforme o modelo acordado com a operadora.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "GetUtilizacao"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cpf",
+                  "value": "<string>",
+                  "description": "CPF do beneficiário, quando a consulta for por titular (formato conforme contrato)."
+                },
+                {
+                  "disabled": false,
+                  "key": "numeroCarteira",
+                  "value": "<string>",
+                  "description": "Número da carteirinha, quando a consulta for por vínculo direto ao cartão."
+                },
+                {
+                  "disabled": false,
+                  "key": "competencia",
+                  "value": "<string>",
+                  "description": "Competência de referência (ex. ano/mês), no formato acordado com a operadora."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataInicio",
+                  "value": "<date>",
+                  "description": "Início do período de utilização a considerar."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataFim",
+                  "value": "<date>",
+                  "description": "Fim do período de utilização a considerar."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Página do resultado quando houver paginação (começa em 0 ou 1 conforme contrato)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de itens por página."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90fa11f2-2b9a-4f20-86ea-4b4e160f11b3",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "GetUtilizacao"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cpf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "competencia",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataInicio",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dataFim",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 737.0319055720198,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e449b64c-681e-4e18-8aca-c44740d6258c",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "GetUtilizacao"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cpf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "competencia",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataInicio",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dataFim",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79ad7330-e57e-4259-9bba-c387baeb3e8a",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "GetUtilizacao"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cpf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "competencia",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataInicio",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dataFim",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7020727d-86ee-4e82-a04a-d23624755467",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "GetUtilizacao"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cpf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "competencia",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataInicio",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "dataFim",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b51d3b23-2287-4274-a499-7d15019388b3",
+    "name": "Clinic Agenda Agendamento Guias e utilização API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

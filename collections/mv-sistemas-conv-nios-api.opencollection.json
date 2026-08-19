@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Convênios API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Convênios",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar convênios.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/insurances",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID do Clinic"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "ID externo"
+              },
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "query",
+                "description": "ID da conta Clinic Connect"
+              }
+            ]
+          },
+          "docs": "Endpoint que retorna uma lista de convênios com base nos filtros informados, facilitando a localização e o gerenciamento das operadoras cadastradas."
+        },
+        {
+          "info": {
+            "name": "Criar ou alterar dados de convênios.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/insurances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por criar ou atualizar convênios, permitindo o gerenciamento centralizado das operadoras de saúde vinculadas ao sistema."
+        },
+        {
+          "info": {
+            "name": "Buscar planos de saúde (convênios)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/health-plan",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Nome do plano ou operadora"
+              },
+              {
+                "name": "ansCode",
+                "value": "",
+                "type": "query",
+                "description": "Código de registro na ANS"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Página atual da listagem"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de registros por página"
+              }
+            ]
+          },
+          "docs": "Retorna uma lista paginada de convênios, com filtros opcionais por nome e código ANS."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

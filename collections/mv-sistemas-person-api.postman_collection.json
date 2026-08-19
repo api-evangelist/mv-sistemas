@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "3b7065d4-e66e-4cb0-b999-560fa3a98d7a",
+      "name": "Person",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "371c716a-201c-4463-a881-2d1375609913",
+          "name": "Lista os pacientes alérgicos",
+          "request": {
+            "name": "Lista os pacientes alérgicos",
+            "description": {
+              "content": "Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema. <br> <br> Os parâmetros \"page\" e \"size\": são obrigatórios para a paginação dos resultados; <br> Size: deve ter valor máximo de 50. <br> O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço. <br><br> ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "person",
+                "allergy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) Número da página (iniciando em 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Data inicial do filtro no formato yyyy-MM-dd."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Data final do filtro no formato yyyy-MM-dd."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5c7754af-77c7-4e15-b48e-56e32d060b53",
+              "name": "Lista paginada de pessoas resumidas",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "person",
+                    "allergy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "1999-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2024-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"person\": {\n        \"login\": \"ana.costa@test.com\"\n      },\n      \"personAllergies\": [\n        {\n          \"id\": 15,\n          \"person\": {\n            \"login\": \"ana.costa@test.com\"\n          },\n          \"reaction\": \"Não Informadas.\",\n          \"allergyName\": \"Ácaros\",\n          \"allergyCode\": \"acaros\",\n          \"createdDate\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          },\n          \"allergyGourpName\": \"Ácaros\",\n          \"allergyGroupCode\": \"acaros\"\n        }\n      ],\n      \"familyHistories\": [\n        {\n          \"id\": 53,\n          \"login\": \"ana.costa@test.com\",\n          \"kinshipName\": \"Avô\",\n          \"kinshipKey\": \"avo_pai\",\n          \"diseaseName\": \"Câncer de mama\"\n        }\n      ],\n      \"personProblems\": [\n        {\n          \"id\": 30,\n          \"login\": \"ana.costa@test.com\",\n          \"problemName\": \"Obesidade\",\n          \"cidCode\": \"E669\",\n          \"status\": \"Aguardando Validação\"\n        }\n      ],\n      \"name\": \"Ana\",\n      \"documentNumber\": \"40419113037\"\n    }\n  ],\n  \"pageable\": {\n    \"pageNumber\": 0,\n    \"pageSize\": 20,\n    \"sort\": {\n      \"sorted\": true,\n      \"unsorted\": false,\n      \"empty\": false\n    }\n  },\n  \"totalPages\": 1,\n  \"totalElements\": 1,\n  \"last\": true,\n  \"size\": 20,\n  \"number\": 0,\n  \"sort\": {\n    \"sorted\": true,\n    \"unsorted\": false,\n    \"empty\": false\n  },\n  \"first\": true,\n  \"numberOfElements\": 1,\n  \"empty\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "feafd3a7-dc1a-4224-984c-e2e1cbbeea42",
+              "name": "Requisição inválida",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "person",
+                    "allergy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "1999-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2024-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de2cefa2-35c1-4d9b-962f-bfe462c1b70f",
+              "name": "Erro interno no servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "person",
+                    "allergy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "1999-01-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2024-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47630c08-c7a1-41be-abf9-6c681cd36824",
+    "name": "Clinic Agenda Agendamento Person API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

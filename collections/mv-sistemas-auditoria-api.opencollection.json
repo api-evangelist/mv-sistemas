@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Auditoria API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auditoria",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lista dados de auditoria por paciente (API Gateway)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/procedure-request",
+            "params": [
+              {
+                "name": "insuranceNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número da carteirinha (obrigatório se `identificationNumber` não for enviado)."
+              },
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "query",
+                "description": "CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado)."
+              },
+              {
+                "name": "onlyAnesthesic",
+                "value": "",
+                "type": "query",
+                "description": "Se `true`, retorna apenas o fluxo de ficha pré-anestésica."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página (iniciando em 0)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de itens por página (máximo 50)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Critério de ordenação dos resultados, opcional."
+              }
+            ]
+          },
+          "docs": "Retorna uma **lista paginada** em que cada item agrega, por **atendimento**, os dados relevantes para auditoria: pedidos de exame, internações, guias, documentos, termos e vínculos associados. É o ponto de entrada recomendado quando a chamada passa pelo **API Global Health** (homologação ou produção).\n\n**Casos de uso típicos:** conferência de carteira, relatórios de auditoria, checagem de guias e documentação, e integrações que precisam da mesma visão unificada sem acessar o backend da clínica d"
+        },
+        {
+          "info": {
+            "name": "Lista dados de auditoria por paciente (clinic-service)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/clinic/v1/patient-audit-health-data",
+            "params": [
+              {
+                "name": "insuranceNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número da carteirinha (obrigatório se `identificationNumber` não for enviado)."
+              },
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "query",
+                "description": "CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado)."
+              },
+              {
+                "name": "onlyAnesthesic",
+                "value": "",
+                "type": "query",
+                "description": "Se `true`, retorna apenas o fluxo de ficha pré-anestésica."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página (iniciando em 0)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de itens por página (máximo 50)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Critério de ordenação dos resultados, opcional."
+              }
+            ]
+          },
+          "docs": "Mesmo **contrato de resposta** que `GET /v1/procedure-request` no API Gateway, porém exposto pelo **serviço da clínica** (ex.: context-path `/clinic-service`). Use quando a integração deve conversar **diretamente** com o backend Clinic, sem tráfego pelo gateway público Global Health.\n\n::: Autenticação\n\nEnvie a **clientKey** configurada para o ambiente. Conforme a política do servidor, pode ser necessário também **`Authorization: Bearer`** — alinhe com o time de infraestrutura da clínica.\n\n::: Pa"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

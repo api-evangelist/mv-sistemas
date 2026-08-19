@@ -1,0 +1,471 @@
+{
+  "item": [
+    {
+      "id": "32cdb2c8-ae10-4c07-b989-02190def669d",
+      "name": "Agendamento",
+      "description": {
+        "content": "Criação e atualização de status de agendamentos",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b379f1e0-4da3-4f99-b8b4-991d8a4e104d",
+          "name": "Criar agendamento a partir de um Agendamento de performance",
+          "request": {
+            "name": "Criar agendamento a partir de um Agendamento de performance",
+            "description": {
+              "content": "Cria um agendamento (Schedules) vinculado a um Agendamento de performance disponível.\nÉ obrigatório informar `id` ou `externalId` do Agendamento de performance, além de patient, insurance e termCbo.\nO slot deve estar disponível (não ocupado).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "performance-schedules",
+                "scheduling"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"newborn\": \"<boolean>\"\n  },\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"cellphone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"mother\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"address\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"<string>\"\n  },\n  \"termCbo\": \"<string>\",\n  \"observation\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0fcd743-eb29-4047-a041-8d1c8a6ebdf6",
+              "name": "Agendamento criado com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"newborn\": \"<boolean>\"\n  },\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"cellphone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"mother\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"address\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"<string>\"\n  },\n  \"termCbo\": \"<string>\",\n  \"observation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5486,\n  \"date\": \"1957-10-10\",\n  \"startTime\": \"18:04:12.878Z\",\n  \"predictionEndTime\": \"06:32:26.172Z\",\n  \"schedulingStatus\": \"string\",\n  \"observation\": \"string\",\n  \"patient\": {},\n  \"clinic\": {},\n  \"employee\": {},\n  \"insurance\": {},\n  \"createdDate\": \"2023-03-08T13:46:02.230Z\",\n  \"lastModifiedDate\": \"1958-10-27T09:49:11.322Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c6dfaa0-bc6a-441a-984d-336bcaa2aa9e",
+              "name": "Requisição inválida (dados faltando, slot ocupado, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"newborn\": \"<boolean>\"\n  },\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"cellphone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"mother\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"address\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"<string>\"\n  },\n  \"termCbo\": \"<string>\",\n  \"observation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 6751\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "343de74e-5c07-4e22-be33-0b2ed17b3190",
+              "name": "Agendamento de performance não encontrado ou não disponível",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"newborn\": \"<boolean>\"\n  },\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"cellphone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"mother\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"address\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"<string>\"\n  },\n  \"termCbo\": \"<string>\",\n  \"observation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 6751\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "199c448b-f746-4589-a892-a2f6defa07f4",
+          "name": "Atualizar status do agendamento",
+          "request": {
+            "name": "Atualizar status do agendamento",
+            "description": {
+              "content": "Altera o status do agendamento (Schedules) vinculado a um Agendamento de performance.\nO Agendamento de performance deve estar ocupado (ter Schedules vinculado).\nPara status CANCELLED: não é permitido se já existir atendimento; ao cancelar, o slot é liberado e é criado um registro de cancelamento (PATIENT_CANCELLED).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "performance-schedules",
+                "scheduling",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"schedulingStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff16d4e6-d54e-43de-bbbe-785fd50f7858",
+              "name": "Status atualizado com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"schedulingStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5486,\n  \"date\": \"1957-10-10\",\n  \"startTime\": \"18:04:12.878Z\",\n  \"predictionEndTime\": \"06:32:26.172Z\",\n  \"schedulingStatus\": \"string\",\n  \"observation\": \"string\",\n  \"patient\": {},\n  \"clinic\": {},\n  \"employee\": {},\n  \"insurance\": {},\n  \"createdDate\": \"2023-03-08T13:46:02.230Z\",\n  \"lastModifiedDate\": \"1958-10-27T09:49:11.322Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1118fb7e-aebc-48ea-acea-3475720b8ca2",
+              "name": "Requisição inválida (status inválido, cancelamento com atendimento existente, etc.)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"schedulingStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 6751\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81f1b8c5-6965-4afb-bc81-45a97d2a1f3a",
+              "name": "Agendamento de performance não encontrado ou não ocupado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "scheduling",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"schedulingStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": 6751\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "94e29e5f-cc9b-40d7-be8b-f5b6922bf60f",
+    "name": "Clinic Agenda Agendamento API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

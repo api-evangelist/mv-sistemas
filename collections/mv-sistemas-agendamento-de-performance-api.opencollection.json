@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Agendamento de performance API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agendamento de performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Listar Agendamento de performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/performance-schedules/list",
+            "params": [
+              {
+                "name": "councilNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número de registro no conselho profissional do médico"
+              },
+              {
+                "name": "cnes",
+                "value": "",
+                "type": "query",
+                "description": "CNES da clínica"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID do PerformanceSchedule"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "External ID do PerformanceSchedule"
+              },
+              {
+                "name": "specialty",
+                "value": "",
+                "type": "query",
+                "description": "Código da especialidade (termCode)"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Data inicial para filtrar (formato YYYY-MM-DD)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Data final para filtrar (formato YYYY-MM-DD)"
+              },
+              {
+                "name": "occupied",
+                "value": "",
+                "type": "query",
+                "description": "true = apenas ocupados (com Schedules), false = apenas disponíveis (sem Schedules), omitir = todos"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página (zero-based)"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de itens por página"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Ordenação (ex. date,asc ou id,desc)"
+              }
+            ]
+          },
+          "docs": "Retorna uma lista paginada de Agendamento de performance filtrada pelos parâmetros informados.\nOs filtros são opcionais; quando não informados, retorna todos os registros do cliente.\n"
+        },
+        {
+          "info": {
+            "name": "Enviar informações de Agendamento de performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint para enviar informações de disponibilidade de horário de um prestador de saúde.\nRecebe dados do prestador, clínica, data e horário da disponibilidade.\nRetorna um externalId que deve ser armazenado para rastreamento.\n"
+        },
+        {
+          "info": {
+            "name": "Cancelar Agendamento de performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint para cancelar uma disponibilidade de horário previamente criada.\nEnvia os mesmos dados da criação mais o externalId recebido na criação.\nO externalId é obrigatório para identificar qual registro deve ser cancelado no sistema receptor.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

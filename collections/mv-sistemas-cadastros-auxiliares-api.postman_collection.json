@@ -1,0 +1,1424 @@
+{
+  "item": [
+    {
+      "id": "703f5692-72c8-4132-bb29-917979fd2b96",
+      "name": "Cadastros auxiliares",
+      "description": {
+        "content": "Listas de estados, cidades, bairros, tipos de recurso e especialidades para filtros e formulários.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0ccd9ae9-55f6-4ba1-a02a-e64bf8d63756",
+          "name": "GetEstados",
+          "request": {
+            "name": "GetEstados",
+            "description": {
+              "content": "Lista **estados (UFs)** disponíveis para uso em filtros (por exemplo, na busca de rede credenciada ou cadastros auxiliares), **associados ao contexto da carteirinha** informada.\n\nNão há parâmetros de consulta além da carteira na URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetEstados",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário para contextualizar as listas auxiliares."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4eed659-3063-41eb-85ce-b90fb56da4b0",
+              "name": "Lista de UFs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEstados",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar as listas auxiliares."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cduf\": \"string\",\n    \"nmuf\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  },\n  {\n    \"cduf\": \"string\",\n    \"nmuf\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80004934-165d-4d81-9f5a-861fe52e77f5",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEstados",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar as listas auxiliares."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50bf9f87-45a8-4485-b6f7-80c4e16de043",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEstados",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar as listas auxiliares."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5ce7d40-0252-4b53-b757-91a3cdd0f809",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEstados",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar as listas auxiliares."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59bdf630-8762-411f-857b-dfe7faaf325f",
+          "name": "GetCidades",
+          "request": {
+            "name": "GetCidades",
+            "description": {
+              "content": "Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetCidades",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "CdUF",
+                  "value": "<string>",
+                  "description": "(Required) Sigla ou código da UF cujos municípios devem ser listados."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31deed89-474f-4bdf-aa20-12a092a0e9d6",
+              "name": "Lista de municípios no estado informado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCidades",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "CdUF",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cdmunicipio\": \"string\",\n    \"cduf\": \"string\",\n    \"dsmunicipio\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  },\n  {\n    \"cdmunicipio\": \"string\",\n    \"cduf\": \"string\",\n    \"dsmunicipio\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "294b955f-6f46-4abf-87af-a58d49aa80c9",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCidades",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "CdUF",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16ddc592-6f96-47c8-9fec-7ec7e82eec06",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCidades",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "CdUF",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "230083d0-a715-4790-b149-5e4780ffc09b",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetCidades",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "CdUF",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f0ceed3-dbc0-40c6-a5b5-6972b4e9a366",
+          "name": "GetBairros",
+          "request": {
+            "name": "GetBairros",
+            "description": {
+              "content": "Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetBairros",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cdUF",
+                  "value": "<string>",
+                  "description": "(Required) UF do município selecionado."
+                },
+                {
+                  "disabled": false,
+                  "key": "cdCidade",
+                  "value": "<string>",
+                  "description": "(Required) Código do município (obtido, por exemplo, na lista de cidades)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33fca030-1cb5-473d-8922-8209f1692ab8",
+              "name": "Lista de bairros distintos.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBairros",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdCidade",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"dsbairro\": \"string\",\n    \"cdmunicipio\": \"string\",\n    \"cduf\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  },\n  {\n    \"dsbairro\": \"string\",\n    \"cdmunicipio\": \"string\",\n    \"cduf\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "673eee27-ba71-4d36-b94b-3f44d4ba84e8",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBairros",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdCidade",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "37affe9e-6856-4fb6-976b-3b4cd4423a94",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBairros",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdCidade",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1a5e007-a903-42f2-8ce7-40d68c93c07b",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetBairros",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cdCidade",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9d96fd7-413b-4496-841a-4f3034af9179",
+          "name": "GetRecursos",
+          "request": {
+            "name": "GetRecursos",
+            "description": {
+              "content": "Lista os **tipos de recurso** disponíveis para filtro (ex.: tipos de atendimento na rede), incluindo em muitos casos a opção **`TODOS`** para não restringir a busca.\n\nUtilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetRecursos",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "680f29f5-ce00-474e-9653-87ed616e222b",
+              "name": "Lista de tipos de recurso; pode incluir a opção `TODOS` para ampliar o filtro.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetRecursos",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"idtiporecurso\": \"string\",\n    \"dstiporecurso\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  },\n  {\n    \"idtiporecurso\": \"string\",\n    \"dstiporecurso\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"key_0\": 3654.216736511686\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f7e7f2c-2e1d-4947-9f8d-e01b5ba2d4a7",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetRecursos",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b9de037-4dfe-4f05-8042-cbb488db67a7",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetRecursos",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c97dd3c-5c2d-4046-8957-388a265aafc7",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetRecursos",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ee9e613-4d3d-4cf2-9601-4ac87d90dd48",
+          "name": "GetEspecialidade",
+          "request": {
+            "name": "GetEspecialidade",
+            "description": {
+              "content": "Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetEspecialidade",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cdUF",
+                  "value": "<string>",
+                  "description": "(Required) UF em que se deseja listar especialidades."
+                },
+                {
+                  "disabled": false,
+                  "key": "idTipoRecurso",
+                  "value": "<string>",
+                  "description": "(Required) Tipo de recurso desejado ou `TODOS` para considerar todos os tipos."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58b92f1f-3ff2-415c-b862-3ae5bd19e9f6",
+              "name": "Lista de especialidades, em geral ordenada para facilitar a escolha na interface.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEspecialidade",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idTipoRecurso",
+                      "value": "TODOS"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cdespecialidade\": \"string\",\n    \"dsespecialidade\": \"string\",\n    \"idtiporecurso\": \"string\",\n    \"cduf\": \"string\",\n    \"cdmatalternativa\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": 4670.390521312453\n  },\n  {\n    \"cdespecialidade\": \"string\",\n    \"dsespecialidade\": \"string\",\n    \"idtiporecurso\": \"string\",\n    \"cduf\": \"string\",\n    \"cdmatalternativa\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89ed824a-ad26-44f9-a065-352a07b3dc4b",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEspecialidade",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idTipoRecurso",
+                      "value": "TODOS"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebe299d9-b49f-4112-8dec-3928f437f1af",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEspecialidade",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idTipoRecurso",
+                      "value": "TODOS"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e572f464-2ddf-4ef2-957c-3d8577137167",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetEspecialidade",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cdUF",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idTipoRecurso",
+                      "value": "TODOS"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário para contextualizar a lista."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ee9d144-2cad-494d-8d8c-d95888969d77",
+    "name": "Clinic Agenda Agendamento Cadastros auxiliares API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

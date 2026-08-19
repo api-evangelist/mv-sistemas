@@ -1,0 +1,664 @@
+{
+  "item": [
+    {
+      "id": "54363dab-1313-4ca5-ae07-a0d0b811fd78",
+      "name": "Gestão de Beneficiários",
+      "description": {
+        "content": "Operações relacionadas ao cadastro de beneficiários.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c28bc6f8-d9d9-409c-b4f7-c6015c10e042",
+          "name": "Atualizar ou Incluir um Novo Beneficiário",
+          "request": {
+            "name": "Atualizar ou Incluir um Novo Beneficiário",
+            "description": {
+              "content": "<div> <p>O objeto <code>Person</code> é fundamental para o armazenamento das informações básicas referentes aos beneficiários. Ele representa a estrutura central utilizada para registrar e transmitir os dados necessários ao funcionamento da API, sendo projetado com flexibilidade para atender a diferentes cenários e integrações.</p> <hr> <p><strong>::: Obrigatoriedade de Campos</strong></p> <p>Atualmente, os únicos campos obrigatórios para o correto funcionamento da API são:</p> <ul> <li><strong>nome</strong>: Nome Completo do Beneficiário;</li> <li><strong>numeroDocumento</strong>: identificador único do beneficiário (como CPF ou outro documento válido); <ul> <li> <b> Atenção:</b> para CPF's enviar \"string\" com os Zeros à Esquerda, caso existam. <br> Isso é importante pois o campo <b> numeroDocumento </b> é utilizado para <b> diversos tipos de documento </b> de acordo com a necessidade dos consumidores da API. </li> </ul> </li> <li><strong>numeroCarteira</strong>: número da carteira de identificação do plano de saúde;</li> <li><strong>nomeCarteira</strong>: nome descrito na carteira do plano;</li> <li><strong>status</strong>: indica a situação atual do beneficiário, devendo conter os valores <code>\"active\"</code> ou <code>\"inactive\"</code>.</li> </ul> <p>Todos os demais campos presentes no objeto são opcionais e podem ser utilizados de acordo com a necessidade específica de cada consumidor da API. Essa abordagem garante maior versatilidade e adaptabilidade, permitindo que diferentes sistemas e fluxos de trabalho se integrem com facilidade à plataforma.</p> <p>Pode-se afirmar que esta é uma API de propósito amplo — ou seja, uma <em>“API coringa”</em> — desenvolvida para suportar múltiplos contextos de uso dentro do ecossistema da solução.</p> <p style=\"color: #d9534f; font-weight: bold;\">⚠️ <strong> Importante: </strong> </p> <p>Reforçando o ponto anterior, os campos adicionais definidos no objeto <code>Person</code> são opcionais. Sua utilização depende das demandas específicas de cada integração ou módulo da plataforma. Por isso, é altamente recomendável que os integradores ou usuários da API consultem a equipe de desenvolvimento antes de incluir dados adicionais.</p> <p>Essa consulta é essencial para garantir que:</p> <ol> <li>Apenas os atributos realmente relevantes sejam informados para a finalidade desejada;</li> <li>Haja clareza sobre quais módulos ou funcionalidades do sistema <strong>Global Health</strong> efetivamente consomem e dependem das informações enviadas.</li> </ol> <p>Essa prática contribui para uma integração mais eficiente, evitando o preenchimento desnecessário de campos e assegurando a consistência dos dados ao longo de todo o ecossistema da aplicação.</p> <hr> <p> <strong>::: Sobre criação automática de Carteiras no Personal Health</strong> </p>  <p>Nesse contexto, além dos campos obrigatórios citados anteriormente o consumidor da API deve também enviar os seguintes campos: </p> <ul> <li><strong>codigoConvenio</strong>: número associado geralmente ao campo CD_CONVENIO do Soul MV;</li> <li><strong>codigoPlanoConvenio</strong>: número associado geralmente ao campo CD_CON_PLA do Soul MV </ul> </div>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56abfb8f-7d74-4b37-b7ef-b53d456bb6ae",
+              "name": "<b>Operação realizada com sucesso</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fieldCount\": 0,\n  \"affectedRows\": 1,\n  \"insertId\": 12121212,\n  \"serverStatus\": 2,\n  \"warningCount\": 3,\n  \"message\": \"\",\n  \"protocol41\": true,\n  \"changedRows\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d561b03-afdc-4799-816a-d7e530c1a5d1",
+              "name": "<b>Bad Request</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"Error Message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64cbb63-3a5d-4aa4-b88d-500b81f7fc79",
+              "name": "<b>Forbidden</b> <br><br> Significa que o servidor entendeu a sua solicitação, mas não permite o acesso a um determinado recurso. <br> Verifique chaves de acesso e ambiente",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04649851-9ba3-4d56-acfc-39cba8004d6c",
+              "name": "<b>Unexpected Error</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unexpected Error Message\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b82477dc-a564-4176-8fdf-f68c9242b574",
+          "name": "Buscar Beneficiário por Número de Documento ou Número de Carteira do Convênio.",
+          "request": {
+            "name": "Buscar Beneficiário por Número de Documento ou Número de Carteira do Convênio.",
+            "description": {
+              "content": "Informe pelo menos um dos parâmetros para a busca.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "description": {
+                    "content": "Número de documento do Beneficiário:",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroDocumento",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Número do Cartão do Convênio do Beneficiário:",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroCarteira",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1faca483-c264-44cc-a988-5e6645b6aeb4",
+              "name": "<b>Operação realizada com sucesso</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "numeroDocumento",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55902e68-b27a-4ee9-a0a3-1f822a0fd70d",
+              "name": "<b>Não encontrado</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "numeroDocumento",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"Mensagem com detalhes do erro\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9121b6b5-e099-4272-a9c2-8d1d2156c76c",
+          "name": "Buscar Beneficiários por Número de Documento ou Número de Carteira do Convênio.",
+          "request": {
+            "name": "Buscar Beneficiários por Número de Documento ou Número de Carteira do Convênio.",
+            "description": {
+              "content": "Informe pelo menos um dos parâmetros para a busca.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "description": {
+                    "content": "Número da página (Iniciar com 0)",
+                    "type": "text/plain"
+                  },
+                  "key": "page",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Quantidade de itens por página",
+                    "type": "text/plain"
+                  },
+                  "key": "size",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Última data de atualização do registro. (yyyy-mm-dd)",
+                    "type": "text/plain"
+                  },
+                  "key": "lastUpdatedDate",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Número de documento do Beneficiário:",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroDocumento",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Número do Cartão do Convênio do Beneficiário:",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroCarteira",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e230673-bd83-4c72-8b69-b09f2ca87b48",
+              "name": "<b>Operação realizada com sucesso</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "size",
+                      "value": ""
+                    },
+                    {
+                      "key": "lastUpdatedDate",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroDocumento",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"numeroDocumento\": \"<string>\",\n  \"numeroCarteira\": \"<string>\",\n  \"nomeCarteira\": \"<string>\",\n  \"numeroCartaoNacionalDeSaude\": \"<string>\",\n  \"nome\": \"<string>\",\n  \"nomeSocial\": \"<string>\",\n  \"dataNascimento\": \"<string>\",\n  \"sexo\": \"<string>\",\n  \"email\": \"<string>\",\n  \"telefone\": \"<string>\",\n  \"nomeMae\": \"<string>\",\n  \"nomePai\": \"<string>\",\n  \"enderecoCEP\": \"<string>\",\n  \"enderecoNumero\": \"<string>\",\n  \"enderecoComplemento\": \"<string>\",\n  \"enderecoLogradouro\": \"<string>\",\n  \"enderecoBairro\": \"<string>\",\n  \"enderecoCidade\": \"<string>\",\n  \"enderecoUF\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoOperadora\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"produto\": \"<string>\",\n  \"codigoPlanoAns\": \"<string>\",\n  \"descricaoPlanoAns\": \"<string>\",\n  \"codigoEmpresa\": \"<string>\",\n  \"codigoPlanoPaciente\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09563f5d-ac0f-4469-bb72-508fb0edd2e5",
+              "name": "<b>Não encontrado</b>",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": ""
+                    },
+                    {
+                      "key": "size",
+                      "value": ""
+                    },
+                    {
+                      "key": "lastUpdatedDate",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroDocumento",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"Mensagem com detalhes do erro\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1248707-922e-418c-a60d-14676118668e",
+    "name": "Clinic Agenda Agendamento Gestão de Beneficiários API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

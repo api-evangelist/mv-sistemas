@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "aede8a9b-4985-418c-81d6-78588bd2844d",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc933662-5a4f-4edb-a5e1-0a4cf5a5548a",
+          "name": "Criar novo usuário",
+          "request": {
+            "name": "Criar novo usuário",
+            "description": {
+              "content": "Cria um novo usuário.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "personal-health",
+                "api",
+                "v1",
+                "user",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"<string>\",\n  \"password\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"phoneMobile\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"email\": \"<email>\",\n  \"birthDate\": \"<date>\",\n  \"clientKey\": \"<string>\",\n  \"product\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"documentUserDTO\": {\n    \"documentTypeDTO\": {\n      \"description\": \"<string>\"\n    },\n    \"number\": \"<string>\"\n  },\n  \"picture\": \"<uri>\",\n  \"subscriptionId\": \"<long>\",\n  \"socialName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29ddd2c5-9e2e-453b-af57-14e7191be817",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-health",
+                    "api",
+                    "v1",
+                    "user",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"admin@admin.com\",\n  \"password\": \"123@admin\",\n  \"firstName\": \"Adminstrato\",\n  \"phoneMobile\": \"5581994383222\",\n  \"gender\": \"M\",\n  \"email\": \"admin@admin.com\",\n  \"birthDate\": \"1980-10-01\",\n  \"clientKey\": \"MV\",\n  \"product\": \"CHECKIN\",\n  \"activated\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"documentUserDTO\": {\n    \"documentTypeDTO\": {\n      \"description\": \"CPF\"\n    },\n    \"number\": \"<string>\"\n  },\n  \"picture\": \"https://s3.amazonaws.com/checkin-bucket/users-photos/d812258dd0b94349a4f64fdc2ff65117.png\",\n  \"subscriptionId\": \"<long>\",\n  \"socialName\": \"João\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1a78221-f940-4463-993b-b2b110ed6520",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-health",
+                    "api",
+                    "v1",
+                    "user",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"admin@admin.com\",\n  \"password\": \"123@admin\",\n  \"firstName\": \"Adminstrato\",\n  \"phoneMobile\": \"5581994383222\",\n  \"gender\": \"M\",\n  \"email\": \"admin@admin.com\",\n  \"birthDate\": \"1980-10-01\",\n  \"clientKey\": \"MV\",\n  \"product\": \"CHECKIN\",\n  \"activated\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"documentUserDTO\": {\n    \"documentTypeDTO\": {\n      \"description\": \"CPF\"\n    },\n    \"number\": \"<string>\"\n  },\n  \"picture\": \"https://s3.amazonaws.com/checkin-bucket/users-photos/d812258dd0b94349a4f64fdc2ff65117.png\",\n  \"subscriptionId\": \"<long>\",\n  \"socialName\": \"João\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "445d1d74-f809-46f3-98ab-7b4b3afe22cc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-health",
+                    "api",
+                    "v1",
+                    "user",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"admin@admin.com\",\n  \"password\": \"123@admin\",\n  \"firstName\": \"Adminstrato\",\n  \"phoneMobile\": \"5581994383222\",\n  \"gender\": \"M\",\n  \"email\": \"admin@admin.com\",\n  \"birthDate\": \"1980-10-01\",\n  \"clientKey\": \"MV\",\n  \"product\": \"CHECKIN\",\n  \"activated\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"documentUserDTO\": {\n    \"documentTypeDTO\": {\n      \"description\": \"CPF\"\n    },\n    \"number\": \"<string>\"\n  },\n  \"picture\": \"https://s3.amazonaws.com/checkin-bucket/users-photos/d812258dd0b94349a4f64fdc2ff65117.png\",\n  \"subscriptionId\": \"<long>\",\n  \"socialName\": \"João\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "797c9a68-8a9c-4c45-96f1-7c3f1232f01e",
+              "name": "Failure",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "personal-health",
+                    "api",
+                    "v1",
+                    "user",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"admin@admin.com\",\n  \"password\": \"123@admin\",\n  \"firstName\": \"Adminstrato\",\n  \"phoneMobile\": \"5581994383222\",\n  \"gender\": \"M\",\n  \"email\": \"admin@admin.com\",\n  \"birthDate\": \"1980-10-01\",\n  \"clientKey\": \"MV\",\n  \"product\": \"CHECKIN\",\n  \"activated\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"documentUserDTO\": {\n    \"documentTypeDTO\": {\n      \"description\": \"CPF\"\n    },\n    \"number\": \"<string>\"\n  },\n  \"picture\": \"https://s3.amazonaws.com/checkin-bucket/users-photos/d812258dd0b94349a4f64fdc2ff65117.png\",\n  \"subscriptionId\": \"<long>\",\n  \"socialName\": \"João\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "283c93e6-06e6-40d9-9dac-6142f08bbfbb",
+    "name": "Clinic Agenda Agendamento User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "item": [
+    {
+      "id": "197772f8-e8db-4154-ac56-1604f631b02e",
+      "name": "Planos Obstétricos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dca6b25b-760e-48e4-bca2-27cbd3aaa787",
+          "name": "Consultar planos obstétricos.",
+          "request": {
+            "name": "Consultar planos obstétricos.",
+            "description": {
+              "content": "Endpoint utilizado para buscar planos obstétricos com base em filtros específicos, permitindo consultas direcionadas conforme os critérios informados",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "obstetric-plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "identificationNumber",
+                  "value": "<string>",
+                  "description": "CPF da gestante utilizado como critério de filtragem"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Número da página da consulta"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de registros por página"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Critério de ordenação dos resultados (ex.: name,asc ou date,desc)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7af28b3e-fab7-4688-a639-8d0168c06a36",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "obstetric-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2700,\n    \"identificationType\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"patientName\": \"string\",\n    \"employeeName\": \"string\",\n    \"dum\": \"1997-09-17T02:29:36.737Z\",\n    \"pregnancyRisk\": \"HABITUAL\",\n    \"comorbidities\": [\n      {\n        \"id\": 2626,\n        \"comorbidityName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"VALIDATED_BY_EMPLOYEE\",\n        \"statusPatient\": \"WAITING_VALIDATION\"\n      },\n      {\n        \"id\": 8282,\n        \"comorbidityName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"VALIDATED_BY_EMPLOYEE\",\n        \"statusPatient\": \"VALIDATED\"\n      }\n    ],\n    \"obstetricDiseases\": [\n      {\n        \"id\": 8621,\n        \"obstetricDiseasesName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"VALIDATED\",\n        \"statusPatient\": \"VALIDATED_BY_EMPLOYEE\"\n      },\n      {\n        \"id\": 3376,\n        \"obstetricDiseasesName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"WAITING_VALIDATION\",\n        \"statusPatient\": \"WAITING_VALIDATION\"\n      }\n    ]\n  },\n  {\n    \"id\": 4152,\n    \"identificationType\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"patientName\": \"string\",\n    \"employeeName\": \"string\",\n    \"dum\": \"1975-03-28T19:24:28.149Z\",\n    \"pregnancyRisk\": \"HABITUAL\",\n    \"comorbidities\": [\n      {\n        \"id\": 1506,\n        \"comorbidityName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"VALIDATED\",\n        \"statusPatient\": \"VALIDATED\"\n      },\n      {\n        \"id\": 6728,\n        \"comorbidityName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"WAITING_VALIDATION\",\n        \"statusPatient\": \"WAITING_VALIDATION\"\n      }\n    ],\n    \"obstetricDiseases\": [\n      {\n        \"id\": 9920,\n        \"obstetricDiseasesName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"WAITING_VALIDATION\",\n        \"statusPatient\": \"VALIDATED_BY_EMPLOYEE\"\n      },\n      {\n        \"id\": 691,\n        \"obstetricDiseasesName\": \"string\",\n        \"cid\": \"string\",\n        \"cidDescription\": \"string\",\n        \"statusMed\": \"VALIDATED_BY_EMPLOYEE\",\n        \"statusPatient\": \"WAITING_VALIDATION\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5e42622-e941-46fb-b32b-ad30c06ec918",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "obstetric-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53f78f27-8610-42ab-a88e-5890bc35e08c",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "obstetric-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72c7aeeb-bea5-4e1c-8c27-25007150c0ad",
+    "name": "Clinic Agenda Agendamento Planos Obstétricos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

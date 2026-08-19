@@ -1,0 +1,1096 @@
+{
+  "item": [
+    {
+      "id": "060774a3-d2ec-41cf-a07e-8953fe5c5844",
+      "name": "Regulação",
+      "description": {
+        "content": "Endpoints relacionados à regulação clínica",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "434e69e7-79bd-4303-8f69-9afc6f40a078",
+          "name": "Buscar regulações",
+          "request": {
+            "name": "Buscar regulações",
+            "description": {
+              "content": "Endpoint que retorna uma lista de regulações com base nos filtros informados, facilitando a localização de registros específicos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regulation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Página atual da listagem"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de registros por página"
+                },
+                {
+                  "disabled": false,
+                  "key": "procedureDescription",
+                  "value": "<string>",
+                  "description": "Descrição do procedimento"
+                },
+                {
+                  "disabled": false,
+                  "key": "ownCode",
+                  "value": "<string>",
+                  "description": "Código próprio do exame"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1013834c-774c-4c2c-bc3d-abbd6d2c8393",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "procedureDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ownCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"procedureDescription\": \"Hemograma completo\",\n    \"ownCode\": \"EX123\",\n    \"type\": \"LAB\"\n  },\n  {\n    \"id\": 1,\n    \"procedureDescription\": \"Hemograma completo\",\n    \"ownCode\": \"EX123\",\n    \"type\": \"LAB\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ad5afcd-1d39-4529-96bc-c9a2276cc6ba",
+              "name": "Operação não autorizada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "procedureDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ownCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4dbbdbe-6ba5-4c7c-9c18-821166f99245",
+              "name": "Proibido.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "procedureDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ownCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe8d5769-f380-436e-af95-36b1b8c4b64a",
+              "name": "Não encontrado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "procedureDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ownCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3071bf1-8667-4853-b12d-bc633b5bedc2",
+              "name": "Erro interno.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "procedureDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ownCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88479fa1-d953-4a71-bd69-cfac36b5b3ae",
+          "name": "Criar regulação",
+          "request": {
+            "name": "Criar regulação",
+            "description": {
+              "content": "Endpoint utilizado para criar uma nova regulação, registrando as informações necessárias no sistema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regulation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"term\": \"<string>\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"insuranceType\": \"<string>\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"<string>\",\n      \"categoryColor\": \"<string>\",\n      \"justificationDays\": \"<string>\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"insuranceType\": \"<string>\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"<string>\",\n      \"categoryColor\": \"<string>\",\n      \"justificationDays\": \"<string>\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7641e082-a966-4a89-ad97-268d1a108d44",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"procedureDescription\": \"Hemograma completo\",\n  \"ownCode\": \"EX123\",\n  \"type\": \"LAB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24db43a0-672c-4ff2-9180-10625206c6e7",
+              "name": "Operação não autorizada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1fe67db6-2452-4020-885d-085993121ab7",
+              "name": "Proibido.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ef7bdbd-d219-425b-8bac-f079ec014588",
+              "name": "Erro interno.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4978c106-b973-4c52-9e82-868f0ddea8af",
+          "name": "Buscar uma regulação específica pelo seu ID",
+          "request": {
+            "name": "Buscar uma regulação específica pelo seu ID",
+            "description": {
+              "content": "Endpoint que busca uma regulação específica pelo seu ID, retornando todos os detalhes do registro.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regulation",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c511f346-e624-4fd0-b299-93622658b891",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40d67454-4111-470e-891a-ad7212b3b22f",
+              "name": "Não encontrado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0466849-2d37-49db-9ac3-4d4eed3eb9a1",
+          "name": "Atualizar regulação",
+          "request": {
+            "name": "Atualizar regulação",
+            "description": {
+              "content": "Endpoint responsável por atualizar os dados de uma regulação existente, garantindo que as informações permaneçam corretas e atualizadas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regulation",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"<string>\",\n    \"term\": \"<string>\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"insuranceType\": \"<string>\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"<string>\",\n      \"categoryColor\": \"<string>\",\n      \"justificationDays\": \"<string>\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"insuranceType\": \"<string>\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"<string>\",\n      \"categoryColor\": \"<string>\",\n      \"justificationDays\": \"<string>\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2424054b-6e8e-486b-99e1-b0668eb90ae5",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab69342f-23aa-4028-9e70-10ed9b965e1e",
+              "name": "Não encontrado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientKey\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tuss\": {\n    \"id\": \"<integer>\",\n    \"code\": \"40304361\",\n    \"term\": \"Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)\"\n  },\n  \"ownCode\": \"<string>\",\n  \"procedureDescription\": \"<string>\",\n  \"gender\": \"M\",\n  \"doctorOrientation\": \"<string>\",\n  \"patientOrientation\": \"<string>\",\n  \"regulationHealthPlanList\": [\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"healthPlan\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Unimed Prata\",\n        \"ansCode\": \"185657\",\n        \"active\": true,\n        \"insuranceType\": \"ANS\",\n        \"picture\": \"<string>\",\n        \"maxExamsPerGuide\": \"<integer>\"\n      },\n      \"clinicalIndication\": \"<boolean>\",\n      \"restricted\": \"<boolean>\",\n      \"blocked\": \"<boolean>\",\n      \"reportRequired\": \"<boolean>\",\n      \"formId\": \"<integer>\",\n      \"formTitle\": \"<string>\",\n      \"hasConsentTerm\": \"<boolean>\",\n      \"categoryName\": \"Urgência\",\n      \"categoryColor\": \"#A9CA46\",\n      \"justificationDays\": \"5\",\n      \"consentTerm\": {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"term\": \"<string>\",\n        \"clientKey\": \"<string>\"\n      }\n    }\n  ],\n  \"laboratoryExamCode\": \"<string>\",\n  \"rxExamCode\": \"<string>\",\n  \"schedulingItemCode\": \"<string>\",\n  \"requiresJustification\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cc9a90a-6852-4afe-9a96-de49449e3042",
+          "name": "Deletar regulação",
+          "request": {
+            "name": "Deletar regulação",
+            "description": {
+              "content": "Endpoint utilizado para excluir uma regulação, removendo permanentemente o registro do sistema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "regulation",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ce5b5ce-2da0-42b1-8916-1aef067657e5",
+              "name": "Deletado com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64dbafc5-542d-4734-b868-6851dbdbd70c",
+              "name": "Não encontrado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "regulation",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3032c975-671a-4b98-bbaa-461b7693edcf",
+    "name": "Clinic Agenda Agendamento Regulação API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

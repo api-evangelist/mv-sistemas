@@ -1,0 +1,302 @@
+{
+  "item": [
+    {
+      "id": "8943a831-3002-405f-a0f6-61b50a902e19",
+      "name": "Attendance",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d268ce6b-8a94-42b1-8f77-1e7493773561",
+          "name": "Buscar atendimentos",
+          "request": {
+            "name": "Buscar atendimentos",
+            "description": {
+              "content": "Busca uma lista de atendimentos utilizando as opções de filtros disponíveis",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "attendance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Documento do paciente (ex: CPF)"
+                },
+                {
+                  "disabled": false,
+                  "key": "login",
+                  "value": "<string>",
+                  "description": "Login do paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status do atendimento"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Número da página (zero-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Quantidade de registros por página"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a18e5f79-6927-4990-842d-78b43e6bf8e7",
+              "name": "Lista de atendimentos retornada com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "12345678901"
+                    },
+                    {
+                      "key": "login",
+                      "value": "fulano@exemplo.com"
+                    },
+                    {
+                      "key": "status",
+                      "value": "VALID"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1890,\n    \"createdDate\": \"string\",\n    \"product\": \"string\",\n    \"ansCode\": \"string\",\n    \"dateOfBirth\": \"string\",\n    \"cidCode\": \"string\",\n    \"clientKey\": \"string\",\n    \"initDate\": \"string\",\n    \"endDate\": \"string\",\n    \"initDateMillis\": 259,\n    \"endDateMillis\": 8357,\n    \"integrationCode\": \"string\",\n    \"integrationSource\": \"string\",\n    \"status\": \"MISSING_CONFIGURATION\",\n    \"statusMessage\": \"string\",\n    \"type\": \"string\",\n    \"typeValue\": \"E\",\n    \"login\": \"string\",\n    \"operation\": \"string\",\n    \"establishmentId\": \"string\",\n    \"establishmentName\": \"string\",\n    \"establishmentCNES\": \"string\",\n    \"attendanceUnit\": \"string\",\n    \"service\": \"string\",\n    \"specialityName\": \"string\",\n    \"healthPractitioner\": \"string\",\n    \"accreditationNumber\": \"string\",\n    \"accreditation\": \"string\",\n    \"cidVersion\": \"string\",\n    \"cidDescription\": \"string\",\n    \"healthInsuranceId\": \"string\",\n    \"healthInsuranceName\": \"string\",\n    \"procedureType\": \"string\",\n    \"procedureId\": \"string\",\n    \"procedureDescription\": \"string\",\n    \"documentType\": \"string\",\n    \"documentId\": \"string\",\n    \"death\": true,\n    \"observation\": \"string\",\n    \"exams\": [\n      {\n        \"attendanceId\": 3753,\n        \"examIntegrationId\": \"string\",\n        \"examType\": \"I\",\n        \"examRequisitionId\": \"string\",\n        \"examRequisitionDate\": \"string\",\n        \"collectDate\": \"string\",\n        \"examResultDate\": \"string\",\n        \"healthInsuranceId\": \"string\",\n        \"healthInsuranceName\": \"string\",\n        \"ansCode\": \"string\",\n        \"attendanceUnit\": \"string\",\n        \"establishmentId\": \"string\",\n        \"establishmentCNES\": \"string\",\n        \"establishmentName\": \"string\",\n        \"orderingPhysician\": \"string\",\n        \"orderingPhysicianAccreditationNumber\": \"string\",\n        \"orderingPhysicianAccreditation\": \"string\",\n        \"reporterPhysician\": \"string\",\n        \"reporterPhysicianAccreditationNumber\": \"string\",\n        \"reporterPhysicianAccreditation\": \"string\",\n        \"examCode\": \"string\",\n        \"examLoincCode\": \"string\",\n        \"examTussCode\": \"string\",\n        \"examLoincMvCode\": \"string\",\n        \"examDescription\": \"string\",\n        \"examMethod\": \"string\",\n        \"examSpecimen\": \"string\",\n        \"accessNumber\": \"string\",\n        \"modality\": \"string\",\n        \"metadata\": \"string\",\n        \"resultUrl\": \"string\",\n        \"dicomUrl\": \"string\",\n        \"discard\": true,\n        \"resultUrlType\": \"string\"\n      },\n      {\n        \"attendanceId\": 7844,\n        \"examIntegrationId\": \"string\",\n        \"examType\": \"M\",\n        \"examRequisitionId\": \"string\",\n        \"examRequisitionDate\": \"string\",\n        \"collectDate\": \"string\",\n        \"examResultDate\": \"string\",\n        \"healthInsuranceId\": \"string\",\n        \"healthInsuranceName\": \"string\",\n        \"ansCode\": \"string\",\n        \"attendanceUnit\": \"string\",\n        \"establishmentId\": \"string\",\n        \"establishmentCNES\": \"string\",\n        \"establishmentName\": \"string\",\n        \"orderingPhysician\": \"string\",\n        \"orderingPhysicianAccreditationNumber\": \"string\",\n        \"orderingPhysicianAccreditation\": \"string\",\n        \"reporterPhysician\": \"string\",\n        \"reporterPhysicianAccreditationNumber\": \"string\",\n        \"reporterPhysicianAccreditation\": \"string\",\n        \"examCode\": \"string\",\n        \"examLoincCode\": \"string\",\n        \"examTussCode\": \"string\",\n        \"examLoincMvCode\": \"string\",\n        \"examDescription\": \"string\",\n        \"examMethod\": \"string\",\n        \"examSpecimen\": \"string\",\n        \"accessNumber\": \"string\",\n        \"modality\": \"string\",\n        \"metadata\": \"string\",\n        \"resultUrl\": \"string\",\n        \"dicomUrl\": \"string\",\n        \"discard\": true,\n        \"resultUrlType\": \"string\"\n      }\n    ],\n    \"surgeries\": [\n      {\n        \"surgeryDate\": \"string\",\n        \"surgeryWarningId\": \"string\",\n        \"surgeryId\": \"string\",\n        \"tussProcedureId\": \"string\",\n        \"surgeryDescription\": \"string\",\n        \"mainSurgeon\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"accreditation\": \"string\"\n      },\n      {\n        \"surgeryDate\": \"string\",\n        \"surgeryWarningId\": \"string\",\n        \"surgeryId\": \"string\",\n        \"tussProcedureId\": \"string\",\n        \"surgeryDescription\": \"string\",\n        \"mainSurgeon\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"accreditation\": \"string\"\n      }\n    ],\n    \"medicalRecords\": [\n      {\n        \"id\": 6346,\n        \"createdDate\": \"string\",\n        \"accreditation\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"healthProfessional\": \"string\",\n        \"medicalRecordFileName\": \"string\",\n        \"medicalRecordFile\": \"string\",\n        \"medicalRecordId\": \"string\",\n        \"medicalRecordName\": \"string\",\n        \"medicalRecordType\": \"string\",\n        \"medicalRecordCode\": \"string\",\n        \"healthProfessionalSharing\": \"string\",\n        \"personalHealthSharing\": \"string\",\n        \"signatureDate\": \"string\",\n        \"status\": \"string\",\n        \"statusMessage\": \"string\",\n        \"idObject\": \"string\"\n      },\n      {\n        \"id\": 6848,\n        \"createdDate\": \"string\",\n        \"accreditation\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"healthProfessional\": \"string\",\n        \"medicalRecordFileName\": \"string\",\n        \"medicalRecordFile\": \"string\",\n        \"medicalRecordId\": \"string\",\n        \"medicalRecordName\": \"string\",\n        \"medicalRecordType\": \"string\",\n        \"medicalRecordCode\": \"string\",\n        \"healthProfessionalSharing\": \"string\",\n        \"personalHealthSharing\": \"string\",\n        \"signatureDate\": \"string\",\n        \"status\": \"string\",\n        \"statusMessage\": \"string\",\n        \"idObject\": \"string\"\n      }\n    ],\n    \"records\": [\n      {\n        \"id\": 8902,\n        \"title\": \"string\",\n        \"urlRecord\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 832,\n        \"title\": \"string\",\n        \"urlRecord\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": 9747,\n    \"createdDate\": \"string\",\n    \"product\": \"string\",\n    \"ansCode\": \"string\",\n    \"dateOfBirth\": \"string\",\n    \"cidCode\": \"string\",\n    \"clientKey\": \"string\",\n    \"initDate\": \"string\",\n    \"endDate\": \"string\",\n    \"initDateMillis\": 121,\n    \"endDateMillis\": 5332,\n    \"integrationCode\": \"string\",\n    \"integrationSource\": \"string\",\n    \"status\": \"DISCARDED\",\n    \"statusMessage\": \"string\",\n    \"type\": \"string\",\n    \"typeValue\": \"A\",\n    \"login\": \"string\",\n    \"operation\": \"string\",\n    \"establishmentId\": \"string\",\n    \"establishmentName\": \"string\",\n    \"establishmentCNES\": \"string\",\n    \"attendanceUnit\": \"string\",\n    \"service\": \"string\",\n    \"specialityName\": \"string\",\n    \"healthPractitioner\": \"string\",\n    \"accreditationNumber\": \"string\",\n    \"accreditation\": \"string\",\n    \"cidVersion\": \"string\",\n    \"cidDescription\": \"string\",\n    \"healthInsuranceId\": \"string\",\n    \"healthInsuranceName\": \"string\",\n    \"procedureType\": \"string\",\n    \"procedureId\": \"string\",\n    \"procedureDescription\": \"string\",\n    \"documentType\": \"string\",\n    \"documentId\": \"string\",\n    \"death\": true,\n    \"observation\": \"string\",\n    \"exams\": [\n      {\n        \"attendanceId\": 3949,\n        \"examIntegrationId\": \"string\",\n        \"examType\": \"L\",\n        \"examRequisitionId\": \"string\",\n        \"examRequisitionDate\": \"string\",\n        \"collectDate\": \"string\",\n        \"examResultDate\": \"string\",\n        \"healthInsuranceId\": \"string\",\n        \"healthInsuranceName\": \"string\",\n        \"ansCode\": \"string\",\n        \"attendanceUnit\": \"string\",\n        \"establishmentId\": \"string\",\n        \"establishmentCNES\": \"string\",\n        \"establishmentName\": \"string\",\n        \"orderingPhysician\": \"string\",\n        \"orderingPhysicianAccreditationNumber\": \"string\",\n        \"orderingPhysicianAccreditation\": \"string\",\n        \"reporterPhysician\": \"string\",\n        \"reporterPhysicianAccreditationNumber\": \"string\",\n        \"reporterPhysicianAccreditation\": \"string\",\n        \"examCode\": \"string\",\n        \"examLoincCode\": \"string\",\n        \"examTussCode\": \"string\",\n        \"examLoincMvCode\": \"string\",\n        \"examDescription\": \"string\",\n        \"examMethod\": \"string\",\n        \"examSpecimen\": \"string\",\n        \"accessNumber\": \"string\",\n        \"modality\": \"string\",\n        \"metadata\": \"string\",\n        \"resultUrl\": \"string\",\n        \"dicomUrl\": \"string\",\n        \"discard\": false,\n        \"resultUrlType\": \"string\"\n      },\n      {\n        \"attendanceId\": 9970,\n        \"examIntegrationId\": \"string\",\n        \"examType\": \"L\",\n        \"examRequisitionId\": \"string\",\n        \"examRequisitionDate\": \"string\",\n        \"collectDate\": \"string\",\n        \"examResultDate\": \"string\",\n        \"healthInsuranceId\": \"string\",\n        \"healthInsuranceName\": \"string\",\n        \"ansCode\": \"string\",\n        \"attendanceUnit\": \"string\",\n        \"establishmentId\": \"string\",\n        \"establishmentCNES\": \"string\",\n        \"establishmentName\": \"string\",\n        \"orderingPhysician\": \"string\",\n        \"orderingPhysicianAccreditationNumber\": \"string\",\n        \"orderingPhysicianAccreditation\": \"string\",\n        \"reporterPhysician\": \"string\",\n        \"reporterPhysicianAccreditationNumber\": \"string\",\n        \"reporterPhysicianAccreditation\": \"string\",\n        \"examCode\": \"string\",\n        \"examLoincCode\": \"string\",\n        \"examTussCode\": \"string\",\n        \"examLoincMvCode\": \"string\",\n        \"examDescription\": \"string\",\n        \"examMethod\": \"string\",\n        \"examSpecimen\": \"string\",\n        \"accessNumber\": \"string\",\n        \"modality\": \"string\",\n        \"metadata\": \"string\",\n        \"resultUrl\": \"string\",\n        \"dicomUrl\": \"string\",\n        \"discard\": false,\n        \"resultUrlType\": \"string\"\n      }\n    ],\n    \"surgeries\": [\n      {\n        \"surgeryDate\": \"string\",\n        \"surgeryWarningId\": \"string\",\n        \"surgeryId\": \"string\",\n        \"tussProcedureId\": \"string\",\n        \"surgeryDescription\": \"string\",\n        \"mainSurgeon\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"accreditation\": \"string\"\n      },\n      {\n        \"surgeryDate\": \"string\",\n        \"surgeryWarningId\": \"string\",\n        \"surgeryId\": \"string\",\n        \"tussProcedureId\": \"string\",\n        \"surgeryDescription\": \"string\",\n        \"mainSurgeon\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"accreditation\": \"string\"\n      }\n    ],\n    \"medicalRecords\": [\n      {\n        \"id\": 226,\n        \"createdDate\": \"string\",\n        \"accreditation\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"healthProfessional\": \"string\",\n        \"medicalRecordFileName\": \"string\",\n        \"medicalRecordFile\": \"string\",\n        \"medicalRecordId\": \"string\",\n        \"medicalRecordName\": \"string\",\n        \"medicalRecordType\": \"string\",\n        \"medicalRecordCode\": \"string\",\n        \"healthProfessionalSharing\": \"string\",\n        \"personalHealthSharing\": \"string\",\n        \"signatureDate\": \"string\",\n        \"status\": \"string\",\n        \"statusMessage\": \"string\",\n        \"idObject\": \"string\"\n      },\n      {\n        \"id\": 4178,\n        \"createdDate\": \"string\",\n        \"accreditation\": \"string\",\n        \"accreditationNumber\": \"string\",\n        \"healthProfessional\": \"string\",\n        \"medicalRecordFileName\": \"string\",\n        \"medicalRecordFile\": \"string\",\n        \"medicalRecordId\": \"string\",\n        \"medicalRecordName\": \"string\",\n        \"medicalRecordType\": \"string\",\n        \"medicalRecordCode\": \"string\",\n        \"healthProfessionalSharing\": \"string\",\n        \"personalHealthSharing\": \"string\",\n        \"signatureDate\": \"string\",\n        \"status\": \"string\",\n        \"statusMessage\": \"string\",\n        \"idObject\": \"string\"\n      }\n    ],\n    \"records\": [\n      {\n        \"id\": 6371,\n        \"title\": \"string\",\n        \"urlRecord\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": 6521,\n        \"title\": \"string\",\n        \"urlRecord\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ffe6a4e-a5de-4fdc-a2ed-b98dcd4f9203",
+              "name": "Não autorizado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "12345678901"
+                    },
+                    {
+                      "key": "login",
+                      "value": "fulano@exemplo.com"
+                    },
+                    {
+                      "key": "status",
+                      "value": "VALID"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cccb45ce-5dfe-4a40-a4a8-de2dff39b27b",
+              "name": "Erro interno do servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "12345678901"
+                    },
+                    {
+                      "key": "login",
+                      "value": "fulano@exemplo.com"
+                    },
+                    {
+                      "key": "status",
+                      "value": "VALID"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c236f158-e2fd-46cd-b00f-b98c3931a21e",
+    "name": "Clinic Agenda Agendamento Attendance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

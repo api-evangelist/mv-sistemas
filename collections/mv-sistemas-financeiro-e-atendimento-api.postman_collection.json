@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "cc312693-aa6e-488e-9723-f19e53886125",
+      "name": "Financeiro e atendimento",
+      "description": {
+        "content": "Histórico de interações com o relacionamento (call center).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb64e08b-f988-4c0d-aa3d-05a4af031645",
+          "name": "GetHistoricoCallCenter",
+          "request": {
+            "name": "GetHistoricoCallCenter",
+            "description": {
+              "content": "Histórico de **interações com o relacionamento** (call center) **disponível para o beneficiário no aplicativo ou portal** — protocolos, fases, observações e datas, quando liberados pela operadora.\n\nA lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "GetHistoricoCallCenter",
+                ":numerocarteira"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "numerocarteira",
+                  "description": "(Required) Carteirinha do beneficiário cujo histórico será consultado."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86c65174-0fc9-4dfc-a2bd-942b8bac8790",
+              "name": "Lista de registros de histórico (pode ser vazia).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetHistoricoCallCenter",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário cujo histórico será consultado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"cdatendcallcenter\": \"string\",\n    \"dstipatendcallcenter\": \"string\",\n    \"dsfaseatendcallcenter\": \"string\",\n    \"cdfaseatendcallcenter\": \"string\",\n    \"dsconsideracaooperadora\": \"string\",\n    \"dtinicio\": \"string\",\n    \"cdtipatendcallcenter\": \"string\",\n    \"dssolicitacao\": \"string\",\n    \"dsobservacao\": \"string\",\n    \"dsresposta\": \"string\",\n    \"dtconclusao\": \"string\",\n    \"cdMatAlternativa\": \"string\",\n    \"cdMatricula\": \"string\"\n  },\n  {\n    \"cdatendcallcenter\": \"string\",\n    \"dstipatendcallcenter\": \"string\",\n    \"dsfaseatendcallcenter\": \"string\",\n    \"cdfaseatendcallcenter\": \"string\",\n    \"dsconsideracaooperadora\": \"string\",\n    \"dtinicio\": \"string\",\n    \"cdtipatendcallcenter\": \"string\",\n    \"dssolicitacao\": \"string\",\n    \"dsobservacao\": \"string\",\n    \"dsresposta\": \"string\",\n    \"dtconclusao\": \"string\",\n    \"cdMatAlternativa\": \"string\",\n    \"cdMatricula\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3594adc9-aea9-4696-93af-a6c37d41cc7c",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetHistoricoCallCenter",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário cujo histórico será consultado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8d7c4c2-bae2-4bfe-a6cd-ad704f6fcf0a",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetHistoricoCallCenter",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário cujo histórico será consultado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57c15c85-9ccc-48b6-be99-9e04d9d68ea6",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "GetHistoricoCallCenter",
+                    ":numerocarteira"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "numerocarteira",
+                      "description": "(Required) Carteirinha do beneficiário cujo histórico será consultado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e3324898-8605-49cf-84c3-c5c4970d4170",
+    "name": "Clinic Agenda Agendamento Financeiro e atendimento API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

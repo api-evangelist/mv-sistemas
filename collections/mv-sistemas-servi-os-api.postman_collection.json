@@ -1,0 +1,464 @@
+{
+  "item": [
+    {
+      "id": "997fd224-be37-4232-8f4d-2bd7a3a75391",
+      "name": "Serviços",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d3fe0e2-7a56-4b03-b300-df1fb22a3604",
+          "name": "Criar ou alterar dados de serviços.",
+          "request": {
+            "name": "Criar ou alterar dados de serviços.",
+            "description": {
+              "content": "Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<double>\",\n  \"passThroughValue\": \"<double>\",\n  \"clinicValue\": \"<double>\",\n  \"tuss\": {\n    \"id\": \"<long>\"\n  },\n  \"preparation\": \"<string>\",\n  \"returnTime\": \"<integer>\",\n  \"minAge\": \"<integer>\",\n  \"maxAge\": \"<integer>\",\n  \"duration\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"scheduleOnline\": \"<boolean>\",\n  \"insurances\": [\n    {\n      \"insurance\": \"\",\n      \"price\": \"<double>\",\n      \"passThroughValue\": \"<double>\",\n      \"clinicValue\": \"<double>\"\n    },\n    {\n      \"insurance\": \"\",\n      \"price\": \"<double>\",\n      \"passThroughValue\": \"<double>\",\n      \"clinicValue\": \"<double>\"\n    }\n  ],\n  \"financialAccount\": {\n    \"id\": \"<long>\"\n  },\n  \"returnService\": \"\",\n  \"segment\": \"\",\n  \"scheduled\": \"<boolean>\",\n  \"consentTermId\": \"<long>\",\n  \"consultationType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9484d38-0b9a-4125-be30-d9286c7fcb7d",
+              "name": "Serviço criado com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"externalId\": \"<string>\",\n  \"name\": \"Consulta clínica geral\",\n  \"price\": 100,\n  \"passThroughValue\": 60,\n  \"clinicValue\": 40,\n  \"tuss\": {\n    \"id\": 456\n  },\n  \"preparation\": \"Jejum de 8h\",\n  \"returnTime\": 30,\n  \"minAge\": 0,\n  \"maxAge\": 99,\n  \"duration\": 20,\n  \"gender\": \"ANY\",\n  \"activated\": true,\n  \"scheduleOnline\": true,\n  \"insurances\": [\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    },\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    }\n  ],\n  \"financialAccount\": {\n    \"id\": 123\n  },\n  \"returnService\": \"\",\n  \"segment\": \"\",\n  \"scheduled\": false,\n  \"consentTermId\": \"<long>\",\n  \"consultationType\": \"IN_PERSON\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1e7874b-6026-4c25-ab5b-9830b7dcfce3",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"externalId\": \"<string>\",\n  \"name\": \"Consulta clínica geral\",\n  \"price\": 100,\n  \"passThroughValue\": 60,\n  \"clinicValue\": 40,\n  \"tuss\": {\n    \"id\": 456\n  },\n  \"preparation\": \"Jejum de 8h\",\n  \"returnTime\": 30,\n  \"minAge\": 0,\n  \"maxAge\": 99,\n  \"duration\": 20,\n  \"gender\": \"ANY\",\n  \"activated\": true,\n  \"scheduleOnline\": true,\n  \"insurances\": [\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    },\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    }\n  ],\n  \"financialAccount\": {\n    \"id\": 123\n  },\n  \"returnService\": \"\",\n  \"segment\": \"\",\n  \"scheduled\": false,\n  \"consentTermId\": \"<long>\",\n  \"consultationType\": \"IN_PERSON\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8e56c6a-da24-4d49-8334-c7a12b32f208",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"externalId\": \"<string>\",\n  \"name\": \"Consulta clínica geral\",\n  \"price\": 100,\n  \"passThroughValue\": 60,\n  \"clinicValue\": 40,\n  \"tuss\": {\n    \"id\": 456\n  },\n  \"preparation\": \"Jejum de 8h\",\n  \"returnTime\": 30,\n  \"minAge\": 0,\n  \"maxAge\": 99,\n  \"duration\": 20,\n  \"gender\": \"ANY\",\n  \"activated\": true,\n  \"scheduleOnline\": true,\n  \"insurances\": [\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    },\n    {\n      \"insurance\": \"\",\n      \"price\": 31,\n      \"passThroughValue\": 31,\n      \"clinicValue\": 31\n    }\n  ],\n  \"financialAccount\": {\n    \"id\": 123\n  },\n  \"returnService\": \"\",\n  \"segment\": \"\",\n  \"scheduled\": false,\n  \"consentTermId\": \"<long>\",\n  \"consultationType\": \"IN_PERSON\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b68728a-e55d-446d-a385-89ff8766d01e",
+          "name": "Consultar serviços.",
+          "request": {
+            "name": "Consultar serviços.",
+            "description": {
+              "content": "Endpoint utilizado para criar ou atualizar serviços, permitindo o cadastro e manutenção dos procedimentos oferecidos pela clínica.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "ID externo"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscriptionId",
+                  "value": "<string>",
+                  "description": "(Required) ID da conta Clinic Connect"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8740538-d91a-46c9-bec7-d09de26deef7",
+              "name": "Lista de serviços retornada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 123,\n  \"name\": \"Consulta médica\",\n  \"price\": 100,\n  \"clinicValue\": 60,\n  \"activated\": true,\n  \"duration\": 30,\n  \"tuss\": {\n    \"id\": 123,\n    \"code\": \"10101012\",\n    \"term\": \"Consulta médica\",\n    \"description\": \"Descrição do serviço\",\n    \"tableCode\": \"A123\",\n    \"presentationValue\": \"R$ 50,00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f624ab1-a579-4eac-ae25-5b8cd4d0a9bf",
+              "name": "Parâmetros de filtro inválidos.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53abd42b-ca51-4a98-b36c-3091fa58730a",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a2f2494-3f81-4d66-afc3-ff208a2f0401",
+    "name": "Clinic Agenda Agendamento Serviços API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

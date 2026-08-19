@@ -1,0 +1,464 @@
+{
+  "item": [
+    {
+      "id": "4c226190-f5db-458d-8301-49202fc2dfea",
+      "name": "Clínicas",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae8f6a63-4ce7-4b09-90a4-0cab68f5e705",
+          "name": "Criar ou alterar dados da clínica.",
+          "request": {
+            "name": "Criar ou alterar dados da clínica.",
+            "description": {
+              "content": "Endpoint responsável por inserir ou atualizar os dados de uma clínica no sistema, garantindo que as informações cadastrais estejam sempre atualizadas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "clinics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"cnes\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"picture\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"additionalInformation\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76a5a1c0-95eb-4165-8bdc-6e488d849d0c",
+              "name": "Clínica cadastrada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"cnes\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"picture\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"additionalInformation\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7463,\n  \"name\": \"string\",\n  \"cnes\": \"string\",\n  \"identificationType\": \"string\",\n  \"identificationNumber\": \"string\",\n  \"phone\": \"string\",\n  \"mobile\": \"string\",\n  \"address\": \"string\",\n  \"addressNumber\": \"string\",\n  \"zipCode\": \"string\",\n  \"addressComplement\": \"string\",\n  \"city\": \"string\",\n  \"district\": \"string\",\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5b4caaf-5d21-4a1f-8025-c36f0d7b47d2",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"cnes\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"picture\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"additionalInformation\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d9e9129-588e-46dc-91aa-dd069c5613f7",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"cnes\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"picture\": \"<string>\",\n  \"activated\": \"<boolean>\",\n  \"additionalInformation\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ca1cc3f-05ca-441d-9dab-4fb52345150d",
+          "name": "Consultar clínicas.",
+          "request": {
+            "name": "Consultar clínicas.",
+            "description": {
+              "content": "Endpoint utilizado para consultar clínicas com base em filtros personalizados, possibilitando localizar unidades de acordo com os critérios desejados.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "clinics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "ID externo"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscriptionId",
+                  "value": "<string>",
+                  "description": "(Required) ID da conta Clinic Connect."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f9f860e-847c-43e2-aa79-22b0175bba5b",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3218,\n    \"name\": \"string\",\n    \"cnes\": \"string\",\n    \"identificationType\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"phone\": \"string\",\n    \"mobile\": \"string\",\n    \"address\": \"string\",\n    \"addressNumber\": \"string\",\n    \"zipCode\": \"string\",\n    \"addressComplement\": \"string\",\n    \"city\": \"string\",\n    \"district\": \"string\",\n    \"state\": \"string\"\n  },\n  {\n    \"id\": 2289,\n    \"name\": \"string\",\n    \"cnes\": \"string\",\n    \"identificationType\": \"string\",\n    \"identificationNumber\": \"string\",\n    \"phone\": \"string\",\n    \"mobile\": \"string\",\n    \"address\": \"string\",\n    \"addressNumber\": \"string\",\n    \"zipCode\": \"string\",\n    \"addressComplement\": \"string\",\n    \"city\": \"string\",\n    \"district\": \"string\",\n    \"state\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5237cdfe-1173-4d71-8a64-03abc690146a",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e8c7202-a323-4ff9-93f4-fc052a279fa8",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "clinics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2cccbd1f-4d1d-4d4a-8b0e-042bf66b2c68",
+    "name": "Clinic Agenda Agendamento Clínicas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

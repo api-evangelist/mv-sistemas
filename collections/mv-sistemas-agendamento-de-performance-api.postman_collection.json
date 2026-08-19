@@ -1,0 +1,888 @@
+{
+  "item": [
+    {
+      "id": "649fdc0f-fd30-4d07-966e-6f1ee35197f0",
+      "name": "Agendamento de performance",
+      "description": {
+        "content": "Listagem e filtros de Agendamento de performance",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6217b67e-0ee0-4743-979d-075496c044eb",
+          "name": "Listar Agendamento de performance",
+          "request": {
+            "name": "Listar Agendamento de performance",
+            "description": {
+              "content": "Retorna uma lista paginada de Agendamento de performance filtrada pelos parâmetros informados.\nOs filtros são opcionais; quando não informados, retorna todos os registros do cliente.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "performance-schedules",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "councilNumber",
+                  "value": "<string>",
+                  "description": "Número de registro no conselho profissional do médico"
+                },
+                {
+                  "disabled": false,
+                  "key": "cnes",
+                  "value": "<string>",
+                  "description": "CNES da clínica"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do PerformanceSchedule"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "External ID do PerformanceSchedule"
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty",
+                  "value": "<string>",
+                  "description": "Código da especialidade (termCode)"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Data inicial para filtrar (formato YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Data final para filtrar (formato YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "occupied",
+                  "value": "<boolean>",
+                  "description": "true = apenas ocupados (com Schedules), false = apenas disponíveis (sem Schedules), omitir = todos"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Número da página (zero-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Quantidade de itens por página"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Ordenação (ex. date,asc ou id,desc)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e04d41db-0db6-4c1d-a0c0-d4ce5c1ca0ac",
+              "name": "Lista paginada de Agendamento de performance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "councilNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cnes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "occupied",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"id\": 37,\n      \"provider\": {\n        \"name\": \"string\",\n        \"council\": {\n          \"council\": \"string\",\n          \"state\": \"string\",\n          \"number\": \"string\"\n        },\n        \"specialties\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"clinic\": {\n        \"name\": \"string\",\n        \"cnes\": \"string\",\n        \"address\": {\n          \"street\": \"string\",\n          \"number\": \"string\",\n          \"district\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zipCode\": \"string\",\n          \"complement\": \"string\"\n        }\n      },\n      \"date\": \"1989-12-29\",\n      \"startTime\": \"21:26:26.493Z\",\n      \"endTime\": \"21:49:52.797Z\",\n      \"externalId\": \"string\",\n      \"occupied\": true,\n      \"insurance\": {\n        \"ansCode\": \"string\",\n        \"number\": \"string\",\n        \"expirationDate\": \"string\",\n        \"newborn\": false\n      },\n      \"patient\": {\n        \"id\": 6666,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"socialName\": \"string\",\n        \"birthDate\": \"string\",\n        \"cellphone\": \"string\",\n        \"email\": \"string\",\n        \"identificationType\": \"string\",\n        \"identificationNumber\": \"string\",\n        \"gender\": \"string\",\n        \"mother\": \"string\",\n        \"observation\": \"string\",\n        \"address\": \"string\",\n        \"state\": \"string\",\n        \"city\": \"string\",\n        \"district\": \"string\",\n        \"zipCode\": \"string\",\n        \"addressComplement\": \"string\",\n        \"addressNumber\": \"string\"\n      },\n      \"schedulingStatus\": \"string\"\n    },\n    {\n      \"id\": 5625,\n      \"provider\": {\n        \"name\": \"string\",\n        \"council\": {\n          \"council\": \"string\",\n          \"state\": \"string\",\n          \"number\": \"string\"\n        },\n        \"specialties\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"clinic\": {\n        \"name\": \"string\",\n        \"cnes\": \"string\",\n        \"address\": {\n          \"street\": \"string\",\n          \"number\": \"string\",\n          \"district\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zipCode\": \"string\",\n          \"complement\": \"string\"\n        }\n      },\n      \"date\": \"1967-01-25\",\n      \"startTime\": \"16:44:09.074Z\",\n      \"endTime\": \"14:03:41.106Z\",\n      \"externalId\": \"string\",\n      \"occupied\": true,\n      \"insurance\": {\n        \"ansCode\": \"string\",\n        \"number\": \"string\",\n        \"expirationDate\": \"string\",\n        \"newborn\": false\n      },\n      \"patient\": {\n        \"id\": 361,\n        \"externalId\": \"string\",\n        \"name\": \"string\",\n        \"socialName\": \"string\",\n        \"birthDate\": \"string\",\n        \"cellphone\": \"string\",\n        \"email\": \"string\",\n        \"identificationType\": \"string\",\n        \"identificationNumber\": \"string\",\n        \"gender\": \"string\",\n        \"mother\": \"string\",\n        \"observation\": \"string\",\n        \"address\": \"string\",\n        \"state\": \"string\",\n        \"city\": \"string\",\n        \"district\": \"string\",\n        \"zipCode\": \"string\",\n        \"addressComplement\": \"string\",\n        \"addressNumber\": \"string\"\n      },\n      \"schedulingStatus\": \"string\"\n    }\n  ],\n  \"totalElements\": 2846,\n  \"totalPages\": 2870,\n  \"size\": 3381,\n  \"number\": 1966,\n  \"first\": true,\n  \"last\": true,\n  \"numberOfElements\": 5528,\n  \"empty\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44455255-b495-4b63-a2b2-a02178846df2",
+              "name": "Requisição inválida (ex. clientKey ausente)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "performance-schedules",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "councilNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cnes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "occupied",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"details\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6784\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42ede6cd-2326-4bc9-8fb4-8a85155d8faf",
+          "name": "Enviar informações de Agendamento de performance",
+          "request": {
+            "name": "Enviar informações de Agendamento de performance",
+            "description": {
+              "content": "Endpoint para enviar informações de disponibilidade de horário de um prestador de saúde.\nRecebe dados do prestador, clínica, data e horário da disponibilidade.\nRetorna um externalId que deve ser armazenado para rastreamento.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"provider\": {\n    \"name\": \"<string>\",\n    \"council\": {\n      \"council\": \"<string>\",\n      \"state\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    \"specialties\": [\n      \"<string>\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"<string>\",\n    \"cnes\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"number\": \"<string>\",\n      \"district\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"complement\": \"<string>\"\n    }\n  },\n  \"date\": \"<date>\",\n  \"startTime\": \"<time>\",\n  \"endTime\": \"<time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f1f4393-648b-4021-8bfd-ff74f4b659cb",
+              "name": "Integração realizada com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalId\": \"EXT-2026-001-12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "832a6ced-3f1d-497f-a4a3-1a735236aa34",
+              "name": "Requisição inválida",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Dados obrigatórios não fornecidos\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17ab1c1e-94b9-4956-870f-c8a3abcf158b",
+              "name": "Não autorizado - API Key inválida ou ausente",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"API Key inválida ou ausente\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9da714ed-5268-4f57-9d5d-5497e4bdde92",
+              "name": "Erro interno do servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Erro ao processar a requisição\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0b18b49-858b-4f52-ad6c-d6ba5cdcca02",
+          "name": "Cancelar Agendamento de performance",
+          "request": {
+            "name": "Cancelar Agendamento de performance",
+            "description": {
+              "content": "Endpoint para cancelar uma disponibilidade de horário previamente criada.\nEnvia os mesmos dados da criação mais o externalId recebido na criação.\nO externalId é obrigatório para identificar qual registro deve ser cancelado no sistema receptor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"provider\": {\n    \"name\": \"<string>\",\n    \"council\": {\n      \"council\": \"<string>\",\n      \"state\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    \"specialties\": [\n      \"<string>\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"<string>\",\n    \"cnes\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"number\": \"<string>\",\n      \"district\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"complement\": \"<string>\"\n    }\n  },\n  \"date\": \"<date>\",\n  \"startTime\": \"<time>\",\n  \"endTime\": \"<time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "13b7c7a5-8aa6-45f0-b8f0-88e3d63116a3",
+              "name": "Cancelamento realizado com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"externalId\": \"EXT-2026-001-12345\",\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Agendamento de performance cancelado com sucesso\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60382e9e-b912-4ba1-b4e9-f6eb8a126001",
+              "name": "Requisição inválida",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"externalId\": \"EXT-2026-001-12345\",\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"externalId é obrigatório para cancelamento\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e667193e-f715-4cc8-9454-40bd6460b4a0",
+              "name": "Não autorizado - API Key inválida ou ausente",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"externalId\": \"EXT-2026-001-12345\",\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"API Key inválida ou ausente\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dcdf6ba-f292-4744-a41f-2107205d03e9",
+              "name": "Agendamento de performance não encontrado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"externalId\": \"EXT-2026-001-12345\",\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Agendamento de performance com externalId informado não foi encontrado\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ebe8550-63d3-477b-8b27-742b4f32f2a2",
+              "name": "Erro interno do servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 123,\n  \"externalId\": \"EXT-2026-001-12345\",\n  \"provider\": {\n    \"name\": \"Dr. João Silva\",\n    \"council\": {\n      \"council\": \"CRM\",\n      \"state\": \"PE\",\n      \"number\": \"123456\"\n    },\n    \"specialties\": [\n      \"225110\",\n      \"225120\"\n    ]\n  },\n  \"clinic\": {\n    \"name\": \"Clínica Saúde Total\",\n    \"cnes\": \"1234567\",\n    \"address\": {\n      \"street\": \"Rua das Flores\",\n      \"number\": \"100\",\n      \"district\": \"Centro\",\n      \"city\": \"Recife\",\n      \"state\": \"PE\",\n      \"zipCode\": \"50000-000\",\n      \"complement\": \"Sala 201\"\n    }\n  },\n  \"date\": \"2026-01-27\",\n  \"startTime\": \"09:00:00\",\n  \"endTime\": \"10:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Erro ao processar a requisição\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8a25f393-27a3-482b-9f6d-7a3f535fbf35",
+    "name": "Clinic Agenda Agendamento Agendamento de performance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

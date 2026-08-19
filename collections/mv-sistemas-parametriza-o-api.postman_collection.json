@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "392f0b7a-c5af-4a43-97dd-51cbbbf2638c",
+      "name": "Parametrização",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45a1d44c-4b0d-4a8d-86f1-38a04a35e2ba",
+          "name": "find Loinc By Tuss Code",
+          "request": {
+            "name": "find Loinc By Tuss Code",
+            "description": {
+              "content": "Operação responsável por consultar parametrizações com base no código TUSS, retornando os dados vinculados ao procedimento informado.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "loincmv",
+                "bytuss",
+                ":tuss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tuss",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46825db4-b3ab-4d0d-a94b-9a328d28cd2f",
+              "name": "Loinc encontrado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "loincmv",
+                    "bytuss",
+                    ":tuss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tuss",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"examType\": \"string\",\n    \"loincCode\": \"string\",\n    \"activated\": false,\n    \"mvCode\": \"string\",\n    \"scheduled\": true,\n    \"examsType\": 5144,\n    \"preparation\": \"string\",\n    \"tuss_code\": \"string\",\n    \"tuss\": {\n      \"code\": \"string\",\n      \"tableCode\": \"string\",\n      \"term\": \"string\",\n      \"fabricatorReferences\": \"string\",\n      \"fabricator\": \"string\",\n      \"registerAnvisa\": \"string\",\n      \"riskClassification\": \"string\",\n      \"presentation\": \"string\",\n      \"laboratory\": \"string\",\n      \"initials\": \"string\",\n      \"detailsDescription\": \"string\",\n      \"groupName\": \"string\",\n      \"groupDescription\": \"string\",\n      \"terminology\": \"string\",\n      \"tussCode\": \"string\",\n      \"sendType\": \"string\",\n      \"fullPresentation\": \"string\"\n    },\n    \"specimen\": {\n      \"name\": \"string\",\n      \"activated\": false,\n      \"variation\": \"string\"\n    },\n    \"itemAgendamento\": [\n      {\n        \"itemAgendamentoId\": 9004,\n        \"exaLabId\": 8199,\n        \"exaRxId\": 2590,\n        \"checkin\": false\n      },\n      {\n        \"itemAgendamentoId\": 3043,\n        \"exaLabId\": 8688,\n        \"exaRxId\": 4710,\n        \"checkin\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"string\",\n    \"examType\": \"string\",\n    \"loincCode\": \"string\",\n    \"activated\": true,\n    \"mvCode\": \"string\",\n    \"scheduled\": true,\n    \"examsType\": 6454,\n    \"preparation\": \"string\",\n    \"tuss_code\": \"string\",\n    \"tuss\": {\n      \"code\": \"string\",\n      \"tableCode\": \"string\",\n      \"term\": \"string\",\n      \"fabricatorReferences\": \"string\",\n      \"fabricator\": \"string\",\n      \"registerAnvisa\": \"string\",\n      \"riskClassification\": \"string\",\n      \"presentation\": \"string\",\n      \"laboratory\": \"string\",\n      \"initials\": \"string\",\n      \"detailsDescription\": \"string\",\n      \"groupName\": \"string\",\n      \"groupDescription\": \"string\",\n      \"terminology\": \"string\",\n      \"tussCode\": \"string\",\n      \"sendType\": \"string\",\n      \"fullPresentation\": \"string\"\n    },\n    \"specimen\": {\n      \"name\": \"string\",\n      \"activated\": false,\n      \"variation\": \"string\"\n    },\n    \"itemAgendamento\": [\n      {\n        \"itemAgendamentoId\": 1862,\n        \"exaLabId\": 2816,\n        \"exaRxId\": 9528,\n        \"checkin\": false\n      },\n      {\n        \"itemAgendamentoId\": 1213,\n        \"exaLabId\": 3705,\n        \"exaRxId\": 1441,\n        \"checkin\": false\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "71f8999c-74e5-472a-918d-87e04f318d40",
+    "name": "Clinic Agenda Agendamento Parametrização API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Parametrização API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parametrização",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "findLoincByTussCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/loincmv/bytuss/:tuss",
+            "params": [
+              {
+                "name": "tuss",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Operação responsável por consultar parametrizações com base no código TUSS, retornando os dados vinculados ao procedimento informado."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

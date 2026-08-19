@@ -1,0 +1,701 @@
+{
+  "item": [
+    {
+      "id": "de324921-047a-4dd6-b37a-b4cb0cd52825",
+      "name": "Atendimento",
+      "description": {
+        "content": "Cadastro de atendimentos",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1558e3f7-7e46-4528-a3b6-b3fccd357619",
+          "name": "Cadastra um novo atendimento.",
+          "request": {
+            "name": "Cadastra um novo atendimento.",
+            "description": {
+              "content": "Endpoint responsável por cadastrar um novo atendimento, utilizando IDs externos para associar e registrar corretamente os dados vinculados ao paciente, prestador e demais informações do processo.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "attendance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"<string>\",\n  \"observation\": \"<string>\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"<string>\",\n  \"clinic\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"newborn\": \"<boolean>\"\n  },\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"<string>\",\n    \"cellphone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"address\": \"<string>\",\n    \"state\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"<string>\"\n  },\n  \"otc\": {\n    \"integraOTC\": \"<boolean>\",\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f717199f-fd61-4290-9c2f-0a028cd0ae59",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 10,\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"225120\",\n  \"observation\": \"Paciente com incomodo\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"clientKey\",\n  \"clinic\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"2030-01-01\",\n    \"newborn\": false\n  },\n  \"patient\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\",\n    \"name\": \"João\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"Maria\",\n    \"cellphone\": \"81911111111\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"CPF\",\n    \"identificationNumber\": \"11111111111\",\n    \"observation\": \"<string>\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"2000-01-01\",\n    \"address\": \"Rua Abc\",\n    \"state\": \"PE\",\n    \"city\": \"Recife\",\n    \"district\": \"Centro\",\n    \"zipCode\": \"52000000\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"80\"\n  },\n  \"otc\": {\n    \"integraOTC\": false,\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 10,\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"225120\",\n  \"observation\": \"Paciente com incomodo\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"clientKey\",\n  \"clinic\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"2030-01-01\",\n    \"newborn\": false\n  },\n  \"patient\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\",\n    \"name\": \"João\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"Maria\",\n    \"cellphone\": \"81911111111\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"CPF\",\n    \"identificationNumber\": \"11111111111\",\n    \"observation\": \"<string>\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"2000-01-01\",\n    \"address\": \"Rua Abc\",\n    \"state\": \"PE\",\n    \"city\": \"Recife\",\n    \"district\": \"Centro\",\n    \"zipCode\": \"52000000\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"80\"\n  },\n  \"otc\": {\n    \"integraOTC\": false,\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99c0f49e-efef-47f3-8517-5fb07a2f956f",
+              "name": "Entrada inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 10,\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"225120\",\n  \"observation\": \"Paciente com incomodo\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"clientKey\",\n  \"clinic\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"2030-01-01\",\n    \"newborn\": false\n  },\n  \"patient\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\",\n    \"name\": \"João\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"Maria\",\n    \"cellphone\": \"81911111111\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"CPF\",\n    \"identificationNumber\": \"11111111111\",\n    \"observation\": \"<string>\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"2000-01-01\",\n    \"address\": \"Rua Abc\",\n    \"state\": \"PE\",\n    \"city\": \"Recife\",\n    \"district\": \"Centro\",\n    \"zipCode\": \"52000000\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"80\"\n  },\n  \"otc\": {\n    \"integraOTC\": false,\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22e88e9c-5f90-4e46-9ba0-afeecb130adf",
+              "name": "Erro de validação dos dados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 10,\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"225120\",\n  \"observation\": \"Paciente com incomodo\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"clientKey\",\n  \"clinic\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"2030-01-01\",\n    \"newborn\": false\n  },\n  \"patient\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\",\n    \"name\": \"João\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"Maria\",\n    \"cellphone\": \"81911111111\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"CPF\",\n    \"identificationNumber\": \"11111111111\",\n    \"observation\": \"<string>\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"2000-01-01\",\n    \"address\": \"Rua Abc\",\n    \"state\": \"PE\",\n    \"city\": \"Recife\",\n    \"district\": \"Centro\",\n    \"zipCode\": \"52000000\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"80\"\n  },\n  \"otc\": {\n    \"integraOTC\": false,\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20476251-d04f-4f18-bf19-baad1f1a10e6",
+              "name": "Erro inesperado durante o processamento.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 10,\n  \"externalId\": \"<string>\",\n  \"termCbo\": \"225120\",\n  \"observation\": \"Paciente com incomodo\",\n  \"ehrTemplateId\": \"<long>\",\n  \"clientKey\": \"clientKey\",\n  \"clinic\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\"\n  },\n  \"insurance\": {\n    \"ansCode\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expirationDate\": \"2030-01-01\",\n    \"newborn\": false\n  },\n  \"patient\": {\n    \"id\": 10,\n    \"externalId\": \"<string>\",\n    \"name\": \"João\",\n    \"socialName\": \"<string>\",\n    \"mother\": \"Maria\",\n    \"cellphone\": \"81911111111\",\n    \"email\": \"<string>\",\n    \"identificationType\": \"CPF\",\n    \"identificationNumber\": \"11111111111\",\n    \"observation\": \"<string>\",\n    \"gender\": \"MALE\",\n    \"birthDate\": \"2000-01-01\",\n    \"address\": \"Rua Abc\",\n    \"state\": \"PE\",\n    \"city\": \"Recife\",\n    \"district\": \"Centro\",\n    \"zipCode\": \"52000000\",\n    \"addressComplement\": \"<string>\",\n    \"addressNumber\": \"80\"\n  },\n  \"otc\": {\n    \"integraOTC\": false,\n    \"cdConvenio\": \"<string>\",\n    \"cdPlano\": \"<string>\",\n    \"cdSubplano\": \"<string>\",\n    \"cdPacienteExterno\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bb4af14-3726-4523-bc2f-b939c51df186",
+          "name": "Consulta de atendimentos cadastrados.",
+          "request": {
+            "name": "Consulta de atendimentos cadastrados.",
+            "description": {
+              "content": "Endpoint utilizado para consultar atendimentos já cadastrados, permitindo recuperar informações com base em IDs externos associados aos registros.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "attendance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientKey",
+                  "value": "<string>",
+                  "description": "(Required) Identificação do cliente"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscription.id",
+                  "value": "<long>",
+                  "description": "ID da conta no Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscription.externalId",
+                  "value": "<string>",
+                  "description": "ID da conta no serviço do cliente, única por clientKey."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do atendimento no Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "ID do atendimento no serviço do cliente"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient.id",
+                  "value": "<long>",
+                  "description": "ID do paciente no Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient.externalId",
+                  "value": "<string>",
+                  "description": "ID do paciente no serviço do cliente"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5eaae15c-75f2-4624-9709-96c16826d7d2",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscription.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscription.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "patient.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"id\": 10,\n      \"externalId\": \"<string>\",\n      \"termCbo\": \"225120\",\n      \"observation\": \"Paciente com incomodo\",\n      \"ehrTemplateId\": \"<long>\",\n      \"clientKey\": \"clientKey\",\n      \"clinic\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\"\n      },\n      \"subscription\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\"\n      },\n      \"insurance\": {\n        \"ansCode\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expirationDate\": \"2030-01-01\",\n        \"newborn\": false\n      },\n      \"patient\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\",\n        \"name\": \"João\",\n        \"socialName\": \"<string>\",\n        \"mother\": \"Maria\",\n        \"cellphone\": \"81911111111\",\n        \"email\": \"<string>\",\n        \"identificationType\": \"CPF\",\n        \"identificationNumber\": \"11111111111\",\n        \"observation\": \"<string>\",\n        \"gender\": \"MALE\",\n        \"birthDate\": \"2000-01-01\",\n        \"address\": \"Rua Abc\",\n        \"state\": \"PE\",\n        \"city\": \"Recife\",\n        \"district\": \"Centro\",\n        \"zipCode\": \"52000000\",\n        \"addressComplement\": \"<string>\",\n        \"addressNumber\": \"80\"\n      },\n      \"otc\": {\n        \"integraOTC\": false,\n        \"cdConvenio\": \"<string>\",\n        \"cdPlano\": \"<string>\",\n        \"cdSubplano\": \"<string>\",\n        \"cdPacienteExterno\": \"<string>\"\n      }\n    },\n    {\n      \"id\": 10,\n      \"externalId\": \"<string>\",\n      \"termCbo\": \"225120\",\n      \"observation\": \"Paciente com incomodo\",\n      \"ehrTemplateId\": \"<long>\",\n      \"clientKey\": \"clientKey\",\n      \"clinic\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\"\n      },\n      \"subscription\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\"\n      },\n      \"insurance\": {\n        \"ansCode\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expirationDate\": \"2030-01-01\",\n        \"newborn\": false\n      },\n      \"patient\": {\n        \"id\": 10,\n        \"externalId\": \"<string>\",\n        \"name\": \"João\",\n        \"socialName\": \"<string>\",\n        \"mother\": \"Maria\",\n        \"cellphone\": \"81911111111\",\n        \"email\": \"<string>\",\n        \"identificationType\": \"CPF\",\n        \"identificationNumber\": \"11111111111\",\n        \"observation\": \"<string>\",\n        \"gender\": \"MALE\",\n        \"birthDate\": \"2000-01-01\",\n        \"address\": \"Rua Abc\",\n        \"state\": \"PE\",\n        \"city\": \"Recife\",\n        \"district\": \"Centro\",\n        \"zipCode\": \"52000000\",\n        \"addressComplement\": \"<string>\",\n        \"addressNumber\": \"80\"\n      },\n      \"otc\": {\n        \"integraOTC\": false,\n        \"cdConvenio\": \"<string>\",\n        \"cdPlano\": \"<string>\",\n        \"cdSubplano\": \"<string>\",\n        \"cdPacienteExterno\": \"<string>\"\n      }\n    }\n  ],\n  \"totalPages\": 9241,\n  \"totalElements\": 7028,\n  \"numberOfElements\": 5864\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d53f2e66-93bb-4623-98d0-9def5b6c1da4",
+              "name": "Dados informados são inválidos.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscription.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscription.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "patient.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ebcbf86-f2ce-4d7e-aeb7-44252a0dbe4d",
+              "name": "Erro de validação dos dados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscription.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscription.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "patient.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d49d543-866f-42fa-bf5c-99246b53560c",
+              "name": "Erro inesperado durante o processamento.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "attendance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscription.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscription.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient.id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "patient.externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9d427454-fd66-45e3-95a6-52fe6d38e519",
+    "name": "Clinic Agenda Agendamento Atendimento API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

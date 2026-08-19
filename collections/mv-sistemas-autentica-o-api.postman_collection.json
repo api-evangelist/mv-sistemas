@@ -1,0 +1,348 @@
+{
+  "item": [
+    {
+      "id": "edf12139-7b4d-4b5c-a953-76c52f4fc811",
+      "name": "Autenticação",
+      "description": {
+        "content": "Geração de token temporário para fluxos que exigem validação adicional.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "621a52c4-f706-47f3-82f6-f40301c63503",
+          "name": "PostGerarToken",
+          "request": {
+            "name": "PostGerarToken",
+            "description": {
+              "content": "Gera um **código de validação temporário** (token alfanumérico de **6 caracteres**) para o beneficiário e, opcionalmente, para um prestador vinculado — usado em fluxos que exigem confirmação rápida (ex.: chat, autosserviço).\n\nO token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Funcoes",
+                "PostGerarToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "134bd73b-b16a-49fe-aa26-1fa45056888b",
+              "name": "Token gerado com sucesso; utilize dentro do prazo de validade informado ou retornado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "PostGerarToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nrToken\": \"string\",\n  \"dtGeracao\": \"1993-05-12T05:28:59.530Z\",\n  \"dtValidade\": \"1997-01-05T11:02:14.953Z\",\n  \"key_0\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f444be8b-8197-41bd-9f4f-467c81df1737",
+              "name": "Requisição inválida ou falha de negócio (ex. beneficiário não encontrado para a carteira informada).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "PostGerarToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "860ea829-fea1-473f-9ed6-397ade3f6fbf",
+              "name": "Não autorizado (`x-api-key` ou política da API).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "PostGerarToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65b851ac-5f46-41a3-8116-0bbfcc03b5cf",
+              "name": "Beneficiário não localizado — quando a API expõe esse código em vez de 400.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "PostGerarToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dacf6469-e009-4aa2-8e6d-01090e878bad",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Funcoes",
+                    "PostGerarToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nrCarteira\": \"<string>\",\n  \"cdPrestador\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9eb35363-714f-4f1d-8fec-4fa2f067588e",
+    "name": "Clinic Agenda Agendamento Autenticação API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

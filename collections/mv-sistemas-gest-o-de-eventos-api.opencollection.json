@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Gestão de Eventos API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gestão de Eventos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "createEvent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Esta operação cria um evento de agendamento para check-in no sistema Global Health, registrando as informações necessárias para o controle do atendimento."
+        },
+        {
+          "info": {
+            "name": "getEvents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/events",
+            "params": [
+              {
+                "name": "unitCnes",
+                "value": "",
+                "type": "query",
+                "description": "CNES da Unidade"
+              },
+              {
+                "name": "startScheduleTime",
+                "value": "",
+                "type": "query",
+                "description": "Data no formato YYYY-MM-DD"
+              },
+              {
+                "name": "endScheduleTime",
+                "value": "",
+                "type": "query",
+                "description": "Data no formato YYYY-MM-DD"
+              },
+              {
+                "name": "documentNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número do Documento de um Paciente"
+              },
+              {
+                "name": "patientName",
+                "value": "",
+                "type": "query",
+                "description": "Nome de um Paciente"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query",
+                "description": "Tipos relacionados a Agendamentos de Consultas, Eventos para Check-in e agendamentos de exames de imagem."
+              }
+            ]
+          },
+          "docs": "Esta operação lista eventos de agendamento com base nos filtros informados, permitindo localizar registros conforme os critérios definidos."
+        },
+        {
+          "info": {
+            "name": "createEventWithMinimalInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/minimal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Esta operação cria um evento de agendamento com o conjunto mínimo de informações, ideal para cenários em que apenas os dados essenciais estão disponíveis no momento da criação."
+        },
+        {
+          "info": {
+            "name": "updateEventWithMinimalInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/minimal/:hashKey",
+            "params": [
+              {
+                "name": "hashKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Esta operação atualiza um evento de agendamento existente, mantendo as informações mínimas necessárias para garantir a consistência dos dados."
+        },
+        {
+          "info": {
+            "name": "createEventAppointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/event-appointment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Esta operação cria um novo evento de agendamento no sistema Global Health, registrando todas as informações exigidas pelo fluxo de agendamento."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Protocolo de reconhecimento API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Protocolo de reconhecimento",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obter os protocolos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/recognition-protocol",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página que deseja obter as informações. A página começa com 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade dos objetos de retorno que deseja receber. Sendo o máximo 100."
+              },
+              {
+                "name": "documentNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número do documento ao qual está cadastrado a face."
+              },
+              {
+                "name": "protocol",
+                "value": "",
+                "type": "query",
+                "description": "Protocolo gerado a partir de uma justificativa ou reconhecimento facial."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Data de inicio para a realização da busca."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Data final para a realização da busca."
+              }
+            ]
+          },
+          "docs": "Este endpoint realiza a busca dos protocolos de reconhecimento."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

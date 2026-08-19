@@ -1,0 +1,601 @@
+{
+  "item": [
+    {
+      "id": "022b6d4e-e7c3-485f-8fc4-ee1825787f14",
+      "name": "Auditoria",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aae473ab-0847-4ae0-8e35-8c9ccc383951",
+          "name": "Lista dados de auditoria por paciente (API Gateway)",
+          "request": {
+            "name": "Lista dados de auditoria por paciente (API Gateway)",
+            "description": {
+              "content": "Retorna uma **lista paginada** em que cada item agrega, por **atendimento**, os dados relevantes para auditoria: pedidos de exame, internações, guias, documentos, termos e vínculos associados. É o ponto de entrada recomendado quando a chamada passa pelo **API Global Health** (homologação ou produção).\n\n**Casos de uso típicos:** conferência de carteira, relatórios de auditoria, checagem de guias e documentação, e integrações que precisam da mesma visão unificada sem acessar o backend da clínica diretamente.\n\n::: Identificação do paciente (obrigatório)\n\nInforme **pelo menos um** dos parâmetros abaixo (ambos podem ser enviados se fizer sentido):\n\n- **insuranceNumber** — número da carteirinha do plano;\n- **identificationNumber** — CPF, CNPJ ou outro documento de identificação usado na integração.\n\n**CPF:** envie sempre como **string**, **preservando zeros à esquerda** conforme o documento, para evitar falhas de busca.\n\nParâmetros **opcionais:** **onlyAnesthesic** (restringe ao fluxo de ficha pré-anestésica) e **sort** (critério de ordenação).\n\n::: Paginação e limites\n\nUse **page** (base 0) e **size**. **Máximo de 50 itens** por página. Limite de **2 requisições por segundo** por consumidor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "procedure-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "insuranceNumber",
+                  "value": "<string>",
+                  "description": "Número da carteirinha (obrigatório se `identificationNumber` não for enviado)."
+                },
+                {
+                  "disabled": false,
+                  "key": "identificationNumber",
+                  "value": "<string>",
+                  "description": "CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado)."
+                },
+                {
+                  "disabled": false,
+                  "key": "onlyAnesthesic",
+                  "value": "false",
+                  "description": "Se `true`, retorna apenas o fluxo de ficha pré-anestésica."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Número da página (iniciando em 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de itens por página (máximo 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Critério de ordenação dos resultados, opcional."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92ce5af7-e325-4a30-91cb-a6067eee9508",
+              "name": "Sucesso — página de registros de auditoria (por atendimento), no formato Spring Data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "procedure-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"attendance\": {\n        \"id\": 1645,\n        \"createdDate\": \"2003-05-15T13:35:03.294Z\",\n        \"createdBy\": \"string\",\n        \"status\": \"string\",\n        \"clinicId\": 7457,\n        \"clinicName\": \"string\",\n        \"employeeId\": 659,\n        \"employeeName\": \"string\",\n        \"employeeAcreditation\": \"string\",\n        \"patientId\": 7134,\n        \"patientName\": \"string\",\n        \"insuranceId\": 8957,\n        \"insuranceName\": \"string\"\n      },\n      \"examRequests\": [\n        {\n          \"id\": 4280,\n          \"createdDate\": \"1990-05-16T03:11:26.671Z\",\n          \"deleted\": true,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 2610,\n          \"examId\": 6127,\n          \"quantity\": 7690,\n          \"requestType\": \"string\",\n          \"loincMvId\": 5566,\n          \"healthQuestionnaireReplyId\": 5132,\n          \"healthQuestionnaireId\": 137,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 3354,\n          \"consentTermId\": 9457,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        },\n        {\n          \"id\": 6874,\n          \"createdDate\": \"1995-08-12T10:04:16.937Z\",\n          \"deleted\": false,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 5348,\n          \"examId\": 3899,\n          \"quantity\": 2990,\n          \"requestType\": \"string\",\n          \"loincMvId\": 9906,\n          \"healthQuestionnaireReplyId\": 1960,\n          \"healthQuestionnaireId\": 3882,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 7150,\n          \"consentTermId\": 8336,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        }\n      ],\n      \"examRequestsDocuments\": [\n        {\n          \"id\": 2334,\n          \"attendanceId\": 363,\n          \"segmentId\": 2497,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 6068,\n          \"attendanceId\": 5635,\n          \"segmentId\": 6277,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        }\n      ],\n      \"hospitalizationsDocuments\": [\n        {\n          \"id\": 1477,\n          \"attendanceId\": 6101,\n          \"segmentId\": 9952,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 4769,\n          \"attendanceId\": 7838,\n          \"segmentId\": 764,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        }\n      ],\n      \"guias\": [\n        {\n          \"attendanceId\": 1871,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"attendanceId\": 2659,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"attendance\": {\n        \"id\": 2564,\n        \"createdDate\": \"1959-06-25T09:45:27.154Z\",\n        \"createdBy\": \"string\",\n        \"status\": \"string\",\n        \"clinicId\": 4818,\n        \"clinicName\": \"string\",\n        \"employeeId\": 7056,\n        \"employeeName\": \"string\",\n        \"employeeAcreditation\": \"string\",\n        \"patientId\": 6533,\n        \"patientName\": \"string\",\n        \"insuranceId\": 5460,\n        \"insuranceName\": \"string\"\n      },\n      \"examRequests\": [\n        {\n          \"id\": 2564,\n          \"createdDate\": \"1958-01-31T05:42:56.075Z\",\n          \"deleted\": false,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 1546,\n          \"examId\": 4854,\n          \"quantity\": 2959,\n          \"requestType\": \"string\",\n          \"loincMvId\": 4105,\n          \"healthQuestionnaireReplyId\": 8379,\n          \"healthQuestionnaireId\": 8468,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 4353,\n          \"consentTermId\": 5704,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        },\n        {\n          \"id\": 3373,\n          \"createdDate\": \"1954-12-22T18:51:06.689Z\",\n          \"deleted\": false,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 9267,\n          \"examId\": 8824,\n          \"quantity\": 5207,\n          \"requestType\": \"string\",\n          \"loincMvId\": 6624,\n          \"healthQuestionnaireReplyId\": 1805,\n          \"healthQuestionnaireId\": 6758,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 8798,\n          \"consentTermId\": 6888,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        }\n      ],\n      \"examRequestsDocuments\": [\n        {\n          \"id\": 6495,\n          \"attendanceId\": 1190,\n          \"segmentId\": 4162,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 5314,\n          \"attendanceId\": 5779,\n          \"segmentId\": 1009,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        }\n      ],\n      \"hospitalizationsDocuments\": [\n        {\n          \"id\": 4143,\n          \"attendanceId\": 8489,\n          \"segmentId\": 670,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 401,\n          \"attendanceId\": 6681,\n          \"segmentId\": 6413,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        }\n      ],\n      \"guias\": [\n        {\n          \"attendanceId\": 1422,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"attendanceId\": 2846,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"totalElements\": 5636,\n  \"totalPages\": 7299,\n  \"size\": 7980,\n  \"number\": 720,\n  \"first\": false,\n  \"last\": false,\n  \"numberOfElements\": 4087,\n  \"empty\": true,\n  \"pageable\": {},\n  \"sort\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b52d2eb-ac59-4037-a7ee-9438ee8bbc53",
+              "name": "Parâmetros inválidos (ex. ausência de insuranceNumber e identificationNumber).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "procedure-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54db0925-cddc-48de-a11b-cada76130077",
+              "name": "API key inválida ou ausente (API Gateway).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "procedure-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e94c9db6-0b73-4168-8ffa-22a34681caaf",
+              "name": "Erro interno.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "procedure-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0943ce19-8150-4097-90a5-633324e398cb",
+          "name": "Lista dados de auditoria por paciente (clinic-service)",
+          "request": {
+            "name": "Lista dados de auditoria por paciente (clinic-service)",
+            "description": {
+              "content": "Mesmo **contrato de resposta** que `GET /v1/procedure-request` no API Gateway, porém exposto pelo **serviço da clínica** (ex.: context-path `/clinic-service`). Use quando a integração deve conversar **diretamente** com o backend Clinic, sem tráfego pelo gateway público Global Health.\n\n::: Autenticação\n\nEnvie a **clientKey** configurada para o ambiente. Conforme a política do servidor, pode ser necessário também **`Authorization: Bearer`** — alinhe com o time de infraestrutura da clínica.\n\n::: Parâmetros e limites\n\nMesmas regras do endpoint via gateway: **insuranceNumber** ou **identificationNumber** (ao menos um); CPF como string com zeros à esquerda; **page**, **size** (máx. 50), **sort** e **onlyAnesthesic**; **2 requisições por segundo**.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clinic",
+                "v1",
+                "patient-audit-health-data"
+              ],
+              "host": [
+                "{{clinic-v1-patient-audit-health-data-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "insuranceNumber",
+                  "value": "<string>",
+                  "description": "Número da carteirinha (obrigatório se `identificationNumber` não for enviado)."
+                },
+                {
+                  "disabled": false,
+                  "key": "identificationNumber",
+                  "value": "<string>",
+                  "description": "CPF, CNPJ ou documento do paciente (obrigatório se `insuranceNumber` não for enviado)."
+                },
+                {
+                  "disabled": false,
+                  "key": "onlyAnesthesic",
+                  "value": "false",
+                  "description": "Se `true`, retorna apenas o fluxo de ficha pré-anestésica."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Número da página (iniciando em 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de itens por página (máximo 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Critério de ordenação dos resultados, opcional."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7673f28e-940b-4611-a6ea-c4c5f0175e90",
+              "name": "Sucesso — mesmo schema de conteúdo que `GET /v1/procedure-request` no gateway.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clinic",
+                    "v1",
+                    "patient-audit-health-data"
+                  ],
+                  "host": [
+                    "{{clinic-v1-patient-audit-health-data-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"attendance\": {\n        \"id\": 1923,\n        \"createdDate\": \"2000-11-05T03:22:57.712Z\",\n        \"createdBy\": \"string\",\n        \"status\": \"string\",\n        \"clinicId\": 6475,\n        \"clinicName\": \"string\",\n        \"employeeId\": 913,\n        \"employeeName\": \"string\",\n        \"employeeAcreditation\": \"string\",\n        \"patientId\": 605,\n        \"patientName\": \"string\",\n        \"insuranceId\": 2579,\n        \"insuranceName\": \"string\"\n      },\n      \"examRequests\": [\n        {\n          \"id\": 8510,\n          \"createdDate\": \"2009-12-13T05:46:08.299Z\",\n          \"deleted\": false,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 1465,\n          \"examId\": 3888,\n          \"quantity\": 2005,\n          \"requestType\": \"string\",\n          \"loincMvId\": 958,\n          \"healthQuestionnaireReplyId\": 4413,\n          \"healthQuestionnaireId\": 3534,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 9188,\n          \"consentTermId\": 6884,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        },\n        {\n          \"id\": 1012,\n          \"createdDate\": \"2009-01-15T02:51:18.107Z\",\n          \"deleted\": true,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 933,\n          \"examId\": 6679,\n          \"quantity\": 919,\n          \"requestType\": \"string\",\n          \"loincMvId\": 3322,\n          \"healthQuestionnaireReplyId\": 1038,\n          \"healthQuestionnaireId\": 3312,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 2908,\n          \"consentTermId\": 3496,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        }\n      ],\n      \"examRequestsDocuments\": [\n        {\n          \"id\": 7892,\n          \"attendanceId\": 841,\n          \"segmentId\": 8071,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 9850,\n          \"attendanceId\": 4628,\n          \"segmentId\": 8095,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        }\n      ],\n      \"hospitalizationsDocuments\": [\n        {\n          \"id\": 240,\n          \"attendanceId\": 8819,\n          \"segmentId\": 3812,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 3724,\n          \"attendanceId\": 3632,\n          \"segmentId\": 1892,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        }\n      ],\n      \"guias\": [\n        {\n          \"attendanceId\": 758,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"attendanceId\": 7598,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"attendance\": {\n        \"id\": 6000,\n        \"createdDate\": \"2023-10-08T09:29:05.438Z\",\n        \"createdBy\": \"string\",\n        \"status\": \"string\",\n        \"clinicId\": 3730,\n        \"clinicName\": \"string\",\n        \"employeeId\": 5496,\n        \"employeeName\": \"string\",\n        \"employeeAcreditation\": \"string\",\n        \"patientId\": 1870,\n        \"patientName\": \"string\",\n        \"insuranceId\": 6218,\n        \"insuranceName\": \"string\"\n      },\n      \"examRequests\": [\n        {\n          \"id\": 1094,\n          \"createdDate\": \"1967-09-23T19:32:59.908Z\",\n          \"deleted\": true,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 5115,\n          \"examId\": 715,\n          \"quantity\": 8328,\n          \"requestType\": \"string\",\n          \"loincMvId\": 8742,\n          \"healthQuestionnaireReplyId\": 5909,\n          \"healthQuestionnaireId\": 1138,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 280,\n          \"consentTermId\": 3497,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        },\n        {\n          \"id\": 2139,\n          \"createdDate\": \"2000-01-30T20:28:40.682Z\",\n          \"deleted\": true,\n          \"exame\": \"string\",\n          \"recommendation\": \"string\",\n          \"justification\": \"string\",\n          \"clinicalIndication\": \"string\",\n          \"medicalRecordId\": 817,\n          \"examId\": 4597,\n          \"quantity\": 6895,\n          \"requestType\": \"string\",\n          \"loincMvId\": 2652,\n          \"healthQuestionnaireReplyId\": 6543,\n          \"healthQuestionnaireId\": 5693,\n          \"consentTermStatus\": \"string\",\n          \"sentConsentTermId\": 578,\n          \"consentTermId\": 3991,\n          \"tussCode\": \"string\",\n          \"tussDescription\": \"string\"\n        }\n      ],\n      \"examRequestsDocuments\": [\n        {\n          \"id\": 3243,\n          \"attendanceId\": 2284,\n          \"segmentId\": 8491,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 5067,\n          \"attendanceId\": 7128,\n          \"segmentId\": 2930,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        }\n      ],\n      \"hospitalizationsDocuments\": [\n        {\n          \"id\": 6670,\n          \"attendanceId\": 6486,\n          \"segmentId\": 2484,\n          \"segmentName\": \"string\",\n          \"signed\": true,\n          \"document\": \"string\"\n        },\n        {\n          \"id\": 1402,\n          \"attendanceId\": 6432,\n          \"segmentId\": 5255,\n          \"segmentName\": \"string\",\n          \"signed\": false,\n          \"document\": \"string\"\n        }\n      ],\n      \"guias\": [\n        {\n          \"attendanceId\": 2348,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"attendanceId\": 2062,\n          \"formNumber\": \"string\",\n          \"ansNumber\": \"string\",\n          \"insuranceNumber\": \"string\",\n          \"insuranceFormNumber\": \"string\",\n          \"passwordAuthorization\": \"string\",\n          \"procedures\": [\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"procedureTerm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"procedureCode\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"laudoLink\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"totalElements\": 2304,\n  \"totalPages\": 5863,\n  \"size\": 2477,\n  \"number\": 2579,\n  \"first\": false,\n  \"last\": false,\n  \"numberOfElements\": 664,\n  \"empty\": true,\n  \"pageable\": {},\n  \"sort\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "146bbb35-e990-4f56-bc76-e971a0ea4cb5",
+              "name": "Ex. `clientKey` obrigatório não informado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clinic",
+                    "v1",
+                    "patient-audit-health-data"
+                  ],
+                  "host": [
+                    "{{clinic-v1-patient-audit-health-data-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "insuranceNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyAnesthesic",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "http://localhost:8082/clinic-service",
+      "key": "clinic-v1-patient-audit-health-data-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40374d82-4644-42ea-a2cd-13e440a076ec",
+    "name": "Clinic Agenda Agendamento Auditoria API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1331 @@
+{
+  "item": [
+    {
+      "id": "face6cd0-1855-468d-ac59-687a27b65214",
+      "name": "Compartilhamento de Dados",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81eb7755-ba96-49d0-91af-3b35cb770af8",
+          "name": "Criar uma nova requisição de compartilhamento de dados.",
+          "request": {
+            "name": "Criar uma nova requisição de compartilhamento de dados.",
+            "description": {
+              "content": "Endpoint responsável por criar uma nova requisição de compartilhamento de dados do paciente, iniciando o processo de autorização entre as partes envolvidas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"requesterUnity\": \"<string>\",\n  \"requesterId\": \"<string>\",\n  \"requesterDocumentNumber\": \"<string>\",\n  \"requesterLabel\": \"<string>\",\n  \"requesterPicture\": \"<string>\",\n  \"cellphone\": \"<string>\",\n  \"startDate\": \"<date-time>\",\n  \"endDate\": \"<date-time>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b1dcc98-f5db-4670-b910-7e4f156f0b60",
+              "name": "Requisição criada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"identificationType\": \"CPF\",\n  \"requesterUnity\": \"Clínica Vida\",\n  \"requesterId\": \"100\",\n  \"requesterDocumentNumber\": \"11111111111\",\n  \"requesterLabel\": \"Dr. João da Silva\",\n  \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n  \"cellphone\": \"5511987654321\",\n  \"startDate\": \"<date-time>\",\n  \"endDate\": \"<date-time>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7629,\n  \"status\": \"ACCEPTED\",\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"identificationType\": \"CPF\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\",\n  \"requesterLabel\": \"Dr. João da Silva\",\n  \"requesterUnity\": \"Clínica Vida\",\n  \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n  \"cellphone\": \"5511987654321\",\n  \"requestDate\": 761,\n  \"startDate\": 2169,\n  \"endDate\": 6407,\n  \"notified\": true,\n  \"clientKey\": \"clinic-001\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18ddab2c-6b76-44e5-8706-aed35617dfb3",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"identificationType\": \"CPF\",\n  \"requesterUnity\": \"Clínica Vida\",\n  \"requesterId\": \"100\",\n  \"requesterDocumentNumber\": \"11111111111\",\n  \"requesterLabel\": \"Dr. João da Silva\",\n  \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n  \"cellphone\": \"5511987654321\",\n  \"startDate\": \"<date-time>\",\n  \"endDate\": \"<date-time>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4ed2331-279d-45bb-894f-f540f21deda6",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"identificationType\": \"CPF\",\n  \"requesterUnity\": \"Clínica Vida\",\n  \"requesterId\": \"100\",\n  \"requesterDocumentNumber\": \"11111111111\",\n  \"requesterLabel\": \"Dr. João da Silva\",\n  \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n  \"cellphone\": \"5511987654321\",\n  \"startDate\": \"<date-time>\",\n  \"endDate\": \"<date-time>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b4fa890-367c-4242-8f05-0dba21c1fefb",
+          "name": "Consultar as requisições de compartilhamento.",
+          "request": {
+            "name": "Consultar as requisições de compartilhamento.",
+            "description": {
+              "content": "Endpoint utilizado para consultar requisições de compartilhamento de dados, permitindo aplicar filtros específicos para localizar solicitações conforme os parâmetros informados.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "login",
+                  "value": "<string>",
+                  "description": "E-mail de login do paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "identificationNumber",
+                  "value": "<string>",
+                  "description": "CPF do paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "requesterId",
+                  "value": "<string>",
+                  "description": "ID do médico do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "requesterDocumentNumber",
+                  "value": "<string>",
+                  "description": "Número do documento do médico do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status do compartilhamento"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>",
+                  "description": "Número da página"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<long>",
+                  "description": "Tamanho da página"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd53e408-407f-4c6e-886c-951d1805f28c",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACCEPTED"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"id\": 7249,\n      \"status\": \"ACCEPTED\",\n      \"login\": \"usuario@teste.com\",\n      \"identificationNumber\": \"12345678900\",\n      \"identificationType\": \"CPF\",\n      \"requesterId\": \"1\",\n      \"requesterDocumentNumber\": \"11111111111\",\n      \"requesterLabel\": \"Dr. João da Silva\",\n      \"requesterUnity\": \"Clínica Vida\",\n      \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n      \"cellphone\": \"5511987654321\",\n      \"requestDate\": 1823,\n      \"startDate\": 6110,\n      \"endDate\": 6801,\n      \"notified\": true,\n      \"clientKey\": \"clinic-001\"\n    },\n    {\n      \"id\": 6704,\n      \"status\": \"ACCEPTED\",\n      \"login\": \"usuario@teste.com\",\n      \"identificationNumber\": \"12345678900\",\n      \"identificationType\": \"CPF\",\n      \"requesterId\": \"1\",\n      \"requesterDocumentNumber\": \"11111111111\",\n      \"requesterLabel\": \"Dr. João da Silva\",\n      \"requesterUnity\": \"Clínica Vida\",\n      \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n      \"cellphone\": \"5511987654321\",\n      \"requestDate\": 9302,\n      \"startDate\": 3371,\n      \"endDate\": 9419,\n      \"notified\": true,\n      \"clientKey\": \"clinic-001\"\n    }\n  ],\n  \"totalPages\": 4187,\n  \"totalElements\": 9522,\n  \"size\": 5712\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "281c4513-43ad-4492-8d20-75dc9b3bab1e",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACCEPTED"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "370febc3-c1c2-42bd-8b7f-e1e80549623d",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACCEPTED"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8285b852-1bc8-49ab-a1e4-9f7db564160a",
+          "name": "Consultar o status atual do compartilhamento de dados de um paciente.",
+          "request": {
+            "name": "Consultar o status atual do compartilhamento de dados de um paciente.",
+            "description": {
+              "content": "Endpoint que verifica o status atual de uma requisição de compartilhamento de dados do paciente, possibilitando o acompanhamento em tempo real.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "login",
+                  "value": "<string>",
+                  "description": "E-mail de login do paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "identificationNumber",
+                  "value": "<string>",
+                  "description": "CPF do paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "requesterId",
+                  "value": "<string>",
+                  "description": "ID do médico do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "requesterDocumentNumber",
+                  "value": "<string>",
+                  "description": "Número do documento do médico do Clinic"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fa74a0b-4211-4615-8663-5b29b198a0b6",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9857,\n  \"status\": \"ACCEPTED\",\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"identificationType\": \"CPF\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\",\n  \"requesterLabel\": \"Dr. João da Silva\",\n  \"requesterUnity\": \"Clínica Vida\",\n  \"requesterPicture\": \"https://cdn.exemplo.com/foto.png\",\n  \"cellphone\": \"5511987654321\",\n  \"requestDate\": 7113,\n  \"startDate\": 4163,\n  \"endDate\": 4253,\n  \"notified\": true,\n  \"clientKey\": \"clinic-001\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7e2a2a8-ee7d-4137-ac2f-2f3a95cca093",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1424dd43-cd60-4065-838b-517e3f8e7ade",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identificationNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requesterDocumentNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a37cc5be-c3c0-40f4-839c-1683b925ad6a",
+          "name": "Aceitar uma requisição pendente de compartilhamento de dados.",
+          "request": {
+            "name": "Aceitar uma requisição pendente de compartilhamento de dados.",
+            "description": {
+              "content": "Endpoint utilizado para aceitar uma requisição pendente de compartilhamento de dados do paciente, autorizando o acesso conforme os termos acordados.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"requesterId\": \"<string>\",\n  \"requesterDocumentNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e9758d1-544d-49a6-ab63-94d7409e7833",
+              "name": "Requisição aceita com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "334508b5-7e4a-4d9d-9e0a-5f01e3f6ed8d",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2732d97-84ca-40c5-a162-82933a101c9e",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6fc328a-32a7-4f0e-91d2-963e79060224",
+          "name": "Recusar uma requisição pendente de compartilhamento de dados.",
+          "request": {
+            "name": "Recusar uma requisição pendente de compartilhamento de dados.",
+            "description": {
+              "content": "Endpoint responsável por recusar uma requisição pendente de compartilhamento de dados do paciente, bloqueando o prosseguimento do processo.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request",
+                "refuse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"requesterId\": \"<string>\",\n  \"requesterDocumentNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02c606e7-d42a-4628-9879-55e6b5493f6c",
+              "name": "Requisição recusada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a244710-5c00-4b93-bd3a-7b5bd15e23ad",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be08c63f-6e3a-48e1-b98a-32b533963992",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63ed9866-a6c2-4ba1-9710-4f6a5ce8562e",
+          "name": "Revogar uma requisição aceita de compartilhamento de dados.",
+          "request": {
+            "name": "Revogar uma requisição aceita de compartilhamento de dados.",
+            "description": {
+              "content": "Endpoint utilizado para revogar uma requisição já aceita de compartilhamento de dados do paciente, interrompendo o acesso previamente autorizado.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-request",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"requesterId\": \"<string>\",\n  \"requesterDocumentNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "278130dd-5eca-40dc-b6f0-992794318a18",
+              "name": "Requisição revogada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bbd66f87-e07b-4329-8174-7c38e87c3c05",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "866a0e9a-e12b-4d00-b157-084d4f2da5db",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-request",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"usuario@teste.com\",\n  \"identificationNumber\": \"12345678900\",\n  \"requesterId\": \"1\",\n  \"requesterDocumentNumber\": \"11111111111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "939cc7c9-98ec-4a17-911b-dcc0b6cefa8c",
+    "name": "Clinic Agenda Agendamento Compartilhamento de Dados API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

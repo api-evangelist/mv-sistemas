@@ -1,0 +1,806 @@
+{
+  "item": [
+    {
+      "id": "b38889da-48cf-427a-ab6d-3cb63aeb8704",
+      "name": "Convênios",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "570da42a-ad88-427a-a5e4-37d047dad053",
+          "name": "Criar ou alterar dados de convênios.",
+          "request": {
+            "name": "Criar ou alterar dados de convênios.",
+            "description": {
+              "content": "Endpoint responsável por criar ou atualizar convênios, permitindo o gerenciamento centralizado das operadoras de saúde vinculadas ao sistema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "insurances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"tissVersion\": \"<string>\",\n  \"endpointAuthorization\": \"<string>\",\n  \"healthPlan\": {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"ansCode\": \"<string>\",\n    \"active\": true,\n    \"lack\": \"<string>\",\n    \"insuranceType\": \"<string>\",\n    \"picture\": \"<string>\",\n    \"maxExamsPerGuide\": \"<integer>\"\n  },\n  \"lack\": \"<integer>\",\n  \"activated\": \"<boolean>\",\n  \"healthAutomation\": \"<boolean>\",\n  \"providerGuideIndexNumber\": \"<long>\",\n  \"healthAutomationUnitCnes\": \"<string>\",\n  \"onlineSchedulingPresencialAppointment\": false,\n  \"onlineSchedulingTeleHealth\": false,\n  \"maxExamsPerGuide\": \"<integer>\",\n  \"healthPlanTypes\": [\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    }\n  ],\n  \"accessRule\": \"<string>\",\n  \"externalId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8820e3b4-275d-49aa-8443-53b505669a0d",
+              "name": "Convênio criado com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"tissVersion\": \"V4_01_00\",\n  \"endpointAuthorization\": \"<string>\",\n  \"healthPlan\": {\n    \"id\": \"<long>\",\n    \"name\": \"Unimed Prata\",\n    \"ansCode\": \"185657\",\n    \"active\": true,\n    \"lack\": \"<string>\",\n    \"insuranceType\": \"ANS\",\n    \"picture\": \"<string>\",\n    \"maxExamsPerGuide\": \"<integer>\"\n  },\n  \"lack\": \"<integer>\",\n  \"activated\": \"<boolean>\",\n  \"healthAutomation\": \"<boolean>\",\n  \"providerGuideIndexNumber\": \"<long>\",\n  \"healthAutomationUnitCnes\": \"<string>\",\n  \"onlineSchedulingPresencialAppointment\": false,\n  \"onlineSchedulingTeleHealth\": false,\n  \"maxExamsPerGuide\": \"<integer>\",\n  \"healthPlanTypes\": [\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    }\n  ],\n  \"accessRule\": \"<string>\",\n  \"externalId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e89aef7-a0d3-459c-a145-1258d3927cab",
+              "name": "Requisição inválida",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"tissVersion\": \"V4_01_00\",\n  \"endpointAuthorization\": \"<string>\",\n  \"healthPlan\": {\n    \"id\": \"<long>\",\n    \"name\": \"Unimed Prata\",\n    \"ansCode\": \"185657\",\n    \"active\": true,\n    \"lack\": \"<string>\",\n    \"insuranceType\": \"ANS\",\n    \"picture\": \"<string>\",\n    \"maxExamsPerGuide\": \"<integer>\"\n  },\n  \"lack\": \"<integer>\",\n  \"activated\": \"<boolean>\",\n  \"healthAutomation\": \"<boolean>\",\n  \"providerGuideIndexNumber\": \"<long>\",\n  \"healthAutomationUnitCnes\": \"<string>\",\n  \"onlineSchedulingPresencialAppointment\": false,\n  \"onlineSchedulingTeleHealth\": false,\n  \"maxExamsPerGuide\": \"<integer>\",\n  \"healthPlanTypes\": [\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    }\n  ],\n  \"accessRule\": \"<string>\",\n  \"externalId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02f72b3e-82c9-4daf-b06a-c933e2d57d48",
+              "name": "Erro interno do servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"tissVersion\": \"V4_01_00\",\n  \"endpointAuthorization\": \"<string>\",\n  \"healthPlan\": {\n    \"id\": \"<long>\",\n    \"name\": \"Unimed Prata\",\n    \"ansCode\": \"185657\",\n    \"active\": true,\n    \"lack\": \"<string>\",\n    \"insuranceType\": \"ANS\",\n    \"picture\": \"<string>\",\n    \"maxExamsPerGuide\": \"<integer>\"\n  },\n  \"lack\": \"<integer>\",\n  \"activated\": \"<boolean>\",\n  \"healthAutomation\": \"<boolean>\",\n  \"providerGuideIndexNumber\": \"<long>\",\n  \"healthAutomationUnitCnes\": \"<string>\",\n  \"onlineSchedulingPresencialAppointment\": false,\n  \"onlineSchedulingTeleHealth\": false,\n  \"maxExamsPerGuide\": \"<integer>\",\n  \"healthPlanTypes\": [\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"ansCode\": \"<string>\",\n      \"id\": \"<long>\"\n    }\n  ],\n  \"accessRule\": \"<string>\",\n  \"externalId\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b86354a-8e82-46cb-b2bd-77a1cddd787a",
+          "name": "Consultar convênios.",
+          "request": {
+            "name": "Consultar convênios.",
+            "description": {
+              "content": "Endpoint que retorna uma lista de convênios com base nos filtros informados, facilitando a localização e o gerenciamento das operadoras cadastradas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "insurances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "ID externo"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscriptionId",
+                  "value": "<string>",
+                  "description": "(Required) ID da conta Clinic Connect"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74693ceb-88d0-487a-b369-786146793c75",
+              "name": "Lista de seguros retornada com sucesso",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<long>\",\n    \"subscription\": {\n      \"id\": \"<long>\",\n      \"externalId\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"tissVersion\": \"V4_01_00\",\n    \"endpointAuthorization\": \"<string>\",\n    \"healthPlan\": {\n      \"id\": \"<long>\",\n      \"name\": \"Unimed Prata\",\n      \"ansCode\": \"185657\",\n      \"active\": true,\n      \"lack\": \"<string>\",\n      \"insuranceType\": \"ANS\",\n      \"picture\": \"<string>\",\n      \"maxExamsPerGuide\": \"<integer>\"\n    },\n    \"lack\": \"<integer>\",\n    \"activated\": \"<boolean>\",\n    \"healthAutomation\": \"<boolean>\",\n    \"providerGuideIndexNumber\": \"<long>\",\n    \"healthAutomationUnitCnes\": \"<string>\",\n    \"onlineSchedulingPresencialAppointment\": false,\n    \"onlineSchedulingTeleHealth\": false,\n    \"maxExamsPerGuide\": \"<integer>\",\n    \"healthPlanTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"id\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"id\": \"<long>\"\n      }\n    ],\n    \"accessRule\": \"<string>\",\n    \"externalId\": \"<long>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"subscription\": {\n      \"id\": \"<long>\",\n      \"externalId\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"tissVersion\": \"V4_01_00\",\n    \"endpointAuthorization\": \"<string>\",\n    \"healthPlan\": {\n      \"id\": \"<long>\",\n      \"name\": \"Unimed Prata\",\n      \"ansCode\": \"185657\",\n      \"active\": true,\n      \"lack\": \"<string>\",\n      \"insuranceType\": \"ANS\",\n      \"picture\": \"<string>\",\n      \"maxExamsPerGuide\": \"<integer>\"\n    },\n    \"lack\": \"<integer>\",\n    \"activated\": \"<boolean>\",\n    \"healthAutomation\": \"<boolean>\",\n    \"providerGuideIndexNumber\": \"<long>\",\n    \"healthAutomationUnitCnes\": \"<string>\",\n    \"onlineSchedulingPresencialAppointment\": false,\n    \"onlineSchedulingTeleHealth\": false,\n    \"maxExamsPerGuide\": \"<integer>\",\n    \"healthPlanTypes\": [\n      {\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"id\": \"<long>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"ansCode\": \"<string>\",\n        \"id\": \"<long>\"\n      }\n    ],\n    \"accessRule\": \"<string>\",\n    \"externalId\": \"<long>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3d1554c-05b5-4ac6-9c97-60bbd9ff87f3",
+              "name": "Parâmetros de filtro inválidos",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c399cf9-d5a1-4781-a408-a53580ca9a64",
+              "name": "Erro interno do servidor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "insurances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3da3a580-d8c7-467c-92c8-47e18ee8a7ac",
+          "name": "Buscar planos de saúde (convênios)",
+          "request": {
+            "name": "Buscar planos de saúde (convênios)",
+            "description": {
+              "content": "Retorna uma lista paginada de convênios, com filtros opcionais por nome e código ANS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "health-plan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Nome do plano ou operadora"
+                },
+                {
+                  "disabled": false,
+                  "key": "ansCode",
+                  "value": "<string>",
+                  "description": "Código de registro na ANS"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Página atual da listagem"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de registros por página"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5641dfce-2abb-46ee-ad1f-2a920b9ccb52",
+              "name": "Operação realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health-plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ansCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8810,\n    \"name\": \"Unimed Prata\",\n    \"ansCode\": \"185657\",\n    \"active\": true,\n    \"insuranceType\": \"ANS\",\n    \"picture\": \"string\",\n    \"maxExamsPerGuide\": 5003\n  },\n  {\n    \"id\": 1852,\n    \"name\": \"Unimed Prata\",\n    \"ansCode\": \"185657\",\n    \"active\": true,\n    \"insuranceType\": \"ANS\",\n    \"picture\": \"string\",\n    \"maxExamsPerGuide\": 6206\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "933c67dd-a5d9-4d17-8052-4031f2ce3afe",
+              "name": "Operação não autorizada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health-plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ansCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e848958-9751-40f4-9627-6926a1e9cca3",
+              "name": "Proibido.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health-plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ansCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b961ebe-bbb1-42dd-a56b-085ed185e9e3",
+              "name": "Não encontrado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health-plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ansCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44666350-6c93-4a88-8bd2-3f17ceaf6668",
+              "name": "Erro interno.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "health-plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ansCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "194da015-436d-4fc1-8219-47c45eba43ae",
+    "name": "Clinic Agenda Agendamento Convênios API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

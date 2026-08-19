@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Regulação API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regulação",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Buscar regulações",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/regulation",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Página atual da listagem"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Quantidade de registros por página"
+              },
+              {
+                "name": "procedureDescription",
+                "value": "",
+                "type": "query",
+                "description": "Descrição do procedimento"
+              },
+              {
+                "name": "ownCode",
+                "value": "",
+                "type": "query",
+                "description": "Código próprio do exame"
+              }
+            ]
+          },
+          "docs": "Endpoint que retorna uma lista de regulações com base nos filtros informados, facilitando a localização de registros específicos."
+        },
+        {
+          "info": {
+            "name": "Criar regulação",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/regulation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para criar uma nova regulação, registrando as informações necessárias no sistema."
+        },
+        {
+          "info": {
+            "name": "Buscar uma regulação específica pelo seu ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/regulation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Endpoint que busca uma regulação específica pelo seu ID, retornando todos os detalhes do registro."
+        },
+        {
+          "info": {
+            "name": "Atualizar regulação",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/regulation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por atualizar os dados de uma regulação existente, garantindo que as informações permaneçam corretas e atualizadas."
+        },
+        {
+          "info": {
+            "name": "Deletar regulação",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/regulation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para excluir uma regulação, removendo permanentemente o registro do sistema."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

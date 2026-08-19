@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Financeiro e atendimento API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Financeiro e atendimento",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetHistoricoCallCenter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetHistoricoCallCenter/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Carteirinha do beneficiário cujo histórico será consultado."
+              }
+            ]
+          },
+          "docs": "Histórico de **interações com o relacionamento** (call center) **disponível para o beneficiário no aplicativo ou portal** — protocolos, fases, observações e datas, quando liberados pela operadora.\n\nA lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

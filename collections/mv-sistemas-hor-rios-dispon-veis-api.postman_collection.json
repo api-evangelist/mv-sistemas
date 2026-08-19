@@ -1,0 +1,317 @@
+{
+  "item": [
+    {
+      "id": "0d97d5af-ea5f-42e0-bafc-62639172f09c",
+      "name": "Horários Disponíveis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e6176db-253e-4acc-8eaa-0b53297b4bee",
+          "name": "Consultar horários disponíveis.",
+          "request": {
+            "name": "Consultar horários disponíveis.",
+            "description": {
+              "content": "Endpoint utilizado para consultar os horários disponíveis, sem a necessidade de filtrar por médico ou especialidade. Ideal para obter uma visão geral das opções de agendamento no sistema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "available-appointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employeeId",
+                  "value": "<long>",
+                  "description": "ID do médico"
+                },
+                {
+                  "disabled": false,
+                  "key": "termCboIds",
+                  "value": "<string>",
+                  "description": "Lista de IDs de especialidades, separados por vírgula"
+                },
+                {
+                  "disabled": false,
+                  "key": "teleconsultation",
+                  "value": "<boolean>",
+                  "description": "ID do médico"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Data a ser consultada"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Número da página da consulta"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Quantidade de registros por página"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f6490ea-b579-4190-aa93-bee005da7fae",
+              "name": "Consulta realizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "available-appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "termCboIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teleconsultation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "30-01-2030"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"content\": [\n      {\n        \"employee\": {\n          \"name\": \"string\",\n          \"specialties\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"nearestAvailableAppointment\": {\n          \"clinicId\": 297,\n          \"employeeId\": 9022,\n          \"matchSearchDate\": true,\n          \"nextAvailableDate\": \"string\",\n          \"availableAppointmens\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      {\n        \"employee\": {\n          \"name\": \"string\",\n          \"specialties\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"nearestAvailableAppointment\": {\n          \"clinicId\": 4137,\n          \"employeeId\": 7530,\n          \"matchSearchDate\": true,\n          \"nextAvailableDate\": \"string\",\n          \"availableAppointmens\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"totalElements\": 7914,\n    \"number\": 8245,\n    \"size\": 8610\n  },\n  {\n    \"content\": [\n      {\n        \"employee\": {\n          \"name\": \"string\",\n          \"specialties\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"nearestAvailableAppointment\": {\n          \"clinicId\": 8446,\n          \"employeeId\": 580,\n          \"matchSearchDate\": false,\n          \"nextAvailableDate\": \"string\",\n          \"availableAppointmens\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      {\n        \"employee\": {\n          \"name\": \"string\",\n          \"specialties\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"nearestAvailableAppointment\": {\n          \"clinicId\": 6961,\n          \"employeeId\": 860,\n          \"matchSearchDate\": true,\n          \"nextAvailableDate\": \"string\",\n          \"availableAppointmens\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"totalElements\": 5402,\n    \"number\": 23,\n    \"size\": 4007\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "703b5fa5-e6e7-4ac3-b084-8308f9529d7c",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "available-appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "termCboIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teleconsultation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "30-01-2030"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "899c7608-f75b-4d38-86dd-44bd6c07a893",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "available-appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "termCboIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "teleconsultation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "30-01-2030"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a02236a-56f4-49f3-bcca-a42b4d2f7f81",
+    "name": "Clinic Agenda Agendamento Horários Disponíveis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

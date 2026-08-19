@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Autenticação API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autenticação",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "PostGerarToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/PostGerarToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gera um **código de validação temporário** (token alfanumérico de **6 caracteres**) para o beneficiário e, opcionalmente, para um prestador vinculado — usado em fluxos que exigem confirmação rápida (ex.: chat, autosserviço).\n\nO token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

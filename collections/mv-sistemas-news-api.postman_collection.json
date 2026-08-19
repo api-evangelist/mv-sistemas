@@ -1,0 +1,241 @@
+{
+  "item": [
+    {
+      "id": "c135097c-6035-482a-b455-24b3d38ef1ca",
+      "name": "News",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98b5b66a-fa55-4d04-81d4-576a7d85d3f8",
+          "name": "Envia uma notificação ao paciente",
+          "request": {
+            "name": "Envia uma notificação ao paciente",
+            "description": {
+              "content": "Endpoint responsável por enviar mensagens internas aos usuários do aplicativo de saúde, permitindo a transmissão de avisos, lembretes ou outras comunicações relevantes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "v2",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"personalHealthLogin\": \"<email>\",\n    \"message\": \"<string>\",\n    \"title\": \"<string>\",\n    \"clientKey\": \"<string>\",\n    \"status\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"avatar\": \"<string>\"\n  },\n  {\n    \"personalHealthLogin\": \"<email>\",\n    \"message\": \"<string>\",\n    \"title\": \"<string>\",\n    \"clientKey\": \"<string>\",\n    \"status\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"avatar\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01a7202e-df81-438a-a98b-dc7de237ade2",
+              "name": "Mensagem enviada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "v2",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"personalHealthLogin\": \"mv@mv.com.br\",\n    \"message\": \"Caro paciente, boa segunda-feira!\",\n    \"title\": \"Mensagem\",\n    \"clientKey\": \"mvsistemas\",\n    \"status\": \"CREATED\",\n    \"type\": \"INTERNAL\",\n    \"avatar\": \"ws://api.exemplo.com/chat\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db99a792-c5c5-4ccc-b271-665e3192cd1a",
+              "name": "Requisição inválida. Verifique os dados enviados.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "v2",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"personalHealthLogin\": \"mv@mv.com.br\",\n    \"message\": \"Caro paciente, boa segunda-feira!\",\n    \"title\": \"Mensagem\",\n    \"clientKey\": \"mvsistemas\",\n    \"status\": \"CREATED\",\n    \"type\": \"INTERNAL\",\n    \"avatar\": \"ws://api.exemplo.com/chat\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a5cafbf-4668-4f80-b6c8-907427c3d4da",
+              "name": "Erro interno do servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "v2",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"personalHealthLogin\": \"mv@mv.com.br\",\n    \"message\": \"Caro paciente, boa segunda-feira!\",\n    \"title\": \"Mensagem\",\n    \"clientKey\": \"mvsistemas\",\n    \"status\": \"CREATED\",\n    \"type\": \"INTERNAL\",\n    \"avatar\": \"ws://api.exemplo.com/chat\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5743877-f4cb-4967-bfa5-7fcb9065728e",
+    "name": "Clinic Agenda Agendamento News API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

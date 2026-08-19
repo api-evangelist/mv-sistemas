@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Atendimento API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Atendimento",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consulta de atendimentos cadastrados.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/attendance",
+            "params": [
+              {
+                "name": "clientKey",
+                "value": "",
+                "type": "query",
+                "description": "Identificação do cliente"
+              },
+              {
+                "name": "subscription.id",
+                "value": "",
+                "type": "query",
+                "description": "ID da conta no Clinic"
+              },
+              {
+                "name": "subscription.externalId",
+                "value": "",
+                "type": "query",
+                "description": "ID da conta no serviço do cliente, única por clientKey."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID do atendimento no Clinic"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "ID do atendimento no serviço do cliente"
+              },
+              {
+                "name": "patient.id",
+                "value": "",
+                "type": "query",
+                "description": "ID do paciente no Clinic"
+              },
+              {
+                "name": "patient.externalId",
+                "value": "",
+                "type": "query",
+                "description": "ID do paciente no serviço do cliente"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para consultar atendimentos já cadastrados, permitindo recuperar informações com base em IDs externos associados aos registros."
+        },
+        {
+          "info": {
+            "name": "Cadastra um novo atendimento.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/attendance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por cadastrar um novo atendimento, utilizando IDs externos para associar e registrar corretamente os dados vinculados ao paciente, prestador e demais informações do processo."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Prestadores/Usuários API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prestadores/Usuários",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar prestadores/usuários.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/employees",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID do Clinic"
+              },
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "query",
+                "description": "ID da conta Clinic Connect"
+              },
+              {
+                "name": "login",
+                "value": "",
+                "type": "query",
+                "description": "Login do prestador"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para consultar prestadores e usuários com base em filtros definidos, retornando apenas os registros que atendem aos critérios informados."
+        },
+        {
+          "info": {
+            "name": "Criar ou alterar dados de prestadores/usuários.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/v1/employees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por criar ou atualizar cadastros de prestadores e usuários, mantendo as informações de profissionais e acessos sempre atualizadas."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

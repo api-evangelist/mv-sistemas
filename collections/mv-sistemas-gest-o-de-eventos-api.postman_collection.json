@@ -1,0 +1,828 @@
+{
+  "item": [
+    {
+      "id": "64cd70fe-b98f-4213-b309-62d68af9770d",
+      "name": "Gestão de Eventos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2168b249-c237-43f6-9a81-2d9158316aac",
+          "name": "create Event",
+          "request": {
+            "name": "create Event",
+            "description": {
+              "content": "Esta operação cria um evento de agendamento para check-in no sistema Global Health, registrando as informações necessárias para o controle do atendimento.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person\": \"<string>\",\n  \"professional\": \"<string>\",\n  \"documentNumber\": \"<string>\",\n  \"documentType\": \"<string>\",\n  \"healthPlanAnsCode\": \"<string>\",\n  \"healthPlanName\": \"<string>\",\n  \"healthPlanCode\": \"<string>\",\n  \"healthPlanTypeAnsCode\": \"<string>\",\n  \"healthPlanTypeName\": \"<string>\",\n  \"healthPlanTypeCode\": \"<string>\",\n  \"healthPlanCardName\": \"<string>\",\n  \"dependent\": \"<boolean>\",\n  \"cnes\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"scheduleTime\": \"<number>\",\n  \"timeZone\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"cardNumber\": \"<number>\",\n  \"checkin\": {\n    \"requestedDate\": \"<date>\",\n    \"requestingPhysician\": {\n      \"name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"council\": \"<string>\",\n      \"code\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"loincMvId\": \"<integer>\",\n        \"tussCode\": \"<string>\",\n        \"exaRxId\": \"<integer>\",\n        \"exaLabId\": \"<integer>\",\n        \"clinicalIndication\": \"<string>\",\n        \"observation\": \"<string>\"\n      },\n      {\n        \"loincMvId\": \"<integer>\",\n        \"tussCode\": \"<string>\",\n        \"exaRxId\": \"<integer>\",\n        \"exaLabId\": \"<integer>\",\n        \"clinicalIndication\": \"<string>\",\n        \"observation\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "59be705d-9e7a-4a05-8f59-3126697f5e77",
+              "name": "Check-in criado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"Iury\",\n  \"professional\": \"Médito teste\",\n  \"documentNumber\": \"12345678910\",\n  \"documentType\": \"CPF\",\n  \"healthPlanAnsCode\": \"1231312312312312312312312\",\n  \"healthPlanName\": \"PARTICULAR\",\n  \"healthPlanCode\": \"40\",\n  \"healthPlanTypeName\": \"PARTICULAR\",\n  \"healthPlanTypeCode\": \"1\",\n  \"healthPlanCardName\": \"Iury\",\n  \"dependent\": false,\n  \"cnes\": \"6635148\",\n  \"serviceName\": \"Check-in de Exame\",\n  \"scheduleTime\": 1694808987000,\n  \"timeZone\": \"America/Cuiaba\",\n  \"birthDate\": \"01-01-2000\",\n  \"cardNumber\": 123912312321,\n  \"checkin\": {\n    \"requestedDate\": \"2023-09-15 09:10:01\",\n    \"requestingPhysician\": {\n      \"name\": \"Otavio\",\n      \"state\": \"PE\",\n      \"council\": \"CRM\",\n      \"code\": \"123456789101213\"\n    },\n    \"items\": [\n      {\n        \"tussCode\": \"40304361\",\n        \"exaLabId\": 1547,\n        \"clinicalIndication\": \"Indicação\",\n        \"observation\": \"Observação\"\n      },\n      {\n        \"tussCode\": \"40316360\",\n        \"exaLabId\": 294\n      },\n      {\n        \"tussCode\": \"40301630\",\n        \"exaLabId\": 1360\n      }\n    ]\n  },\n  \"appointment\": {\n    \"guiaTissInsuranceFormNumber\": \"123456789123\",\n    \"guiaTissPassword\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hashKey\": \"4479747b-bf62-4316-896d-63565bc2843c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63e5d30a-3b8a-43cd-bf8a-a6ac961bc779",
+              "name": "Não foi possivel realizar a criacão de um check-in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"Iury\",\n  \"professional\": \"Médito teste\",\n  \"documentNumber\": \"12345678910\",\n  \"documentType\": \"CPF\",\n  \"healthPlanAnsCode\": \"1231312312312312312312312\",\n  \"healthPlanName\": \"PARTICULAR\",\n  \"healthPlanCode\": \"40\",\n  \"healthPlanTypeName\": \"PARTICULAR\",\n  \"healthPlanTypeCode\": \"1\",\n  \"healthPlanCardName\": \"Iury\",\n  \"dependent\": false,\n  \"cnes\": \"6635148\",\n  \"serviceName\": \"Check-in de Exame\",\n  \"scheduleTime\": 1694808987000,\n  \"timeZone\": \"America/Cuiaba\",\n  \"birthDate\": \"01-01-2000\",\n  \"cardNumber\": 123912312321,\n  \"checkin\": {\n    \"requestedDate\": \"2023-09-15 09:10:01\",\n    \"requestingPhysician\": {\n      \"name\": \"Otavio\",\n      \"state\": \"PE\",\n      \"council\": \"CRM\",\n      \"code\": \"123456789101213\"\n    },\n    \"items\": [\n      {\n        \"tussCode\": \"40304361\",\n        \"exaLabId\": 1547,\n        \"clinicalIndication\": \"Indicação\",\n        \"observation\": \"Observação\"\n      },\n      {\n        \"tussCode\": \"40316360\",\n        \"exaLabId\": 294\n      },\n      {\n        \"tussCode\": \"40301630\",\n        \"exaLabId\": 1360\n      }\n    ]\n  },\n  \"appointment\": {\n    \"guiaTissInsuranceFormNumber\": \"123456789123\",\n    \"guiaTissPassword\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123).\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78dcbf86-03d3-43db-9427-0dc59675edb0",
+          "name": "get Events",
+          "request": {
+            "name": "get Events",
+            "description": {
+              "content": "Esta operação lista eventos de agendamento com base nos filtros informados, permitindo localizar registros conforme os critérios definidos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "unitCnes",
+                  "value": "<string>",
+                  "description": "(Required) CNES da Unidade"
+                },
+                {
+                  "disabled": false,
+                  "key": "startScheduleTime",
+                  "value": "<date>",
+                  "description": "(Required) Data no formato YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "endScheduleTime",
+                  "value": "<date>",
+                  "description": "(Required) Data no formato YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentNumber",
+                  "value": "<string>",
+                  "description": "Número do Documento de um Paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "patientName",
+                  "value": "<string>",
+                  "description": "Nome de um Paciente"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>",
+                  "description": "Tipos relacionados a Agendamentos de Consultas, Eventos para Check-in e agendamentos de exames de imagem."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ccd0b98-23a8-447d-8423-22516439497c",
+              "name": "Listagem de Eventos",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "unitCnes",
+                      "value": "434"
+                    },
+                    {
+                      "key": "startScheduleTime",
+                      "value": "2025-02-24"
+                    },
+                    {
+                      "key": "endScheduleTime",
+                      "value": "2025-02-25"
+                    },
+                    {
+                      "key": "documentNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patientName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5588,\n  \"hashKey\": \"string\",\n  \"login\": \"string\",\n  \"person\": \"string\",\n  \"documentNumber\": \"string\",\n  \"documentType\": \"string\",\n  \"professional\": \"string\",\n  \"status\": \"string\",\n  \"statusMessage\": \"string\",\n  \"type\": \"string\",\n  \"qrCodeContent\": \"string\",\n  \"locator\": \"string\",\n  \"healthPlanName\": \"string\",\n  \"healthPlanCode\": \"string\",\n  \"healthPlanAnsCode\": \"string\",\n  \"healthPlanTypeName\": \"string\",\n  \"healthPlanTypeCode\": \"string\",\n  \"healthPlanTypeAnsCode\": \"string\",\n  \"birthDate\": \"1967-10-24\",\n  \"isFutureEvent\": true,\n  \"hasPendencies\": false,\n  \"scheduleTime\": 2195,\n  \"timeZone\": \"string\",\n  \"appointment\": {\n    \"id\": 6679,\n    \"phoneMobile\": \"string\",\n    \"email\": \"jYIsJ@lsIBjmsbt.ot\",\n    \"healthProfessionalAccreditationNumber\": \"string\",\n    \"healthProfessionalAccreditationType\": \"string\"\n  },\n  \"patient\": {\n    \"id\": 3561,\n    \"birthDate\": \"2013-06-17\",\n    \"name\": \"string\",\n    \"socialName\": \"string\",\n    \"motherName\": \"string\",\n    \"email\": \"da8@emYZHbCyxWSVvaFVIjtMHJrpMwlpWUKm.jf\",\n    \"phoneMobile\": \"string\",\n    \"zipCode\": \"string\",\n    \"address\": \"string\",\n    \"addressNumber\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1398b84a-0aba-4c5f-8f9b-b56218f980b9",
+          "name": "create Event With Minimal Info",
+          "request": {
+            "name": "create Event With Minimal Info",
+            "description": {
+              "content": "Esta operação cria um evento de agendamento com o conjunto mínimo de informações, ideal para cenários em que apenas os dados essenciais estão disponíveis no momento da criação.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "minimal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"birthDate\": \"<date>\",\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"socialName\": \"<string>\",\n  \"motherName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phoneMobile\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"addressNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ec9b5ac-d3d9-4906-900c-96b3ed30de3e",
+              "name": "Evento criado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "minimal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"John Doe\",\n  \"login\": \"janedoe@example.com\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"REQUESTED\",\n  \"statusMessage\": \"Agendado\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"person\": \"John Doe\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"REQUESTED\",\n  \"statusMessage\": \"Agendado\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"G123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"+5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"PRO123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"+5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d2e4637-3e38-4c42-87a1-7ac0dbab8afe",
+              "name": "Não foi possivel realizar a criacão de um check-in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "minimal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"John Doe\",\n  \"login\": \"janedoe@example.com\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"REQUESTED\",\n  \"statusMessage\": \"Agendado\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"fields\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd8ac3b7-22db-48e7-989d-87a3a2938d02",
+          "name": "update Event With Minimal Info",
+          "request": {
+            "name": "update Event With Minimal Info",
+            "description": {
+              "content": "Esta operação atualiza um evento de agendamento existente, mantendo as informações mínimas necessárias para garantir a consistência dos dados.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "minimal",
+                ":hashKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hashKey",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"birthDate\": \"<date>\",\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"socialName\": \"<string>\",\n  \"motherName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phoneMobile\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"addressNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6415d28-6857-4e6b-9086-6bebcf02abc4",
+              "name": "Evento criado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "minimal",
+                    ":hashKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hashKey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"John Doe\",\n  \"login\": \"janedoe@example.com\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"ATTENDED\",\n  \"statusMessage\": \"Evento Concluído\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"G123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"+5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"PRO123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"+5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"person\": \"John Doe\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"active\",\n  \"statusMessage\": \"Agendado\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"G123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"+5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"PRO123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"+5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0af936f-1960-4bc0-a69a-54a61c6b2ae4",
+              "name": "Não foi possivel realizar a criacão de um check-in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "minimal",
+                    ":hashKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hashKey",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"John Doe\",\n  \"login\": \"janedoe@example.com\",\n  \"documentNumber\": \"123456789\",\n  \"documentType\": \"CPF\",\n  \"professional\": \"Dr. Smith\",\n  \"status\": \"ATTENDED\",\n  \"statusMessage\": \"Evento Concluído\",\n  \"type\": \"CONSULT_EVENT\",\n  \"healthPlanName\": \"Premium Plan\",\n  \"healthPlanTypeName\": \"Gold\",\n  \"healthPlanTypeCode\": \"G123\",\n  \"cnes\": \"123456\",\n  \"serviceName\": \"Consulta\",\n  \"clientKey\": \"\",\n  \"source\": \"PUBLIC_EVENT_CHECKIN\",\n  \"scheduleTime\": 1700000000000,\n  \"timeZone\": \"America/Sao_Paulo\",\n  \"birthDate\": \"27-01-1992\",\n  \"dependent\": false,\n  \"address\": \"Main Street\",\n  \"unitName\": \"Health Care Center\",\n  \"latitude\": \"-23.48697\",\n  \"longitude\": \"-43.41941\",\n  \"payment\": \"COMPLETE\",\n  \"price\": 100.5,\n  \"appointment\": {\n    \"phoneMobile\": \"+5511999999999\",\n    \"email\": \"healthpro@example.com\",\n    \"healthProfessionalAccreditationNumber\": \"PRO123\",\n    \"healthProfessionalAccreditationType\": \"CRM\"\n  },\n  \"patient\": {\n    \"birthDate\": \"27-01-1992\",\n    \"name\": \"Jane Doe\",\n    \"socialName\": \"J. Doe\",\n    \"motherName\": \"Mary Doe\",\n    \"email\": \"janedoe@example.com\",\n    \"phoneMobile\": \"+5511988888888\",\n    \"zipCode\": \"12345678\",\n    \"address\": \"Main Street\",\n    \"addressNumber\": \"123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"fields\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d20d991-03b7-4e5c-9a01-a53bbd5a83d3",
+          "name": "create Event Appointment",
+          "request": {
+            "name": "create Event Appointment",
+            "description": {
+              "content": "Esta operação cria um novo evento de agendamento no sistema Global Health, registrando todas as informações exigidas pelo fluxo de agendamento.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "event-appointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person\": \"<string>\",\n  \"professional\": \"<string>\",\n  \"documentNumber\": \"<string>\",\n  \"documentType\": \"<string>\",\n  \"healthPlanAnsCode\": \"<string>\",\n  \"healthPlanName\": \"<string>\",\n  \"healthPlanCode\": \"<string>\",\n  \"healthPlanTypeAnsCode\": \"<string>\",\n  \"healthPlanTypeName\": \"<string>\",\n  \"healthPlanTypeCode\": \"<string>\",\n  \"healthPlanCardName\": \"<string>\",\n  \"dependent\": \"<boolean>\",\n  \"cnes\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"scheduleTime\": \"<number>\",\n  \"timeZone\": \"<string>\",\n  \"birthDate\": \"<date>\",\n  \"cardNumber\": \"<number>\",\n  \"checkin\": {\n    \"requestedDate\": \"<date>\",\n    \"requestingPhysician\": {\n      \"name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"council\": \"<string>\",\n      \"code\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"loincMvId\": \"<integer>\",\n        \"tussCode\": \"<string>\",\n        \"exaRxId\": \"<integer>\",\n        \"exaLabId\": \"<integer>\",\n        \"clinicalIndication\": \"<string>\",\n        \"observation\": \"<string>\"\n      },\n      {\n        \"loincMvId\": \"<integer>\",\n        \"tussCode\": \"<string>\",\n        \"exaRxId\": \"<integer>\",\n        \"exaLabId\": \"<integer>\",\n        \"clinicalIndication\": \"<string>\",\n        \"observation\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edd88724-857b-484f-9fbe-c303cd974018",
+              "name": "Check-in criado",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "event-appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"Iury\",\n  \"professional\": \"Médico teste\",\n  \"documentNumber\": \"12345678910\",\n  \"documentType\": \"CPF\",\n  \"healthPlanAnsCode\": \"1231312312312312312312312\",\n  \"healthPlanName\": \"PARTICULAR\",\n  \"healthPlanCode\": \"40\",\n  \"healthPlanTypeName\": \"PARTICULAR\",\n  \"healthPlanTypeCode\": \"1\",\n  \"healthPlanCardName\": \"Iury\",\n  \"dependent\": false,\n  \"cnes\": \"6635148\",\n  \"serviceName\": \"Agendamento\",\n  \"scheduleTime\": 1694808987000,\n  \"timeZone\": \"America/Cuiaba\",\n  \"birthDate\": \"01-01-2000\",\n  \"cardNumber\": 123912312321,\n  \"checkin\": {\n    \"requestedDate\": \"2023-09-15 09:10:01\",\n    \"requestingPhysician\": {\n      \"name\": \"Otavio\",\n      \"state\": \"PE\",\n      \"council\": \"CRM\",\n      \"code\": \"123456789101213\"\n    },\n    \"items\": [\n      {\n        \"tussCode\": \"40304361\",\n        \"exaLabId\": 1547,\n        \"clinicalIndication\": \"Indicação\",\n        \"observation\": \"Observação\"\n      },\n      {\n        \"tussCode\": \"40316360\",\n        \"exaLabId\": 294\n      },\n      {\n        \"tussCode\": \"40301630\",\n        \"exaLabId\": 1360\n      }\n    ]\n  },\n  \"appointment\": {\n    \"guiaTissInsuranceFormNumber\": \"123456789123\",\n    \"guiaTissPassword\": \"123456\"\n  },\n  \"eventType\": \"IMAGE_EVENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hashKey\": \"4479747b-bf62-4316-896d-63565bc2843c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7590f2c7-3235-4ec6-ab23-b2c08acee94a",
+              "name": "Não foi possivel realizar a criacão de um check-in",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "event-appointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person\": \"Iury\",\n  \"professional\": \"Médico teste\",\n  \"documentNumber\": \"12345678910\",\n  \"documentType\": \"CPF\",\n  \"healthPlanAnsCode\": \"1231312312312312312312312\",\n  \"healthPlanName\": \"PARTICULAR\",\n  \"healthPlanCode\": \"40\",\n  \"healthPlanTypeName\": \"PARTICULAR\",\n  \"healthPlanTypeCode\": \"1\",\n  \"healthPlanCardName\": \"Iury\",\n  \"dependent\": false,\n  \"cnes\": \"6635148\",\n  \"serviceName\": \"Agendamento\",\n  \"scheduleTime\": 1694808987000,\n  \"timeZone\": \"America/Cuiaba\",\n  \"birthDate\": \"01-01-2000\",\n  \"cardNumber\": 123912312321,\n  \"checkin\": {\n    \"requestedDate\": \"2023-09-15 09:10:01\",\n    \"requestingPhysician\": {\n      \"name\": \"Otavio\",\n      \"state\": \"PE\",\n      \"council\": \"CRM\",\n      \"code\": \"123456789101213\"\n    },\n    \"items\": [\n      {\n        \"tussCode\": \"40304361\",\n        \"exaLabId\": 1547,\n        \"clinicalIndication\": \"Indicação\",\n        \"observation\": \"Observação\"\n      },\n      {\n        \"tussCode\": \"40316360\",\n        \"exaLabId\": 294\n      },\n      {\n        \"tussCode\": \"40301630\",\n        \"exaLabId\": 1360\n      }\n    ]\n  },\n  \"appointment\": {\n    \"guiaTissInsuranceFormNumber\": \"123456789123\",\n    \"guiaTissPassword\": \"123456\"\n  },\n  \"eventType\": \"IMAGE_EVENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123).\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f493f635-247a-40db-a256-8f02cccd8f38",
+    "name": "Clinic Agenda Agendamento Gestão de Eventos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

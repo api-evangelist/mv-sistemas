@@ -1,0 +1,411 @@
+{
+  "item": [
+    {
+      "id": "56b475f1-f96b-4051-bad1-bb1ef0460b81",
+      "name": "Prestadores/Usuários",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23fcda3f-7959-44eb-b282-5035513d48e5",
+          "name": "Criar ou alterar dados de prestadores/usuários.",
+          "request": {
+            "name": "Criar ou alterar dados de prestadores/usuários.",
+            "description": {
+              "content": "Endpoint responsável por criar ou atualizar cadastros de prestadores e usuários, mantendo as informações de profissionais e acessos sempre atualizadas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"accreditation\": {\n    \"accreditationType\": \"<string>\",\n    \"accreditationState\": \"<string>\",\n    \"accreditationNumber\": \"<string>\"\n  },\n  \"specialties\": [\n    {\n      \"termCode\": \"<string>\"\n    },\n    {\n      \"termCode\": \"<string>\"\n    }\n  ],\n  \"treatmentPronoun\": \"<string>\",\n  \"councilDisplay\": \"<string>\",\n  \"specialtiesDisplay\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"activated\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneMobile\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2fc72674-fc6c-4283-9efa-601d368eeddc",
+              "name": "Colaborador criado com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"accreditation\": {\n    \"accreditationType\": \"CRM\",\n    \"accreditationState\": \"PE\",\n    \"accreditationNumber\": \"123456\"\n  },\n  \"specialties\": [\n    {\n      \"termCode\": \"<string>\"\n    },\n    {\n      \"termCode\": \"<string>\"\n    }\n  ],\n  \"treatmentPronoun\": \"<string>\",\n  \"councilDisplay\": \"<string>\",\n  \"specialtiesDisplay\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"activated\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneMobile\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"accreditation\": {\n    \"accreditationType\": \"CRM\",\n    \"accreditationState\": \"PE\",\n    \"accreditationNumber\": \"123456\"\n  },\n  \"specialties\": [\n    {\n      \"termCode\": \"<string>\"\n    },\n    {\n      \"termCode\": \"<string>\"\n    }\n  ],\n  \"treatmentPronoun\": \"<string>\",\n  \"councilDisplay\": \"<string>\",\n  \"specialtiesDisplay\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"activated\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneMobile\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "586c8a41-a371-4f52-af68-84d8e34dfe7e",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"accreditation\": {\n    \"accreditationType\": \"CRM\",\n    \"accreditationState\": \"PE\",\n    \"accreditationNumber\": \"123456\"\n  },\n  \"specialties\": [\n    {\n      \"termCode\": \"<string>\"\n    },\n    {\n      \"termCode\": \"<string>\"\n    }\n  ],\n  \"treatmentPronoun\": \"<string>\",\n  \"councilDisplay\": \"<string>\",\n  \"specialtiesDisplay\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"activated\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneMobile\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0b802a0-4c74-4c4c-9c62-642d55abff3b",
+              "name": "Erro interno no servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<long>\",\n  \"externalId\": \"<long>\",\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"login\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"identificationType\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"profile\": \"<string>\",\n  \"accreditation\": {\n    \"accreditationType\": \"CRM\",\n    \"accreditationState\": \"PE\",\n    \"accreditationNumber\": \"123456\"\n  },\n  \"specialties\": [\n    {\n      \"termCode\": \"<string>\"\n    },\n    {\n      \"termCode\": \"<string>\"\n    }\n  ],\n  \"treatmentPronoun\": \"<string>\",\n  \"councilDisplay\": \"<string>\",\n  \"specialtiesDisplay\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"city\": \"<string>\",\n    \"district\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"activated\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneMobile\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a445967f-929c-41e1-90f7-11e24c1cdb39",
+          "name": "Consultar prestadores/usuários.",
+          "request": {
+            "name": "Consultar prestadores/usuários.",
+            "description": {
+              "content": "Endpoint utilizado para consultar prestadores e usuários com base em filtros definidos, retornando apenas os registros que atendem aos critérios informados.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "employees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "ID do Clinic"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscriptionId",
+                  "value": "<string>",
+                  "description": "(Required) ID da conta Clinic Connect"
+                },
+                {
+                  "disabled": false,
+                  "key": "login",
+                  "value": "<string>",
+                  "description": "Login do prestador"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8488ad27-f2fb-4288-81a5-61f365715bea",
+              "name": "Lista de colaboradores retornada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"<long>\",\n    \"externalId\": \"<long>\",\n    \"subscription\": {\n      \"id\": \"<long>\",\n      \"externalId\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"login\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"accreditation\": {\n      \"accreditationType\": \"CRM\",\n      \"accreditationState\": \"PE\",\n      \"accreditationNumber\": \"123456\"\n    },\n    \"specialties\": [\n      {\n        \"termCode\": \"<string>\"\n      },\n      {\n        \"termCode\": \"<string>\"\n      }\n    ],\n    \"treatmentPronoun\": \"<string>\",\n    \"councilDisplay\": \"<string>\",\n    \"specialtiesDisplay\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"addressNumber\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"addressComplement\": \"<string>\",\n      \"city\": \"<string>\",\n      \"district\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    \"activated\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneMobile\": \"<string>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"externalId\": \"<long>\",\n    \"subscription\": {\n      \"id\": \"<long>\",\n      \"externalId\": \"<string>\"\n    },\n    \"name\": \"<string>\",\n    \"login\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"identificationType\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"profile\": \"<string>\",\n    \"accreditation\": {\n      \"accreditationType\": \"CRM\",\n      \"accreditationState\": \"PE\",\n      \"accreditationNumber\": \"123456\"\n    },\n    \"specialties\": [\n      {\n        \"termCode\": \"<string>\"\n      },\n      {\n        \"termCode\": \"<string>\"\n      }\n    ],\n    \"treatmentPronoun\": \"<string>\",\n    \"councilDisplay\": \"<string>\",\n    \"specialtiesDisplay\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"addressNumber\": \"<string>\",\n      \"zipCode\": \"<string>\",\n      \"addressComplement\": \"<string>\",\n      \"city\": \"<string>\",\n      \"district\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    \"activated\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneMobile\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4af10866-f0e3-4e9f-b66a-492ffd008893",
+              "name": "Erro interno no servidor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "employees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "subscriptionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6e7cfbb-eb96-4b94-8fe3-155afe47e65c",
+    "name": "Clinic Agenda Agendamento Prestadores/Usuários API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

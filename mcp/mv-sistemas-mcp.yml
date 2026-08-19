@@ -174,3 +174,9 @@ tools:
   description: Revogar uma requisição aceita de compartilhamento de dados.
 - name: post_personal_health_api_v1_user_create
   description: Criar novo usuário
+deployment:
+  mode: none
+  verified: derived
+  tools: 79
+  checked: '2026-08-12'
+  source: catalog MCP census

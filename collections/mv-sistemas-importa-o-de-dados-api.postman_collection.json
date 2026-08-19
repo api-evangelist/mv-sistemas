@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "289c80f4-5d4e-4aea-8158-4a2fbabac9ea",
+      "name": "Importação de Dados",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2a94b1b-fe41-4798-95fd-433ce1da11df",
+          "name": "Importar dados do paciente (fluxo síncrono)",
+          "request": {
+            "name": "Importar dados do paciente (fluxo síncrono)",
+            "description": {
+              "content": "Importa dados do paciente no clinic-service (sync flow). Retorna ID do paciente e mensagem amigável.\nEm caso de erro, nunca expõe stack trace; a mensagem amigável é retornada no corpo da resposta.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "importations",
+                "v1",
+                "patient-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"<string>\",\n  \"patient\": {\n    \"id\": \"<long>\",\n    \"uuid\": \"<string>\",\n    \"name\": \"<string>\",\n    \"socialName\": \"<string>\",\n    \"motherName\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"documentNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"zipCode\": \"<string>\",\n    \"address\": \"<string>\",\n    \"addressNumber\": \"<string>\",\n    \"addressComplement\": \"<string>\",\n    \"district\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"observation\": \"<string>\",\n    \"status\": \"<string>\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"<string>\",\n        \"time\": \"<string>\",\n        \"text\": \"<string>\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"<string>\",\n        \"time\": \"<string>\",\n        \"text\": \"<string>\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"<string>\",\n        \"card\": \"<string>\",\n        \"expirationDate\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"card\": \"<string>\",\n        \"expirationDate\": \"<string>\"\n      }\n    ],\n    \"externalId\": \"<string>\"\n  },\n  \"defaultTextComponentId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5bcf22c9-e300-4d56-b111-e67f31fffa09",
+              "name": "Paciente importado com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importations",
+                    "v1",
+                    "patient-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"dr.silva\",\n  \"patient\": {\n    \"id\": 100,\n    \"uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"João da Silva\",\n    \"socialName\": \"João\",\n    \"motherName\": \"Maria da Silva\",\n    \"gender\": \"M\",\n    \"birthDate\": \"1990-05-15\",\n    \"documentNumber\": \"12345678901\",\n    \"email\": \"joao.silva@email.com\",\n    \"phone\": \"81999990000\",\n    \"zipCode\": \"50000000\",\n    \"address\": \"Rua das Flores\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": \"Apto 45\",\n    \"district\": \"Boa Viagem\",\n    \"city\": \"Recife\",\n    \"state\": \"PE\",\n    \"observation\": \"Paciente hipertenso\",\n    \"status\": \"ACTIVE\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      },\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      }\n    ],\n    \"externalId\": \"PAT001\"\n  },\n  \"defaultTextComponentId\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientId\": 9918,\n  \"message\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d448304-04d4-4c2d-9324-12be2e2bcafa",
+              "name": "Requisição inválida.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importations",
+                    "v1",
+                    "patient-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"dr.silva\",\n  \"patient\": {\n    \"id\": 100,\n    \"uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"João da Silva\",\n    \"socialName\": \"João\",\n    \"motherName\": \"Maria da Silva\",\n    \"gender\": \"M\",\n    \"birthDate\": \"1990-05-15\",\n    \"documentNumber\": \"12345678901\",\n    \"email\": \"joao.silva@email.com\",\n    \"phone\": \"81999990000\",\n    \"zipCode\": \"50000000\",\n    \"address\": \"Rua das Flores\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": \"Apto 45\",\n    \"district\": \"Boa Viagem\",\n    \"city\": \"Recife\",\n    \"state\": \"PE\",\n    \"observation\": \"Paciente hipertenso\",\n    \"status\": \"ACTIVE\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      },\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      }\n    ],\n    \"externalId\": \"PAT001\"\n  },\n  \"defaultTextComponentId\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0bc813f7-853f-4e4a-a9ca-84cb6fca89a5",
+              "name": "Não autorizado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importations",
+                    "v1",
+                    "patient-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"dr.silva\",\n  \"patient\": {\n    \"id\": 100,\n    \"uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"João da Silva\",\n    \"socialName\": \"João\",\n    \"motherName\": \"Maria da Silva\",\n    \"gender\": \"M\",\n    \"birthDate\": \"1990-05-15\",\n    \"documentNumber\": \"12345678901\",\n    \"email\": \"joao.silva@email.com\",\n    \"phone\": \"81999990000\",\n    \"zipCode\": \"50000000\",\n    \"address\": \"Rua das Flores\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": \"Apto 45\",\n    \"district\": \"Boa Viagem\",\n    \"city\": \"Recife\",\n    \"state\": \"PE\",\n    \"observation\": \"Paciente hipertenso\",\n    \"status\": \"ACTIVE\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      },\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      }\n    ],\n    \"externalId\": \"PAT001\"\n  },\n  \"defaultTextComponentId\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e17d721e-c092-4e6a-bd17-2c6f79b53f9f",
+              "name": "Acesso negado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importations",
+                    "v1",
+                    "patient-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"dr.silva\",\n  \"patient\": {\n    \"id\": 100,\n    \"uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"João da Silva\",\n    \"socialName\": \"João\",\n    \"motherName\": \"Maria da Silva\",\n    \"gender\": \"M\",\n    \"birthDate\": \"1990-05-15\",\n    \"documentNumber\": \"12345678901\",\n    \"email\": \"joao.silva@email.com\",\n    \"phone\": \"81999990000\",\n    \"zipCode\": \"50000000\",\n    \"address\": \"Rua das Flores\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": \"Apto 45\",\n    \"district\": \"Boa Viagem\",\n    \"city\": \"Recife\",\n    \"state\": \"PE\",\n    \"observation\": \"Paciente hipertenso\",\n    \"status\": \"ACTIVE\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      },\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      }\n    ],\n    \"externalId\": \"PAT001\"\n  },\n  \"defaultTextComponentId\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71f51646-1fab-4d16-819b-8e50941acdc9",
+              "name": "Erro interno - mensagem amigável retornada no corpo.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "importations",
+                    "v1",
+                    "patient-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"subscription\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"clinicId\": {\n    \"id\": \"<long>\",\n    \"externalId\": \"<string>\"\n  },\n  \"employeeLogin\": \"dr.silva\",\n  \"patient\": {\n    \"id\": 100,\n    \"uuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"João da Silva\",\n    \"socialName\": \"João\",\n    \"motherName\": \"Maria da Silva\",\n    \"gender\": \"M\",\n    \"birthDate\": \"1990-05-15\",\n    \"documentNumber\": \"12345678901\",\n    \"email\": \"joao.silva@email.com\",\n    \"phone\": \"81999990000\",\n    \"zipCode\": \"50000000\",\n    \"address\": \"Rua das Flores\",\n    \"addressNumber\": \"123\",\n    \"addressComplement\": \"Apto 45\",\n    \"district\": \"Boa Viagem\",\n    \"city\": \"Recife\",\n    \"state\": \"PE\",\n    \"observation\": \"Paciente hipertenso\",\n    \"status\": \"ACTIVE\",\n    \"medicalRecords\": [\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      },\n      {\n        \"date\": \"2020-01-01\",\n        \"time\": \"08:30:00\",\n        \"text\": \"Exemplo de prontuário médico\",\n        \"attachmentUrl\": \"<string>\",\n        \"attachmentName\": \"<string>\"\n      }\n    ],\n    \"insurances\": [\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      },\n      {\n        \"name\": \"PARTICULAR\",\n        \"card\": \"12345678901234\",\n        \"expirationDate\": \"2025-01-01\"\n      }\n    ],\n    \"externalId\": \"PAT001\"\n  },\n  \"defaultTextComponentId\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patientId\": 565,\n  \"message\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d4e5da5-c37e-4af5-977c-b76c5a0d3a6e",
+    "name": "Clinic Agenda Agendamento Importação de Dados API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

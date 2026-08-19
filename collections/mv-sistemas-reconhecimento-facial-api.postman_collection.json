@@ -1,0 +1,242 @@
+{
+  "item": [
+    {
+      "id": "7cfaa436-5f99-4e1b-9d01-ac8edddd0b91",
+      "name": "Reconhecimento Facial",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36dcbffd-7252-42e3-81f7-ccd80a498a02",
+          "name": "Iniciar o processo da validação de vivacidade da informação biométrica.",
+          "request": {
+            "name": "Iniciar o processo da validação de vivacidade da informação biométrica.",
+            "description": {
+              "content": "Este endpoint inicia a validação da vivacidade da informação biométrica.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "face",
+                "liveness",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e4cfa27-d81e-4f6e-917c-09301cd4cdcd",
+              "name": "Sucesso no inicio da validação de vivacidade.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "face",
+                    "liveness",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46f6ae4a-4fa4-4344-9fd0-98d21aa12bce",
+          "name": "Finalizar o processo da validação de vivacidade da informação biométrica.",
+          "request": {
+            "name": "Finalizar o processo da validação de vivacidade da informação biométrica.",
+            "description": {
+              "content": "Este endpoint finaliza a validação da vivacidade da informação biométrica.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "face",
+                "liveness",
+                "finish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"performFacialRecognition\": false,\n  \"sessionId\": \"<string>\",\n  \"documentNumber\": \"<string>\",\n  \"sharpness\": \"<number>\",\n  \"minConfidance\": \"<number>\",\n  \"requesterName\": \"<string>\",\n  \"healthPlanId\": \"<number>\",\n  \"healthPlanName\": \"<string>\",\n  \"healthPlanAnsCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92ded1ca-3d51-4a86-8f93-770fcdf8a209",
+              "name": "Sucesso na finalização da validação de vivacidade.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "face",
+                    "liveness",
+                    "finish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"performFacialRecognition\": false,\n  \"sessionId\": \"<string>\",\n  \"documentNumber\": \"<string>\",\n  \"sharpness\": \"<number>\",\n  \"minConfidance\": \"<number>\",\n  \"requesterName\": \"<string>\",\n  \"healthPlanId\": \"<number>\",\n  \"healthPlanName\": \"<string>\",\n  \"healthPlanAnsCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"faceLivenessResults\": {\n    \"confidence\": 2265.4295309515282,\n    \"photoBase64\": 3332.0790072154105\n  },\n  \"recognitionResults\": {\n    \"confidence\": \"string\",\n    \"similarity\": \"string\",\n    \"boundingBox\": {\n      \"top\": 6997.056084373608,\n      \"left\": 6685.044075285892,\n      \"width\": 9462.866916317593,\n      \"height\": 4291.97242770648\n    },\n    \"quality\": {\n      \"brightness\": 2308.032740240675,\n      \"sharpness\": 3728.545566304098\n    },\n    \"protocol\": \"string\",\n    \"photo\": 9992\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "67084666-32fa-41ff-9e68-ad2e88d046cb",
+    "name": "Clinic Agenda Agendamento Reconhecimento Facial API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

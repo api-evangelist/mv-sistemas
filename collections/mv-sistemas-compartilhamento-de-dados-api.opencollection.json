@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Compartilhamento de Dados API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compartilhamento de Dados",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Consultar as requisições de compartilhamento.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "query",
+                "description": "E-mail de login do paciente"
+              },
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "query",
+                "description": "CPF do paciente"
+              },
+              {
+                "name": "requesterId",
+                "value": "",
+                "type": "query",
+                "description": "ID do médico do Clinic"
+              },
+              {
+                "name": "requesterDocumentNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número do documento do médico do Clinic"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status do compartilhamento"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Número da página"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Tamanho da página"
+              }
+            ]
+          },
+          "docs": "Endpoint utilizado para consultar requisições de compartilhamento de dados, permitindo aplicar filtros específicos para localizar solicitações conforme os parâmetros informados."
+        },
+        {
+          "info": {
+            "name": "Criar uma nova requisição de compartilhamento de dados.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por criar uma nova requisição de compartilhamento de dados do paciente, iniciando o processo de autorização entre as partes envolvidas."
+        },
+        {
+          "info": {
+            "name": "Consultar o status atual do compartilhamento de dados de um paciente.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request/status",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "query",
+                "description": "E-mail de login do paciente"
+              },
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "query",
+                "description": "CPF do paciente"
+              },
+              {
+                "name": "requesterId",
+                "value": "",
+                "type": "query",
+                "description": "ID do médico do Clinic"
+              },
+              {
+                "name": "requesterDocumentNumber",
+                "value": "",
+                "type": "query",
+                "description": "Número do documento do médico do Clinic"
+              }
+            ]
+          },
+          "docs": "Endpoint que verifica o status atual de uma requisição de compartilhamento de dados do paciente, possibilitando o acompanhamento em tempo real."
+        },
+        {
+          "info": {
+            "name": "Aceitar uma requisição pendente de compartilhamento de dados.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request/accept",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para aceitar uma requisição pendente de compartilhamento de dados do paciente, autorizando o acesso conforme os termos acordados."
+        },
+        {
+          "info": {
+            "name": "Recusar uma requisição pendente de compartilhamento de dados.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request/refuse",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint responsável por recusar uma requisição pendente de compartilhamento de dados do paciente, bloqueando o prosseguimento do processo."
+        },
+        {
+          "info": {
+            "name": "Revogar uma requisição aceita de compartilhamento de dados.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/shared-request/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint utilizado para revogar uma requisição já aceita de compartilhamento de dados do paciente, interrompendo o acesso previamente autorizado."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

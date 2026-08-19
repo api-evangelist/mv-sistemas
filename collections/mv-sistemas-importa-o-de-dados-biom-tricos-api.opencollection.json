@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Importação de dados biométricos API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Importação de dados biométricos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Iniciar a importação de dados biométriocos de um paciente.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/biometric/import/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Este endpoint inicia a importação dos dados biométricos de um paciente."
+        },
+        {
+          "info": {
+            "name": "Realizar o upload dos dados biométriocos de um paciente.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/biometric/import/upload",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Este endpoint realiza o upload dos dados biométricos de um paciente."
+        },
+        {
+          "info": {
+            "name": "Finalizar a importação de dados biométriocos de um paciente.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/v1/biometric/import/finish/:importIdentifier",
+            "params": [
+              {
+                "name": "importIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Identificador da importação."
+              }
+            ]
+          },
+          "docs": "Este endpoint finaliza a importação dos dados biométricos de um paciente."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

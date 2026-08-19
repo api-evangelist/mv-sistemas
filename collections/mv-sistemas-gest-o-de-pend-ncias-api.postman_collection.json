@@ -1,0 +1,952 @@
+{
+  "item": [
+    {
+      "id": "14bbacf1-990b-40be-909a-d9fc9182ecb7",
+      "name": "Gestão de Pendências",
+      "description": {
+        "content": "Operações relacionadas à gestão de pendências e exames.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1391ccd7-843f-468d-990e-e0bbfd67c3bd",
+          "name": "Incluir uma Nova Pendência para o Beneficiário",
+          "request": {
+            "name": "Incluir uma Nova Pendência para o Beneficiário",
+            "description": {
+              "content": "Endpoint utilizado para incluir uma nova pendência associada a um beneficiário, registrando os dados necessários para acompanhamento e controle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9286c8de-3a14-48ba-8980-c9e5657592e6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"Numero do Documento do Paciente (Somente Números)\",\n  \"description\": \"Pendências para realização de Exames\",\n  \"sourceId\": \"17\",\n  \"type\": \"EXAM_REQUEST\",\n  \"status\": \"PENDING\",\n  \"requestedDate\": \"21/03/2025\",\n  \"healthProfessionalName\": \"Nome do Profissional\",\n  \"healthProfessionalAccreditationNumber\": \"1223321123321\",\n  \"healthProfessionalAccreditationType\": \"CRM\",\n  \"healthProfessionalAccreditationState\": \"SP\",\n  \"ansCode\": null,\n  \"insuranceCardNumber\": null,\n  \"unitName\": \"Unidade de Atendimento Exemplo\",\n  \"patientName\": \"John Doe\",\n  \"identificationNumber\": null,\n  \"serviceName\": \"Nome do Serviço\",\n  \"codigoAns\": null,\n  \"codigoConvenio\": null,\n  \"codigoPlanoConvenio\": null,\n  \"codigoSubPlano\": null,\n  \"codigoMatricula\": null,\n  \"nomeDoPlanoNoClinic\": null,\n  \"nomeDoPacienteCarteira\": null,\n  \"dtValidade\": null,\n  \"recemNascido\": null,\n  \"healthPlanId\": null,\n  \"healthPlanType\": null,\n  \"exams\": [\n    {\n      \"examDescription\": \"RX JOELHO\",\n      \"recommendation\": null,\n      \"clinicalIndication\": null,\n      \"procedureCode\": null,\n      \"guiaTissFormNumber\": null,\n      \"guiaTissInsuranceFormNumber\": null,\n      \"guiaTissInsuranceNumber\": null,\n      \"guiaTissHealthAutomationResponse\": \"AUTHORIZED\",\n      \"guiaTissPassword\": null,\n      \"schedulingItemCode\": 6981,\n      \"exaLabCode\": 1617,\n      \"exaRxCode\": null,\n      \"sourceId\": 80,\n      \"status\": \"CREATED\"\n    }\n  ],\n  \"drugPrescriptions\": null,\n  \"sharedInfoHealth\": null,\n  \"qrCode\": null,\n  \"linkPrescription\": null,\n  \"card\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"documentNumber\": \"\",\n    \"receivedLogin\": \"\",\n    \"description\": \"Diagnostico por imagem\",\n    \"sourceId\": \"10\",\n    \"type\": \"EXAM_REQUEST\",\n    \"status\": \"PENDING\",\n    \"requestedDate\": \"26/03/2025\",\n    \"healthProfessionalName\": \"Nome do Profissional Solicitante\",\n    \"healthProfessionalAccreditationNumber\": \"1234\",\n    \"healthProfessionalAccreditationType\": \"CRM\",\n    \"healthProfessionalAccreditationState\": \"SP\",\n    \"ansCode\": null,\n    \"insuranceCardNumber\": null,\n    \"unitName\": \"Consultório do médico\",\n    \"patientName\": null,\n    \"identificationNumber\": null,\n    \"serviceName\": null,\n    \"codigoAns\": null,\n    \"codigoConvenio\": null,\n    \"codigoPlanoConvenio\": null,\n    \"codigoSubPlano\": null,\n    \"codigoMatricula\": null,\n    \"nomeDoPlanoNoClinic\": null,\n    \"nomeDoPacienteCarteira\": null,\n    \"dtValidade\": null,\n    \"recemNascido\": null,\n    \"healthPlanId\": null,\n    \"healthPlanType\": null,\n    \"exams\": [\n      {\n        \"examDescription\": \"DENSITOMETRIA OSSEA COLUNA E FEMUR (OU 2 SEGMENT)\",\n        \"recommendation\": null,\n        \"clinicalIndication\": null,\n        \"procedureCode\": null,\n        \"guiaTissFormNumber\": null,\n        \"guiaTissInsuranceFormNumber\": null,\n        \"guiaTissInsuranceNumber\": null,\n        \"guiaTissHealthAutomationResponse\": \"REQUESTED\",\n        \"guiaTissPassword\": null,\n        \"schedulingItemCode\": 170,\n        \"exaLabCode\": null,\n        \"exaRxCode\": 109,\n        \"sourceId\": 11773398,\n        \"status\": \"CREATED\"\n      },\n      {\n        \"examDescription\": \"MAMOGRAFIA DIGITAL BILATERAL\",\n        \"recommendation\": null,\n        \"clinicalIndication\": null,\n        \"procedureCode\": null,\n        \"guiaTissFormNumber\": \"19324351\",\n        \"guiaTissInsuranceFormNumber\": \"19324351\",\n        \"guiaTissInsuranceNumber\": null,\n        \"guiaTissHealthAutomationResponse\": \"AUTHORIZED\",\n        \"guiaTissPassword\": \"19324351\",\n        \"schedulingItemCode\": 2421,\n        \"exaLabCode\": null,\n        \"exaRxCode\": 2568,\n        \"sourceId\": 11773391,\n        \"status\": \"CREATED\"\n      }\n    ],\n    \"drugPrescriptions\": null,\n    \"sharedInfoHealth\": null,\n    \"qrCode\": null,\n    \"linkPrescription\": null,\n    \"card\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "066e71c2-ca23-4287-bfd3-4d3f1e834bd2",
+          "name": "Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status da pendência.",
+          "request": {
+            "name": "Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status da pendência.",
+            "description": {
+              "content": "Endpoint responsável por consultar pendências de um paciente, permitindo a busca por número de documento, número de carteirinha e/ou status da pendência. <p>É obrigatório informar pelo menos um parâmetro para realizar a busca. </p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "description": {
+                    "content": "Número de documento: (CPF, somente dígitos)",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroDocumento",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "Número do Cartão do Convênio do Beneficiário:",
+                    "type": "text/plain"
+                  },
+                  "key": "numeroCarteira",
+                  "value": ""
+                },
+                {
+                  "description": {
+                    "content": "(Required) Status da Pendência, separados por vírgulas: (Ex: CREATED,ACCEPTED) (This can only be one of CREATED,ACCEPTED,REFUSED)",
+                    "type": "text/plain"
+                  },
+                  "key": "status",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b2a596b-31fc-45e5-9d5a-93214c3f1229",
+              "name": "Lista de pendências encontradas com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "numeroDocumento",
+                      "value": ""
+                    },
+                    {
+                      "key": "numeroCarteira",
+                      "value": ""
+                    },
+                    {
+                      "key": "status",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"documentNumber\": \"<string>\",\n    \"person\": {\n      \"numeroDocumento\": \"<string>\",\n      \"numeroCarteira\": \"<string>\",\n      \"nomeCarteira\": \"<string>\",\n      \"nome\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    \"patient\": {\n      \"socialName\": \"<string>\",\n      \"birthDate\": \"<string>\",\n      \"gender\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"motherName\": \"<string>\"\n    },\n    \"hashKey\": \"<string>\",\n    \"receivedLogin\": \"<string>\",\n    \"description\": \"<string>\",\n    \"source\": \"<string>\",\n    \"sourceId\": \"<long>\",\n    \"type\": \"<string>\",\n    \"clientKey\": \"<string>\",\n    \"status\": \"<string>\",\n    \"newsId\": \"<long>\",\n    \"eventId\": \"<long>\",\n    \"requestedDate\": \"<date>\",\n    \"healthProfessionalName\": \"<string>\",\n    \"healthProfessionalAccreditationNumber\": \"<string>\",\n    \"healthProfessionalAccreditationType\": \"<string>\",\n    \"healthProfessionalAccreditationState\": \"<string>\",\n    \"ansCode\": \"<string>\",\n    \"insuranceCardNumber\": \"<string>\",\n    \"unitName\": \"<string>\",\n    \"patientName\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"serviceName\": \"<string>\",\n    \"codigoAns\": \"<string>\",\n    \"codigoConvenio\": \"<string>\",\n    \"codigoPlanoConvenio\": \"<string>\",\n    \"codigoSubPlano\": \"<string>\",\n    \"codigoMatricula\": \"<string>\",\n    \"nomeDoPlanoNoClinic\": \"<string>\",\n    \"nomeDoPacienteCarteira\": \"<string>\",\n    \"dtValidade\": \"<date>\",\n    \"recemNascido\": \"<boolean>\",\n    \"healthPlanId\": \"<string>\",\n    \"healthPlanType\": \"<string>\",\n    \"exams\": [\n      {\n        \"examDescription\": \"<string>\",\n        \"recommendation\": \"<string>\",\n        \"clinicalIndication\": \"<string>\",\n        \"procedureCode\": \"<string>\",\n        \"guiaTissFormNumber\": \"<string>\",\n        \"guiaTissInsuranceFormNumber\": \"<string>\",\n        \"guiaTissInsuranceNumber\": \"<string>\",\n        \"guiaTissHealthAutomationResponse\": \"<string>\",\n        \"guiaTissPassword\": \"<string>\",\n        \"schedulingItemCode\": \"<integer>\",\n        \"exaLabCode\": \"<integer>\",\n        \"exaRxCode\": \"<integer>\",\n        \"sourceId\": \"<integer>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"examDescription\": \"<string>\",\n        \"recommendation\": \"<string>\",\n        \"clinicalIndication\": \"<string>\",\n        \"procedureCode\": \"<string>\",\n        \"guiaTissFormNumber\": \"<string>\",\n        \"guiaTissInsuranceFormNumber\": \"<string>\",\n        \"guiaTissInsuranceNumber\": \"<string>\",\n        \"guiaTissHealthAutomationResponse\": \"<string>\",\n        \"guiaTissPassword\": \"<string>\",\n        \"schedulingItemCode\": \"<integer>\",\n        \"exaLabCode\": \"<integer>\",\n        \"exaRxCode\": \"<integer>\",\n        \"sourceId\": \"<integer>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"drugPrescriptions\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"sharedInfoHealth\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"qrCode\": \"<string>\",\n    \"linkPrescription\": \"<string>\",\n    \"card\": \"<string>\"\n  },\n  {\n    \"documentNumber\": \"<string>\",\n    \"person\": {\n      \"numeroDocumento\": \"<string>\",\n      \"numeroCarteira\": \"<string>\",\n      \"nomeCarteira\": \"<string>\",\n      \"nome\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    \"patient\": {\n      \"socialName\": \"<string>\",\n      \"birthDate\": \"<string>\",\n      \"gender\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"motherName\": \"<string>\"\n    },\n    \"hashKey\": \"<string>\",\n    \"receivedLogin\": \"<string>\",\n    \"description\": \"<string>\",\n    \"source\": \"<string>\",\n    \"sourceId\": \"<long>\",\n    \"type\": \"<string>\",\n    \"clientKey\": \"<string>\",\n    \"status\": \"<string>\",\n    \"newsId\": \"<long>\",\n    \"eventId\": \"<long>\",\n    \"requestedDate\": \"<date>\",\n    \"healthProfessionalName\": \"<string>\",\n    \"healthProfessionalAccreditationNumber\": \"<string>\",\n    \"healthProfessionalAccreditationType\": \"<string>\",\n    \"healthProfessionalAccreditationState\": \"<string>\",\n    \"ansCode\": \"<string>\",\n    \"insuranceCardNumber\": \"<string>\",\n    \"unitName\": \"<string>\",\n    \"patientName\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"serviceName\": \"<string>\",\n    \"codigoAns\": \"<string>\",\n    \"codigoConvenio\": \"<string>\",\n    \"codigoPlanoConvenio\": \"<string>\",\n    \"codigoSubPlano\": \"<string>\",\n    \"codigoMatricula\": \"<string>\",\n    \"nomeDoPlanoNoClinic\": \"<string>\",\n    \"nomeDoPacienteCarteira\": \"<string>\",\n    \"dtValidade\": \"<date>\",\n    \"recemNascido\": \"<boolean>\",\n    \"healthPlanId\": \"<string>\",\n    \"healthPlanType\": \"<string>\",\n    \"exams\": [\n      {\n        \"examDescription\": \"<string>\",\n        \"recommendation\": \"<string>\",\n        \"clinicalIndication\": \"<string>\",\n        \"procedureCode\": \"<string>\",\n        \"guiaTissFormNumber\": \"<string>\",\n        \"guiaTissInsuranceFormNumber\": \"<string>\",\n        \"guiaTissInsuranceNumber\": \"<string>\",\n        \"guiaTissHealthAutomationResponse\": \"<string>\",\n        \"guiaTissPassword\": \"<string>\",\n        \"schedulingItemCode\": \"<integer>\",\n        \"exaLabCode\": \"<integer>\",\n        \"exaRxCode\": \"<integer>\",\n        \"sourceId\": \"<integer>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"examDescription\": \"<string>\",\n        \"recommendation\": \"<string>\",\n        \"clinicalIndication\": \"<string>\",\n        \"procedureCode\": \"<string>\",\n        \"guiaTissFormNumber\": \"<string>\",\n        \"guiaTissInsuranceFormNumber\": \"<string>\",\n        \"guiaTissInsuranceNumber\": \"<string>\",\n        \"guiaTissHealthAutomationResponse\": \"<string>\",\n        \"guiaTissPassword\": \"<string>\",\n        \"schedulingItemCode\": \"<integer>\",\n        \"exaLabCode\": \"<integer>\",\n        \"exaRxCode\": \"<integer>\",\n        \"sourceId\": \"<integer>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"drugPrescriptions\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"sharedInfoHealth\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"qrCode\": \"<string>\",\n    \"linkPrescription\": \"<string>\",\n    \"card\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78bbad6b-5e8b-44a1-a388-8d39b3eb027a",
+          "name": "Buscar uma Pendência específica pelo Hash Key",
+          "request": {
+            "name": "Buscar uma Pendência específica pelo Hash Key",
+            "description": {
+              "content": "Endpoint que busca uma pendência específica com base no Hash Key, retornando todos os detalhes e informações vinculadas ao registro informado.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency",
+                ":hash-key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "hash-key",
+                  "description": "(Required) <b>Hash Key</b> da pendência a ser buscada. <br><br> Chave associada à pendência. <br><br> Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br><br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br><br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf0f03de-03ae-441a-a7be-654fcfbb27ae",
+              "name": "Pendência encontrada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) <b>Hash Key</b> da pendência a ser buscada. <br><br> Chave associada à pendência. <br><br> Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br><br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br><br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b9086c1-2d6b-401b-aa39-37c4837b18b8",
+              "name": "Pendência não encontrada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) <b>Hash Key</b> da pendência a ser buscada. <br><br> Chave associada à pendência. <br><br> Campo preenchido automaticamente ao criar ou atualizar os registros. A hash key é um identificador único gerado automaticamente pelo sistema no momento da criação de cada pendência. Essa chave tem como principal objetivo garantir a unicidade, integridade e rastreabilidade das informações dentro do banco de dados. <br><br> A geração automática evita colisões manuais, garante consistência nos processos internos e facilita a identificação precisa da pendência a ser atualizada, sem depender de atributos voláteis ou sujeitos a alterações, como descrições ou datas.<br><br>Por esse motivo, a hash key não deve ser criada manualmente pelo usuário nem modificada posteriormente, sendo utilizada exclusivamente para fins de controle interno e atualização segura de registros específicos."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e2cd1df-3c59-42ae-a06e-babe7c9df0e0",
+          "name": "Atualizar uma Pendência pelo Hash Key.",
+          "request": {
+            "name": "Atualizar uma Pendência pelo Hash Key.",
+            "description": {
+              "content": "Endpoint responsável por atualizar os dados de uma pendência específica, utilizando o Hash Key como referência para identificar o registro a ser modificado.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency",
+                ":hash-key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "hash-key",
+                  "description": "(Required) Hash Key da pendência a ser atualizada."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c3b211c-373f-4aa9-a23f-a087b3261b72",
+              "name": "Pendência atualizada com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e360dedc-4059-4de1-b1ee-55073d135708",
+              "name": "Pendência não encontrada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentNumber\": \"<string>\",\n  \"person\": {\n    \"numeroDocumento\": \"<string>\",\n    \"numeroCarteira\": \"<string>\",\n    \"nomeCarteira\": \"<string>\",\n    \"nome\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"patient\": {\n    \"socialName\": \"<string>\",\n    \"birthDate\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"motherName\": \"<string>\"\n  },\n  \"hashKey\": \"<string>\",\n  \"receivedLogin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourceId\": \"<long>\",\n  \"type\": \"<string>\",\n  \"clientKey\": \"<string>\",\n  \"status\": \"<string>\",\n  \"newsId\": \"<long>\",\n  \"eventId\": \"<long>\",\n  \"requestedDate\": \"<date>\",\n  \"healthProfessionalName\": \"<string>\",\n  \"healthProfessionalAccreditationNumber\": \"<string>\",\n  \"healthProfessionalAccreditationType\": \"<string>\",\n  \"healthProfessionalAccreditationState\": \"<string>\",\n  \"ansCode\": \"<string>\",\n  \"insuranceCardNumber\": \"<string>\",\n  \"unitName\": \"<string>\",\n  \"patientName\": \"<string>\",\n  \"identificationNumber\": \"<string>\",\n  \"serviceName\": \"<string>\",\n  \"codigoAns\": \"<string>\",\n  \"codigoConvenio\": \"<string>\",\n  \"codigoPlanoConvenio\": \"<string>\",\n  \"codigoSubPlano\": \"<string>\",\n  \"codigoMatricula\": \"<string>\",\n  \"nomeDoPlanoNoClinic\": \"<string>\",\n  \"nomeDoPacienteCarteira\": \"<string>\",\n  \"dtValidade\": \"<date>\",\n  \"recemNascido\": \"<boolean>\",\n  \"healthPlanId\": \"<string>\",\n  \"healthPlanType\": \"<string>\",\n  \"exams\": [\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"examDescription\": \"<string>\",\n      \"recommendation\": \"<string>\",\n      \"clinicalIndication\": \"<string>\",\n      \"procedureCode\": \"<string>\",\n      \"guiaTissFormNumber\": \"<string>\",\n      \"guiaTissInsuranceFormNumber\": \"<string>\",\n      \"guiaTissInsuranceNumber\": \"<string>\",\n      \"guiaTissHealthAutomationResponse\": \"<string>\",\n      \"guiaTissPassword\": \"<string>\",\n      \"schedulingItemCode\": \"<integer>\",\n      \"exaLabCode\": \"<integer>\",\n      \"exaRxCode\": \"<integer>\",\n      \"sourceId\": \"<integer>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"drugPrescriptions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"sharedInfoHealth\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"qrCode\": \"<string>\",\n  \"linkPrescription\": \"<string>\",\n  \"card\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ea09db2-541a-4038-bb0f-15a777521337",
+          "name": "Obter um Item de Exame.",
+          "request": {
+            "name": "Obter um Item de Exame.",
+            "description": {
+              "content": "Endpoint que obtém os dados de um item de exame vinculado a uma pendência específica, identificada pelo Hash Key da pendência e pelo Source ID do item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency",
+                ":hash-key",
+                "exams",
+                ":exam-source-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "hash-key",
+                  "description": "(Required) Hash Key da pendência a ser atualizada."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "exam-source-id",
+                  "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b242acc-eb72-4669-b3f1-831d3406591f",
+              "name": "Item de Pendência encontrado com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key",
+                    "exams",
+                    ":exam-source-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "exam-source-id",
+                      "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"examDescription\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"clinicalIndication\": \"<string>\",\n  \"procedureCode\": \"<string>\",\n  \"guiaTissFormNumber\": \"<string>\",\n  \"guiaTissInsuranceFormNumber\": \"<string>\",\n  \"guiaTissInsuranceNumber\": \"<string>\",\n  \"guiaTissHealthAutomationResponse\": \"<string>\",\n  \"guiaTissPassword\": \"<string>\",\n  \"schedulingItemCode\": \"<integer>\",\n  \"exaLabCode\": \"<integer>\",\n  \"exaRxCode\": \"<integer>\",\n  \"sourceId\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5d9d606-7e8f-4e7e-b892-ecf8aa908f55",
+              "name": "Item não encontrado.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key",
+                    "exams",
+                    ":exam-source-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "exam-source-id",
+                      "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62acb4cd-bf87-4d94-921c-3bc697be66f1",
+          "name": "Atualizar um Item de Exame.",
+          "request": {
+            "name": "Atualizar um Item de Exame.",
+            "description": {
+              "content": "Endpoint utilizado para atualizar as informações de um item de exame pertencente a uma pendência específica, referenciada pelo Hash Key da pendência e pelo Source ID do item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health-pendency",
+                ":hash-key",
+                "exams",
+                ":exam-source-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "hash-key",
+                  "description": "(Required) Hash Key da pendência a ser atualizada."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "exam-source-id",
+                  "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"examDescription\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"clinicalIndication\": \"<string>\",\n  \"procedureCode\": \"<string>\",\n  \"guiaTissFormNumber\": \"<string>\",\n  \"guiaTissInsuranceFormNumber\": \"<string>\",\n  \"guiaTissInsuranceNumber\": \"<string>\",\n  \"guiaTissHealthAutomationResponse\": \"<string>\",\n  \"guiaTissPassword\": \"<string>\",\n  \"schedulingItemCode\": \"<integer>\",\n  \"exaLabCode\": \"<integer>\",\n  \"exaRxCode\": \"<integer>\",\n  \"sourceId\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87ac3b5b-cc47-4187-8baf-afbc1155a422",
+              "name": "Item de Pendência atualizado com sucesso.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key",
+                    "exams",
+                    ":exam-source-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "exam-source-id",
+                      "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"examDescription\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"clinicalIndication\": \"<string>\",\n  \"procedureCode\": \"<string>\",\n  \"guiaTissFormNumber\": \"<string>\",\n  \"guiaTissInsuranceFormNumber\": \"<string>\",\n  \"guiaTissInsuranceNumber\": \"<string>\",\n  \"guiaTissHealthAutomationResponse\": \"<string>\",\n  \"guiaTissPassword\": \"<string>\",\n  \"schedulingItemCode\": \"<integer>\",\n  \"exaLabCode\": \"<integer>\",\n  \"exaRxCode\": \"<integer>\",\n  \"sourceId\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"examDescription\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"clinicalIndication\": \"<string>\",\n  \"procedureCode\": \"<string>\",\n  \"guiaTissFormNumber\": \"<string>\",\n  \"guiaTissInsuranceFormNumber\": \"<string>\",\n  \"guiaTissInsuranceNumber\": \"<string>\",\n  \"guiaTissHealthAutomationResponse\": \"<string>\",\n  \"guiaTissPassword\": \"<string>\",\n  \"schedulingItemCode\": \"<integer>\",\n  \"exaLabCode\": \"<integer>\",\n  \"exaRxCode\": \"<integer>\",\n  \"sourceId\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f5c8a3d-ed52-4176-960f-a24fb2ed6597",
+              "name": "Pendência não encontrada.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health-pendency",
+                    ":hash-key",
+                    "exams",
+                    ":exam-source-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "hash-key",
+                      "description": "(Required) Hash Key da pendência a ser atualizada."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "exam-source-id",
+                      "description": "(Required) Source ID do Item da pendência a ser atualizado."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"examDescription\": \"<string>\",\n  \"recommendation\": \"<string>\",\n  \"clinicalIndication\": \"<string>\",\n  \"procedureCode\": \"<string>\",\n  \"guiaTissFormNumber\": \"<string>\",\n  \"guiaTissInsuranceFormNumber\": \"<string>\",\n  \"guiaTissInsuranceNumber\": \"<string>\",\n  \"guiaTissHealthAutomationResponse\": \"<string>\",\n  \"guiaTissPassword\": \"<string>\",\n  \"schedulingItemCode\": \"<integer>\",\n  \"exaLabCode\": \"<integer>\",\n  \"exaRxCode\": \"<integer>\",\n  \"sourceId\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.globalhealth.mv/available-appointments/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b374814-b48b-4c6c-a7bd-719781cb44eb",
+    "name": "Clinic Agenda Agendamento Gestão de Pendências API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.",
+      "type": "text/plain"
+    }
+  }
+}

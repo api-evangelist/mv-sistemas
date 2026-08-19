@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clinic Agenda Agendamento Beneficiário e carteira API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Beneficiário e carteira",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetBeneficiario",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetBeneficiario/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Número da carteira utilizado para localizar o beneficiário."
+              }
+            ]
+          },
+          "docs": "Retorna os **dados cadastrais e do plano** do beneficiário a partir do **número da carteirinha**, incluindo informações de cobertura, contatos e vigência conforme regras da operadora.\n\nO retorno pode contemplar beneficiários **na base local** ou em **intercâmbio** com outra operadora, conforme o vínculo do titular. Não há parâmetros de consulta além do número da carteira informado na URL.\n"
+        },
+        {
+          "info": {
+            "name": "GetCarteira",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetCarteira/:numerocpf",
+            "params": [
+              {
+                "name": "numerocpf",
+                "value": "",
+                "type": "path",
+                "description": "CPF do beneficiário (em geral 11 dígitos; formato conforme acordo de integração)."
+              }
+            ]
+          },
+          "docs": "Lista as **carteirinhas ativas** vinculadas ao **CPF** informado — útil quando o usuário possui mais de um vínculo ou precisa escolher em qual plano deseja atuar.\n\nSão retornadas apenas carteiras com **situação ativa** na data da consulta. Informe o CPF **somente no path** (em geral **11 dígitos**, sem máscara ou conforme contrato técnico).\n"
+        },
+        {
+          "info": {
+            "name": "GetDependentes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.globalhealth.mv/available-appointments/api/api/Funcoes/GetDependentes/:numerocarteira",
+            "params": [
+              {
+                "name": "numerocarteira",
+                "value": "",
+                "type": "path",
+                "description": "Número da carteirinha do **titular** (não use a carteira de um dependente neste endpoint)."
+              }
+            ]
+          },
+          "docs": "Lista os **dependentes** vinculados ao **titular** cuja carteirinha foi informada — agregados e familiares ativos no mesmo contrato, conforme regras da operadora.\n\nRetorna apenas integrantes **ativos** da família, **exceto o próprio titular**. Não há parâmetros adicionais além da carteira do titular na URL.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
