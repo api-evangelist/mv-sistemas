@@ -304,6 +304,8 @@ apis:
   humanURL: https://apidocs.globalhealth.mv/
   baseURL: https://api.globalhealth.mv/available-appointments/api
   tags:
+  - Persons
+  tags_raw:
   - Person
   properties:
   - type: OpenAPI
