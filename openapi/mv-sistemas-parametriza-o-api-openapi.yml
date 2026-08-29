@@ -1,15 +1,13 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Parametrização API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: para Gestão de Eventos Parametrização API
+  description: ' A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.'
+  version: 1.1.5
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/event-checkin
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/dem/event-checkin
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -39,17 +37,43 @@ paths:
                   $ref: '#/components/schemas/LoincMVResponseV1'
 components:
   schemas:
-    ItemAgendamentoDTO:
+    TussDTO:
       type: object
       properties:
-        itemAgendamentoId:
-          type: integer
-        exaLabId:
-          type: integer
-        exaRxId:
-          type: integer
-        checkin:
-          type: boolean
+        code:
+          type: string
+        tableCode:
+          type: string
+        term:
+          type: string
+        fabricatorReferences:
+          type: string
+        fabricator:
+          type: string
+        registerAnvisa:
+          type: string
+        riskClassification:
+          type: string
+        presentation:
+          type: string
+        laboratory:
+          type: string
+        initials:
+          type: string
+        detailsDescription:
+          type: string
+        groupName:
+          type: string
+        groupDescription:
+          type: string
+        terminology:
+          type: string
+        tussCode:
+          type: string
+        sendType:
+          type: string
+        fullPresentation:
+          type: string
     LoincMVResponseV1:
       type: object
       properties:
@@ -88,43 +112,17 @@ components:
           type: boolean
         variation:
           type: string
-    TussDTO:
+    ItemAgendamentoDTO:
       type: object
       properties:
-        code:
-          type: string
-        tableCode:
-          type: string
-        term:
-          type: string
-        fabricatorReferences:
-          type: string
-        fabricator:
-          type: string
-        registerAnvisa:
-          type: string
-        riskClassification:
-          type: string
-        presentation:
-          type: string
-        laboratory:
-          type: string
-        initials:
-          type: string
-        detailsDescription:
-          type: string
-        groupName:
-          type: string
-        groupDescription:
-          type: string
-        terminology:
-          type: string
-        tussCode:
-          type: string
-        sendType:
-          type: string
-        fullPresentation:
-          type: string
+        itemAgendamentoId:
+          type: integer
+        exaLabId:
+          type: integer
+        exaRxId:
+          type: integer
+        checkin:
+          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

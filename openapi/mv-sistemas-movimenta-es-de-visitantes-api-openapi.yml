@@ -1,15 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Movimentações de Visitantes API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: Protocolo de Entrada Movimentações de Visitantes API
+  version: 3.1.0
+  description: ' Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.'
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/one-touch
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/dem/one-touch
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -93,28 +94,6 @@ paths:
                   $ref: '#/components/schemas/InternalErrorMessage'
 components:
   schemas:
-    InternalErrorMessage:
-      type: object
-      properties:
-        timestamp:
-          type: number
-          description: Timestamp em que o erro aconteceu.
-        status:
-          type: number
-        message:
-          type: string
-          description: Mensagem do erro.
-        path:
-          type: string
-          description: Path chamado no momento do Erro.
-    ExitMovementDTO:
-      type: object
-      properties:
-        exitDate:
-          type: string
-          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
-          examples:
-          - '1712061035669'
     VisitorMovementDTO:
       type: object
       properties:
@@ -136,6 +115,28 @@ components:
         photoUrl:
           type: string
           description: URL com foto da Pessoa
+    ExitMovementDTO:
+      type: object
+      properties:
+        exitDate:
+          type: string
+          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
+          examples:
+          - '1712061035669'
+    InternalErrorMessage:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          description: Timestamp em que o erro aconteceu.
+        status:
+          type: number
+        message:
+          type: string
+          description: Mensagem do erro.
+        path:
+          type: string
+          description: Path chamado no momento do Erro.
   securitySchemes:
     x-api-key:
       type: apiKey

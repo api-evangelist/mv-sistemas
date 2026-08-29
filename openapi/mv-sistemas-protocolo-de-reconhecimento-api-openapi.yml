@@ -1,15 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Protocolo de reconhecimento API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: Reconhecimento Facial Protocolo de reconhecimento API
+  version: 3.1.0
+  contact:
+    email: globalhealth@mv.com.br
+  description: Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/face-recognition
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api-hml.globalhealth.mv/hml/face-recognition
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -116,49 +119,6 @@ paths:
       description: Este endpoint realiza a busca dos protocolos de reconhecimento.
 components:
   schemas:
-    FaceRecognitionPagination:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Define o número total de objetos encontrados.
-        totalPages:
-          type: integer
-          description: Define o número total de páginas.
-        prevPage:
-          type: integer
-          description: Define o número da pagina anterior.
-          examples:
-          - 1
-          - 7
-          - 13
-        currentPage:
-          type: integer
-          description: Define o número atual da página.
-          examples:
-          - 2
-          - 8
-          - 14
-        nextPage:
-          type: integer
-          description: Define o próximo número da página
-          examples:
-          - 3
-          - 9
-          - 15
-        first:
-          type: boolean
-          description: Define se é o primeiro elemento da página.
-        last:
-          type: boolean
-          description: Define se é o ultimo elemento da página.
-    RecognitionProtocolV1Response:
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/RecognitionProtocolV1ResponseContent'
-        pagination:
-          $ref: '#/components/schemas/FaceRecognitionPagination'
     RecognitionProtocolV1ResponseContent:
       type: object
       properties:
@@ -251,6 +211,49 @@ components:
           description: URL para obtenção da foto de utilizada no reconhecimento facial.
           examples:
           - https://faces.s3.sa-east-1.amazonaws.com/hml/photo/90d738c2-ce4d-4282-86f6-d4175deac005.jpeg
+    RecognitionProtocolV1Response:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/RecognitionProtocolV1ResponseContent'
+        pagination:
+          $ref: '#/components/schemas/FaceRecognitionPagination'
+    FaceRecognitionPagination:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Define o número total de objetos encontrados.
+        totalPages:
+          type: integer
+          description: Define o número total de páginas.
+        prevPage:
+          type: integer
+          description: Define o número da pagina anterior.
+          examples:
+          - 1
+          - 7
+          - 13
+        currentPage:
+          type: integer
+          description: Define o número atual da página.
+          examples:
+          - 2
+          - 8
+          - 14
+        nextPage:
+          type: integer
+          description: Define o próximo número da página
+          examples:
+          - 3
+          - 9
+          - 15
+        first:
+          type: boolean
+          description: Define se é o primeiro elemento da página.
+        last:
+          type: boolean
+          description: Define se é o ultimo elemento da página.
   securitySchemes:
     x-api-key:
       type: apiKey

@@ -1,14 +1,20 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Convênios API
+  title: Mv Sistemas Convênios API
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: 'Operations tagged Convênios across 2 of this provider''s published API definitions: mv-sistemas-clinic-connect-openapi.yaml, mv-sistemas-regulacao-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect/api/
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect/api/
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect/api/
+  description: Ambiente de QA
+- url: https://api.globalhealth.mv/clinic-connect/api
+  description: Ambiente de PRODUÇÃO
+- url: https://api.globalhealth.mv/hml/clinic-connect/api
+  description: Ambiente de HOMOLOGAÇÃO
+- url: https://api.globalhealth.mv/qa/clinic-connect/api
   description: Ambiente de QA
 security:
 - x-api-key: []
@@ -72,6 +78,13 @@ paths:
           description: Parâmetros de filtro inválidos
         '500':
           description: Erro interno do servidor
+    servers:
+    - url: https://api.globalhealth.mv/clinic-connect/api/
+      description: Ambiente de PRODUÇÃO
+    - url: https://api.globalhealth.mv/hml/clinic-connect/api/
+      description: Ambiente de HOMOLOGAÇÃO
+    - url: https://api.globalhealth.mv/qa/clinic-connect/api/
+      description: Ambiente de QA
   /v1/health-plan:
     get:
       tags:
@@ -116,26 +129,15 @@ paths:
           description: Não encontrado.
         '500':
           description: Erro interno.
+    servers:
+    - url: https://api.globalhealth.mv/clinic-connect/api
+      description: Ambiente de PRODUÇÃO
+    - url: https://api.globalhealth.mv/hml/clinic-connect/api
+      description: Ambiente de HOMOLOGAÇÃO
+    - url: https://api.globalhealth.mv/qa/clinic-connect/api
+      description: Ambiente de QA
 components:
   schemas:
-    SimpleIdDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        externalId:
-          type: string
-    TissVersion:
-      type: string
-      description: Versão TISS
-      enum:
-      - V3_03_03
-      - V3_05_00
-      - V4_00_00
-      - V4_00_01
-      - V4_01_00
-      example: V4_01_00
     ConnectInsuranceDTO:
       type: object
       properties:
@@ -182,28 +184,24 @@ components:
         externalId:
           type: integer
           format: int64
-    HealthPlanDTO_2:
+    SimpleIdDTO:
       type: object
-      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
       properties:
         id:
           type: integer
-        name:
+          format: int64
+        externalId:
           type: string
-          example: Unimed Prata
-        ansCode:
-          type: string
-          example: '185657'
-        active:
-          type: boolean
-          example: true
-        insuranceType:
-          type: string
-          example: ANS
-        picture:
-          type: string
-        maxExamsPerGuide:
-          type: integer
+    TissVersion:
+      type: string
+      description: Versão TISS
+      enum:
+      - V3_03_03
+      - V3_05_00
+      - V4_00_00
+      - V4_00_01
+      - V4_01_00
+      example: V4_01_00
     HealthPlanDTO:
       type: object
       properties:
@@ -247,8 +245,33 @@ components:
           type: string
         ansCode:
           type: string
+    HealthPlanDTO_2:
+      type: object
+      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Unimed Prata
+        ansCode:
+          type: string
+          example: '185657'
+        active:
+          type: boolean
+          example: true
+        insuranceType:
+          type: string
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
   securitySchemes:
     x-api-key:
       type: apiKey
       name: x-api-key
       in: header
+x-refined-from:
+- mv-sistemas-clinic-connect-openapi.yaml
+- mv-sistemas-regulacao-openapi.yaml

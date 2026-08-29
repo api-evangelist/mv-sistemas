@@ -1,14 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Regulação API
+  title: 'Clinic Connect : Regulação API'
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: 'API responsável por gerenciar as regulações das clínicas, permitindo a criação, consulta, atualização e exclusão de registros de forma centralizada.
+
+    '
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect/api
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect/api
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect/api
   description: Ambiente de QA
 security:
 - x-api-key: []
@@ -160,28 +162,6 @@ components:
         type:
           type: string
           example: LAB
-    ConsentTermDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        term:
-          type: string
-        clientKey:
-          type: string
-    TussDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        code:
-          type: string
-          example: '40304361'
-        term:
-          type: string
-          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
     RegulationHealthPlanDTO:
       type: object
       description: Configuração da regulação por convênio.
@@ -204,11 +184,13 @@ components:
           type: boolean
           description: Laudo obrigatório (Laudo Obg.).
         formId:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         formTitle:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         hasConsentTerm:
           type: boolean
         categoryName:
@@ -218,14 +200,59 @@ components:
           type: string
           example: '#A9CA46'
         justificationDays:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: 'Dias para justificativa neste convênio. Enviado como texto (ex.: número de dias). Persistido na coluna `justification_days` da tabela `regulation_health_plan`.
 
             '
           example: '5'
         consentTerm:
           $ref: '#/components/schemas/ConsentTermDTO'
+    ConsentTermDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        term:
+          type: string
+        clientKey:
+          type: string
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: '40304361'
+        term:
+          type: string
+          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
+    HealthPlanDTO:
+      type: object
+      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Unimed Prata
+        ansCode:
+          type: string
+          example: '185657'
+        active:
+          type: boolean
+          example: true
+        insuranceType:
+          type: string
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
     RegulationDTO:
       type: object
       properties:
@@ -264,28 +291,6 @@ components:
           type: boolean
           description: Indica se a regulação exige justificativa
           example: false
-    HealthPlanDTO:
-      type: object
-      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Unimed Prata
-        ansCode:
-          type: string
-          example: '185657'
-        active:
-          type: boolean
-          example: true
-        insuranceType:
-          type: string
-          example: ANS
-        picture:
-          type: string
-        maxExamsPerGuide:
-          type: integer
   securitySchemes:
     x-api-key:
       type: apiKey

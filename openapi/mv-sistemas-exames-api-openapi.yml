@@ -1,14 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Exames API
+  title: 'Clinic Connect : Regulação Exames API'
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: 'API responsável por gerenciar as regulações das clínicas, permitindo a criação, consulta, atualização e exclusão de registros de forma centralizada.
+
+    '
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect/api
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect/api
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect/api
   description: Ambiente de QA
 security:
 - x-api-key: []

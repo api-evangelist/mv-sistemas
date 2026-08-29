@@ -1,15 +1,13 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Gestão de Beneficiários API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: Gestão de Dados Cadastrais dos Beneficiários Gestão de Beneficiários API
+  description: '<div> <hr> <p>As APIs a seguir oferecem funcionalidades voltadas à <b>Gestão de Beneficiários.</b></p> <p> É possível incluir ou atualizar dados de um beneficiário via PUT /persons e consultá-los usando GET /persons, com busca por número de documento ou número de carteira do convênio. </p> <hr> <p> ⚠️ <strong> ATENÇÃO: </strong> <br><br> Para utilizar a API, o Cliente MV Global Health precisa solicitar sua chave de acesso junto a MV. A chave de acesso garante que cada cliente tenha controle de sua base de informações. <br><br> >>> Para evitar sobrecarga, os clientes que consomem esta API devem ficar cientes que só podem realizar no máximo <strong> 1 Requisição por Segundo. </strong> </p> <hr> </div>'
+  version: 2.0.1
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/health-insurance-store
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/health-insurance-store
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -282,5 +280,5 @@ components:
   securitySchemes:
     x-api-key:
       type: apiKey
-      name: x-api-key
       in: header
+      name: x-api-key

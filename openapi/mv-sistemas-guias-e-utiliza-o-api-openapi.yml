@@ -1,15 +1,22 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Guias e utilização API
+  title: Integração Hub Operadora Guias e utilização API
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
+
+
+    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
+
+
+    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
+
+
+    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
+
+    '
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
-  description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -206,33 +213,6 @@ paths:
           description: Erro interno do servidor.
 components:
   schemas:
-    VwApiGuiaMedicoClinic:
-      type: object
-      description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
-
-        '
-      additionalProperties: true
-      properties:
-        cdUf:
-          type: string
-          description: Unidade da Federação (UF) do prestador ou da localização.
-        cdEspecialidade:
-          type: string
-        cdMultiEmpresa:
-          type: string
-        dsTpRecurso:
-          type: string
-          description: Tipo de recurso na rede.
-        cdMatAlternativa:
-          type: string
-          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
-        dsMunicipio:
-          type: string
-        dsBairro:
-          type: string
-        nmPrestador:
-          type: string
-          description: Nome do prestador credenciado.
     VwClinicApiGuias:
       type: object
       description: 'Resumo de uma **guia ou autorização** (rede local ou intercâmbio). Por privacidade, o **número da guia** pode aparecer **mascarado** (ex.: `*****`) quando o pedido ainda não está autorizado; use o campo de **número interno** (quando disponível) para integrações que precisam do identificador completo.
@@ -267,13 +247,41 @@ components:
           type: string
           description: Data e hora até as quais a guia permanece válida.
         dsobservacao:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         cdmatalternativa:
           type: string
         dtfiltro:
           type: string
           description: Data de referência usada no filtro de período da consulta (formato conforme a API).
+    VwApiGuiaMedicoClinic:
+      type: object
+      description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
+
+        '
+      additionalProperties: true
+      properties:
+        cdUf:
+          type: string
+          description: Unidade da Federação (UF) do prestador ou da localização.
+        cdEspecialidade:
+          type: string
+        cdMultiEmpresa:
+          type: string
+        dsTpRecurso:
+          type: string
+          description: Tipo de recurso na rede.
+        cdMatAlternativa:
+          type: string
+          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
+        dsMunicipio:
+          type: string
+        dsBairro:
+          type: string
+        nmPrestador:
+          type: string
+          description: Nome do prestador credenciado.
     JsonGenerico:
       type: object
       description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.

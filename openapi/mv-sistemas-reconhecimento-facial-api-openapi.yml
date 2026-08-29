@@ -1,15 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Reconhecimento Facial API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: Reconhecimento Facial API
+  version: 3.1.0
+  contact:
+    email: globalhealth@mv.com.br
+  description: Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/face-recognition
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api-hml.globalhealth.mv/hml/face-recognition
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -51,15 +54,6 @@ paths:
       description: Este endpoint finaliza a validação da vivacidade da informação biométrica.
 components:
   schemas:
-    FaceLivenessFinishV1Response:
-      type: object
-      properties:
-        faceLivenessResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
-        recognitionResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
-      required:
-      - faceLivenessResults
     FaceLivenessFinishV1Request:
       type: object
       properties:
@@ -122,6 +116,15 @@ components:
       required:
       - performFacialRecognition
       - sessionId
+    FaceLivenessFinishV1Response:
+      type: object
+      properties:
+        faceLivenessResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
+        recognitionResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
+      required:
+      - faceLivenessResults
     FaceLivenessFinishV1ResponseRecognitionResultsQuality:
       type: object
       properties:
@@ -142,41 +145,6 @@ components:
       required:
       - brightness
       - sharpness
-    FaceLivenessStartV1Response:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          description: Id da sessão a ser utilizado para validação da vivacidade.
-          examples:
-          - eda90689-a934-41bb-bd1a-4037be4964cd
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-      required:
-      - sessionId
-    FaceLivenessFinishV1ResponseRecognitionResults:
-      type: object
-      properties:
-        confidence:
-          type: string
-          description: Percentual de confiança do reconhecimento facial.
-        similarity:
-          type: string
-          description: Percentual de similaridade do reconhecimento facial.
-        boundingBox:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox'
-        quality:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsQuality'
-        protocol:
-          type: string
-          description: Protocolo gerado a partir de uma justificativa ou reconhecimento facial.
-      required:
-      - confidence
-      - similarity
-      - boundingBox
-      - quality
-      - protocol
-      - photo
     FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
       type: object
       properties:
@@ -205,6 +173,29 @@ components:
       - left
       - width
       - height
+    FaceLivenessFinishV1ResponseRecognitionResults:
+      type: object
+      properties:
+        confidence:
+          type: string
+          description: Percentual de confiança do reconhecimento facial.
+        similarity:
+          type: string
+          description: Percentual de similaridade do reconhecimento facial.
+        boundingBox:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox'
+        quality:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResultsQuality'
+        protocol:
+          type: string
+          description: Protocolo gerado a partir de uma justificativa ou reconhecimento facial.
+      required:
+      - confidence
+      - similarity
+      - boundingBox
+      - quality
+      - protocol
+      - photo
     FaceLivenessFinishV1ResponseFaceLivenessResults:
       type: object
       properties:
@@ -214,6 +205,18 @@ components:
       required:
       - confidence
       - photoBase64
+    FaceLivenessStartV1Response:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: Id da sessão a ser utilizado para validação da vivacidade.
+          examples:
+          - eda90689-a934-41bb-bd1a-4037be4964cd
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+      required:
+      - sessionId
   securitySchemes:
     x-api-key:
       type: apiKey

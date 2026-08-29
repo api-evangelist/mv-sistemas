@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Compartilhamento de Dados API
+  title: Compartilhamento de Dados API
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico designado para o atendimento do cliente.
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/shared-request-api
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/dem/shared-request-api
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/test/shared-request-api
   description: Ambiente de QA
 security:
 - x-api-key: []
@@ -230,6 +230,15 @@ paths:
           description: Erro interno do servidor.
 components:
   schemas:
+    SharedRequestStatus:
+      type: string
+      enum:
+      - WAITING
+      - REFUSED
+      - ACCEPTED
+      - REVOKED
+      description: Status do compartilhamento de dados
+      example: ACCEPTED
     SharedRequestCreateDTO:
       type: object
       required:
@@ -273,15 +282,27 @@ components:
           type: integer
           format: date-time
           example: '1764892800000'
-    SharedRequestStatus:
-      type: string
-      enum:
-      - WAITING
-      - REFUSED
-      - ACCEPTED
-      - REVOKED
-      description: Status do compartilhamento de dados
-      example: ACCEPTED
+    SharedRequestChangeStatusDTO:
+      type: object
+      required:
+      - login
+      - identificationNumber
+      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
+
+        '
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: '12345678900'
+        requesterId:
+          type: string
+          example: '1'
+        requesterDocumentNumber:
+          type: string
+          example: '11111111111'
     SharedRequestDTO:
       type: object
       properties:
@@ -335,27 +356,6 @@ components:
         clientKey:
           type: string
           example: clinic-001
-    SharedRequestChangeStatusDTO:
-      type: object
-      required:
-      - login
-      - identificationNumber
-      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
-
-        '
-      properties:
-        login:
-          type: string
-          example: usuario@teste.com
-        identificationNumber:
-          type: string
-          example: '12345678900'
-        requesterId:
-          type: string
-          example: '1'
-        requesterDocumentNumber:
-          type: string
-          example: '11111111111'
   securitySchemes:
     x-api-key:
       type: apiKey

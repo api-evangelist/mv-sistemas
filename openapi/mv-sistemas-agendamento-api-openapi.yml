@@ -1,14 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento API
+  title: Clinic Connect - de performance Agendamento API
+  description: 'API do módulo Clinic Connect para listagem de Agendamento de performance e operações de agendamento.
+
+    Base path: `/clinic/clinic-connect`
+
+    '
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect/api/
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect/api/
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect/api/
   description: Ambiente de QA
 security:
 - x-api-key: []
@@ -128,6 +132,67 @@ components:
         lastModifiedDate:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo do erro
+        message:
+          type: string
+          description: Mensagem descritiva do erro (pode vir do i18n)
+        details:
+          type: object
+          additionalProperties: true
+    PerformanceScheduleSchedulingDTO:
+      type: object
+      description: Request para criar agendamento a partir de um Agendamento de performance
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        insurance:
+          $ref: '#/components/schemas/InsuranceCardDTO'
+          description: Dados do convênio
+        patient:
+          $ref: '#/components/schemas/ConnectPatientDTO'
+          description: Dados do paciente
+        termCbo:
+          type: string
+          description: Código CBO (termCode) da especialidade
+        observation:
+          type: string
+          description: Observação do agendamento
+    InsuranceCardDTO:
+      type: object
+      description: Dados do convênio/carteirinha
+      properties:
+        ansCode:
+          type: string
+        number:
+          type: string
+        expirationDate:
+          type: string
+        newborn:
+          type: boolean
+    PerformanceScheduleSchedulingStatusDTO:
+      type: object
+      description: Request para atualizar status do agendamento
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        schedulingStatus:
+          type: string
+          description: Novo status (ex. CANCELLED, CONFIRMED, WAITING, NO_SHOW, ATTENDED)
     ConnectPatientDTO:
       type: object
       description: Dados do paciente (Clinic Connect)
@@ -172,67 +237,6 @@ components:
           type: string
         addressNumber:
           type: string
-    PerformanceScheduleSchedulingStatusDTO:
-      type: object
-      description: Request para atualizar status do agendamento
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: ID do Agendamento de performance (opcional se externalId for informado)
-        externalId:
-          type: string
-          description: External ID do Agendamento de performance (opcional se id for informado)
-        schedulingStatus:
-          type: string
-          description: Novo status (ex. CANCELLED, CONFIRMED, WAITING, NO_SHOW, ATTENDED)
-    PerformanceScheduleSchedulingDTO:
-      type: object
-      description: Request para criar agendamento a partir de um Agendamento de performance
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: ID do Agendamento de performance (opcional se externalId for informado)
-        externalId:
-          type: string
-          description: External ID do Agendamento de performance (opcional se id for informado)
-        insurance:
-          $ref: '#/components/schemas/InsuranceCardDTO'
-          description: Dados do convênio
-        patient:
-          $ref: '#/components/schemas/ConnectPatientDTO'
-          description: Dados do paciente
-        termCbo:
-          type: string
-          description: Código CBO (termCode) da especialidade
-        observation:
-          type: string
-          description: Observação do agendamento
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Tipo do erro
-        message:
-          type: string
-          description: Mensagem descritiva do erro (pode vir do i18n)
-        details:
-          type: object
-          additionalProperties: true
-    InsuranceCardDTO:
-      type: object
-      description: Dados do convênio/carteirinha
-      properties:
-        ansCode:
-          type: string
-        number:
-          type: string
-        expirationDate:
-          type: string
-        newborn:
-          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

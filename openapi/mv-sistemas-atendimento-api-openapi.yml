@@ -1,17 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Atendimento API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: 'Clinic Connect : Atendimento API'
+  description: Este módulo do Clinic Connect utiliza a autenticação do One Pass para realizar operações durante o atendimento em tempo real, garantindo segurança e integração entre os sistemas.
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect
   description: Ambiente de QA
-security:
-- x-api-key: []
 tags:
 - name: Atendimento
   description: Cadastro de atendimentos
@@ -134,6 +131,16 @@ paths:
       - clinic: []
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - error
+      - message
     PageAttendance:
       type: object
       properties:
@@ -296,18 +303,14 @@ components:
               type: string
               example: 10
               description: CD_PACIENTE_EXTERNO no soul
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-      required:
-      - error
-      - message
   securitySchemes:
-    x-api-key:
+    one_pass:
       type: apiKey
-      name: x-api-key
+      name: x-authorization
       in: header
+      description: Token do One Pass
+    clinic:
+      type: apiKey
+      name: authorization
+      in: header
+      description: Token do Clinic com Bearer

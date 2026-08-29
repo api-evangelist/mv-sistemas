@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Serviços API
+  title: Clinic Connect Serviços API
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: Esta API permite a integração com o sistema Clinic por meio do Clinic Connect, facilitando a comunicação e o compartilhamento de dados entre plataformas.
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/clinic-connect/api/
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/clinic-connect/api/
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
+- url: https://api.globalhealth.mv/qa/clinic-connect/api/
   description: Ambiente de QA
 security:
 - x-api-key: []
@@ -74,32 +74,6 @@ paths:
           description: Erro interno do servidor.
 components:
   schemas:
-    ServiceInsuranceSimpleDTO:
-      type: object
-      properties:
-        insurance: {}
-        price:
-          type: number
-          format: double
-          example: 31
-        passThroughValue:
-          type: number
-          format: double
-          example: 31
-        clinicValue:
-          type: number
-          format: double
-          example: 31
-      required:
-      - insurance
-    SimpleIdDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        externalId:
-          type: string
     ServiceGetDTO:
       type: object
       properties:
@@ -127,13 +101,14 @@ components:
           example: 30
         tuss:
           $ref: '#/components/schemas/TussDTO'
-    TussSimpleDTO:
+    SimpleIdDTO:
       type: object
       properties:
         id:
           type: integer
           format: int64
-          example: 456
+        externalId:
+          type: string
     ConnectServiceDTO:
       type: object
       properties:
@@ -209,13 +184,6 @@ components:
         consultationType:
           type: string
           example: IN_PERSON
-    FinancialAccountSimpleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 123
     TussDTO:
       type: object
       properties:
@@ -238,6 +206,38 @@ components:
         presentationValue:
           type: string
           example: R$ 50,00
+    ServiceInsuranceSimpleDTO:
+      type: object
+      properties:
+        insurance: {}
+        price:
+          type: number
+          format: double
+          example: 31
+        passThroughValue:
+          type: number
+          format: double
+          example: 31
+        clinicValue:
+          type: number
+          format: double
+          example: 31
+      required:
+      - insurance
+    TussSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 456
+    FinancialAccountSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
   securitySchemes:
     x-api-key:
       type: apiKey

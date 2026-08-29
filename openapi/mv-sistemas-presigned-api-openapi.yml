@@ -1,17 +1,13 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Presigned API
+  title: 'Personal Health : Atendimentos Presigned API'
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: Esta API permite o consumo dos recursos do módulo Personal Health, especificamente relacionados à atendimentos dos pacientes.
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
-  description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api.globalhealth.mv/hml/personal-health/api
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
-security:
-- x-api-key: []
+- url: https://api.globalhealth.mv/prod/personal-health/api
+  description: Ambiente de PRODUÇÃO
 tags:
 - name: Presigned
 paths:
@@ -51,7 +47,7 @@ components:
           description: URL
           example: https://s3.amazonaws.com/bucket/CONEXAO/DOCELE_12345_67890.pdf
   securitySchemes:
-    x-api-key:
+    api_key:
       type: apiKey
-      name: x-api-key
       in: header
+      name: x-api-key

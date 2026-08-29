@@ -1,15 +1,22 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Autenticação API
+  title: Integração Hub Operadora Autenticação API
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
+
+
+    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
+
+
+    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
+
+
+    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
+
+    '
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
-  description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:

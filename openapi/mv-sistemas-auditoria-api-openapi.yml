@@ -1,15 +1,21 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Auditoria API
+  title: 'Clinic : de dados de saúde do paciente Auditoria API'
   version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  description: 'API do **Clinic** para **auditoria e conferência** da jornada de saúde do paciente. Consolida, por atendimento, informações que sustentam análise de carteira, conformidade, relatórios e trilhas de auditoria no ecossistema Global Health.
+
+
+    **O que você obtém:** visão estruturada com vínculos entre atendimento, pedidos de exame, internações, guias, documentos anexos, termos de consentimento e demais dados necessários à revisão — sem substituir o prontuário clínico completo, mas reunindo o necessário para auditoria.
+
+
+    **Formas de consumo:** há endpoints equivalentes — um via **API Gateway** (autenticação `x-api-key`) e outro para integração **direta ao serviço da clínica** (`clinic-service`), com regras de autenticação próprias. Consulte cada operação para URL base, segurança e limites.
+
+    '
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
-  description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
-  description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
+- url: https://api.globalhealth.mv/patient-audit/api
+  description: Produção — API Gateway (patient-audit)
+- url: https://api.globalhealth.mv/hml/patient-audit/api
+  description: Homologação — API Gateway (patient-audit)
 security:
 - x-api-key: []
 tags:
@@ -165,6 +171,119 @@ paths:
           description: Ex. `clientKey` obrigatório não informado.
 components:
   schemas:
+    GuiaAuditData:
+      type: object
+      properties:
+        attendanceId:
+          type: integer
+          format: int64
+        formNumber:
+          type: string
+        ansNumber:
+          type: string
+        insuranceNumber:
+          type:
+          - string
+          - 'null'
+        insuranceFormNumber:
+          type:
+          - string
+          - 'null'
+        passwordAuthorization:
+          type:
+          - string
+          - 'null'
+        procedures:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuiaProcedureAuditData'
+    ExamRequestsAuditData:
+      type: object
+      description: 'Item de pedido de exame na auditoria. Inclui **justification** (justificativa textual do pedido,
+
+        coluna `justification` / campo do pedido de exame no clinic).
+
+        '
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdDate:
+          type: string
+          format: date-time
+        deleted:
+          type: boolean
+        exame:
+          type: string
+          description: Nome/descrição do exame no pedido.
+        recommendation:
+          type:
+          - string
+          - 'null'
+          description: Recomendação / observação associada ao pedido.
+        justification:
+          type:
+          - string
+          - 'null'
+          description: '**Justificativa** do pedido de exame (texto livre), quando informada no atendimento.
+
+            Origem: persistência do pedido (`exams_request.justification`). Ausente ou `null` se não houver.
+
+            '
+        clinicalIndication:
+          type:
+          - string
+          - 'null'
+        medicalRecordId:
+          type: integer
+          format: int64
+        examId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        quantity:
+          type: integer
+        requestType:
+          type: string
+          description: Tipo do pedido (ex. `E` externo).
+        loincMvId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        healthQuestionnaireReplyId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        healthQuestionnaireId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        consentTermStatus:
+          type:
+          - string
+          - 'null'
+        sentConsentTermId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        consentTermId:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        tussCode:
+          type:
+          - string
+          - 'null'
+        tussDescription:
+          type:
+          - string
+          - 'null'
     AttendanceAuditData:
       type: object
       properties:
@@ -200,59 +319,6 @@ components:
           format: int64
         insuranceName:
           type: string
-    PagePatientHealthAuditData:
-      type: object
-      description: Resposta paginada Spring Data.
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatientHealthAuditDataResponse'
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-        size:
-          type: integer
-        number:
-          type: integer
-        first:
-          type: boolean
-        last:
-          type: boolean
-        numberOfElements:
-          type: integer
-        empty:
-          type: boolean
-        pageable:
-          type: object
-          description: Metadados de paginação Spring (sort, pageNumber, pageSize, etc.).
-        sort:
-          type: object
-    GuiaAuditData:
-      type: object
-      properties:
-        attendanceId:
-          type: integer
-          format: int64
-        formNumber:
-          type: string
-        ansNumber:
-          type: string
-        insuranceNumber:
-          type: string
-          nullable: true
-        insuranceFormNumber:
-          type: string
-          nullable: true
-        passwordAuthorization:
-          type: string
-          nullable: true
-        procedures:
-          type: array
-          items:
-            $ref: '#/components/schemas/GuiaProcedureAuditData'
     GuiaProcedureAuditData:
       type: object
       properties:
@@ -261,103 +327,10 @@ components:
         procedureCode:
           type: string
         laudoLink:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Link para laudo/anexo quando disponível.
-    ExamRequestsAuditData:
-      type: object
-      description: 'Item de pedido de exame na auditoria. Inclui **justification** (justificativa textual do pedido,
-
-        coluna `justification` / campo do pedido de exame no clinic).
-
-        '
-      properties:
-        id:
-          type: integer
-          format: int64
-        createdDate:
-          type: string
-          format: date-time
-        deleted:
-          type: boolean
-        exame:
-          type: string
-          description: Nome/descrição do exame no pedido.
-        recommendation:
-          type: string
-          nullable: true
-          description: Recomendação / observação associada ao pedido.
-        justification:
-          type: string
-          nullable: true
-          description: '**Justificativa** do pedido de exame (texto livre), quando informada no atendimento.
-
-            Origem: persistência do pedido (`exams_request.justification`). Ausente ou `null` se não houver.
-
-            '
-        clinicalIndication:
-          type: string
-          nullable: true
-        medicalRecordId:
-          type: integer
-          format: int64
-        examId:
-          type: integer
-          format: int64
-          nullable: true
-        quantity:
-          type: integer
-        requestType:
-          type: string
-          description: Tipo do pedido (ex. `E` externo).
-        loincMvId:
-          type: integer
-          format: int64
-          nullable: true
-        healthQuestionnaireReplyId:
-          type: integer
-          format: int64
-          nullable: true
-        healthQuestionnaireId:
-          type: integer
-          format: int64
-          nullable: true
-        consentTermStatus:
-          type: string
-          nullable: true
-        sentConsentTermId:
-          type: integer
-          format: int64
-          nullable: true
-        consentTermId:
-          type: integer
-          format: int64
-          nullable: true
-        tussCode:
-          type: string
-          nullable: true
-        tussDescription:
-          type: string
-          nullable: true
-    AttendanceDocumentAuditData:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        attendanceId:
-          type: integer
-          format: int64
-        segmentId:
-          type: integer
-          format: int64
-        segmentName:
-          type: string
-        signed:
-          type: boolean
-        document:
-          type: string
-          description: URL do documento (pode ser pré-assinada S3).
     PatientHealthAuditDataResponse:
       type: object
       description: Um atendimento na visão de auditoria.
@@ -397,8 +370,58 @@ components:
           type: array
           items:
             type: object
+    AttendanceDocumentAuditData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attendanceId:
+          type: integer
+          format: int64
+        segmentId:
+          type: integer
+          format: int64
+        segmentName:
+          type: string
+        signed:
+          type: boolean
+        document:
+          type: string
+          description: URL do documento (pode ser pré-assinada S3).
+    PagePatientHealthAuditData:
+      type: object
+      description: Resposta paginada Spring Data.
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientHealthAuditDataResponse'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        size:
+          type: integer
+        number:
+          type: integer
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+        empty:
+          type: boolean
+        pageable:
+          type: object
+          description: Metadados de paginação Spring (sort, pageNumber, pageSize, etc.).
+        sort:
+          type: object
   securitySchemes:
     x-api-key:
       type: apiKey
-      name: x-api-key
       in: header
+      name: x-api-key
+      description: Chave de acesso no API Gateway.

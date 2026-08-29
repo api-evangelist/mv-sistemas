@@ -1,15 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Clinic Agenda Agendamento Importação de dados biométricos API
-  version: 1.0.0
-  description: Esta API permite consultar as agendas disponíveis no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento.
+  title: Reconhecimento Facial Importação de dados biométricos API
+  version: 3.1.0
+  contact:
+    email: globalhealth@mv.com.br
+  description: Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://api.globalhealth.mv/available-appointments/api
+- url: https://api.globalhealth.mv/prod/face-recognition
   description: Ambiente de PRODUÇÃO
-- url: https://api.globalhealth.mv/hml/available-appointments/api
+- url: https://api-hml.globalhealth.mv/hml/face-recognition
   description: Ambiente de HOMOLOGAÇÃO
-- url: https://api.globalhealth.mv/qa/available-appointments/api
-  description: Ambiente de QA
 security:
 - x-api-key: []
 tags:
@@ -83,6 +86,26 @@ paths:
       description: Este endpoint finaliza a importação dos dados biométricos de um paciente.
 components:
   schemas:
+    BiometricImportUploadV1Request:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+        base64:
+          type: string
+          description: Arquivo codificado em base64.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+      required:
+      - importIdentifier
+      - base64
     BiometricImportUploadV1Response:
       type: object
       properties:
@@ -93,6 +116,18 @@ components:
           - Upload realizado com sucesso
       required:
       - message
+    BiometricImportStartV1Response:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+      required:
+      - importIdentifier
     BiometricImportStartV1Request:
       type: object
       properties:
@@ -121,38 +156,6 @@ components:
       - name
       - birthDate
       - documentNumber
-    BiometricImportStartV1Response:
-      type: object
-      properties:
-        importIdentifier:
-          type: string
-          description: Identificador da importação.
-          examples:
-          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
-          - 71e50838-8116-4d76-9731-475ae4166452
-          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
-      required:
-      - importIdentifier
-    BiometricImportUploadV1Request:
-      type: object
-      properties:
-        importIdentifier:
-          type: string
-          description: Identificador da importação.
-          examples:
-          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
-          - 71e50838-8116-4d76-9731-475ae4166452
-          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
-        base64:
-          type: string
-          description: Arquivo codificado em base64.
-          examples:
-          - '12345678910'
-          - '12345678911'
-          - '12345678912'
-      required:
-      - importIdentifier
-      - base64
   securitySchemes:
     x-api-key:
       type: apiKey
