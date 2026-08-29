@@ -420,6 +420,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/mv-sistemas-capability-edges.yml
+  name: MV sistemas Business Capability Map
 - type: Overlay
   url: overlays/mv-sistemas-clinic-agenda-overlay.yaml
 - type: Website

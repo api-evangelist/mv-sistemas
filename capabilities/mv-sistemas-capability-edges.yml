@@ -1,0 +1,77 @@
+slug: mv-sistemas
+provider: MV sistemas
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Agendamento
+  spec_file: mv-sistemas-agendamento-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.9
+  evidence: POST /v1/performance-schedules/scheduling 'Criar agendamento a partir de um Agendamento de
+    performance'; PUT .../scheduling/status 'Atualizar status do agendamento'
+  reason: Operations create appointments and update appointment status for clinics, with patient and insurance-card
+    DTOs — appointment/scheduling management in patient access.
+- tag: Horários Disponíveis
+  spec_file: mv-sistemas-hor-rios-dispon-veis-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.9
+  evidence: GET /available-appointments — "Consultar horários disponíveis"; "consultar as agendas disponíveis
+    no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento"
+  reason: Queries provider/resource agendas for bookable slots — directly the appointment scheduling capability,
+    with AvailableAppointment/EmployeeAppointment schemas confirming provider-slot semantics.
+- tag: Agendamento de performance
+  spec_file: mv-sistemas-agendamento-de-performance-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.8
+  evidence: GET /v1/performance-schedules/list 'Listar Agendamento de performance'; POST /cancel 'Cancelar
+    Agendamento de performance'; schemas 'ClinicDTO, ProviderDTO, ConnectPatientDTO, InsuranceCardDTO'
+  reason: Listing, sending and cancelling schedule records tied to clinics, providers and patients is
+    appointment/schedule lifecycle management; slight ambiguity about the exact sub-capability given the
+    'performance schedule' construct.
+- tag: Compartilhamento de Dados
+  spec_file: mv-sistemas-compartilhamento-de-dados-api-openapi.yml
+  capability_id: BC-2900.60
+  capability_id_l1: BC-2900
+  capability_name: Healthcare Interoperability Operations
+  confidence: 0.75
+  evidence: '"Consultar o status atual do compartilhamento de dados de um paciente"; PUT /shared-request/accept,
+    /refuse, /revoke — "Revogar uma requisição aceita de compartilhamento de dados."'
+  reason: Request/accept/refuse/revoke lifecycle for sharing a patient's data between platforms is patient-consented
+    health-data exchange, which BC-2900.60 explicitly names ("patient-initiated data sharing"). Some overlap
+    with Release of Information, hence not higher.
+- tag: News
+  spec_file: mv-sistemas-news-api-openapi.yml
+  capability_id: BC-2910.10
+  capability_id_l1: BC-2910
+  capability_name: Patient Engagement & Communication
+  confidence: 0.7
+  evidence: POST /news/v2/send — "Envia uma notificação ao paciente"; "envio de mensagens de notificação
+    para os usuários do aplicativo Global Health"
+  reason: Outbound notification channel whose stated target is the patient in the provider's app, i.e.
+    multi-channel patient communication; some risk it is treated as generic messaging plumbing.
+- tag: Planos Obstétricos
+  spec_file: mv-sistemas-planos-obst-tricos-api-openapi.yml
+  capability_id: BC-2810.50
+  capability_id_l1: BC-2810
+  capability_name: Maternal & Newborn Care Delivery
+  confidence: 0.7
+  evidence: GET /v1/obstetric-plans — "Consultar planos obstétricos"; schemas PregnancyRisk, ObstetricPlanConnectDTO,
+    PatientObstetricDiseasesSimpleDTO
+  reason: Obstetric care plans with pregnancy-risk and obstetric-disease data are antepartum/maternity
+    care content; residual chance it is better framed as care-plan/case management keeps this below 0.8.
