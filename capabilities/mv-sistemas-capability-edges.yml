@@ -13,65 +13,65 @@ capability_model:
   notice: NOTICE
 edge_count: 6
 edges:
-- tag: Agendamento
-  spec_file: mv-sistemas-agendamento-api-openapi.yml
-  capability_id: BC-2800.10
-  capability_id_l1: BC-2800
-  capability_name: Scheduling & Appointment Management
-  confidence: 0.9
-  evidence: POST /v1/performance-schedules/scheduling 'Criar agendamento a partir de um Agendamento de
-    performance'; PUT .../scheduling/status 'Atualizar status do agendamento'
-  reason: Operations create appointments and update appointment status for clinics, with patient and insurance-card
-    DTOs — appointment/scheduling management in patient access.
 - tag: Horários Disponíveis
   spec_file: mv-sistemas-hor-rios-dispon-veis-api-openapi.yml
   capability_id: BC-2800.10
   capability_id_l1: BC-2800
   capability_name: Scheduling & Appointment Management
-  confidence: 0.9
-  evidence: GET /available-appointments — "Consultar horários disponíveis"; "consultar as agendas disponíveis
-    no sistema Clinic, retornando informações sobre dias e horários que possuem disponibilidade para agendamento"
-  reason: Queries provider/resource agendas for bookable slots — directly the appointment scheduling capability,
-    with AvailableAppointment/EmployeeAppointment schemas confirming provider-slot semantics.
-- tag: Agendamento de performance
-  spec_file: mv-sistemas-agendamento-de-performance-api-openapi.yml
+  confidence: 0.95
+  evidence: '"consultar as agendas disponíveis ... dias e horários que possuem disponibilidade para agendamento";
+    GET /available-appointments "Consultar horários disponíveis"; schemas AvailableAppointment, NearestAvailableAppointment'
+  reason: Plainly appointment slot availability lookup for booking — scheduling and appointment management.
+- tag: Agendamento
+  spec_file: mv-sistemas-agendamento-api-openapi.yml
   capability_id: BC-2800.10
   capability_id_l1: BC-2800
   capability_name: Scheduling & Appointment Management
-  confidence: 0.8
-  evidence: GET /v1/performance-schedules/list 'Listar Agendamento de performance'; POST /cancel 'Cancelar
-    Agendamento de performance'; schemas 'ClinicDTO, ProviderDTO, ConnectPatientDTO, InsuranceCardDTO'
-  reason: Listing, sending and cancelling schedule records tied to clinics, providers and patients is
-    appointment/schedule lifecycle management; slight ambiguity about the exact sub-capability given the
-    'performance schedule' construct.
+  confidence: 0.85
+  evidence: POST /v1/performance-schedules/scheduling  createScheduling  Criar agendamento ... PUT /v1/performance-schedules/scheduling/status  Atualizar
+    status do agendamento
+  reason: Operations create and update the status of clinic appointments, with patient and insurance-card
+    DTOs — clinic appointment booking and lifecycle, i.e. scheduling & appointment management.
 - tag: Compartilhamento de Dados
   spec_file: mv-sistemas-compartilhamento-de-dados-api-openapi.yml
   capability_id: BC-2900.60
   capability_id_l1: BC-2900
   capability_name: Healthcare Interoperability Operations
   confidence: 0.75
-  evidence: '"Consultar o status atual do compartilhamento de dados de um paciente"; PUT /shared-request/accept,
-    /refuse, /revoke — "Revogar uma requisição aceita de compartilhamento de dados."'
-  reason: Request/accept/refuse/revoke lifecycle for sharing a patient's data between platforms is patient-consented
-    health-data exchange, which BC-2900.60 explicitly names ("patient-initiated data sharing"). Some overlap
-    with Release of Information, hence not higher.
+  evidence: POST /shared-request "Criar uma nova requisição de compartilhamento de dados."; "Consultar
+    o status atual do compartilhamento de dados de um paciente"; PUT /shared-request/accept, /refuse,
+    /revoke
+  reason: Request/accept/refuse/revoke lifecycle for sharing a patient's data between platforms — patient-consented
+    health data exchange, which is squarely healthcare interoperability operations (patient-initiated
+    data sharing).
+- tag: Agendamento de performance
+  spec_file: mv-sistemas-agendamento-de-performance-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.72
+  evidence: GET /v1/performance-schedules/list  Listar Agendamento de performance ... POST /cancel  Cancelar
+    Agendamento de performance; schemas ProviderDTO, ClinicDTO, ConnectPatientDTO
+  reason: Sending, listing and cancelling provider/clinic schedule slots for patients across clinics is
+    provider and resource scheduling. Slight uncertainty because 'performance schedule' is a vendor-specific
+    construct and part of the surface is a webhook integration.
 - tag: News
   spec_file: mv-sistemas-news-api-openapi.yml
   capability_id: BC-2910.10
   capability_id_l1: BC-2910
   capability_name: Patient Engagement & Communication
   confidence: 0.7
-  evidence: POST /news/v2/send — "Envia uma notificação ao paciente"; "envio de mensagens de notificação
-    para os usuários do aplicativo Global Health"
-  reason: Outbound notification channel whose stated target is the patient in the provider's app, i.e.
-    multi-channel patient communication; some risk it is treated as generic messaging plumbing.
+  evidence: POST /news/v2/send "Envia uma notificação ao paciente"; "comunicação direta e automatizada
+    com os pacientes"
+  reason: Outbound notification explicitly targeted at patients of the Global Health app — multi-channel
+    patient communication. Some risk it is generic notification plumbing, so confidence is moderate.
 - tag: Planos Obstétricos
   spec_file: mv-sistemas-planos-obst-tricos-api-openapi.yml
   capability_id: BC-2810.50
   capability_id_l1: BC-2810
   capability_name: Maternal & Newborn Care Delivery
   confidence: 0.7
-  evidence: GET /v1/obstetric-plans — "Consultar planos obstétricos"; schemas PregnancyRisk, ObstetricPlanConnectDTO,
-    PatientObstetricDiseasesSimpleDTO
-  reason: Obstetric care plans with pregnancy-risk and obstetric-disease data are antepartum/maternity
-    care content; residual chance it is better framed as care-plan/case management keeps this below 0.8.
+  evidence: GET /v1/obstetric-plans "Consultar planos obstétricos"; schemas PregnancyRisk, PatientObstetricDiseasesSimpleDTO,
+    PatientComorbiditiesSimpleDTO
+  reason: Obstetric care plans with pregnancy-risk and obstetric-disease data — antepartum/maternity care
+    delivery content. Could also be read as maternal care-plan coordination, hence 0.7.
