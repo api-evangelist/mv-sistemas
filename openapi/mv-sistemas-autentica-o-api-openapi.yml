@@ -2,18 +2,7 @@ openapi: 3.2.0
 info:
   title: Integração Hub Operadora Autenticação API
   version: 1.0.0
-  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
-
-
-    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
-
-
-    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
-
-
-    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
-
-    '
+  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.'
 servers:
 - url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
   description: Ambiente de PRODUÇÃO
@@ -31,9 +20,7 @@ paths:
       description: 'Gera um **código de validação temporário** (token alfanumérico de **6 caracteres**) para o beneficiário e, opcionalmente, para um prestador vinculado — usado em fluxos que exigem confirmação rápida (ex.: chat, autosserviço).
 
 
-        O token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.
-
-        '
+        O token costuma ter **validade curta** (da ordem de **minutos**). Se o beneficiário não for encontrado para os dados informados, a API pode responder com **400** ou **404**, conforme o contrato técnico.'
       requestBody:
         required: true
         content:
@@ -55,25 +42,10 @@ paths:
           description: Beneficiário não localizado — quando a API expõe esse código em vez de 400.
         '500':
           description: Erro interno do servidor.
+      operationId: postApiFuncoesPostGerarToken
+      x-operation-id-source: derived
 components:
   schemas:
-    GerarTokenRequest:
-      type: object
-      required:
-      - nrCarteira
-      description: Dados para localizar o beneficiário e, opcionalmente, o prestador que participará do fluxo com o token.
-      properties:
-        nrCarteira:
-          type: string
-          description: 'Número da carteirinha do beneficiário (identificador exibido na carteira ou matrícula, conforme regras da operadora).
-
-            '
-        cdPrestador:
-          type: string
-          default: ''
-          description: 'Opcional. Código do prestador no conselho quando o token for vinculado a um profissional; se omitido ou não localizado, o token é gerado apenas para o beneficiário.
-
-            '
     GerarTokenResponse:
       type: object
       description: Token gerado e, quando disponíveis, instantes de geração e expiração para controle no cliente.
@@ -94,6 +66,23 @@ components:
           format: date-time
           description: Momento em que o token deixa de ser válido; em geral poucos minutos após a geração.
       additionalProperties: true
+    GerarTokenRequest:
+      type: object
+      required:
+      - nrCarteira
+      description: Dados para localizar o beneficiário e, opcionalmente, o prestador que participará do fluxo com o token.
+      properties:
+        nrCarteira:
+          type: string
+          description: 'Número da carteirinha do beneficiário (identificador exibido na carteira ou matrícula, conforme regras da operadora).
+
+            '
+        cdPrestador:
+          type: string
+          default: ''
+          description: 'Opcional. Código do prestador no conselho quando o token for vinculado a um profissional; se omitido ou não localizado, o token é gerado apenas para o beneficiário.
+
+            '
   securitySchemes:
     x-api-key:
       type: apiKey

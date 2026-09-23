@@ -32,15 +32,10 @@ paths:
           description: Forbidden
         '500':
           description: Failure
+      operationId: postPersonalHealthApiV1UserCreate
+      x-operation-id-source: derived
 components:
   schemas:
-    DocumentTypeDTO:
-      type: object
-      description: Tipo do documento
-      properties:
-        description:
-          type: string
-          example: CPF
     UserCreationDTO:
       type: object
       description: DTO utilizado para criar um novo usuário
@@ -120,6 +115,13 @@ components:
           type: string
           description: Nome social do usuário
           example: João
+    DocumentTypeDTO:
+      type: object
+      description: Tipo do documento
+      properties:
+        description:
+          type: string
+          example: CPF
     DocumentUserDTO:
       type: object
       description: DTO do documento do usuário

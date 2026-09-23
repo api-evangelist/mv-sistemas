@@ -4,7 +4,7 @@ info:
   version: 3.1.0
   contact:
     email: globalhealth@mv.com.br
-  description: Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
+  description: Essa documentação descreve a API de reconhecimento facial da GLOBALHEALTH que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -36,7 +36,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BiometricImportStartV1Response'
-      summary: Iniciar a importação de dados biométriocos de um paciente.
+      summary: Iniciar a importação de dados biométriocos de um paciente
       description: Este endpoint inicia a importação dos dados biométricos de um paciente.
   /api/v1/biometric/import/upload:
     post:
@@ -56,7 +56,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BiometricImportUploadV1Response'
-      summary: Realizar o upload dos dados biométriocos de um paciente.
+      summary: Realizar o upload dos dados biométriocos de um paciente
       description: Este endpoint realiza o upload dos dados biométricos de um paciente.
   /api/v1/biometric/import/finish/{importIdentifier}:
     put:
@@ -82,30 +82,10 @@ paths:
           description: Finalizado a importação
           content:
             application/json: {}
-      summary: Finalizar a importação de dados biométriocos de um paciente.
+      summary: Finalizar a importação de dados biométriocos de um paciente
       description: Este endpoint finaliza a importação dos dados biométricos de um paciente.
 components:
   schemas:
-    BiometricImportUploadV1Request:
-      type: object
-      properties:
-        importIdentifier:
-          type: string
-          description: Identificador da importação.
-          examples:
-          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
-          - 71e50838-8116-4d76-9731-475ae4166452
-          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
-        base64:
-          type: string
-          description: Arquivo codificado em base64.
-          examples:
-          - '12345678910'
-          - '12345678911'
-          - '12345678912'
-      required:
-      - importIdentifier
-      - base64
     BiometricImportUploadV1Response:
       type: object
       properties:
@@ -116,18 +96,6 @@ components:
           - Upload realizado com sucesso
       required:
       - message
-    BiometricImportStartV1Response:
-      type: object
-      properties:
-        importIdentifier:
-          type: string
-          description: Identificador da importação.
-          examples:
-          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
-          - 71e50838-8116-4d76-9731-475ae4166452
-          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
-      required:
-      - importIdentifier
     BiometricImportStartV1Request:
       type: object
       properties:
@@ -156,6 +124,38 @@ components:
       - name
       - birthDate
       - documentNumber
+    BiometricImportStartV1Response:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+      required:
+      - importIdentifier
+    BiometricImportUploadV1Request:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+        base64:
+          type: string
+          description: Arquivo codificado em base64.
+          examples:
+          - '12345678910'
+          - '12345678911'
+          - '12345678912'
+      required:
+      - importIdentifier
+      - base64
   securitySchemes:
     x-api-key:
       type: apiKey

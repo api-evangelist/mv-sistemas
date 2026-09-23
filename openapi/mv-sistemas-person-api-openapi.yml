@@ -14,7 +14,14 @@ paths:
   /person/allergy:
     get:
       summary: Lista os pacientes alérgicos
-      description: 'Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema. <br> <br> Os parâmetros "page" e "size": são obrigatórios para a paginação dos resultados; <br> Size: deve ter valor máximo de 50. <br> O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço. <br><br> '
+      description: 'Esta operação retorna uma lista paginada de pessoas e suas respectivas alergias registradas no sistema.
+
+
+        Os parâmetros "page" e "size": são obrigatórios para a paginação dos resultados;
+
+        Size: deve ter valor máximo de 50.
+
+        O limite de requisições é de 2 por segundo, garantindo a estabilidade do serviço.'
       security:
       - api_key: []
       operationId: getPersonResumeV2

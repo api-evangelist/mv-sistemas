@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Protocolo de Entrada API
   version: 3.1.0
-  description: ' Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.'
+  description: Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -55,7 +55,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntryControlProtocolDTO'
-      summary: Realizar o criação de protocolo de entrada.
+      summary: Realizar o criação de protocolo de entrada
       description: Endpoint responsável por criar um novo protocolo de entrada, registrando as informações necessárias para o controle de acessos.
   /api/v1/entry-control-protocols/{id}:
     put:
@@ -89,6 +89,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/InternalErrorMessage'
+      summary: Update protocol
+      x-summary-source: derived
 components:
   schemas:
     EntryControlProtocolDTO:

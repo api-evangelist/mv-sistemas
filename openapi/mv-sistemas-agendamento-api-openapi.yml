@@ -3,9 +3,7 @@ info:
   title: Clinic Connect - de performance Agendamento API
   description: 'API do módulo Clinic Connect para listagem de Agendamento de performance e operações de agendamento.
 
-    Base path: `/clinic/clinic-connect`
-
-    '
+    Base path: `/clinic/clinic-connect`'
   version: 1.0.0
 servers:
 - url: https://api.globalhealth.mv/clinic-connect/api/
@@ -29,9 +27,7 @@ paths:
 
         É obrigatório informar `id` ou `externalId` do Agendamento de performance, além de patient, insurance e termCbo.
 
-        O slot deve estar disponível (não ocupado).
-
-        '
+        O slot deve estar disponível (não ocupado).'
       operationId: createScheduling
       requestBody:
         required: true
@@ -67,9 +63,7 @@ paths:
 
         O Agendamento de performance deve estar ocupado (ter Schedules vinculado).
 
-        Para status CANCELLED: não é permitido se já existir atendimento; ao cancelar, o slot é liberado e é criado um registro de cancelamento (PATIENT_CANCELLED).
-
-        '
+        Para status CANCELLED: não é permitido se já existir atendimento; ao cancelar, o slot é liberado e é criado um registro de cancelamento (PATIENT_CANCELLED).'
       operationId: updateSchedulingStatus
       requestBody:
         required: true
@@ -98,75 +92,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Schedules:
-      type: object
-      description: Entidade de agendamento retornada na criação e na atualização de status
-      properties:
-        id:
-          type: integer
-          format: int64
-        date:
-          type: string
-          format: date
-        startTime:
-          type: string
-          format: time
-        predictionEndTime:
-          type: string
-          format: time
-        schedulingStatus:
-          type: string
-        observation:
-          type: string
-        patient:
-          type: object
-        clinic:
-          type: object
-        employee:
-          type: object
-        insurance:
-          type: object
-        createdDate:
-          type: string
-          format: date-time
-        lastModifiedDate:
-          type: string
-          format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Tipo do erro
-        message:
-          type: string
-          description: Mensagem descritiva do erro (pode vir do i18n)
-        details:
-          type: object
-          additionalProperties: true
-    PerformanceScheduleSchedulingDTO:
-      type: object
-      description: Request para criar agendamento a partir de um Agendamento de performance
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: ID do Agendamento de performance (opcional se externalId for informado)
-        externalId:
-          type: string
-          description: External ID do Agendamento de performance (opcional se id for informado)
-        insurance:
-          $ref: '#/components/schemas/InsuranceCardDTO'
-          description: Dados do convênio
-        patient:
-          $ref: '#/components/schemas/ConnectPatientDTO'
-          description: Dados do paciente
-        termCbo:
-          type: string
-          description: Código CBO (termCode) da especialidade
-        observation:
-          type: string
-          description: Observação do agendamento
     InsuranceCardDTO:
       type: object
       description: Dados do convênio/carteirinha
@@ -179,20 +104,6 @@ components:
           type: string
         newborn:
           type: boolean
-    PerformanceScheduleSchedulingStatusDTO:
-      type: object
-      description: Request para atualizar status do agendamento
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: ID do Agendamento de performance (opcional se externalId for informado)
-        externalId:
-          type: string
-          description: External ID do Agendamento de performance (opcional se id for informado)
-        schedulingStatus:
-          type: string
-          description: Novo status (ex. CANCELLED, CONFIRMED, WAITING, NO_SHOW, ATTENDED)
     ConnectPatientDTO:
       type: object
       description: Dados do paciente (Clinic Connect)
@@ -237,6 +148,89 @@ components:
           type: string
         addressNumber:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Tipo do erro
+        message:
+          type: string
+          description: Mensagem descritiva do erro (pode vir do i18n)
+        details:
+          type: object
+          additionalProperties: true
+    PerformanceScheduleSchedulingDTO:
+      type: object
+      description: Request para criar agendamento a partir de um Agendamento de performance
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        insurance:
+          $ref: '#/components/schemas/InsuranceCardDTO'
+          description: Dados do convênio
+        patient:
+          $ref: '#/components/schemas/ConnectPatientDTO'
+          description: Dados do paciente
+        termCbo:
+          type: string
+          description: Código CBO (termCode) da especialidade
+        observation:
+          type: string
+          description: Observação do agendamento
+    PerformanceScheduleSchedulingStatusDTO:
+      type: object
+      description: Request para atualizar status do agendamento
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Agendamento de performance (opcional se externalId for informado)
+        externalId:
+          type: string
+          description: External ID do Agendamento de performance (opcional se id for informado)
+        schedulingStatus:
+          type: string
+          description: Novo status (ex. CANCELLED, CONFIRMED, WAITING, NO_SHOW, ATTENDED)
+    Schedules:
+      type: object
+      description: Entidade de agendamento retornada na criação e na atualização de status
+      properties:
+        id:
+          type: integer
+          format: int64
+        date:
+          type: string
+          format: date
+        startTime:
+          type: string
+          format: time
+        predictionEndTime:
+          type: string
+          format: time
+        schedulingStatus:
+          type: string
+        observation:
+          type: string
+        patient:
+          type: object
+        clinic:
+          type: object
+        employee:
+          type: object
+        insurance:
+          type: object
+        createdDate:
+          type: string
+          format: date-time
+        lastModifiedDate:
+          type: string
+          format: date-time
   securitySchemes:
     x-api-key:
       type: apiKey

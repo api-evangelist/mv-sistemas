@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: para Gestão de Eventos API
-  description: ' A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.'
+  description: A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.
   version: 1.1.5
 servers:
 - url: https://api.globalhealth.mv/prod/event-checkin
@@ -80,6 +80,8 @@ paths:
                 $ref: '#/components/schemas/InvalidFieldsResponse'
               example:
                 message: 'Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123).'
+      summary: Create event
+      x-summary-source: derived
   /events:
     get:
       tags:
@@ -136,6 +138,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventDTO'
+      summary: Get events
+      x-summary-source: derived
   /minimal:
     post:
       tags:
@@ -242,6 +246,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidFieldsResponse'
+      summary: Create event with minimal info
+      x-summary-source: derived
   /minimal/{hashKey}:
     put:
       tags:
@@ -354,6 +360,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidFieldsResponse'
+      summary: Update event with minimal info
+      x-summary-source: derived
   /api/v1/event-appointment:
     post:
       tags:
@@ -421,21 +429,42 @@ paths:
                 $ref: '#/components/schemas/InvalidFieldsResponse'
               example:
                 message: 'Sem loinc cadastro no painel de controle para esse exame(exaLabId: 123).'
+      summary: Create event appointment
+      x-summary-source: derived
 components:
   schemas:
-    Appointment:
+    EventPatientMinimalDTO:
       type: object
       properties:
         id:
           type: integer
-        phoneMobile:
+          format: int64
+        birthDate:
+          type: string
+          format: date
+        name:
+          type: string
+        login:
+          type: string
+        socialName:
+          type: string
+        motherName:
           type: string
         email:
           type: string
           format: email
-        healthProfessionalAccreditationNumber:
+        phoneMobile:
           type: string
-        healthProfessionalAccreditationType:
+        zipCode:
+          type: string
+        address:
+          type: string
+        addressNumber:
+          type: string
+    InvalidFieldDTO:
+      type: object
+      properties:
+        message:
           type: string
     CreateEventV1Request:
       type: object
@@ -481,11 +510,6 @@ components:
           type: number
         checkin:
           $ref: '#/components/schemas/CreateEventV1Checkin'
-    InvalidFieldDTO:
-      type: object
-      properties:
-        message:
-          type: string
     EventDTO:
       type: object
       properties:
@@ -578,15 +602,6 @@ components:
           type: string
         addressNumber:
           type: string
-    InvalidFieldsResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvalidFieldDTO'
     CreateEventV1RequestingPhysician:
       type: object
       properties:
@@ -598,47 +613,11 @@ components:
           type: string
         code:
           type: string
-    EventPatientMinimalDTO:
+    CreatedCheckinV1Response:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        birthDate:
+        hashKey:
           type: string
-          format: date
-        name:
-          type: string
-        login:
-          type: string
-        socialName:
-          type: string
-        motherName:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneMobile:
-          type: string
-        zipCode:
-          type: string
-        address:
-          type: string
-        addressNumber:
-          type: string
-    CreateEventV1Checkin:
-      type: object
-      properties:
-        requestedDate:
-          type: string
-          format: date
-          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
-        requestingPhysician:
-          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEventV1CheckinItem'
     CreateEventV1CheckinItem:
       type: object
       properties:
@@ -656,11 +635,42 @@ components:
         observation:
           type: string
           description: Observação
-    CreatedCheckinV1Response:
+    Appointment:
       type: object
       properties:
-        hashKey:
+        id:
+          type: integer
+        phoneMobile:
           type: string
+        email:
+          type: string
+          format: email
+        healthProfessionalAccreditationNumber:
+          type: string
+        healthProfessionalAccreditationType:
+          type: string
+    CreateEventV1Checkin:
+      type: object
+      properties:
+        requestedDate:
+          type: string
+          format: date
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+        requestingPhysician:
+          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventV1CheckinItem'
+    InvalidFieldsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldDTO'
   securitySchemes:
     x-api-key:
       type: apiKey

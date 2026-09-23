@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - Compartilhamento de Dados
-      summary: Criar uma nova requisição de compartilhamento de dados.
+      summary: Criar uma nova requisição de compartilhamento de dados
       description: Endpoint responsável por criar uma nova requisição de compartilhamento de dados do paciente, iniciando o processo de autorização entre as partes envolvidas.
       parameters: []
       requestBody:
@@ -39,10 +39,12 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postSharedRequest
+      x-operation-id-source: derived
     get:
       tags:
       - Compartilhamento de Dados
-      summary: Consultar as requisições de compartilhamento.
+      summary: Consultar as requisições de compartilhamento
       description: Endpoint utilizado para consultar requisições de compartilhamento de dados, permitindo aplicar filtros específicos para localizar solicitações conforme os parâmetros informados.
       parameters:
       - name: login
@@ -111,11 +113,13 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: getSharedRequest
+      x-operation-id-source: derived
   /shared-request/status:
     get:
       tags:
       - Compartilhamento de Dados
-      summary: Consultar o status atual do compartilhamento de dados de um paciente.
+      summary: Consultar o status atual do compartilhamento de dados de um paciente
       description: Endpoint que verifica o status atual de uma requisição de compartilhamento de dados do paciente, possibilitando o acompanhamento em tempo real.
       parameters:
       - name: login
@@ -153,11 +157,13 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: getSharedRequestStatus
+      x-operation-id-source: derived
   /shared-request/accept:
     put:
       tags:
       - Compartilhamento de Dados
-      summary: Aceitar uma requisição pendente de compartilhamento de dados.
+      summary: Aceitar uma requisição pendente de compartilhamento de dados
       description: Endpoint utilizado para aceitar uma requisição pendente de compartilhamento de dados do paciente, autorizando o acesso conforme os termos acordados.
       parameters: []
       requestBody:
@@ -178,11 +184,13 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: putSharedRequestAccept
+      x-operation-id-source: derived
   /shared-request/refuse:
     put:
       tags:
       - Compartilhamento de Dados
-      summary: Recusar uma requisição pendente de compartilhamento de dados.
+      summary: Recusar uma requisição pendente de compartilhamento de dados
       description: Endpoint responsável por recusar uma requisição pendente de compartilhamento de dados do paciente, bloqueando o prosseguimento do processo.
       parameters: []
       requestBody:
@@ -203,11 +211,13 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: putSharedRequestRefuse
+      x-operation-id-source: derived
   /shared-request/revoke:
     put:
       tags:
       - Compartilhamento de Dados
-      summary: Revogar uma requisição aceita de compartilhamento de dados.
+      summary: Revogar uma requisição aceita de compartilhamento de dados
       description: Endpoint utilizado para revogar uma requisição já aceita de compartilhamento de dados do paciente, interrompendo o acesso previamente autorizado.
       parameters: []
       requestBody:
@@ -228,81 +238,10 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: putSharedRequestRevoke
+      x-operation-id-source: derived
 components:
   schemas:
-    SharedRequestStatus:
-      type: string
-      enum:
-      - WAITING
-      - REFUSED
-      - ACCEPTED
-      - REVOKED
-      description: Status do compartilhamento de dados
-      example: ACCEPTED
-    SharedRequestCreateDTO:
-      type: object
-      required:
-      - login
-      - identificationNumber
-      - identificationType
-      - requesterUnity
-      properties:
-        login:
-          type: string
-          example: usuario@teste.com
-        identificationNumber:
-          type: string
-          example: '12345678900'
-        identificationType:
-          type: string
-          example: CPF
-        requesterId:
-          type: string
-          example: '100'
-        requesterDocumentNumber:
-          type: string
-          example: '11111111111'
-        requesterLabel:
-          type: string
-          example: Dr. João da Silva
-        requesterUnity:
-          type: string
-          example: Clínica Vida
-        requesterPicture:
-          type: string
-          example: https://cdn.exemplo.com/foto.png
-        cellphone:
-          type: string
-          example: '5511987654321'
-        startDate:
-          type: integer
-          format: date-time
-          example: '1764682200000'
-        endDate:
-          type: integer
-          format: date-time
-          example: '1764892800000'
-    SharedRequestChangeStatusDTO:
-      type: object
-      required:
-      - login
-      - identificationNumber
-      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
-
-        '
-      properties:
-        login:
-          type: string
-          example: usuario@teste.com
-        identificationNumber:
-          type: string
-          example: '12345678900'
-        requesterId:
-          type: string
-          example: '1'
-        requesterDocumentNumber:
-          type: string
-          example: '11111111111'
     SharedRequestDTO:
       type: object
       properties:
@@ -356,6 +295,79 @@ components:
         clientKey:
           type: string
           example: clinic-001
+    SharedRequestCreateDTO:
+      type: object
+      required:
+      - login
+      - identificationNumber
+      - identificationType
+      - requesterUnity
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: '12345678900'
+        identificationType:
+          type: string
+          example: CPF
+        requesterId:
+          type: string
+          example: '100'
+        requesterDocumentNumber:
+          type: string
+          example: '11111111111'
+        requesterLabel:
+          type: string
+          example: Dr. João da Silva
+        requesterUnity:
+          type: string
+          example: Clínica Vida
+        requesterPicture:
+          type: string
+          example: https://cdn.exemplo.com/foto.png
+        cellphone:
+          type: string
+          example: '5511987654321'
+        startDate:
+          type: integer
+          format: date-time
+          example: '1764682200000'
+        endDate:
+          type: integer
+          format: date-time
+          example: '1764892800000'
+    SharedRequestStatus:
+      type: string
+      enum:
+      - WAITING
+      - REFUSED
+      - ACCEPTED
+      - REVOKED
+      description: Status do compartilhamento de dados
+      example: ACCEPTED
+    SharedRequestChangeStatusDTO:
+      type: object
+      required:
+      - login
+      - identificationNumber
+      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
+
+        '
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: '12345678900'
+        requesterId:
+          type: string
+          example: '1'
+        requesterDocumentNumber:
+          type: string
+          example: '11111111111'
   securitySchemes:
     x-api-key:
       type: apiKey

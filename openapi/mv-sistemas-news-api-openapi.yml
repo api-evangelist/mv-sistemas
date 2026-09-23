@@ -42,6 +42,8 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postNewsV2Send
+      x-operation-id-source: derived
 components:
   schemas:
     NotificationPayload:

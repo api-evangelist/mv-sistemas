@@ -36,6 +36,8 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postNotificationPush
+      x-operation-id-source: derived
   /notification/email/send:
     post:
       tags:
@@ -64,8 +66,30 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postNotificationEmailSend
+      x-operation-id-source: derived
 components:
   schemas:
+    NotificationPushPayload:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Exemplo de Mensagem
+          description: Conteúdo da mensagem a ser enviada na notificação.
+        title:
+          type: string
+          example: Exemplo de Titulo
+          description: Título da notificação.
+        to:
+          type: string
+          format: email
+          example: email@email.com
+          description: E-mail do destinatário que receberá a notificação.
+      required:
+      - message
+      - title
+      - to
     NotificationEmailPayload:
       type: object
       properties:
@@ -93,26 +117,6 @@ components:
       - modelKey
       - clientKey
       - productKey
-      - to
-    NotificationPushPayload:
-      type: object
-      properties:
-        message:
-          type: string
-          example: Exemplo de Mensagem
-          description: Conteúdo da mensagem a ser enviada na notificação.
-        title:
-          type: string
-          example: Exemplo de Titulo
-          description: Título da notificação.
-        to:
-          type: string
-          format: email
-          example: email@email.com
-          description: E-mail do destinatário que receberá a notificação.
-      required:
-      - message
-      - title
       - to
   securitySchemes:
     api_key:

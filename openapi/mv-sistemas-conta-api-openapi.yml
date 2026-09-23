@@ -35,8 +35,22 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postV1Subscriptions
+      x-operation-id-source: derived
 components:
   schemas:
+    EmployeeAccreditationDTO:
+      type: object
+      properties:
+        accreditationType:
+          type: string
+          example: CRM
+        accreditationState:
+          type: string
+          example: PE
+        accreditationNumber:
+          type: string
+          example: '123456'
     TermCboConnectDTO:
       type: object
       properties:
@@ -70,18 +84,6 @@ components:
           $ref: '#/components/schemas/TermCboConnectDTO'
         accreditation:
           $ref: '#/components/schemas/EmployeeAccreditationDTO'
-    EmployeeAccreditationDTO:
-      type: object
-      properties:
-        accreditationType:
-          type: string
-          example: CRM
-        accreditationState:
-          type: string
-          example: PE
-        accreditationNumber:
-          type: string
-          example: '123456'
   securitySchemes:
     x-api-key:
       type: apiKey

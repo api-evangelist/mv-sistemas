@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Planos Obstétricos
-      summary: Consultar planos obstétricos.
+      summary: Consultar planos obstétricos
       description: Endpoint utilizado para buscar planos obstétricos com base em filtros específicos, permitindo consultas direcionadas conforme os critérios informados
       parameters:
       - name: identificationNumber
@@ -55,15 +55,42 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: getV1ObstetricPlans
+      x-operation-id-source: derived
 components:
   schemas:
-    PregnancyRisk:
-      type: string
-      enum:
-      - HABITUAL
-      - HIGH
-      description: 'Indica o risco da gestação: habitual ou alto risco'
-      example: HABITUAL
+    PatientComorbiditiesSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        comorbidityName:
+          type: string
+        cid:
+          type: string
+        cidDescription:
+          type: string
+        statusMed:
+          $ref: '#/components/schemas/PatientComorbiditiesStatus'
+        statusPatient:
+          $ref: '#/components/schemas/PatientComorbiditiesStatus'
+    PatientObstetricDiseasesSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        obstetricDiseasesName:
+          type: string
+        cid:
+          type: string
+        cidDescription:
+          type: string
+        statusMed:
+          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
+        statusPatient:
+          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
     ObstetricPlanConnectDTO:
       type: object
       properties:
@@ -91,22 +118,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PatientObstetricDiseasesSimpleDTO'
-    PatientObstetricDiseasesSimpleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        obstetricDiseasesName:
-          type: string
-        cid:
-          type: string
-        cidDescription:
-          type: string
-        statusMed:
-          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
-        statusPatient:
-          $ref: '#/components/schemas/PatientObstetricDiseasesStatus'
     PatientObstetricDiseasesStatus:
       type: string
       enum:
@@ -114,6 +125,13 @@ components:
       - VALIDATED
       - VALIDATED_BY_EMPLOYEE
       description: Status da doença obstétrica
+    PregnancyRisk:
+      type: string
+      enum:
+      - HABITUAL
+      - HIGH
+      description: 'Indica o risco da gestação: habitual ou alto risco'
+      example: HABITUAL
     PatientComorbiditiesStatus:
       type: string
       enum:
@@ -121,22 +139,6 @@ components:
       - VALIDATED
       - VALIDATED_BY_EMPLOYEE
       description: Status da comorbidade
-    PatientComorbiditiesSimpleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        comorbidityName:
-          type: string
-        cid:
-          type: string
-        cidDescription:
-          type: string
-        statusMed:
-          $ref: '#/components/schemas/PatientComorbiditiesStatus'
-        statusPatient:
-          $ref: '#/components/schemas/PatientComorbiditiesStatus'
   securitySchemes:
     x-api-key:
       type: apiKey

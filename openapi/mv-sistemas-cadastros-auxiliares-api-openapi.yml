@@ -2,18 +2,7 @@ openapi: 3.2.0
 info:
   title: Integração Hub Operadora Cadastros auxiliares API
   version: 1.0.0
-  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
-
-
-    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
-
-
-    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
-
-
-    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
-
-    '
+  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.'
 servers:
 - url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
   description: Ambiente de PRODUÇÃO
@@ -31,9 +20,7 @@ paths:
       description: 'Lista **estados (UFs)** disponíveis para uso em filtros (por exemplo, na busca de rede credenciada ou cadastros auxiliares), **associados ao contexto da carteirinha** informada.
 
 
-        Não há parâmetros de consulta além da carteira na URL.
-
-        '
+        Não há parâmetros de consulta além da carteira na URL.'
       parameters:
       - name: numerocarteira
         in: path
@@ -56,14 +43,14 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetEstadosByNumerocarteira
+      x-operation-id-source: derived
   /api/Funcoes/GetCidades/{numerocarteira}:
     get:
       tags:
       - Cadastros auxiliares
       summary: GetCidades
-      description: 'Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.
-
-        '
+      description: Lista **municípios** de uma **UF** escolhida, para montar filtros em telas (rede credenciada, endereço, etc.). Informe a **carteirinha** no path e o **código da UF** na consulta.
       parameters:
       - name: numerocarteira
         in: path
@@ -92,14 +79,14 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetCidadesByNumerocarteira
+      x-operation-id-source: derived
   /api/Funcoes/GetBairros/{numerocarteira}:
     get:
       tags:
       - Cadastros auxiliares
       summary: GetBairros
-      description: 'Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.
-
-        '
+      description: Lista **bairros** disponíveis para o **município** e **UF** informados — útil para refinar buscas na rede credenciada. Informe a carteirinha na URL, a UF e o código do município nas consultas.
       parameters:
       - name: numerocarteira
         in: path
@@ -134,6 +121,8 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetBairrosByNumerocarteira
+      x-operation-id-source: derived
   /api/Funcoes/GetRecursos/{numerocarteira}:
     get:
       tags:
@@ -142,9 +131,7 @@ paths:
       description: 'Lista os **tipos de recurso** disponíveis para filtro (ex.: tipos de atendimento na rede), incluindo em muitos casos a opção **`TODOS`** para não restringir a busca.
 
 
-        Utilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.
-
-        '
+        Utilize apenas a **carteirinha** no path; não há outros parâmetros de consulta.'
       parameters:
       - name: numerocarteira
         in: path
@@ -167,14 +154,14 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetRecursosByNumerocarteira
+      x-operation-id-source: derived
   /api/Funcoes/GetEspecialidade/{numerocarteira}:
     get:
       tags:
       - Cadastros auxiliares
       summary: GetEspecialidade
-      description: 'Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.
-
-        '
+      description: Lista **especialidades e linhas de atuação** disponíveis para filtro na rede, considerando **UF** e **tipo de recurso** (ou **`TODOS`** para não filtrar por tipo). Informe a carteirinha no path e os filtros na consulta.
       parameters:
       - name: numerocarteira
         in: path
@@ -210,8 +197,43 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetEspecialidadeByNumerocarteira
+      x-operation-id-source: derived
 components:
   schemas:
+    VwClinicApiBairro:
+      type: object
+      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      additionalProperties: true
+      properties:
+        dsbairro:
+          type: string
+          description: Nome do bairro.
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiRecurso:
+      type: object
+      description: 'Tipo de recurso ou modalidade de atendimento (ex.: consulta, exame). Pode incluir uma linha **`TODOS`** para representar “qualquer tipo” nos filtros.
+
+        '
+      additionalProperties: true
+      properties:
+        idtiporecurso:
+          type: string
+          description: Identificador do tipo de recurso (alinhado à descrição exibida ou a `TODOS`).
+        dstiporecurso:
+          type: string
+          description: Descrição do tipo de recurso ou `TODOS`.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
     VwClinicApiMunicipio:
       type: object
       description: Município com código, nome e UF para montagem de filtros e endereços.
@@ -229,20 +251,17 @@ components:
         cdmatalternativa:
           type: string
           description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
-    VwClinicApiBairro:
+    VwClinicApiUf:
       type: object
-      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
       additionalProperties: true
       properties:
-        dsbairro:
-          type: string
-          description: Nome do bairro.
-        cdmunicipio:
-          type: string
-          description: Código do município.
         cduf:
           type: string
           description: Código da UF.
+        nmuf:
+          type: string
+          description: Nome da unidade federativa.
         cdmatalternativa:
           type: string
           description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
@@ -268,36 +287,6 @@ components:
         cdmatalternativa:
           type: string
           description: Vínculo com carteira; pode ser vazio ou nulo.
-    VwClinicApiUf:
-      type: object
-      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
-      additionalProperties: true
-      properties:
-        cduf:
-          type: string
-          description: Código da UF.
-        nmuf:
-          type: string
-          description: Nome da unidade federativa.
-        cdmatalternativa:
-          type: string
-          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
-    VwClinicApiRecurso:
-      type: object
-      description: 'Tipo de recurso ou modalidade de atendimento (ex.: consulta, exame). Pode incluir uma linha **`TODOS`** para representar “qualquer tipo” nos filtros.
-
-        '
-      additionalProperties: true
-      properties:
-        idtiporecurso:
-          type: string
-          description: Identificador do tipo de recurso (alinhado à descrição exibida ou a `TODOS`).
-        dstiporecurso:
-          type: string
-          description: Descrição do tipo de recurso ou `TODOS`.
-        cdmatalternativa:
-          type: string
-          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
   securitySchemes:
     x-api-key:
       type: apiKey

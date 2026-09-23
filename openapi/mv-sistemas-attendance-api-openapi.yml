@@ -79,6 +79,9 @@ paths:
       - api_key: []
 components:
   schemas:
+    ExamFieldHealthConnectedProtocolDTO:
+      type: object
+      description: Campo adicional de um exame
     AttendanceHealthConnectedDTO:
       type: object
       description: Dados do atendimento provenientes da integração legada Health Connected
@@ -238,22 +241,62 @@ components:
           description: Lista de registros pessoais vinculados ao atendimento
           items:
             $ref: '#/components/schemas/PersonalRecordProtocolDTO'
-    PersonalRecordProtocolDTO:
+    MedicalRecordProtocolDTO:
       type: object
-      description: Registro pessoal vinculado ao atendimento
+      description: Dados de um prontuário médico vinculado ao atendimento
       properties:
         id:
           type: integer
           format: int64
-          description: Identificador único do registro
-        title:
+          description: Identificador único do prontuário
+        createdDate:
           type: string
-          description: Título do registro
-        urlRecord:
-          type: array
-          description: Lista de URLs dos arquivos do registro
-          items:
-            type: string
+          description: Data de criação do prontuário
+        accreditation:
+          type: string
+          description: Tipo de acreditação do profissional
+        accreditationNumber:
+          type: string
+          description: Número de acreditação do profissional
+        healthProfessional:
+          type: string
+          description: Nome do profissional de saúde
+        medicalRecordFileName:
+          type: string
+          description: Nome do arquivo do prontuário
+        medicalRecordFile:
+          type: string
+          description: Conteúdo do arquivo do prontuário (base64)
+        medicalRecordId:
+          type: string
+          description: Identificador do prontuário
+        medicalRecordName:
+          type: string
+          description: Nome do prontuário
+        medicalRecordType:
+          type: string
+          description: Tipo do prontuário
+        medicalRecordCode:
+          type: string
+          description: Código do prontuário
+        healthProfessionalSharing:
+          type: string
+          description: Compartilhamento com profissional de saúde
+        personalHealthSharing:
+          type: string
+          description: Compartilhamento com Personal Health
+        signatureDate:
+          type: string
+          description: Data de assinatura do prontuário
+        status:
+          type: string
+          description: Status do prontuário
+        statusMessage:
+          type: string
+          description: Mensagem de status do prontuário
+        idObject:
+          type: string
+          description: Identificador do objeto associado
     SurgeryRequestProtocolDTO:
       type: object
       description: Dados de uma cirurgia vinculada ao atendimento
@@ -282,6 +325,22 @@ components:
         accreditation:
           type: string
           description: Tipo de acreditação do cirurgião
+    PersonalRecordProtocolDTO:
+      type: object
+      description: Registro pessoal vinculado ao atendimento
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador único do registro
+        title:
+          type: string
+          description: Título do registro
+        urlRecord:
+          type: array
+          description: Lista de URLs dos arquivos do registro
+          items:
+            type: string
     ExamHealthConnectedProtocolDTO:
       type: object
       description: Dados do exame vinculado ao atendimento
@@ -398,65 +457,6 @@ components:
           description: Campos adicionais do exame
           items:
             $ref: '#/components/schemas/ExamFieldHealthConnectedProtocolDTO'
-    MedicalRecordProtocolDTO:
-      type: object
-      description: Dados de um prontuário médico vinculado ao atendimento
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Identificador único do prontuário
-        createdDate:
-          type: string
-          description: Data de criação do prontuário
-        accreditation:
-          type: string
-          description: Tipo de acreditação do profissional
-        accreditationNumber:
-          type: string
-          description: Número de acreditação do profissional
-        healthProfessional:
-          type: string
-          description: Nome do profissional de saúde
-        medicalRecordFileName:
-          type: string
-          description: Nome do arquivo do prontuário
-        medicalRecordFile:
-          type: string
-          description: Conteúdo do arquivo do prontuário (base64)
-        medicalRecordId:
-          type: string
-          description: Identificador do prontuário
-        medicalRecordName:
-          type: string
-          description: Nome do prontuário
-        medicalRecordType:
-          type: string
-          description: Tipo do prontuário
-        medicalRecordCode:
-          type: string
-          description: Código do prontuário
-        healthProfessionalSharing:
-          type: string
-          description: Compartilhamento com profissional de saúde
-        personalHealthSharing:
-          type: string
-          description: Compartilhamento com Personal Health
-        signatureDate:
-          type: string
-          description: Data de assinatura do prontuário
-        status:
-          type: string
-          description: Status do prontuário
-        statusMessage:
-          type: string
-          description: Mensagem de status do prontuário
-        idObject:
-          type: string
-          description: Identificador do objeto associado
-    ExamFieldHealthConnectedProtocolDTO:
-      type: object
-      description: Campo adicional de um exame
   securitySchemes:
     api_key:
       type: apiKey

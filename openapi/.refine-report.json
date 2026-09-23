@@ -105,7 +105,8 @@
     "mv-sistemas-users-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
     "mv-sistemas-users-openapi.json: declared missing tag: User",
     "tag 'Conv\u00eanios' spans 2 source specs (mv-sistemas-clinic-connect-openapi.yaml, mv-sistemas-regulacao-openapi.yaml): per-path servers applied",
-    "tag 'Agendamento de performance' spans 2 source specs (mv-sistemas-clinic-connect-performance-schedule-openapi.yml, mv-sistemas-performance-schedule-webhook-openapi.yml): per-path servers applied"
+    "tag 'Agendamento de performance' spans 2 source specs (mv-sistemas-clinic-connect-performance-schedule-openapi.yml, mv-sistemas-performance-schedule-webhook-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "mv-sistemas-agendamento-api-openapi.yml: previously refined output, superseded by openapi/_original/",

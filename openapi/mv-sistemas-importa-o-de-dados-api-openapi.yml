@@ -22,9 +22,7 @@ paths:
       summary: Importar dados do paciente (fluxo síncrono)
       description: 'Importa dados do paciente no clinic-service (sync flow). Retorna ID do paciente e mensagem amigável.
 
-        Em caso de erro, nunca expõe stack trace; a mensagem amigável é retornada no corpo da resposta.
-
-        '
+        Em caso de erro, nunca expõe stack trace; a mensagem amigável é retornada no corpo da resposta.'
       requestBody:
         required: true
         content:
@@ -50,8 +48,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientImportResponseDTO'
+      operationId: postImportationsV1PatientData
+      x-operation-id-source: derived
 components:
   schemas:
+    SimpleIdDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        externalId:
+          type: string
     MedicalRecordImportDTO:
       type: object
       properties:
@@ -71,73 +79,6 @@ components:
           type: string
         attachmentName:
           type: string
-    InsuranceImportDTO:
-      type: object
-      properties:
-        name:
-          type: string
-          example: PARTICULAR
-          description: Nome do convênio.
-        card:
-          type: string
-          example: '12345678901234'
-          description: Número da carteirinha.
-        expirationDate:
-          type: string
-          example: '2025-01-01'
-          description: Data de validade da carteirinha.
-    SimpleIdDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        externalId:
-          type: string
-    ConnectImportationDTO:
-      type: object
-      description: Payload para importação de dados do paciente (Connect flow).
-      properties:
-        employee:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Prestador/colaborador responsável.
-        subscription:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Conta/subscription Clinic Connect.
-        clinicId:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Clínica por id e/ou externalId.
-        employeeLogin:
-          type: string
-          description: Login do prestador.
-          example: dr.silva
-        patient:
-          $ref: '#/components/schemas/PatientImportSyncDTO'
-          description: Dados do paciente a importar.
-        defaultTextComponentId:
-          type: integer
-          format: int64
-          description: ID do componente de texto padrão (opcional).
-          example: 42
-    PatientImportResponseDTO:
-      type: object
-      description: Resposta da importação de paciente (sucesso ou erro amigável).
-      properties:
-        patientId:
-          type: integer
-          format: int64
-          description: ID do paciente no clinic-service (quando sucesso).
-        message:
-          type: string
-          description: Mensagem amigável (sucesso ou erro).
-        success:
-          type: boolean
-          description: Indica se a importação foi bem-sucedida.
-        errors:
-          type: array
-          items:
-            type: string
-          description: Lista de erros de validação (quando aplicável).
     PatientImportSyncDTO:
       type: object
       description: Dados do paciente para importação síncrona.
@@ -212,6 +153,65 @@ components:
         externalId:
           type: string
           example: PAT001
+    InsuranceImportDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: PARTICULAR
+          description: Nome do convênio.
+        card:
+          type: string
+          example: '12345678901234'
+          description: Número da carteirinha.
+        expirationDate:
+          type: string
+          example: '2025-01-01'
+          description: Data de validade da carteirinha.
+    ConnectImportationDTO:
+      type: object
+      description: Payload para importação de dados do paciente (Connect flow).
+      properties:
+        employee:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Prestador/colaborador responsável.
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Conta/subscription Clinic Connect.
+        clinicId:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Clínica por id e/ou externalId.
+        employeeLogin:
+          type: string
+          description: Login do prestador.
+          example: dr.silva
+        patient:
+          $ref: '#/components/schemas/PatientImportSyncDTO'
+          description: Dados do paciente a importar.
+        defaultTextComponentId:
+          type: integer
+          format: int64
+          description: ID do componente de texto padrão (opcional).
+          example: 42
+    PatientImportResponseDTO:
+      type: object
+      description: Resposta da importação de paciente (sucesso ou erro amigável).
+      properties:
+        patientId:
+          type: integer
+          format: int64
+          description: ID do paciente no clinic-service (quando sucesso).
+        message:
+          type: string
+          description: Mensagem amigável (sucesso ou erro).
+        success:
+          type: boolean
+          description: Indica se a importação foi bem-sucedida.
+        errors:
+          type: array
+          items:
+            type: string
+          description: Lista de erros de validação (quando aplicável).
   securitySchemes:
     x-api-key:
       type: apiKey

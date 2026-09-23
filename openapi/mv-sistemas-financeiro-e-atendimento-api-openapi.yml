@@ -2,18 +2,7 @@ openapi: 3.2.0
 info:
   title: Integração Hub Operadora Financeiro e atendimento API
   version: 1.0.0
-  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.
-
-
-    A integração é voltada a **operadoras** com **contrato ativo** junto à **MV Global Health** no ecossistema Personal.
-
-
-    Inclua em **todas** as requisições o cabeçalho **`x-api-key`** fornecido pelo time de integração. O ambiente disponível é **somente Produção**.
-
-
-    Detalhes de parâmetros, formatos de data e regras próprias da sua operação devem ser alinhados no **contrato técnico** e com o time de integração; esta documentação serve como **referência geral**.
-
-    '
+  description: '**Personal Health · Integração Hub Operadora** reúne as APIs que levam ao **app Personal** os serviços da **operadora de saúde**: dados do beneficiário e da carteirinha, **rede credenciada** (guia médico), guias e utilização do plano, dependentes, **histórico de relacionamento** com o beneficiário, **cadastros auxiliares** para telas e filtros (UF, município, bairro, recursos e especialidades) e **tokens** para fluxos que exigem confirmação rápida.'
 servers:
 - url: https://api.globalhealth.mv/prod/personal-hub-operadora-api
   description: Ambiente de PRODUÇÃO
@@ -31,9 +20,7 @@ paths:
       description: 'Histórico de **interações com o relacionamento** (call center) **disponível para o beneficiário no aplicativo ou portal** — protocolos, fases, observações e datas, quando liberados pela operadora.
 
 
-        A lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.
-
-        '
+        A lista reflete apenas atendimentos **habilitados para visualização pelo beneficiário** e costuma apresentar os registros **mais recentes primeiro**. Não há parâmetros além da carteirinha na URL.'
       parameters:
       - name: numerocarteira
         in: path
@@ -56,6 +43,8 @@ paths:
           description: Não autorizado.
         '500':
           description: Erro interno do servidor.
+      operationId: getApiFuncoesGetHistoricoCallCenterByNumerocarteira
+      x-operation-id-source: derived
 components:
   schemas:
     VwClinicApiHisCallCenter:

@@ -36,6 +36,8 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postV1AuthorizerUrlPresigned
+      x-operation-id-source: derived
 components:
   schemas:
     UrlDTO:

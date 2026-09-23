@@ -19,7 +19,7 @@ paths:
     get:
       tags:
       - Horários Disponíveis
-      summary: Consultar horários disponíveis.
+      summary: Consultar horários disponíveis
       description: Endpoint utilizado para consultar os horários disponíveis, sem a necessidade de filtrar por médico ou especialidade. Ideal para obter uma visão geral das opções de agendamento no sistema.
       parameters:
       - name: employeeId
@@ -67,6 +67,8 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: getAvailableAppointments
+      x-operation-id-source: derived
 components:
   schemas:
     Employee:
@@ -78,6 +80,15 @@ components:
           type: array
           items:
             type: string
+    AvailableAppointment:
+      type: object
+      properties:
+        startTime:
+          type: string
+        date:
+          type: string
+        telehealthAppointment:
+          type: boolean
     NearestAvailableAppointment:
       type: object
       properties:
@@ -95,6 +106,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailableAppointment'
+    EmployeeAppointment:
+      type: object
+      properties:
+        employee:
+          $ref: '#/components/schemas/Employee'
+        nearestAvailableAppointment:
+          $ref: '#/components/schemas/NearestAvailableAppointment'
     PageEmployeeAppointment:
       type: object
       properties:
@@ -108,22 +126,6 @@ components:
           type: integer
         size:
           type: integer
-    EmployeeAppointment:
-      type: object
-      properties:
-        employee:
-          $ref: '#/components/schemas/Employee'
-        nearestAvailableAppointment:
-          $ref: '#/components/schemas/NearestAvailableAppointment'
-    AvailableAppointment:
-      type: object
-      properties:
-        startTime:
-          type: string
-        date:
-          type: string
-        telehealthAppointment:
-          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

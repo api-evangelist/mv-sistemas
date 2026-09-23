@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Protocolo de Entrada Movimentações de Visitantes API
   version: 3.1.0
-  description: ' Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.'
+  description: Esta documentação descreve a API de Protocolo de Entrada, utilizada para integração com os recursos do One Touch, permitindo o controle e gerenciamento de protocolos de acesso.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -53,6 +53,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/InternalErrorMessage'
+      summary: Create visitor movement
+      x-summary-source: derived
   /api/v1/entry-control-protocols/{id}/visitor-movements/{visitorMovementId}/exit:
     put:
       tags:
@@ -92,8 +94,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/InternalErrorMessage'
+      summary: Exit movement
+      x-summary-source: derived
 components:
   schemas:
+    ExitMovementDTO:
+      type: object
+      properties:
+        exitDate:
+          type: string
+          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
+          examples:
+          - '1712061035669'
     VisitorMovementDTO:
       type: object
       properties:
@@ -115,14 +127,6 @@ components:
         photoUrl:
           type: string
           description: URL com foto da Pessoa
-    ExitMovementDTO:
-      type: object
-      properties:
-        exitDate:
-          type: string
-          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
-          examples:
-          - '1712061035669'
     InternalErrorMessage:
       type: object
       properties:

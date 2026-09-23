@@ -4,7 +4,7 @@ info:
   version: 3.1.0
   contact:
     email: globalhealth@mv.com.br
-  description: Essa documentação descreve a API de reconhecimento facial da [GLOBALHEALTH]() que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
+  description: Essa documentação descreve a API de reconhecimento facial da GLOBALHEALTH que tem por objetivo fornecer um cadastro unico de faces e disponibilizar o reconhecimento facial destas.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -30,7 +30,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceLivenessStartV1Response'
-      summary: Iniciar o processo da validação de vivacidade da informação biométrica.
+      summary: Iniciar o processo da validação de vivacidade da informação biométrica
       description: Este endpoint inicia a validação da vivacidade da informação biométrica.
   /api/v1/face/liveness/finish:
     post:
@@ -50,10 +50,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceLivenessFinishV1Response'
-      summary: Finalizar o processo da validação de vivacidade da informação biométrica.
+      summary: Finalizar o processo da validação de vivacidade da informação biométrica
       description: Este endpoint finaliza a validação da vivacidade da informação biométrica.
 components:
   schemas:
+    FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
+      type: object
+      properties:
+        top:
+          type: number
+          description: Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.17801541090011597
+        left:
+          type: number
+          description: Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.3142961263656616
+        width:
+          type: number
+          description: Largura da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.6097581386566162
+        height:
+          type: number
+          description: Altura da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.5632858276367188
+      required:
+      - top
+      - left
+      - width
+      - height
+    FaceLivenessFinishV1ResponseFaceLivenessResults:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: Percentual de confiança da vivacidade.
+      required:
+      - confidence
+      - photoBase64
     FaceLivenessFinishV1Request:
       type: object
       properties:
@@ -116,63 +153,6 @@ components:
       required:
       - performFacialRecognition
       - sessionId
-    FaceLivenessFinishV1Response:
-      type: object
-      properties:
-        faceLivenessResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
-        recognitionResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
-      required:
-      - faceLivenessResults
-    FaceLivenessFinishV1ResponseRecognitionResultsQuality:
-      type: object
-      properties:
-        brightness:
-          type: number
-          description: Percentual de brilho na face.
-          examples:
-          - 98.1
-          - 99.99
-          - 67.13
-        sharpness:
-          type: number
-          description: Percentual de nitidez da face.
-          examples:
-          - 98.1
-          - 99.99
-          - 67.13
-      required:
-      - brightness
-      - sharpness
-    FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
-      type: object
-      properties:
-        top:
-          type: number
-          description: Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.
-          examples:
-          - 0.17801541090011597
-        left:
-          type: number
-          description: Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.
-          examples:
-          - 0.3142961263656616
-        width:
-          type: number
-          description: Largura da caixa delimitadora como proporção da largura geral da imagem.
-          examples:
-          - 0.6097581386566162
-        height:
-          type: number
-          description: Altura da caixa delimitadora como proporção da altura geral da imagem.
-          examples:
-          - 0.5632858276367188
-      required:
-      - top
-      - left
-      - width
-      - height
     FaceLivenessFinishV1ResponseRecognitionResults:
       type: object
       properties:
@@ -196,15 +176,26 @@ components:
       - quality
       - protocol
       - photo
-    FaceLivenessFinishV1ResponseFaceLivenessResults:
+    FaceLivenessFinishV1ResponseRecognitionResultsQuality:
       type: object
       properties:
-        confidence:
+        brightness:
           type: number
-          description: Percentual de confiança da vivacidade.
+          description: Percentual de brilho na face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
+        sharpness:
+          type: number
+          description: Percentual de nitidez da face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
       required:
-      - confidence
-      - photoBase64
+      - brightness
+      - sharpness
     FaceLivenessStartV1Response:
       type: object
       properties:
@@ -217,6 +208,15 @@ components:
           - 9a63b237-7897-4602-a39c-d4dd64d7fda3
       required:
       - sessionId
+    FaceLivenessFinishV1Response:
+      type: object
+      properties:
+        faceLivenessResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
+        recognitionResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
+      required:
+      - faceLivenessResults
   securitySchemes:
     x-api-key:
       type: apiKey

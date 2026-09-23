@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: para Gestão de Eventos Parametrização API
-  description: ' A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.'
+  description: A utilização das APIs públicas está condicionada à existência de um contrato ativo. É importante destacar que todas as URLs descritas nesta documentação devem ser acessadas mediante o uso de uma chave de cliente (x-api-key) enviada no cabeçalho da requisição. Essa chave é fornecida exclusivamente pelo responsável técnico encarregado de atender o cliente.
   version: 1.1.5
 servers:
 - url: https://api.globalhealth.mv/prod/event-checkin
@@ -35,8 +35,59 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LoincMVResponseV1'
+      summary: Find loinc by tuss code
+      x-summary-source: derived
 components:
   schemas:
+    SpecimenDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        activated:
+          type: boolean
+        variation:
+          type: string
+    ItemAgendamentoDTO:
+      type: object
+      properties:
+        itemAgendamentoId:
+          type: integer
+        exaLabId:
+          type: integer
+        exaRxId:
+          type: integer
+        checkin:
+          type: boolean
+    LoincMVResponseV1:
+      type: object
+      properties:
+        name:
+          type: string
+        examType:
+          type: string
+        loincCode:
+          type: string
+        activated:
+          type: boolean
+        mvCode:
+          type: string
+        scheduled:
+          type: boolean
+        examsType:
+          type: integer
+        preparation:
+          type: string
+        tuss_code:
+          type: string
+        tuss:
+          $ref: '#/components/schemas/TussDTO'
+        specimen:
+          $ref: '#/components/schemas/SpecimenDTO'
+        itemAgendamento:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemAgendamentoDTO'
     TussDTO:
       type: object
       properties:
@@ -74,55 +125,6 @@ components:
           type: string
         fullPresentation:
           type: string
-    LoincMVResponseV1:
-      type: object
-      properties:
-        name:
-          type: string
-        examType:
-          type: string
-        loincCode:
-          type: string
-        activated:
-          type: boolean
-        mvCode:
-          type: string
-        scheduled:
-          type: boolean
-        examsType:
-          type: integer
-        preparation:
-          type: string
-        tuss_code:
-          type: string
-        tuss:
-          $ref: '#/components/schemas/TussDTO'
-        specimen:
-          $ref: '#/components/schemas/SpecimenDTO'
-        itemAgendamento:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemAgendamentoDTO'
-    SpecimenDTO:
-      type: object
-      properties:
-        name:
-          type: string
-        activated:
-          type: boolean
-        variation:
-          type: string
-    ItemAgendamentoDTO:
-      type: object
-      properties:
-        itemAgendamentoId:
-          type: integer
-        exaLabId:
-          type: integer
-        exaRxId:
-          type: integer
-        checkin:
-          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

@@ -17,7 +17,7 @@ paths:
     post:
       tags:
       - Atendimento
-      summary: Cadastra um novo atendimento.
+      summary: Cadastra um novo atendimento
       description: Endpoint responsável por cadastrar um novo atendimento, utilizando IDs externos para associar e registrar corretamente os dados vinculados ao paciente, prestador e demais informações do processo.
       operationId: addAttendance
       requestBody:
@@ -50,7 +50,7 @@ paths:
     get:
       tags:
       - Atendimento
-      summary: Consulta de atendimentos cadastrados.
+      summary: Consulta de atendimentos cadastrados
       description: Endpoint utilizado para consultar atendimentos já cadastrados, permitindo recuperar informações com base em IDs externos associados aos registros.
       parameters:
       - name: clientKey
@@ -131,16 +131,6 @@ paths:
       - clinic: []
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-      required:
-      - error
-      - message
     PageAttendance:
       type: object
       properties:
@@ -303,6 +293,16 @@ components:
               type: string
               example: 10
               description: CD_PACIENTE_EXTERNO no soul
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - error
+      - message
   securitySchemes:
     one_pass:
       type: apiKey

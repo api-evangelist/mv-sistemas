@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: 'Clinic Connect : Regulação Exames API'
   version: 1.0.0
-  description: 'API responsável por gerenciar as regulações das clínicas, permitindo a criação, consulta, atualização e exclusão de registros de forma centralizada.
-
-    '
+  description: API responsável por gerenciar as regulações das clínicas, permitindo a criação, consulta, atualização e exclusão de registros de forma centralizada.
 servers:
 - url: https://api.globalhealth.mv/clinic-connect/api
   description: Ambiente de PRODUÇÃO
@@ -58,6 +56,8 @@ paths:
           description: Não encontrado.
         '500':
           description: Erro interno.
+      operationId: getV1Exams
+      x-operation-id-source: derived
 components:
   schemas:
     TussDTO:

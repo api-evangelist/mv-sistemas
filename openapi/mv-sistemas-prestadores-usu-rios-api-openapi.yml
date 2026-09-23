@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - Prestadores/Usuários
-      summary: Criar ou alterar dados de prestadores/usuários.
+      summary: Criar ou alterar dados de prestadores/usuários
       description: Endpoint responsável por criar ou atualizar cadastros de prestadores e usuários, mantendo as informações de profissionais e acessos sempre atualizadas.
       parameters: []
       requestBody:
@@ -39,10 +39,12 @@ paths:
           description: Requisição inválida.
         '500':
           description: Erro interno no servidor.
+      operationId: postV1Employees
+      x-operation-id-source: derived
     get:
       tags:
       - Prestadores/Usuários
-      summary: Consultar prestadores/usuários.
+      summary: Consultar prestadores/usuários
       description: Endpoint utilizado para consultar prestadores e usuários com base em filtros definidos, retornando apenas os registros que atendem aos critérios informados.
       parameters:
       - name: id
@@ -73,6 +75,8 @@ paths:
                   $ref: '#/components/schemas/ConnectEmployeeDTO'
         '500':
           description: Erro interno no servidor.
+      operationId: getV1Employees
+      x-operation-id-source: derived
 components:
   schemas:
     EmployeeAccreditationDTO:
@@ -87,6 +91,11 @@ components:
         accreditationNumber:
           type: string
           example: '123456'
+    TermCboConnectDTO:
+      type: object
+      properties:
+        termCode:
+          type: string
     SimpleIdDTO:
       type: object
       properties:
@@ -94,6 +103,23 @@ components:
           type: integer
           format: int64
         externalId:
+          type: string
+    AddressConnectDTO:
+      type: object
+      properties:
+        address:
+          type: string
+        addressNumber:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
           type: string
     ConnectEmployeeDTO:
       type: object
@@ -139,28 +165,6 @@ components:
         password:
           type: string
         phoneMobile:
-          type: string
-    TermCboConnectDTO:
-      type: object
-      properties:
-        termCode:
-          type: string
-    AddressConnectDTO:
-      type: object
-      properties:
-        address:
-          type: string
-        addressNumber:
-          type: string
-        zipCode:
-          type: string
-        addressComplement:
-          type: string
-        city:
-          type: string
-        district:
-          type: string
-        state:
           type: string
   securitySchemes:
     x-api-key:

@@ -19,7 +19,7 @@ paths:
     post:
       tags:
       - Clínicas
-      summary: Criar ou alterar dados da clínica.
+      summary: Criar ou alterar dados da clínica
       description: Endpoint responsável por inserir ou atualizar os dados de uma clínica no sistema, garantindo que as informações cadastrais estejam sempre atualizadas.
       parameters: []
       requestBody:
@@ -39,10 +39,12 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: postV1Clinics
+      x-operation-id-source: derived
     get:
       tags:
       - Clínicas
-      summary: Consultar clínicas.
+      summary: Consultar clínicas
       description: Endpoint utilizado para consultar clínicas com base em filtros personalizados, possibilitando localizar unidades de acordo com os critérios desejados.
       parameters:
       - name: id
@@ -76,9 +78,11 @@ paths:
           description: Requisição inválida. Verifique os dados enviados.
         '500':
           description: Erro interno do servidor.
+      operationId: getV1Clinics
+      x-operation-id-source: derived
 components:
   schemas:
-    ClinicConnectDTO:
+    SimpleIdDTO:
       type: object
       properties:
         id:
@@ -86,28 +90,6 @@ components:
           format: int64
         externalId:
           type: string
-        subscription:
-          $ref: '#/components/schemas/SimpleIdDTO'
-        name:
-          type: string
-        cnes:
-          type: string
-        identificationType:
-          type: string
-        identificationNumber:
-          type: string
-        phone:
-          type: string
-        mobile:
-          type: string
-        picture:
-          type: string
-        activated:
-          type: boolean
-        additionalInformation:
-          type: string
-        address:
-          $ref: '#/components/schemas/AddressConnectDTO'
     ClinicConnectResponseDTO:
       type: object
       properties:
@@ -157,7 +139,7 @@ components:
           type: string
         state:
           type: string
-    SimpleIdDTO:
+    ClinicConnectDTO:
       type: object
       properties:
         id:
@@ -165,6 +147,28 @@ components:
           format: int64
         externalId:
           type: string
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+        name:
+          type: string
+        cnes:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        phone:
+          type: string
+        mobile:
+          type: string
+        picture:
+          type: string
+        activated:
+          type: boolean
+        additionalInformation:
+          type: string
+        address:
+          $ref: '#/components/schemas/AddressConnectDTO'
   securitySchemes:
     x-api-key:
       type: apiKey

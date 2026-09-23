@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: de Saúde Gestão de Pendências API
-  description: <div> <hr> <p>As APIs de <b>Gestão de Pendências de Saúde</b> oferecem recursos para o gerenciamento completo das pendências clínicas de beneficiários no sistema <b>MV Global Health</b>.</p> <p>Com elas, é possível:</p> <ul> <li>Criar novas pendências (<code>POST /health-pendency</code>);</li> <li>Consultar todas as pendências de um beneficiário (<code>GET /health-pendency</code>);</li> <li>Acessar uma pendência específica por meio do seu <b>Hash Key</b> (<code>GET /health-pendency/{hash-key}</code>);</li> <li>Atualizar informações de uma pendência existente (<code>PUT /health-pendency/{hash-key}</code>);</li> <li>Gerenciar exames vinculados, por meio de endpoints específicos para obter (<code>GET</code>) ou atualizar (<code>PUT</code>) itens de exame relacionados à pendência.</li> </ul> <hr> <p>⚠️ <strong>ATENÇÃO:</strong><br><br> Para utilizar as APIs, o cliente <b>MV Global Health</b> deve solicitar sua chave de acesso junto à <b>MV</b>. Essa chave garante o controle e a segurança das informações de cada cliente.<br><br> >>> Para evitar sobrecarga, os clientes que consomem estas APIs devem observar o limite máximo de <strong>1 requisição por segundo.</strong></p> <hr> </div>
+  description: As APIs de Gestão de Pendências de Saúde oferecem recursos para o gerenciamento completo das pendências clínicas de beneficiários no sistema MV Global Health.
   version: 2.0.1
 servers:
 - url: https://api.globalhealth.mv/health-insurance-store
@@ -162,8 +162,10 @@ paths:
     get:
       tags:
       - Gestão de Pendências
-      summary: Buscar Pendências de um paciente por Número de Documento, Número de Carteira e/ou Status da pendência.
-      description: Endpoint responsável por consultar pendências de um paciente, permitindo a busca por número de documento, número de carteirinha e/ou status da pendência. <p>É obrigatório informar pelo menos um parâmetro para realizar a busca. </p>
+      summary: Buscar Pendências de um paciente por Número de Documento, Número de Carteira…
+      description: 'Endpoint responsável por consultar pendências de um paciente, permitindo a busca por número de documento, número de carteirinha e/ou status da pendência.
+
+        É obrigatório informar pelo menos um parâmetro para realizar a busca.'
       operationId: findHealthPendencies
       produces:
       - application/json
@@ -221,7 +223,7 @@ paths:
     put:
       tags:
       - Gestão de Pendências
-      summary: Atualizar uma Pendência pelo Hash Key.
+      summary: Atualizar uma Pendência pelo Hash Key
       description: Endpoint responsável por atualizar os dados de uma pendência específica, utilizando o Hash Key como referência para identificar o registro a ser modificado.
       operationId: updateHealthPendencyByHashKey
       requestBody:
@@ -253,7 +255,7 @@ paths:
     get:
       tags:
       - Gestão de Pendências
-      summary: Obter um Item de Exame.
+      summary: Obter um Item de Exame
       description: Endpoint que obtém os dados de um item de exame vinculado a uma pendência específica, identificada pelo Hash Key da pendência e pelo Source ID do item.
       operationId: getHealthPendencyExamItemByHashKey
       produces:
@@ -281,7 +283,7 @@ paths:
     put:
       tags:
       - Gestão de Pendências
-      summary: Atualizar um Item de Exame.
+      summary: Atualizar um Item de Exame
       description: Endpoint utilizado para atualizar as informações de um item de exame pertencente a uma pendência específica, referenciada pelo Hash Key da pendência e pelo Source ID do item.
       operationId: updateHealthPendencyExamItemByHashKey
       requestBody:
@@ -316,6 +318,62 @@ paths:
           description: Pendência não encontrada.
 components:
   schemas:
+    HealthPendencyPerson:
+      type: object
+      properties:
+        numeroDocumento:
+          type: string
+          description: Número de Documento do Beneficiário
+          maxLength: 50
+        numeroCarteira:
+          type: string
+          description: Número do Cartão do Convênio do Beneficiário
+          maxLength: 50
+        nomeCarteira:
+          type: string
+          description: Nome do Beneficiário no Cartão do Convênio
+          maxLength: 255
+        nome:
+          type: string
+          description: Nome do Beneficiário
+          maxLength: 255
+        status:
+          type: string
+          description: Status do Beneficiário junto a operadora
+          enum:
+          - active
+          - inactive
+          maxLength: 20
+    HealthPendencyPatient:
+      type: object
+      properties:
+        socialName:
+          type: string
+          description: Nome social
+          maxLength: 255
+        birthDate:
+          type: string
+          description: Data de nascimento (formato YYYY-MM-DD)
+          maxLength: 10
+        gender:
+          type: string
+          description: Sexo
+          enum:
+          - M
+          - F
+          - I
+        phone:
+          type: string
+          description: Telefone
+          maxLength: 20
+        email:
+          type: string
+          description: E-mail
+          maxLength: 255
+        motherName:
+          type: string
+          description: Nome da mãe
+          maxLength: 255
     HealthPendencyExam:
       type: object
       properties:
@@ -361,32 +419,6 @@ components:
         status:
           type: string
           description: Status do exame
-    HealthPendencyPerson:
-      type: object
-      properties:
-        numeroDocumento:
-          type: string
-          description: Número de Documento do Beneficiário
-          maxLength: 50
-        numeroCarteira:
-          type: string
-          description: Número do Cartão do Convênio do Beneficiário
-          maxLength: 50
-        nomeCarteira:
-          type: string
-          description: Nome do Beneficiário no Cartão do Convênio
-          maxLength: 255
-        nome:
-          type: string
-          description: Nome do Beneficiário
-          maxLength: 255
-        status:
-          type: string
-          description: Status do Beneficiário junto a operadora
-          enum:
-          - active
-          - inactive
-          maxLength: 20
     HealthPendency:
       type: object
       properties:
@@ -544,36 +576,6 @@ components:
         card:
           type: string
           description: Informações do cartão
-    HealthPendencyPatient:
-      type: object
-      properties:
-        socialName:
-          type: string
-          description: Nome social
-          maxLength: 255
-        birthDate:
-          type: string
-          description: Data de nascimento (formato YYYY-MM-DD)
-          maxLength: 10
-        gender:
-          type: string
-          description: Sexo
-          enum:
-          - M
-          - F
-          - I
-        phone:
-          type: string
-          description: Telefone
-          maxLength: 20
-        email:
-          type: string
-          description: E-mail
-          maxLength: 255
-        motherName:
-          type: string
-          description: Nome da mãe
-          maxLength: 255
   securitySchemes:
     x-api-key:
       type: apiKey
