@@ -82,6 +82,90 @@ components:
     ExamFieldHealthConnectedProtocolDTO:
       type: object
       description: Campo adicional de um exame
+    SurgeryRequestProtocolDTO:
+      type: object
+      description: Dados de uma cirurgia vinculada ao atendimento
+      properties:
+        surgeryDate:
+          type: string
+          description: Data da cirurgia
+        surgeryWarningId:
+          type: string
+          description: Identificador do aviso de cirurgia
+        surgeryId:
+          type: string
+          description: Identificador da cirurgia
+        tussProcedureId:
+          type: string
+          description: Identificador do procedimento TUSS
+        surgeryDescription:
+          type: string
+          description: Descrição da cirurgia
+        mainSurgeon:
+          type: string
+          description: Nome do cirurgião principal
+        accreditationNumber:
+          type: string
+          description: Número de acreditação do cirurgião
+        accreditation:
+          type: string
+          description: Tipo de acreditação do cirurgião
+    MedicalRecordProtocolDTO:
+      type: object
+      description: Dados de um prontuário médico vinculado ao atendimento
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identificador único do prontuário
+        createdDate:
+          type: string
+          description: Data de criação do prontuário
+        accreditation:
+          type: string
+          description: Tipo de acreditação do profissional
+        accreditationNumber:
+          type: string
+          description: Número de acreditação do profissional
+        healthProfessional:
+          type: string
+          description: Nome do profissional de saúde
+        medicalRecordFileName:
+          type: string
+          description: Nome do arquivo do prontuário
+        medicalRecordFile:
+          type: string
+          description: Conteúdo do arquivo do prontuário (base64)
+        medicalRecordId:
+          type: string
+          description: Identificador do prontuário
+        medicalRecordName:
+          type: string
+          description: Nome do prontuário
+        medicalRecordType:
+          type: string
+          description: Tipo do prontuário
+        medicalRecordCode:
+          type: string
+          description: Código do prontuário
+        healthProfessionalSharing:
+          type: string
+          description: Compartilhamento com profissional de saúde
+        personalHealthSharing:
+          type: string
+          description: Compartilhamento com Personal Health
+        signatureDate:
+          type: string
+          description: Data de assinatura do prontuário
+        status:
+          type: string
+          description: Status do prontuário
+        statusMessage:
+          type: string
+          description: Mensagem de status do prontuário
+        idObject:
+          type: string
+          description: Identificador do objeto associado
     AttendanceHealthConnectedDTO:
       type: object
       description: Dados do atendimento provenientes da integração legada Health Connected
@@ -241,90 +325,6 @@ components:
           description: Lista de registros pessoais vinculados ao atendimento
           items:
             $ref: '#/components/schemas/PersonalRecordProtocolDTO'
-    MedicalRecordProtocolDTO:
-      type: object
-      description: Dados de um prontuário médico vinculado ao atendimento
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Identificador único do prontuário
-        createdDate:
-          type: string
-          description: Data de criação do prontuário
-        accreditation:
-          type: string
-          description: Tipo de acreditação do profissional
-        accreditationNumber:
-          type: string
-          description: Número de acreditação do profissional
-        healthProfessional:
-          type: string
-          description: Nome do profissional de saúde
-        medicalRecordFileName:
-          type: string
-          description: Nome do arquivo do prontuário
-        medicalRecordFile:
-          type: string
-          description: Conteúdo do arquivo do prontuário (base64)
-        medicalRecordId:
-          type: string
-          description: Identificador do prontuário
-        medicalRecordName:
-          type: string
-          description: Nome do prontuário
-        medicalRecordType:
-          type: string
-          description: Tipo do prontuário
-        medicalRecordCode:
-          type: string
-          description: Código do prontuário
-        healthProfessionalSharing:
-          type: string
-          description: Compartilhamento com profissional de saúde
-        personalHealthSharing:
-          type: string
-          description: Compartilhamento com Personal Health
-        signatureDate:
-          type: string
-          description: Data de assinatura do prontuário
-        status:
-          type: string
-          description: Status do prontuário
-        statusMessage:
-          type: string
-          description: Mensagem de status do prontuário
-        idObject:
-          type: string
-          description: Identificador do objeto associado
-    SurgeryRequestProtocolDTO:
-      type: object
-      description: Dados de uma cirurgia vinculada ao atendimento
-      properties:
-        surgeryDate:
-          type: string
-          description: Data da cirurgia
-        surgeryWarningId:
-          type: string
-          description: Identificador do aviso de cirurgia
-        surgeryId:
-          type: string
-          description: Identificador da cirurgia
-        tussProcedureId:
-          type: string
-          description: Identificador do procedimento TUSS
-        surgeryDescription:
-          type: string
-          description: Descrição da cirurgia
-        mainSurgeon:
-          type: string
-          description: Nome do cirurgião principal
-        accreditationNumber:
-          type: string
-          description: Número de acreditação do cirurgião
-        accreditation:
-          type: string
-          description: Tipo de acreditação do cirurgião
     PersonalRecordProtocolDTO:
       type: object
       description: Registro pessoal vinculado ao atendimento

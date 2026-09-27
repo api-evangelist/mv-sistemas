@@ -155,13 +155,6 @@ components:
         last:
           type: boolean
           description: Define se é o ultimo elemento da página.
-    RecognitionProtocolV1Response:
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/RecognitionProtocolV1ResponseContent'
-        pagination:
-          $ref: '#/components/schemas/FaceRecognitionPagination'
     RecognitionProtocolV1ResponseContent:
       type: object
       properties:
@@ -254,6 +247,13 @@ components:
           description: URL para obtenção da foto de utilizada no reconhecimento facial.
           examples:
           - https://faces.s3.sa-east-1.amazonaws.com/hml/photo/90d738c2-ce4d-4282-86f6-d4175deac005.jpeg
+    RecognitionProtocolV1Response:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/RecognitionProtocolV1ResponseContent'
+        pagination:
+          $ref: '#/components/schemas/FaceRecognitionPagination'
   securitySchemes:
     x-api-key:
       type: apiKey

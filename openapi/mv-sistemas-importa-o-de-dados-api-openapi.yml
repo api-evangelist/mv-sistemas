@@ -52,33 +52,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SimpleIdDTO:
+    PatientImportResponseDTO:
       type: object
+      description: Resposta da importação de paciente (sucesso ou erro amigável).
       properties:
-        id:
+        patientId:
           type: integer
           format: int64
-        externalId:
+          description: ID do paciente no clinic-service (quando sucesso).
+        message:
           type: string
-    MedicalRecordImportDTO:
-      type: object
-      properties:
-        date:
-          type: string
-          example: '2020-01-01'
-          description: Data do prontuário.
-        time:
-          type: string
-          example: 08:30:00
-          description: Horário do prontuário.
-        text:
-          type: string
-          example: Exemplo de prontuário médico
-          description: Texto do prontuário.
-        attachmentUrl:
-          type: string
-        attachmentName:
-          type: string
+          description: Mensagem amigável (sucesso ou erro).
+        success:
+          type: boolean
+          description: Indica se a importação foi bem-sucedida.
+        errors:
+          type: array
+          items:
+            type: string
+          description: Lista de erros de validação (quando aplicável).
     PatientImportSyncDTO:
       type: object
       description: Dados do paciente para importação síncrona.
@@ -153,21 +145,25 @@ components:
         externalId:
           type: string
           example: PAT001
-    InsuranceImportDTO:
+    MedicalRecordImportDTO:
       type: object
       properties:
-        name:
+        date:
           type: string
-          example: PARTICULAR
-          description: Nome do convênio.
-        card:
+          example: '2020-01-01'
+          description: Data do prontuário.
+        time:
           type: string
-          example: '12345678901234'
-          description: Número da carteirinha.
-        expirationDate:
+          example: 08:30:00
+          description: Horário do prontuário.
+        text:
           type: string
-          example: '2025-01-01'
-          description: Data de validade da carteirinha.
+          example: Exemplo de prontuário médico
+          description: Texto do prontuário.
+        attachmentUrl:
+          type: string
+        attachmentName:
+          type: string
     ConnectImportationDTO:
       type: object
       description: Payload para importação de dados do paciente (Connect flow).
@@ -193,25 +189,29 @@ components:
           format: int64
           description: ID do componente de texto padrão (opcional).
           example: 42
-    PatientImportResponseDTO:
+    SimpleIdDTO:
       type: object
-      description: Resposta da importação de paciente (sucesso ou erro amigável).
       properties:
-        patientId:
+        id:
           type: integer
           format: int64
-          description: ID do paciente no clinic-service (quando sucesso).
-        message:
+        externalId:
           type: string
-          description: Mensagem amigável (sucesso ou erro).
-        success:
-          type: boolean
-          description: Indica se a importação foi bem-sucedida.
-        errors:
-          type: array
-          items:
-            type: string
-          description: Lista de erros de validação (quando aplicável).
+    InsuranceImportDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: PARTICULAR
+          description: Nome do convênio.
+        card:
+          type: string
+          example: '12345678901234'
+          description: Número da carteirinha.
+        expirationDate:
+          type: string
+          example: '2025-01-01'
+          description: Data de validade da carteirinha.
   securitySchemes:
     x-api-key:
       type: apiKey

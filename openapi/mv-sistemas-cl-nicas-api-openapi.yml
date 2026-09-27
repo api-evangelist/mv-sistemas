@@ -90,38 +90,6 @@ components:
           format: int64
         externalId:
           type: string
-    ClinicConnectResponseDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        cnes:
-          type: string
-        identificationType:
-          type: string
-        identificationNumber:
-          type: string
-        phone:
-          type: string
-        mobile:
-          type: string
-        address:
-          type: string
-        addressNumber:
-          type: string
-        zipCode:
-          type: string
-        addressComplement:
-          type: string
-        city:
-          type: string
-        district:
-          type: string
-        state:
-          type: string
     AddressConnectDTO:
       type: object
       properties:
@@ -169,6 +137,38 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/AddressConnectDTO'
+    ClinicConnectResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        cnes:
+          type: string
+        identificationType:
+          type: string
+        identificationNumber:
+          type: string
+        phone:
+          type: string
+        mobile:
+          type: string
+        address:
+          type: string
+        addressNumber:
+          type: string
+        zipCode:
+          type: string
+        addressComplement:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

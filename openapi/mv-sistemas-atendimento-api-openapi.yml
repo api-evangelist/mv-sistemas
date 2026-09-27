@@ -144,6 +144,16 @@ components:
           type: integer
         numberOfElements:
           type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - error
+      - message
     Attendance:
       type: object
       properties:
@@ -293,16 +303,6 @@ components:
               type: string
               example: 10
               description: CD_PACIENTE_EXTERNO no soul
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-      required:
-      - error
-      - message
   securitySchemes:
     one_pass:
       type: apiKey

@@ -71,24 +71,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Employee:
-      type: object
-      properties:
-        name:
-          type: string
-        specialties:
-          type: array
-          items:
-            type: string
-    AvailableAppointment:
-      type: object
-      properties:
-        startTime:
-          type: string
-        date:
-          type: string
-        telehealthAppointment:
-          type: boolean
     NearestAvailableAppointment:
       type: object
       properties:
@@ -106,13 +88,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailableAppointment'
-    EmployeeAppointment:
-      type: object
-      properties:
-        employee:
-          $ref: '#/components/schemas/Employee'
-        nearestAvailableAppointment:
-          $ref: '#/components/schemas/NearestAvailableAppointment'
     PageEmployeeAppointment:
       type: object
       properties:
@@ -126,6 +101,31 @@ components:
           type: integer
         size:
           type: integer
+    Employee:
+      type: object
+      properties:
+        name:
+          type: string
+        specialties:
+          type: array
+          items:
+            type: string
+    EmployeeAppointment:
+      type: object
+      properties:
+        employee:
+          $ref: '#/components/schemas/Employee'
+        nearestAvailableAppointment:
+          $ref: '#/components/schemas/NearestAvailableAppointment'
+    AvailableAppointment:
+      type: object
+      properties:
+        startTime:
+          type: string
+        date:
+          type: string
+        telehealthAppointment:
+          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

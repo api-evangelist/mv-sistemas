@@ -48,17 +48,6 @@ components:
           type: boolean
         variation:
           type: string
-    ItemAgendamentoDTO:
-      type: object
-      properties:
-        itemAgendamentoId:
-          type: integer
-        exaLabId:
-          type: integer
-        exaRxId:
-          type: integer
-        checkin:
-          type: boolean
     LoincMVResponseV1:
       type: object
       properties:
@@ -125,6 +114,17 @@ components:
           type: string
         fullPresentation:
           type: string
+    ItemAgendamentoDTO:
+      type: object
+      properties:
+        itemAgendamentoId:
+          type: integer
+        exaLabId:
+          type: integer
+        exaRxId:
+          type: integer
+        checkin:
+          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

@@ -201,20 +201,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VwClinicApiBairro:
+    VwClinicApiUf:
       type: object
-      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
       additionalProperties: true
       properties:
-        dsbairro:
-          type: string
-          description: Nome do bairro.
-        cdmunicipio:
-          type: string
-          description: Código do município.
         cduf:
           type: string
           description: Código da UF.
+        nmuf:
+          type: string
+          description: Nome da unidade federativa.
         cdmatalternativa:
           type: string
           description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
@@ -231,37 +228,6 @@ components:
         dstiporecurso:
           type: string
           description: Descrição do tipo de recurso ou `TODOS`.
-        cdmatalternativa:
-          type: string
-          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
-    VwClinicApiMunicipio:
-      type: object
-      description: Município com código, nome e UF para montagem de filtros e endereços.
-      additionalProperties: true
-      properties:
-        cdmunicipio:
-          type: string
-          description: Código do município.
-        cduf:
-          type: string
-          description: Código da UF.
-        dsmunicipio:
-          type: string
-          description: Nome do município.
-        cdmatalternativa:
-          type: string
-          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
-    VwClinicApiUf:
-      type: object
-      description: Estado brasileiro (**UF**) com código e nome para uso em listas e filtros.
-      additionalProperties: true
-      properties:
-        cduf:
-          type: string
-          description: Código da UF.
-        nmuf:
-          type: string
-          description: Nome da unidade federativa.
         cdmatalternativa:
           type: string
           description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
@@ -287,6 +253,40 @@ components:
         cdmatalternativa:
           type: string
           description: Vínculo com carteira; pode ser vazio ou nulo.
+    VwClinicApiMunicipio:
+      type: object
+      description: Município com código, nome e UF para montagem de filtros e endereços.
+      additionalProperties: true
+      properties:
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        dsmunicipio:
+          type: string
+          description: Nome do município.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
+    VwClinicApiBairro:
+      type: object
+      description: Bairro associado ao município e UF selecionados, para refinamento de busca.
+      additionalProperties: true
+      properties:
+        dsbairro:
+          type: string
+          description: Nome do bairro.
+        cdmunicipio:
+          type: string
+          description: Código do município.
+        cduf:
+          type: string
+          description: Código da UF.
+        cdmatalternativa:
+          type: string
+          description: Vínculo opcional com a carteirinha; em muitos retornos vem vazio.
   securitySchemes:
     x-api-key:
       type: apiKey

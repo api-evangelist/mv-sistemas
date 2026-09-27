@@ -82,15 +82,27 @@ components:
       - left
       - width
       - height
-    FaceLivenessFinishV1ResponseFaceLivenessResults:
+    FaceLivenessFinishV1Response:
       type: object
       properties:
-        confidence:
-          type: number
-          description: Percentual de confiança da vivacidade.
+        faceLivenessResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
+        recognitionResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
       required:
-      - confidence
-      - photoBase64
+      - faceLivenessResults
+    FaceLivenessStartV1Response:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: Id da sessão a ser utilizado para validação da vivacidade.
+          examples:
+          - eda90689-a934-41bb-bd1a-4037be4964cd
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+      required:
+      - sessionId
     FaceLivenessFinishV1Request:
       type: object
       properties:
@@ -153,6 +165,35 @@ components:
       required:
       - performFacialRecognition
       - sessionId
+    FaceLivenessFinishV1ResponseRecognitionResultsQuality:
+      type: object
+      properties:
+        brightness:
+          type: number
+          description: Percentual de brilho na face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
+        sharpness:
+          type: number
+          description: Percentual de nitidez da face.
+          examples:
+          - 98.1
+          - 99.99
+          - 67.13
+      required:
+      - brightness
+      - sharpness
+    FaceLivenessFinishV1ResponseFaceLivenessResults:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: Percentual de confiança da vivacidade.
+      required:
+      - confidence
+      - photoBase64
     FaceLivenessFinishV1ResponseRecognitionResults:
       type: object
       properties:
@@ -176,47 +217,6 @@ components:
       - quality
       - protocol
       - photo
-    FaceLivenessFinishV1ResponseRecognitionResultsQuality:
-      type: object
-      properties:
-        brightness:
-          type: number
-          description: Percentual de brilho na face.
-          examples:
-          - 98.1
-          - 99.99
-          - 67.13
-        sharpness:
-          type: number
-          description: Percentual de nitidez da face.
-          examples:
-          - 98.1
-          - 99.99
-          - 67.13
-      required:
-      - brightness
-      - sharpness
-    FaceLivenessStartV1Response:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          description: Id da sessão a ser utilizado para validação da vivacidade.
-          examples:
-          - eda90689-a934-41bb-bd1a-4037be4964cd
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-      required:
-      - sessionId
-    FaceLivenessFinishV1Response:
-      type: object
-      properties:
-        faceLivenessResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
-        recognitionResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
-      required:
-      - faceLivenessResults
   securitySchemes:
     x-api-key:
       type: apiKey

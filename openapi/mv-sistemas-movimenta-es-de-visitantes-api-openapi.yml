@@ -106,6 +106,20 @@ components:
           description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
           examples:
           - '1712061035669'
+    InternalErrorMessage:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          description: Timestamp em que o erro aconteceu.
+        status:
+          type: number
+        message:
+          type: string
+          description: Mensagem do erro.
+        path:
+          type: string
+          description: Path chamado no momento do Erro.
     VisitorMovementDTO:
       type: object
       properties:
@@ -127,20 +141,6 @@ components:
         photoUrl:
           type: string
           description: URL com foto da Pessoa
-    InternalErrorMessage:
-      type: object
-      properties:
-        timestamp:
-          type: number
-          description: Timestamp em que o erro aconteceu.
-        status:
-          type: number
-        message:
-          type: string
-          description: Mensagem do erro.
-        path:
-          type: string
-          description: Path chamado no momento do Erro.
   securitySchemes:
     x-api-key:
       type: apiKey

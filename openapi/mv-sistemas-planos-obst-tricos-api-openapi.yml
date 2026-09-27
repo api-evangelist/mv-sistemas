@@ -75,6 +75,13 @@ components:
           $ref: '#/components/schemas/PatientComorbiditiesStatus'
         statusPatient:
           $ref: '#/components/schemas/PatientComorbiditiesStatus'
+    PatientObstetricDiseasesStatus:
+      type: string
+      enum:
+      - WAITING_VALIDATION
+      - VALIDATED
+      - VALIDATED_BY_EMPLOYEE
+      description: Status da doença obstétrica
     PatientObstetricDiseasesSimpleDTO:
       type: object
       properties:
@@ -118,20 +125,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PatientObstetricDiseasesSimpleDTO'
-    PatientObstetricDiseasesStatus:
-      type: string
-      enum:
-      - WAITING_VALIDATION
-      - VALIDATED
-      - VALIDATED_BY_EMPLOYEE
-      description: Status da doença obstétrica
-    PregnancyRisk:
-      type: string
-      enum:
-      - HABITUAL
-      - HIGH
-      description: 'Indica o risco da gestação: habitual ou alto risco'
-      example: HABITUAL
     PatientComorbiditiesStatus:
       type: string
       enum:
@@ -139,6 +132,13 @@ components:
       - VALIDATED
       - VALIDATED_BY_EMPLOYEE
       description: Status da comorbidade
+    PregnancyRisk:
+      type: string
+      enum:
+      - HABITUAL
+      - HIGH
+      description: 'Indica o risco da gestação: habitual ou alto risco'
+      example: HABITUAL
   securitySchemes:
     x-api-key:
       type: apiKey

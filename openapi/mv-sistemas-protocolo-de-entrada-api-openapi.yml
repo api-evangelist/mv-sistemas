@@ -93,6 +93,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    InternalErrorMessage:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          description: Timestamp em que o erro aconteceu.
+        status:
+          type: number
+        message:
+          type: string
+          description: Mensagem do erro.
+        path:
+          type: string
+          description: Path chamado no momento do Erro.
     EntryControlProtocolDTO:
       type: object
       properties:
@@ -174,20 +188,6 @@ components:
       - documentNumber
       - requesterName
       - source
-    InternalErrorMessage:
-      type: object
-      properties:
-        timestamp:
-          type: number
-          description: Timestamp em que o erro aconteceu.
-        status:
-          type: number
-        message:
-          type: string
-          description: Mensagem do erro.
-        path:
-          type: string
-          description: Path chamado no momento do Erro.
   securitySchemes:
     x-api-key:
       type: apiKey

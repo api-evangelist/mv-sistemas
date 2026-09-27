@@ -338,15 +338,6 @@ components:
           type: integer
           format: date-time
           example: '1764892800000'
-    SharedRequestStatus:
-      type: string
-      enum:
-      - WAITING
-      - REFUSED
-      - ACCEPTED
-      - REVOKED
-      description: Status do compartilhamento de dados
-      example: ACCEPTED
     SharedRequestChangeStatusDTO:
       type: object
       required:
@@ -368,6 +359,15 @@ components:
         requesterDocumentNumber:
           type: string
           example: '11111111111'
+    SharedRequestStatus:
+      type: string
+      enum:
+      - WAITING
+      - REFUSED
+      - ACCEPTED
+      - REVOKED
+      description: Status do compartilhamento de dados
+      example: ACCEPTED
   securitySchemes:
     x-api-key:
       type: apiKey
