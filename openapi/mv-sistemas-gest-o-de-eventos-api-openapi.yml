@@ -433,6 +433,63 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    InvalidFieldDTO:
+      type: object
+      properties:
+        message:
+          type: string
+    Patient:
+      type: object
+      properties:
+        id:
+          type: integer
+        birthDate:
+          type: string
+          format: date
+        name:
+          type: string
+        socialName:
+          type:
+          - string
+          - 'null'
+        motherName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneMobile:
+          type: string
+        zipCode:
+          type: string
+        address:
+          type: string
+        addressNumber:
+          type: string
+    CreateEventV1RequestingPhysician:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        council:
+          type: string
+        code:
+          type: string
+    InvalidFieldsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldDTO'
+    CreatedCheckinV1Response:
+      type: object
+      properties:
+        hashKey:
+          type: string
     CreateEventV1Request:
       type: object
       properties:
@@ -477,6 +534,34 @@ components:
           type: number
         checkin:
           $ref: '#/components/schemas/CreateEventV1Checkin'
+    EventPatientMinimalDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        birthDate:
+          type: string
+          format: date
+        name:
+          type: string
+        login:
+          type: string
+        socialName:
+          type: string
+        motherName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneMobile:
+          type: string
+        zipCode:
+          type: string
+        address:
+          type: string
+        addressNumber:
+          type: string
     EventDTO:
       type: object
       properties:
@@ -542,43 +627,6 @@ components:
           $ref: '#/components/schemas/Appointment'
         patient:
           $ref: '#/components/schemas/Patient'
-    CreatedCheckinV1Response:
-      type: object
-      properties:
-        hashKey:
-          type: string
-    Patient:
-      type: object
-      properties:
-        id:
-          type: integer
-        birthDate:
-          type: string
-          format: date
-        name:
-          type: string
-        socialName:
-          type:
-          - string
-          - 'null'
-        motherName:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneMobile:
-          type: string
-        zipCode:
-          type: string
-        address:
-          type: string
-        addressNumber:
-          type: string
-    InvalidFieldDTO:
-      type: object
-      properties:
-        message:
-          type: string
     Appointment:
       type: object
       properties:
@@ -593,6 +641,19 @@ components:
           type: string
         healthProfessionalAccreditationType:
           type: string
+    CreateEventV1Checkin:
+      type: object
+      properties:
+        requestedDate:
+          type: string
+          format: date
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+        requestingPhysician:
+          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventV1CheckinItem'
     CreateEventV1CheckinItem:
       type: object
       properties:
@@ -610,67 +671,6 @@ components:
         observation:
           type: string
           description: Observação
-    CreateEventV1Checkin:
-      type: object
-      properties:
-        requestedDate:
-          type: string
-          format: date
-          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
-        requestingPhysician:
-          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEventV1CheckinItem'
-    InvalidFieldsResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvalidFieldDTO'
-    EventPatientMinimalDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        birthDate:
-          type: string
-          format: date
-        name:
-          type: string
-        login:
-          type: string
-        socialName:
-          type: string
-        motherName:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneMobile:
-          type: string
-        zipCode:
-          type: string
-        address:
-          type: string
-        addressNumber:
-          type: string
-    CreateEventV1RequestingPhysician:
-      type: object
-      properties:
-        name:
-          type: string
-        state:
-          type: string
-        council:
-          type: string
-        code:
-          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

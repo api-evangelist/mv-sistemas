@@ -202,10 +202,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    JsonGenerico:
-      type: object
-      description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.
-      additionalProperties: true
     VwApiGuiaMedicoClinic:
       type: object
       description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
@@ -233,6 +229,10 @@ components:
         nmPrestador:
           type: string
           description: Nome do prestador credenciado.
+    JsonGenerico:
+      type: object
+      description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.
+      additionalProperties: true
     VwClinicApiGuias:
       type: object
       description: 'Resumo de uma **guia ou autorização** (rede local ou intercâmbio). Por privacidade, o **número da guia** pode aparecer **mascarado** (ex.: `*****`) quando o pedido ainda não está autorizado; use o campo de **número interno** (quando disponível) para integrações que precisam do identificador completo.

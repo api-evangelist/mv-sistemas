@@ -77,6 +77,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ItemAgendamentoDTO'
+    ItemAgendamentoDTO:
+      type: object
+      properties:
+        itemAgendamentoId:
+          type: integer
+        exaLabId:
+          type: integer
+        exaRxId:
+          type: integer
+        checkin:
+          type: boolean
     TussDTO:
       type: object
       properties:
@@ -114,17 +125,6 @@ components:
           type: string
         fullPresentation:
           type: string
-    ItemAgendamentoDTO:
-      type: object
-      properties:
-        itemAgendamentoId:
-          type: integer
-        exaLabId:
-          type: integer
-        exaRxId:
-          type: integer
-        checkin:
-          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

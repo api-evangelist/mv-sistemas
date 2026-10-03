@@ -295,6 +295,36 @@ components:
         clientKey:
           type: string
           example: clinic-001
+    SharedRequestStatus:
+      type: string
+      enum:
+      - WAITING
+      - REFUSED
+      - ACCEPTED
+      - REVOKED
+      description: Status do compartilhamento de dados
+      example: ACCEPTED
+    SharedRequestChangeStatusDTO:
+      type: object
+      required:
+      - login
+      - identificationNumber
+      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
+
+        '
+      properties:
+        login:
+          type: string
+          example: usuario@teste.com
+        identificationNumber:
+          type: string
+          example: '12345678900'
+        requesterId:
+          type: string
+          example: '1'
+        requesterDocumentNumber:
+          type: string
+          example: '11111111111'
     SharedRequestCreateDTO:
       type: object
       required:
@@ -338,36 +368,6 @@ components:
           type: integer
           format: date-time
           example: '1764892800000'
-    SharedRequestChangeStatusDTO:
-      type: object
-      required:
-      - login
-      - identificationNumber
-      description: 'É obrigatório informar ao menos um dos campos: `login` ou `identificationNumber`.
-
-        '
-      properties:
-        login:
-          type: string
-          example: usuario@teste.com
-        identificationNumber:
-          type: string
-          example: '12345678900'
-        requesterId:
-          type: string
-          example: '1'
-        requesterDocumentNumber:
-          type: string
-          example: '11111111111'
-    SharedRequestStatus:
-      type: string
-      enum:
-      - WAITING
-      - REFUSED
-      - ACCEPTED
-      - REVOKED
-      description: Status do compartilhamento de dados
-      example: ACCEPTED
   securitySchemes:
     x-api-key:
       type: apiKey

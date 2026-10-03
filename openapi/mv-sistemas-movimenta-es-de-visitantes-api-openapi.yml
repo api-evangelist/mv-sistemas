@@ -98,14 +98,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ExitMovementDTO:
-      type: object
-      properties:
-        exitDate:
-          type: string
-          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
-          examples:
-          - '1712061035669'
     InternalErrorMessage:
       type: object
       properties:
@@ -120,6 +112,14 @@ components:
         path:
           type: string
           description: Path chamado no momento do Erro.
+    ExitMovementDTO:
+      type: object
+      properties:
+        exitDate:
+          type: string
+          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
+          examples:
+          - '1712061035669'
     VisitorMovementDTO:
       type: object
       properties:

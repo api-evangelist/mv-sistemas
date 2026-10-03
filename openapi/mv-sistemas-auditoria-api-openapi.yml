@@ -163,6 +163,63 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GuiaProcedureAuditData:
+      type: object
+      properties:
+        procedureTerm:
+          type: string
+        procedureCode:
+          type: string
+        laudoLink:
+          type:
+          - string
+          - 'null'
+          description: Link para laudo/anexo quando disponível.
+    AttendanceDocumentAuditData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        attendanceId:
+          type: integer
+          format: int64
+        segmentId:
+          type: integer
+          format: int64
+        segmentName:
+          type: string
+        signed:
+          type: boolean
+        document:
+          type: string
+          description: URL do documento (pode ser pré-assinada S3).
+    GuiaAuditData:
+      type: object
+      properties:
+        attendanceId:
+          type: integer
+          format: int64
+        formNumber:
+          type: string
+        ansNumber:
+          type: string
+        insuranceNumber:
+          type:
+          - string
+          - 'null'
+        insuranceFormNumber:
+          type:
+          - string
+          - 'null'
+        passwordAuthorization:
+          type:
+          - string
+          - 'null'
+        procedures:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuiaProcedureAuditData'
     ExamRequestsAuditData:
       type: object
       description: 'Item de pedido de exame na auditoria. Inclui **justification** (justificativa textual do pedido,
@@ -250,18 +307,36 @@ components:
           type:
           - string
           - 'null'
-    GuiaProcedureAuditData:
+    PagePatientHealthAuditData:
       type: object
+      description: Resposta paginada Spring Data.
       properties:
-        procedureTerm:
-          type: string
-        procedureCode:
-          type: string
-        laudoLink:
-          type:
-          - string
-          - 'null'
-          description: Link para laudo/anexo quando disponível.
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientHealthAuditDataResponse'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+        size:
+          type: integer
+        number:
+          type: integer
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+        empty:
+          type: boolean
+        pageable:
+          type: object
+          description: Metadados de paginação Spring (sort, pageNumber, pageSize, etc.).
+        sort:
+          type: object
     PatientHealthAuditDataResponse:
       type: object
       description: Um atendimento na visão de auditoria.
@@ -336,81 +411,6 @@ components:
           format: int64
         insuranceName:
           type: string
-    PagePatientHealthAuditData:
-      type: object
-      description: Resposta paginada Spring Data.
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatientHealthAuditDataResponse'
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-        size:
-          type: integer
-        number:
-          type: integer
-        first:
-          type: boolean
-        last:
-          type: boolean
-        numberOfElements:
-          type: integer
-        empty:
-          type: boolean
-        pageable:
-          type: object
-          description: Metadados de paginação Spring (sort, pageNumber, pageSize, etc.).
-        sort:
-          type: object
-    GuiaAuditData:
-      type: object
-      properties:
-        attendanceId:
-          type: integer
-          format: int64
-        formNumber:
-          type: string
-        ansNumber:
-          type: string
-        insuranceNumber:
-          type:
-          - string
-          - 'null'
-        insuranceFormNumber:
-          type:
-          - string
-          - 'null'
-        passwordAuthorization:
-          type:
-          - string
-          - 'null'
-        procedures:
-          type: array
-          items:
-            $ref: '#/components/schemas/GuiaProcedureAuditData'
-    AttendanceDocumentAuditData:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        attendanceId:
-          type: integer
-          format: int64
-        segmentId:
-          type: integer
-          format: int64
-        segmentName:
-          type: string
-        signed:
-          type: boolean
-        document:
-          type: string
-          description: URL do documento (pode ser pré-assinada S3).
   securitySchemes:
     x-api-key:
       type: apiKey

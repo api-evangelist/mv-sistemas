@@ -71,6 +71,44 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AvailableAppointment:
+      type: object
+      properties:
+        startTime:
+          type: string
+        date:
+          type: string
+        telehealthAppointment:
+          type: boolean
+    PageEmployeeAppointment:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeAppointment'
+        totalElements:
+          type: integer
+        number:
+          type: integer
+        size:
+          type: integer
+    EmployeeAppointment:
+      type: object
+      properties:
+        employee:
+          $ref: '#/components/schemas/Employee'
+        nearestAvailableAppointment:
+          $ref: '#/components/schemas/NearestAvailableAppointment'
+    Employee:
+      type: object
+      properties:
+        name:
+          type: string
+        specialties:
+          type: array
+          items:
+            type: string
     NearestAvailableAppointment:
       type: object
       properties:
@@ -88,44 +126,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AvailableAppointment'
-    PageEmployeeAppointment:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployeeAppointment'
-        totalElements:
-          type: integer
-        number:
-          type: integer
-        size:
-          type: integer
-    Employee:
-      type: object
-      properties:
-        name:
-          type: string
-        specialties:
-          type: array
-          items:
-            type: string
-    EmployeeAppointment:
-      type: object
-      properties:
-        employee:
-          $ref: '#/components/schemas/Employee'
-        nearestAvailableAppointment:
-          $ref: '#/components/schemas/NearestAvailableAppointment'
-    AvailableAppointment:
-      type: object
-      properties:
-        startTime:
-          type: string
-        date:
-          type: string
-        telehealthAppointment:
-          type: boolean
   securitySchemes:
     x-api-key:
       type: apiKey

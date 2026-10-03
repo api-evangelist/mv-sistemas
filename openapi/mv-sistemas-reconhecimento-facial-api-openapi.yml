@@ -54,55 +54,6 @@ paths:
       description: Este endpoint finaliza a validação da vivacidade da informação biométrica.
 components:
   schemas:
-    FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
-      type: object
-      properties:
-        top:
-          type: number
-          description: Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.
-          examples:
-          - 0.17801541090011597
-        left:
-          type: number
-          description: Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.
-          examples:
-          - 0.3142961263656616
-        width:
-          type: number
-          description: Largura da caixa delimitadora como proporção da largura geral da imagem.
-          examples:
-          - 0.6097581386566162
-        height:
-          type: number
-          description: Altura da caixa delimitadora como proporção da altura geral da imagem.
-          examples:
-          - 0.5632858276367188
-      required:
-      - top
-      - left
-      - width
-      - height
-    FaceLivenessFinishV1Response:
-      type: object
-      properties:
-        faceLivenessResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
-        recognitionResults:
-          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
-      required:
-      - faceLivenessResults
-    FaceLivenessStartV1Response:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          description: Id da sessão a ser utilizado para validação da vivacidade.
-          examples:
-          - eda90689-a934-41bb-bd1a-4037be4964cd
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
-      required:
-      - sessionId
     FaceLivenessFinishV1Request:
       type: object
       properties:
@@ -185,15 +136,6 @@ components:
       required:
       - brightness
       - sharpness
-    FaceLivenessFinishV1ResponseFaceLivenessResults:
-      type: object
-      properties:
-        confidence:
-          type: number
-          description: Percentual de confiança da vivacidade.
-      required:
-      - confidence
-      - photoBase64
     FaceLivenessFinishV1ResponseRecognitionResults:
       type: object
       properties:
@@ -217,6 +159,64 @@ components:
       - quality
       - protocol
       - photo
+    FaceLivenessFinishV1ResponseRecognitionResultsBoudingBox:
+      type: object
+      properties:
+        top:
+          type: number
+          description: Coordenada superior da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.17801541090011597
+        left:
+          type: number
+          description: Coordenada esquerda da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.3142961263656616
+        width:
+          type: number
+          description: Largura da caixa delimitadora como proporção da largura geral da imagem.
+          examples:
+          - 0.6097581386566162
+        height:
+          type: number
+          description: Altura da caixa delimitadora como proporção da altura geral da imagem.
+          examples:
+          - 0.5632858276367188
+      required:
+      - top
+      - left
+      - width
+      - height
+    FaceLivenessFinishV1ResponseFaceLivenessResults:
+      type: object
+      properties:
+        confidence:
+          type: number
+          description: Percentual de confiança da vivacidade.
+      required:
+      - confidence
+      - photoBase64
+    FaceLivenessStartV1Response:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: Id da sessão a ser utilizado para validação da vivacidade.
+          examples:
+          - eda90689-a934-41bb-bd1a-4037be4964cd
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+          - 9a63b237-7897-4602-a39c-d4dd64d7fda3
+      required:
+      - sessionId
+    FaceLivenessFinishV1Response:
+      type: object
+      properties:
+        faceLivenessResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseFaceLivenessResults'
+        recognitionResults:
+          $ref: '#/components/schemas/FaceLivenessFinishV1ResponseRecognitionResults'
+      required:
+      - faceLivenessResults
   securitySchemes:
     x-api-key:
       type: apiKey

@@ -155,103 +155,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ConsentTermDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        term:
-          type: string
-        clientKey:
-          type: string
-    TussDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        code:
-          type: string
-          example: '40304361'
-        term:
-          type: string
-          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
-    HealthPlanDTO:
-      type: object
-      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Unimed Prata
-        ansCode:
-          type: string
-          example: '185657'
-        active:
-          type: boolean
-          example: true
-        insuranceType:
-          type: string
-          example: ANS
-        picture:
-          type: string
-        maxExamsPerGuide:
-          type: integer
-    RegulationSimpleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        procedureDescription:
-          type: string
-          example: Hemograma completo
-        ownCode:
-          type: string
-          example: EX123
-        type:
-          type: string
-          example: LAB
-    RegulationDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        clientKey:
-          type: string
-        type:
-          type: string
-        tuss:
-          $ref: '#/components/schemas/TussDTO'
-        ownCode:
-          type: string
-        procedureDescription:
-          type: string
-        gender:
-          type: string
-          description: Sexo aplicável à regulação. Valores aceitos — `M` (masculino), `F` (feminino) ou omitido/`null` (ambos). A coluna no banco é `VARCHAR(1)`.
-          example: M
-        doctorOrientation:
-          type: string
-        patientOrientation:
-          type: string
-        regulationHealthPlanList:
-          type: array
-          description: Regras por convênio (plano de saúde), incluindo termo, formulário, categoria e dias para justificativa.
-          items:
-            $ref: '#/components/schemas/RegulationHealthPlanDTO'
-        laboratoryExamCode:
-          type: string
-        rxExamCode:
-          type: string
-        schedulingItemCode:
-          type: string
-        requiresJustification:
-          type: boolean
-          description: Indica se a regulação exige justificativa
-          example: false
     RegulationHealthPlanDTO:
       type: object
       description: Configuração da regulação por convênio.
@@ -299,6 +202,103 @@ components:
           example: '5'
         consentTerm:
           $ref: '#/components/schemas/ConsentTermDTO'
+    RegulationDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        clientKey:
+          type: string
+        type:
+          type: string
+        tuss:
+          $ref: '#/components/schemas/TussDTO'
+        ownCode:
+          type: string
+        procedureDescription:
+          type: string
+        gender:
+          type: string
+          description: Sexo aplicável à regulação. Valores aceitos — `M` (masculino), `F` (feminino) ou omitido/`null` (ambos). A coluna no banco é `VARCHAR(1)`.
+          example: M
+        doctorOrientation:
+          type: string
+        patientOrientation:
+          type: string
+        regulationHealthPlanList:
+          type: array
+          description: Regras por convênio (plano de saúde), incluindo termo, formulário, categoria e dias para justificativa.
+          items:
+            $ref: '#/components/schemas/RegulationHealthPlanDTO'
+        laboratoryExamCode:
+          type: string
+        rxExamCode:
+          type: string
+        schedulingItemCode:
+          type: string
+        requiresJustification:
+          type: boolean
+          description: Indica se a regulação exige justificativa
+          example: false
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: '40304361'
+        term:
+          type: string
+          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
+    ConsentTermDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        term:
+          type: string
+        clientKey:
+          type: string
+    RegulationSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        procedureDescription:
+          type: string
+          example: Hemograma completo
+        ownCode:
+          type: string
+          example: EX123
+        type:
+          type: string
+          example: LAB
+    HealthPlanDTO:
+      type: object
+      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Unimed Prata
+        ansCode:
+          type: string
+          example: '185657'
+        active:
+          type: boolean
+          example: true
+        insuranceType:
+          type: string
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
   securitySchemes:
     x-api-key:
       type: apiKey

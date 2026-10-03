@@ -86,6 +86,28 @@ paths:
       description: Este endpoint finaliza a importação dos dados biométricos de um paciente.
 components:
   schemas:
+    BiometricImportStartV1Response:
+      type: object
+      properties:
+        importIdentifier:
+          type: string
+          description: Identificador da importação.
+          examples:
+          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
+          - 71e50838-8116-4d76-9731-475ae4166452
+          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
+      required:
+      - importIdentifier
+    BiometricImportUploadV1Response:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensagem referente ao upload.
+          examples:
+          - Upload realizado com sucesso
+      required:
+      - message
     BiometricImportUploadV1Request:
       type: object
       properties:
@@ -134,28 +156,6 @@ components:
       - name
       - birthDate
       - documentNumber
-    BiometricImportStartV1Response:
-      type: object
-      properties:
-        importIdentifier:
-          type: string
-          description: Identificador da importação.
-          examples:
-          - ce9dd003-b293-4ea5-ad91-9cf654115d6d
-          - 71e50838-8116-4d76-9731-475ae4166452
-          - 6aba6c4a-a8bc-4849-a8b9-dd4bb777db72
-      required:
-      - importIdentifier
-    BiometricImportUploadV1Response:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Mensagem referente ao upload.
-          examples:
-          - Upload realizado com sucesso
-      required:
-      - message
   securitySchemes:
     x-api-key:
       type: apiKey

@@ -318,107 +318,6 @@ paths:
           description: Pendência não encontrada.
 components:
   schemas:
-    HealthPendencyPerson:
-      type: object
-      properties:
-        numeroDocumento:
-          type: string
-          description: Número de Documento do Beneficiário
-          maxLength: 50
-        numeroCarteira:
-          type: string
-          description: Número do Cartão do Convênio do Beneficiário
-          maxLength: 50
-        nomeCarteira:
-          type: string
-          description: Nome do Beneficiário no Cartão do Convênio
-          maxLength: 255
-        nome:
-          type: string
-          description: Nome do Beneficiário
-          maxLength: 255
-        status:
-          type: string
-          description: Status do Beneficiário junto a operadora
-          enum:
-          - active
-          - inactive
-          maxLength: 20
-    HealthPendencyPatient:
-      type: object
-      properties:
-        socialName:
-          type: string
-          description: Nome social
-          maxLength: 255
-        birthDate:
-          type: string
-          description: Data de nascimento (formato YYYY-MM-DD)
-          maxLength: 10
-        gender:
-          type: string
-          description: Sexo
-          enum:
-          - M
-          - F
-          - I
-        phone:
-          type: string
-          description: Telefone
-          maxLength: 20
-        email:
-          type: string
-          description: E-mail
-          maxLength: 255
-        motherName:
-          type: string
-          description: Nome da mãe
-          maxLength: 255
-    HealthPendencyExam:
-      type: object
-      properties:
-        examDescription:
-          type: string
-          description: Descrição do exame
-        recommendation:
-          type: string
-          description: Recomendação para o exame
-        clinicalIndication:
-          type: string
-          description: Indicação clínica do exame
-        procedureCode:
-          type: string
-          description: Código do procedimento
-        guiaTissFormNumber:
-          type: string
-          description: Número do formulário da guia TISS
-        guiaTissInsuranceFormNumber:
-          type: string
-          description: Número do formulário de seguro da guia TISS
-        guiaTissInsuranceNumber:
-          type: string
-          description: Número do seguro da guia TISS
-        guiaTissHealthAutomationResponse:
-          type: string
-          description: Resposta da automação de saúde da guia TISS
-        guiaTissPassword:
-          type: string
-          description: Senha da guia TISS
-        schedulingItemCode:
-          type: integer
-          description: Código do item de agendamento
-        exaLabCode:
-          type: integer
-          description: Código do laboratório de exame
-        exaRxCode:
-          type: integer
-          description: Código do exame de raio-X
-        sourceId:
-          type: integer
-          description: ID da fonte
-        status:
-          type: string
-          description: Status do exame
     HealthPendency:
       type: object
       properties:
@@ -576,6 +475,107 @@ components:
         card:
           type: string
           description: Informações do cartão
+    HealthPendencyPerson:
+      type: object
+      properties:
+        numeroDocumento:
+          type: string
+          description: Número de Documento do Beneficiário
+          maxLength: 50
+        numeroCarteira:
+          type: string
+          description: Número do Cartão do Convênio do Beneficiário
+          maxLength: 50
+        nomeCarteira:
+          type: string
+          description: Nome do Beneficiário no Cartão do Convênio
+          maxLength: 255
+        nome:
+          type: string
+          description: Nome do Beneficiário
+          maxLength: 255
+        status:
+          type: string
+          description: Status do Beneficiário junto a operadora
+          enum:
+          - active
+          - inactive
+          maxLength: 20
+    HealthPendencyExam:
+      type: object
+      properties:
+        examDescription:
+          type: string
+          description: Descrição do exame
+        recommendation:
+          type: string
+          description: Recomendação para o exame
+        clinicalIndication:
+          type: string
+          description: Indicação clínica do exame
+        procedureCode:
+          type: string
+          description: Código do procedimento
+        guiaTissFormNumber:
+          type: string
+          description: Número do formulário da guia TISS
+        guiaTissInsuranceFormNumber:
+          type: string
+          description: Número do formulário de seguro da guia TISS
+        guiaTissInsuranceNumber:
+          type: string
+          description: Número do seguro da guia TISS
+        guiaTissHealthAutomationResponse:
+          type: string
+          description: Resposta da automação de saúde da guia TISS
+        guiaTissPassword:
+          type: string
+          description: Senha da guia TISS
+        schedulingItemCode:
+          type: integer
+          description: Código do item de agendamento
+        exaLabCode:
+          type: integer
+          description: Código do laboratório de exame
+        exaRxCode:
+          type: integer
+          description: Código do exame de raio-X
+        sourceId:
+          type: integer
+          description: ID da fonte
+        status:
+          type: string
+          description: Status do exame
+    HealthPendencyPatient:
+      type: object
+      properties:
+        socialName:
+          type: string
+          description: Nome social
+          maxLength: 255
+        birthDate:
+          type: string
+          description: Data de nascimento (formato YYYY-MM-DD)
+          maxLength: 10
+        gender:
+          type: string
+          description: Sexo
+          enum:
+          - M
+          - F
+          - I
+        phone:
+          type: string
+          description: Telefone
+          maxLength: 20
+        email:
+          type: string
+          description: E-mail
+          maxLength: 255
+        motherName:
+          type: string
+          description: Nome da mãe
+          maxLength: 255
   securitySchemes:
     x-api-key:
       type: apiKey

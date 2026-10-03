@@ -39,23 +39,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TermCboConnectDTO:
-      type: object
-      properties:
-        termCode:
-          type: string
-    EmployeeAccreditationDTO:
-      type: object
-      properties:
-        accreditationType:
-          type: string
-          example: CRM
-        accreditationState:
-          type: string
-          example: PE
-        accreditationNumber:
-          type: string
-          example: '123456'
     ConnectSubscriptionDTO:
       type: object
       properties:
@@ -84,6 +67,23 @@ components:
           $ref: '#/components/schemas/TermCboConnectDTO'
         accreditation:
           $ref: '#/components/schemas/EmployeeAccreditationDTO'
+    TermCboConnectDTO:
+      type: object
+      properties:
+        termCode:
+          type: string
+    EmployeeAccreditationDTO:
+      type: object
+      properties:
+        accreditationType:
+          type: string
+          example: CRM
+        accreditationState:
+          type: string
+          example: PE
+        accreditationNumber:
+          type: string
+          example: '123456'
   securitySchemes:
     x-api-key:
       type: apiKey
