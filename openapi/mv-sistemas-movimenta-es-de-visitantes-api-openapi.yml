@@ -112,14 +112,6 @@ components:
         path:
           type: string
           description: Path chamado no momento do Erro.
-    ExitMovementDTO:
-      type: object
-      properties:
-        exitDate:
-          type: string
-          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
-          examples:
-          - '1712061035669'
     VisitorMovementDTO:
       type: object
       properties:
@@ -141,6 +133,14 @@ components:
         photoUrl:
           type: string
           description: URL com foto da Pessoa
+    ExitMovementDTO:
+      type: object
+      properties:
+        exitDate:
+          type: string
+          description: Data de saída da pessoa, em TIMESTAMP, se aplicável.
+          examples:
+          - '1712061035669'
   securitySchemes:
     x-api-key:
       type: apiKey

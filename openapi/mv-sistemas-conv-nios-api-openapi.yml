@@ -144,19 +144,36 @@ paths:
       description: Ambiente de QA
 components:
   schemas:
-    InsuranceHealthPlanTypeDTO:
+    HealthPlanDTO:
       type: object
-      required:
-      - name
-      - ansCode
       properties:
         id:
           type: integer
           format: int64
         name:
           type: string
+          example: Unimed Prata
         ansCode:
           type: string
+          example: '185657'
+        active:
+          type: boolean
+          default: true
+        lack:
+          type: string
+        insuranceType:
+          type: string
+          enum:
+          - ANS
+          - PRIVATE
+          - SUS
+          - ORIGIN
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
+          format: int32
     SimpleIdDTO:
       type: object
       properties:
@@ -165,6 +182,16 @@ components:
           format: int64
         externalId:
           type: string
+    TissVersion:
+      type: string
+      description: Versão TISS
+      enum:
+      - V3_03_03
+      - V3_05_00
+      - V4_00_00
+      - V4_00_01
+      - V4_01_00
+      example: V4_01_00
     ConnectInsuranceDTO:
       type: object
       properties:
@@ -211,46 +238,19 @@ components:
         externalId:
           type: integer
           format: int64
-    TissVersion:
-      type: string
-      description: Versão TISS
-      enum:
-      - V3_03_03
-      - V3_05_00
-      - V4_00_00
-      - V4_00_01
-      - V4_01_00
-      example: V4_01_00
-    HealthPlanDTO:
+    InsuranceHealthPlanTypeDTO:
       type: object
+      required:
+      - name
+      - ansCode
       properties:
         id:
           type: integer
           format: int64
         name:
           type: string
-          example: Unimed Prata
         ansCode:
           type: string
-          example: '185657'
-        active:
-          type: boolean
-          default: true
-        lack:
-          type: string
-        insuranceType:
-          type: string
-          enum:
-          - ANS
-          - PRIVATE
-          - SUS
-          - ORIGIN
-          example: ANS
-        picture:
-          type: string
-        maxExamsPerGuide:
-          type: integer
-          format: int32
     HealthPlanDTO_2:
       type: object
       description: Dados do convênio (plano de saúde) vinculado à linha de regulação.

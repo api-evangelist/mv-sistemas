@@ -318,6 +318,32 @@ paths:
           description: Pendência não encontrada.
 components:
   schemas:
+    HealthPendencyPerson:
+      type: object
+      properties:
+        numeroDocumento:
+          type: string
+          description: Número de Documento do Beneficiário
+          maxLength: 50
+        numeroCarteira:
+          type: string
+          description: Número do Cartão do Convênio do Beneficiário
+          maxLength: 50
+        nomeCarteira:
+          type: string
+          description: Nome do Beneficiário no Cartão do Convênio
+          maxLength: 255
+        nome:
+          type: string
+          description: Nome do Beneficiário
+          maxLength: 255
+        status:
+          type: string
+          description: Status do Beneficiário junto a operadora
+          enum:
+          - active
+          - inactive
+          maxLength: 20
     HealthPendency:
       type: object
       properties:
@@ -475,32 +501,6 @@ components:
         card:
           type: string
           description: Informações do cartão
-    HealthPendencyPerson:
-      type: object
-      properties:
-        numeroDocumento:
-          type: string
-          description: Número de Documento do Beneficiário
-          maxLength: 50
-        numeroCarteira:
-          type: string
-          description: Número do Cartão do Convênio do Beneficiário
-          maxLength: 50
-        nomeCarteira:
-          type: string
-          description: Nome do Beneficiário no Cartão do Convênio
-          maxLength: 255
-        nome:
-          type: string
-          description: Nome do Beneficiário
-          maxLength: 255
-        status:
-          type: string
-          description: Status do Beneficiário junto a operadora
-          enum:
-          - active
-          - inactive
-          maxLength: 20
     HealthPendencyExam:
       type: object
       properties:

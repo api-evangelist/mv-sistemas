@@ -79,6 +79,34 @@ paths:
       - api_key: []
 components:
   schemas:
+    SurgeryRequestProtocolDTO:
+      type: object
+      description: Dados de uma cirurgia vinculada ao atendimento
+      properties:
+        surgeryDate:
+          type: string
+          description: Data da cirurgia
+        surgeryWarningId:
+          type: string
+          description: Identificador do aviso de cirurgia
+        surgeryId:
+          type: string
+          description: Identificador da cirurgia
+        tussProcedureId:
+          type: string
+          description: Identificador do procedimento TUSS
+        surgeryDescription:
+          type: string
+          description: Descrição da cirurgia
+        mainSurgeon:
+          type: string
+          description: Nome do cirurgião principal
+        accreditationNumber:
+          type: string
+          description: Número de acreditação do cirurgião
+        accreditation:
+          type: string
+          description: Tipo de acreditação do cirurgião
     AttendanceHealthConnectedDTO:
       type: object
       description: Dados do atendimento provenientes da integração legada Health Connected
@@ -294,9 +322,6 @@ components:
         idObject:
           type: string
           description: Identificador do objeto associado
-    ExamFieldHealthConnectedProtocolDTO:
-      type: object
-      description: Campo adicional de um exame
     PersonalRecordProtocolDTO:
       type: object
       description: Registro pessoal vinculado ao atendimento
@@ -313,34 +338,6 @@ components:
           description: Lista de URLs dos arquivos do registro
           items:
             type: string
-    SurgeryRequestProtocolDTO:
-      type: object
-      description: Dados de uma cirurgia vinculada ao atendimento
-      properties:
-        surgeryDate:
-          type: string
-          description: Data da cirurgia
-        surgeryWarningId:
-          type: string
-          description: Identificador do aviso de cirurgia
-        surgeryId:
-          type: string
-          description: Identificador da cirurgia
-        tussProcedureId:
-          type: string
-          description: Identificador do procedimento TUSS
-        surgeryDescription:
-          type: string
-          description: Descrição da cirurgia
-        mainSurgeon:
-          type: string
-          description: Nome do cirurgião principal
-        accreditationNumber:
-          type: string
-          description: Número de acreditação do cirurgião
-        accreditation:
-          type: string
-          description: Tipo de acreditação do cirurgião
     ExamHealthConnectedProtocolDTO:
       type: object
       description: Dados do exame vinculado ao atendimento
@@ -457,6 +454,9 @@ components:
           description: Campos adicionais do exame
           items:
             $ref: '#/components/schemas/ExamFieldHealthConnectedProtocolDTO'
+    ExamFieldHealthConnectedProtocolDTO:
+      type: object
+      description: Campo adicional de um exame
   securitySchemes:
     api_key:
       type: apiKey

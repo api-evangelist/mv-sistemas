@@ -79,11 +79,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TermCboConnectDTO:
+    EmployeeAccreditationDTO:
       type: object
       properties:
-        termCode:
+        accreditationType:
           type: string
+          example: CRM
+        accreditationState:
+          type: string
+          example: PE
+        accreditationNumber:
+          type: string
+          example: '123456'
     AddressConnectDTO:
       type: object
       properties:
@@ -101,18 +108,11 @@ components:
           type: string
         state:
           type: string
-    EmployeeAccreditationDTO:
+    TermCboConnectDTO:
       type: object
       properties:
-        accreditationType:
+        termCode:
           type: string
-          example: CRM
-        accreditationState:
-          type: string
-          example: PE
-        accreditationNumber:
-          type: string
-          example: '123456'
     SimpleIdDTO:
       type: object
       properties:

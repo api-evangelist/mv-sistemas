@@ -163,37 +163,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GuiaProcedureAuditData:
-      type: object
-      properties:
-        procedureTerm:
-          type: string
-        procedureCode:
-          type: string
-        laudoLink:
-          type:
-          - string
-          - 'null'
-          description: Link para laudo/anexo quando disponível.
-    AttendanceDocumentAuditData:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        attendanceId:
-          type: integer
-          format: int64
-        segmentId:
-          type: integer
-          format: int64
-        segmentName:
-          type: string
-        signed:
-          type: boolean
-        document:
-          type: string
-          description: URL do documento (pode ser pré-assinada S3).
     GuiaAuditData:
       type: object
       properties:
@@ -220,6 +189,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GuiaProcedureAuditData'
+    AttendanceAuditData:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        createdDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        status:
+          type: string
+        clinicId:
+          type: integer
+          format: int64
+        clinicName:
+          type: string
+        employeeId:
+          type: integer
+          format: int64
+        employeeName:
+          type: string
+        employeeAcreditation:
+          type: string
+        patientId:
+          type: integer
+          format: int64
+        patientName:
+          type: string
+        insuranceId:
+          type: integer
+          format: int64
+        insuranceName:
+          type: string
     ExamRequestsAuditData:
       type: object
       description: 'Item de pedido de exame na auditoria. Inclui **justification** (justificativa textual do pedido,
@@ -376,41 +380,37 @@ components:
           type: array
           items:
             type: object
-    AttendanceAuditData:
+    GuiaProcedureAuditData:
+      type: object
+      properties:
+        procedureTerm:
+          type: string
+        procedureCode:
+          type: string
+        laudoLink:
+          type:
+          - string
+          - 'null'
+          description: Link para laudo/anexo quando disponível.
+    AttendanceDocumentAuditData:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        createdDate:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        status:
-          type: string
-        clinicId:
+        attendanceId:
           type: integer
           format: int64
-        clinicName:
-          type: string
-        employeeId:
+        segmentId:
           type: integer
           format: int64
-        employeeName:
+        segmentName:
           type: string
-        employeeAcreditation:
+        signed:
+          type: boolean
+        document:
           type: string
-        patientId:
-          type: integer
-          format: int64
-        patientName:
-          type: string
-        insuranceId:
-          type: integer
-          format: int64
-        insuranceName:
-          type: string
+          description: URL do documento (pode ser pré-assinada S3).
   securitySchemes:
     x-api-key:
       type: apiKey

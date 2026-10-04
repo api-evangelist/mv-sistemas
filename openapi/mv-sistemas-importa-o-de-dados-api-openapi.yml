@@ -52,50 +52,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PatientImportResponseDTO:
-      type: object
-      description: Resposta da importação de paciente (sucesso ou erro amigável).
-      properties:
-        patientId:
-          type: integer
-          format: int64
-          description: ID do paciente no clinic-service (quando sucesso).
-        message:
-          type: string
-          description: Mensagem amigável (sucesso ou erro).
-        success:
-          type: boolean
-          description: Indica se a importação foi bem-sucedida.
-        errors:
-          type: array
-          items:
-            type: string
-          description: Lista de erros de validação (quando aplicável).
-    ConnectImportationDTO:
-      type: object
-      description: Payload para importação de dados do paciente (Connect flow).
-      properties:
-        employee:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Prestador/colaborador responsável.
-        subscription:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Conta/subscription Clinic Connect.
-        clinicId:
-          $ref: '#/components/schemas/SimpleIdDTO'
-          description: Clínica por id e/ou externalId.
-        employeeLogin:
-          type: string
-          description: Login do prestador.
-          example: dr.silva
-        patient:
-          $ref: '#/components/schemas/PatientImportSyncDTO'
-          description: Dados do paciente a importar.
-        defaultTextComponentId:
-          type: integer
-          format: int64
-          description: ID do componente de texto padrão (opcional).
-          example: 42
     MedicalRecordImportDTO:
       type: object
       properties:
@@ -115,21 +71,25 @@ components:
           type: string
         attachmentName:
           type: string
-    InsuranceImportDTO:
+    PatientImportResponseDTO:
       type: object
+      description: Resposta da importação de paciente (sucesso ou erro amigável).
       properties:
-        name:
+        patientId:
+          type: integer
+          format: int64
+          description: ID do paciente no clinic-service (quando sucesso).
+        message:
           type: string
-          example: PARTICULAR
-          description: Nome do convênio.
-        card:
-          type: string
-          example: '12345678901234'
-          description: Número da carteirinha.
-        expirationDate:
-          type: string
-          example: '2025-01-01'
-          description: Data de validade da carteirinha.
+          description: Mensagem amigável (sucesso ou erro).
+        success:
+          type: boolean
+          description: Indica se a importação foi bem-sucedida.
+        errors:
+          type: array
+          items:
+            type: string
+          description: Lista de erros de validação (quando aplicável).
     SimpleIdDTO:
       type: object
       properties:
@@ -212,6 +172,46 @@ components:
         externalId:
           type: string
           example: PAT001
+    ConnectImportationDTO:
+      type: object
+      description: Payload para importação de dados do paciente (Connect flow).
+      properties:
+        employee:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Prestador/colaborador responsável.
+        subscription:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Conta/subscription Clinic Connect.
+        clinicId:
+          $ref: '#/components/schemas/SimpleIdDTO'
+          description: Clínica por id e/ou externalId.
+        employeeLogin:
+          type: string
+          description: Login do prestador.
+          example: dr.silva
+        patient:
+          $ref: '#/components/schemas/PatientImportSyncDTO'
+          description: Dados do paciente a importar.
+        defaultTextComponentId:
+          type: integer
+          format: int64
+          description: ID do componente de texto padrão (opcional).
+          example: 42
+    InsuranceImportDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          example: PARTICULAR
+          description: Nome do convênio.
+        card:
+          type: string
+          example: '12345678901234'
+          description: Número da carteirinha.
+        expirationDate:
+          type: string
+          example: '2025-01-01'
+          description: Data de validade da carteirinha.
   securitySchemes:
     x-api-key:
       type: apiKey

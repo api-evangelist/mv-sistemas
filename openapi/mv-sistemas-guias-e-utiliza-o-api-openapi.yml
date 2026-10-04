@@ -202,33 +202,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VwApiGuiaMedicoClinic:
-      type: object
-      description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
-
-        '
-      additionalProperties: true
-      properties:
-        cdUf:
-          type: string
-          description: Unidade da Federação (UF) do prestador ou da localização.
-        cdEspecialidade:
-          type: string
-        cdMultiEmpresa:
-          type: string
-        dsTpRecurso:
-          type: string
-          description: Tipo de recurso na rede.
-        cdMatAlternativa:
-          type: string
-          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
-        dsMunicipio:
-          type: string
-        dsBairro:
-          type: string
-        nmPrestador:
-          type: string
-          description: Nome do prestador credenciado.
     JsonGenerico:
       type: object
       description: Conteúdo retornado conforme o **contrato da operadora**; a estrutura exata será detalhada quando o escopo de utilização estiver fechado.
@@ -275,6 +248,33 @@ components:
         dtfiltro:
           type: string
           description: Data de referência usada no filtro de período da consulta (formato conforme a API).
+    VwApiGuiaMedicoClinic:
+      type: object
+      description: 'Registro de **prestador ou ponto de atenção** na rede credenciada, com dados utilizados nos filtros da busca (UF, especialidade, município, bairro, tipo de recurso, etc.). Os nomes dos campos no JSON podem aparecer em **camelCase** ou **PascalCase**; campos adicionais podem ser retornados conforme a operadora.
+
+        '
+      additionalProperties: true
+      properties:
+        cdUf:
+          type: string
+          description: Unidade da Federação (UF) do prestador ou da localização.
+        cdEspecialidade:
+          type: string
+        cdMultiEmpresa:
+          type: string
+        dsTpRecurso:
+          type: string
+          description: Tipo de recurso na rede.
+        cdMatAlternativa:
+          type: string
+          description: Identificador alternativo da carteirinha, quando aplicável ao contexto da busca.
+        dsMunicipio:
+          type: string
+        dsBairro:
+          type: string
+        nmPrestador:
+          type: string
+          description: Nome do prestador credenciado.
   securitySchemes:
     x-api-key:
       type: apiKey

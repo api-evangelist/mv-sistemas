@@ -433,11 +433,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    InvalidFieldDTO:
-      type: object
-      properties:
-        message:
-          type: string
     Patient:
       type: object
       properties:
@@ -465,26 +460,28 @@ components:
           type: string
         addressNumber:
           type: string
-    CreateEventV1RequestingPhysician:
+    CreateEventV1CheckinItem:
       type: object
       properties:
-        name:
+        loincMvId:
+          type: integer
+        tussCode:
           type: string
-        state:
+        exaRxId:
+          type: integer
+        exaLabId:
+          type: integer
+        clinicalIndication:
           type: string
-        council:
+          description: Indicação clínica
+        observation:
           type: string
-        code:
-          type: string
-    InvalidFieldsResponse:
+          description: Observação
+    InvalidFieldDTO:
       type: object
       properties:
         message:
           type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvalidFieldDTO'
     CreatedCheckinV1Response:
       type: object
       properties:
@@ -534,6 +531,20 @@ components:
           type: number
         checkin:
           $ref: '#/components/schemas/CreateEventV1Checkin'
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        phoneMobile:
+          type: string
+        email:
+          type: string
+          format: email
+        healthProfessionalAccreditationNumber:
+          type: string
+        healthProfessionalAccreditationType:
+          type: string
     EventPatientMinimalDTO:
       type: object
       properties:
@@ -562,6 +573,30 @@ components:
           type: string
         addressNumber:
           type: string
+    CreateEventV1RequestingPhysician:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        council:
+          type: string
+        code:
+          type: string
+    CreateEventV1Checkin:
+      type: object
+      properties:
+        requestedDate:
+          type: string
+          format: date
+          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+        requestingPhysician:
+          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEventV1CheckinItem'
     EventDTO:
       type: object
       properties:
@@ -627,50 +662,15 @@ components:
           $ref: '#/components/schemas/Appointment'
         patient:
           $ref: '#/components/schemas/Patient'
-    Appointment:
+    InvalidFieldsResponse:
       type: object
       properties:
-        id:
-          type: integer
-        phoneMobile:
+        message:
           type: string
-        email:
-          type: string
-          format: email
-        healthProfessionalAccreditationNumber:
-          type: string
-        healthProfessionalAccreditationType:
-          type: string
-    CreateEventV1Checkin:
-      type: object
-      properties:
-        requestedDate:
-          type: string
-          format: date
-          pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
-        requestingPhysician:
-          $ref: '#/components/schemas/CreateEventV1RequestingPhysician'
-        items:
+        fields:
           type: array
           items:
-            $ref: '#/components/schemas/CreateEventV1CheckinItem'
-    CreateEventV1CheckinItem:
-      type: object
-      properties:
-        loincMvId:
-          type: integer
-        tussCode:
-          type: string
-        exaRxId:
-          type: integer
-        exaLabId:
-          type: integer
-        clinicalIndication:
-          type: string
-          description: Indicação clínica
-        observation:
-          type: string
-          description: Observação
+            $ref: '#/components/schemas/InvalidFieldDTO'
   securitySchemes:
     x-api-key:
       type: apiKey

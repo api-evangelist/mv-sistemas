@@ -155,6 +155,54 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RegulationSimpleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        procedureDescription:
+          type: string
+          example: Hemograma completo
+        ownCode:
+          type: string
+          example: EX123
+        type:
+          type: string
+          example: LAB
+    HealthPlanDTO:
+      type: object
+      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          example: Unimed Prata
+        ansCode:
+          type: string
+          example: '185657'
+        active:
+          type: boolean
+          example: true
+        insuranceType:
+          type: string
+          example: ANS
+        picture:
+          type: string
+        maxExamsPerGuide:
+          type: integer
+    ConsentTermDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        term:
+          type: string
+        clientKey:
+          type: string
     RegulationHealthPlanDTO:
       type: object
       description: Configuração da regulação por convênio.
@@ -202,6 +250,17 @@ components:
           example: '5'
         consentTerm:
           $ref: '#/components/schemas/ConsentTermDTO'
+    TussDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          example: '40304361'
+        term:
+          type: string
+          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
     RegulationDTO:
       type: object
       properties:
@@ -240,65 +299,6 @@ components:
           type: boolean
           description: Indica se a regulação exige justificativa
           example: false
-    TussDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        code:
-          type: string
-          example: '40304361'
-        term:
-          type: string
-          example: Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)
-    ConsentTermDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        term:
-          type: string
-        clientKey:
-          type: string
-    RegulationSimpleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        procedureDescription:
-          type: string
-          example: Hemograma completo
-        ownCode:
-          type: string
-          example: EX123
-        type:
-          type: string
-          example: LAB
-    HealthPlanDTO:
-      type: object
-      description: Dados do convênio (plano de saúde) vinculado à linha de regulação.
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: Unimed Prata
-        ansCode:
-          type: string
-          example: '185657'
-        active:
-          type: boolean
-          example: true
-        insuranceType:
-          type: string
-          example: ANS
-        picture:
-          type: string
-        maxExamsPerGuide:
-          type: integer
   securitySchemes:
     x-api-key:
       type: apiKey
