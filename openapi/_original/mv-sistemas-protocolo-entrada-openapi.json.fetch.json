@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/protocolo-entrada.json",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/protocolo-entrada.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 14183,
+ "sha256": "51e121763a45a4179b124074d4ad01abe51f76200c09ec9f01caf8de9c70870f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

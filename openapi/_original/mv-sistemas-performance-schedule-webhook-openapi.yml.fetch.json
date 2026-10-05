@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/performance-schedule-integration-api.yml",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/performance-schedule-integration-api.yml",
+ "status": 200,
+ "content_type": "binary/octet-stream",
+ "bytes": 15544,
+ "sha256": "427872b7c981ef35d1e5d9ca1f392abfb4160828fefaab6b2b180b10e1bab2ad",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/alergias-doc.json",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/alergias-doc.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 5401,
+ "sha256": "e7dd65a361bbe1e0f8ae0ac4ead466a5057d114d1176e848f4873f085bc1e40b",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/pendencias_saude.json",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/pendencias_saude.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 29096,
+ "sha256": "ff45f6c8f9f1ec8422a77d064c8e5352bf4b7013cb9bafcdaa22fbcf377778a3",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/news-doc.json",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/news-doc.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 8478,
+ "sha256": "6f5667f283a501ba72f04b3d135bbb853e5690dc8271ba936215328ffa3c91ca",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

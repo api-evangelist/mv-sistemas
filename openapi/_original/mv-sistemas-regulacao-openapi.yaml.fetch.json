@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/regulacao.yaml",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/regulacao.yaml",
+ "status": 200,
+ "content_type": "binary/octet-stream",
+ "bytes": 11301,
+ "sha256": "4cd5f88c5bbae1277201438fec39052333e5602610e969e7a721e64f0ab72059",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

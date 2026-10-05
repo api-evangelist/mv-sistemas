@@ -1,0 +1,12 @@
+{
+ "url": "https://apidocs.globalhealth.mv/swagger-files/clinic-connect.yaml",
+ "requested_url": "https://apidocs.globalhealth.mv/swagger-files/clinic-connect.yaml",
+ "status": 200,
+ "content_type": "binary/octet-stream",
+ "bytes": 29039,
+ "sha256": "d19fbfd553608a1d9b4f47189a097d77b825e9e5b059e401851d92f494af97e5",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
